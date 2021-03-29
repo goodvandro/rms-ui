@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'rms-ui';
+  title = 'IGF - Sistema de Recomendações';
+
+  constructor(private router: Router) { }
+
+  showAuth() {
+    return (
+      this.router.url === '/sign-in' ||
+      this.router.url === '/forgot-password' ||
+      this.router.url === '/recover-password' ||
+      this.router.url === '/new-password' ||
+      this.router.url === '/password-confirmed'
+    );
+  }
 }

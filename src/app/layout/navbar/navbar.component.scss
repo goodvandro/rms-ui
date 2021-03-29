@@ -1,0 +1,19 @@
+$spacing: 24px;
+$plus-size: 10px;
+$plus-thickness: 2px;
+$speed: 300ms;
+$easing: ease-in-out;
+$gray-dark: #546E7A;
+$gray: #CFD8DC;
+$gray-light: #ECEFF1;
+$primary: #00ACC1;
+
+p {
+  position: relative;
+  list-style: none; // Hide the marker (proper method)
+  padding-left: $spacing;
+  outline: 0;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  transition: color $speed $easing;
+}

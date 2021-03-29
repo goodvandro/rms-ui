@@ -1,0 +1,37 @@
+<div class="p-grid p-ai-stretch vertical-container">
+  <div class="p-col">
+    <div class="box box-stretched p-shadow-1 p-d-flex p-flex-column p-jc-center p-ai-center"
+      [ngStyle]="{background:'var(--purple-400)', height: '90vh'}">
+      <img class="logo" src="/assets/img/logo.png" alt="IGF">
+      <h2 class="p-text-center system-name">Sistema de Gestão de Recomendação</h2>
+    </div>
+  </div>
+
+  <div class="p-col">
+    <div class="box box-stretched  p-shadow-1 p-d-flex p-jc-center p-ai-center"
+      [ngStyle]="{background:'var(--white)', height: '90vh'}">
+      <form action="">
+        <div class="p-fluid p-formgrid p-grid" [ngStyle]="{width: '20rem'}">
+          <div class="p-field p-col-12">
+            <label for="firstname1">E-mail</label>
+            <input id="firstname1" type="text" pInputText>
+          </div>
+
+          <div class="p-field p-col-12">
+            <label for="lastname1">Senha</label>
+            <input id="lastname1" type="text" pInputText>
+          </div>
+
+          <div class="p-col-12 p-fluid">
+            <button pButton pRipple type="button" label="Entrar" class="p-button-help" routerLink="/index"></button>
+            <p class="p-ai-center p-text-center">
+              <a href="javascript:;" routerLink="/forgot-password">
+                Esqueci minha senha
+              </a>
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
