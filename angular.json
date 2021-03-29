@@ -24,8 +24,7 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "src/_redirects"
             ],
             "styles": [
               "node_modules/primeng/resources/themes/mdc-light-deeppurple/theme.css",
