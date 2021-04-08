@@ -10,25 +10,31 @@
   <div class="p-col">
     <div class="box box-stretched  p-shadow-1 p-d-flex p-jc-center p-ai-center"
       [ngStyle]="{background:'var(--white)', height: '90vh'}">
-      <form action="">
+      <form autocomplete="off" #f="ngForm">
         <div class="p-fluid p-formgrid p-grid" [ngStyle]="{width: '20rem'}">
           <div class="p-field p-col-12">
             <label for="firstname1">E-mail</label>
-            <input id="firstname1" type="text" pInputText>
+            <input type="email" pInputText name="email" [(ngModel)]="email" placeholder="root@igf.gov.st" required>
           </div>
 
           <div class="p-field p-col-12">
             <label for="lastname1">Senha</label>
-            <input id="lastname1" type="text" pInputText>
+            <p-password name="password" [(ngModel)]="password" [toggleMask]="true" [feedback]="false" required="true">
+            </p-password>
           </div>
 
           <div class="p-col-12 p-fluid">
-            <button pButton pRipple type="button" label="Entrar" class="p-button-help" routerLink="/index"></button>
+            <button pButton pRipple label="Entrar" type="button" class="p-button-help" (click)="signIn()"
+              [disabled]="!f.valid || loading">
+            </button>
+
             <p class="p-ai-center p-text-center">
               <a href="javascript:;" routerLink="/forgot-password">
                 Esqueci minha senha
               </a>
             </p>
+
+            <p-progressBar mode="indeterminate" [style]="{'height': '2px'}" *ngIf="loading"></p-progressBar>
           </div>
         </div>
       </form>

@@ -1,1 +1,57 @@
-<p>create works!</p>
+<div class="p-grid">
+  <div class="p-col-12">
+    <h3>UTILIZADORES</h3>
+  </div>
+
+  <div class="p-col-12">
+    <p-card>
+      <div class="p-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12 p-md-4">
+          <label for="name">Nome</label>
+          <input id="name" type="text" pInputText name="name" [(ngModel)]="user.person.name">
+        </div>
+
+        <div class="p-field p-col-12 p-md-8">
+          <label for="surname">Apelido</label>
+          <input id="surname" type="text" pInputText name="surname" [(ngModel)]="user.person.surname">
+        </div>
+
+        <div class="p-field p-col-12 p-md-4">
+          <label for="bi">BI</label>
+          <input id="bi" type="text" pInputText name="bi" [(ngModel)]="user.person.bi">
+        </div>
+
+        <div class="p-field p-col-12 p-md-8">
+          <label for="username">E-mail</label>
+          <input id="username" type="text" pInputText name="username" [(ngModel)]="user.username">
+        </div>
+
+        <div class="p-field p-col-12 p-md-4">
+          <label for="contact">Contacto</label>
+          <input id="contact" type="text" pInputText name="contact" [(ngModel)]="user.person.contact">
+        </div>
+
+        <div class="p-field p-col-12 p-md-8">
+          <label for="address">Endereço</label>
+          <input id="address" type="text" pInputText name="address" [(ngModel)]="user.person.address">
+        </div>
+
+        <div class="p-col-12">
+          <p-divider></p-divider>
+        </div>
+      </div>
+
+      <div class="p-grid">
+        <div class="p-col-12 p-d-flex p-jc-end">
+          <button pButton pRipple type="button" label="Voltar" routerLink="/user/read"
+            class="p-button-raised p-button-text p-button-plain p-button-lg p-mx-1"></button>
+
+          <button pButton pRipple type="button" label="Salvar" class="p-button-raised p-button-lg p-mx-1"></button>
+
+          <button pButton pRipple type="button" label="Novo"
+            class="p-button-raised p-button-info p-button-lg p-mx-1"></button>
+        </div>
+      </div>
+    </p-card>
+  </div>
+</div>

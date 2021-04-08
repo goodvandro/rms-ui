@@ -1,0 +1,65 @@
+<div class="p-grid">
+  <div class="p-col-12">
+    <h3>NOVA ENTIDADE</h3>
+  </div>
+
+  <div class="p-col-12">
+    <p-card>
+      <div class="p-grid">
+        <div class="p-col-12">
+          <button pButton pRipple type="button" icon="pi pi-chevron-left"
+            class="p-button-text p-button-raised p-button-lg p-mx-1" routerLink="/entity/index"></button>
+
+          <button pButton pRipple type="button" label="Salvar" class="p-button-raised p-button-lg p-mx-1"></button>
+
+          <button pButton pRipple type="button" label="Novo"
+            class="p-button-raised p-button-info p-button-lg p-mx-1"></button>
+          <p-divider></p-divider>
+        </div>
+      </div>
+
+      <div class="p-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12 p-md-6">
+          <label for="name">Nome</label>
+          <input id="name" type="text" pInputText name="name" [(ngModel)]="entity.name">
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+          <label for="initial">Iniciais</label>
+          <input id="initial" type="text" pInputText name="initial" [(ngModel)]="entity.initial">
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+          <label for="level">Nível</label>
+          <p-dropdown id="level" [options]="levels" [(ngModel)]="entity.level.id" placeholder="Selecione">
+          </p-dropdown>
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+          <label for="address">Endereço</label>
+          <div class="p-inputgroup">
+            <p-dropdown id="address" [options]="addresses" [(ngModel)]="entity.address.id" placeholder="Selecione"
+              [ngStyle]="{width: '100%'}">
+            </p-dropdown>
+            <button type="button" pButton pRipple icon="pi pi-plus"></button>
+          </div>
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+          <label for="createdAt">Registado em</label>
+          <input id="createdAt" type="text" pInputText name="createdAt" [(ngModel)]="entity.createdAt" disabled>
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+          <label for="updatedAt">Atualizado em</label>
+          <input id="updatedAt" type="text" pInputText name="updatedAt" [(ngModel)]="entity.updatedAt" disabled>
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+          <label for="isAuditor">Auditora</label><br>
+          <p-inputSwitch id="isAuditor" name="isAuditor" [(ngModel)]="entity.isAuditor"></p-inputSwitch>
+        </div>
+      </div>
+    </p-card>
+  </div>
+</div>

@@ -4,7 +4,7 @@
 
 :root {
   --white: #fff;
-  --background: #f2f3f5;
+  --background: rgb(237, 241, 245); //#f2f3f5;
   --gray-line: #dcdde0;
   --title: #2e384d;
   --red: #e83f5b;
@@ -21,6 +21,7 @@ body {
 
 body, input, textarea, button {
   font: 400 1rem "Roboto", sans-serif;
+  color: #293845;
 }
 
 label {
@@ -31,4 +32,3 @@ a {
   color: var(--purple-500);
   text-decoration: none;
 }
-

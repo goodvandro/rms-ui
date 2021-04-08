@@ -1,0 +1,43 @@
+<div class="p-grid">
+  <div class="p-col-12">
+    <h3>ATIVIDADES</h3>
+  </div>
+
+  <div class="p-col-12">
+    <p-card>
+      <p-table [value]="activities" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} linhas"
+        [rowsPerPageOptions]="[10,25,50]">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>ID</th>
+            <th>Tipo</th>
+            <th>Utilizador</th>
+            <th>Descrição</th>
+            <th>Data</th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-rowData>
+          <tr>
+            <td>{{rowData.id}}</td>
+            <td>{{rowData.typeActivity.name}}</td>
+            <td>{{rowData.user.username}}</td>
+            <td>{{rowData.description}}</td>
+            <td>{{rowData.createdAt | date:'short'}}</td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="paginatorleft">
+          <!-- <p-button type="button" icon="pi pi-plus" styleClass="p-button-text" pTooltip="Novo" tooltipPosition="right">
+          </p-button> -->
+        </ng-template>
+
+        <ng-template pTemplate="paginatorright">
+          <p-button type="button" icon="pi pi-refresh" styleClass="p-button-text" pTooltip="Atualizar"
+            tooltipPosition="left"></p-button>
+        </ng-template>
+      </p-table>
+    </p-card>
+  </div>
+</div>

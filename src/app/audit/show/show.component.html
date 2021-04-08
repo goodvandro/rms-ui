@@ -1,0 +1,95 @@
+<div class="p-grid">
+  <div class="p-col-12">
+    <h3>DETALHES DA AÇÃO DE AUDITORIA</h3>
+  </div>
+
+  <div class="p-col-12">
+    <p-card>
+      <div class="p-grid">
+        <div class="p-col-12">
+          <button pButton pRipple type="button" icon="pi pi-chevron-left"
+            class="p-button-text p-button-raised p-button-lg p-mx-1" routerLink="/audit/index"></button>
+
+          <button pButton pRipple type="button" label="Salvar" class="p-button-raised p-button-lg p-mx-1"></button>
+
+          <button pButton pRipple type="button" label="Novo"
+            class="p-button-raised p-button-info p-button-lg p-mx-1"></button>
+          <p-divider></p-divider>
+        </div>
+      </div>
+
+      <div class="p-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12 p-md-2">
+          <label for="number">Código do processo</label>
+          <input id="number" type="text" pInputText name="number" [(ngModel)]="audit.number" disabled>
+        </div>
+
+        <div class="p-field p-col-12 p-md-2">
+          <label for="year">Ano de realização</label>
+          <p-dropdown id="year" [options]="years" [(ngModel)]="audit.year" placeholder="Selecione">
+          </p-dropdown>
+        </div>
+
+        <div class="p-field p-col-12 p-md-8">
+          <label for="description">Descrição da ação</label>
+          <input id="description" type="text" pInputText name="description" [(ngModel)]="audit.description">
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+          <label for="entityAudited">Entidade auditada</label>
+          <p-dropdown id="entityAudited" [options]="entities" [(ngModel)]="audit.entityAudited.id"
+            placeholder="Selecione">
+          </p-dropdown>
+        </div>
+
+        <div class="p-field p-col-12 p-md-3">
+          <label for="type">Tipo de auditoria</label>
+          <p-dropdown id="type" [options]="types" [(ngModel)]="audit.type" placeholder="Selecione">
+          </p-dropdown>
+        </div>
+
+        <div class="p-field p-col-12 p-md-3">
+          <label for="status">Status</label>
+          <p-dropdown id="status" [options]="statuses" [(ngModel)]="audit.status.id" [disabled]="true">
+          </p-dropdown>
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+          <label for="dispatchedAt">Data de despacho (Homologação)</label>
+          <p-calendar id="dispatchedAt" name="dispatchedAt" [(ngModel)]="audit.dispatchedAt"></p-calendar>
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+          <label for="reportedAt">Data de envio (Relatório Final)</label>
+          <p-calendar id="reportedAt" name="reportedAt" [(ngModel)]="audit.reportedAt"></p-calendar>
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+          <label for="createdAt">Data de Registado</label>
+          <input id="createdAt" type="text" pInputText name="createdAt" [(ngModel)]="audit.createdAt" disabled>
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+          <label for="updatedAt">Data de atualização</label>
+          <input id="updatedAt" type="text" pInputText name="updatedAt" [(ngModel)]="audit.updatedAt" disabled>
+        </div>
+      </div>
+
+      <div class="p-grid">
+        <div class="p-col-12">
+          <p-tabView>
+            <p-tabPanel header="Anexos">
+              Em desenvolvimento
+            </p-tabPanel>
+            <p-tabPanel header="Relatórios">
+              Em desenvolvimento
+            </p-tabPanel>
+            <p-tabPanel header="Recomendações">
+              Em desenvolvimento
+            </p-tabPanel>
+          </p-tabView>
+        </div>
+      </div>
+    </p-card>
+  </div>
+</div>

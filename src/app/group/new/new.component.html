@@ -1,0 +1,44 @@
+<div class="p-grid">
+  <div class="p-col-12">
+    <h3>NOVO GRUPO</h3>
+  </div>
+
+  <div class="p-col-12">
+    <p-card>
+      <div class="p-grid">
+        <div class="p-col-12">
+          <button pButton pRipple type="button" icon="pi pi-chevron-left"
+            class="p-button-text p-button-raised p-button-lg p-mx-1" routerLink="/group/index"></button>
+
+          <button pButton pRipple type="button" label="Salvar" class="p-button-raised p-button-lg p-mx-1"></button>
+
+          <button pButton pRipple type="button" label="Novo"
+            class="p-button-raised p-button-info p-button-lg p-mx-1"></button>
+          <p-divider></p-divider>
+        </div>
+      </div>
+
+      <div class="p-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12 p-md-6">
+          <label for="name">Nome</label>
+          <input id="name" type="text" pInputText name="name" [(ngModel)]="group.name">
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+          <label for="slug">Slug</label>
+          <input id="slug" type="text" pInputText name="slug" [(ngModel)]="group.slug">
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+          <label for="createdAt">Registado em</label>
+          <input id="createdAt" type="text" pInputText name="createdAt" [(ngModel)]="group.createdAt" disabled>
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+          <label for="updatedAt">Atualizado em</label>
+          <input id="updatedAt" type="text" pInputText name="updatedAt" [(ngModel)]="group.updatedAt" disabled>
+        </div>
+      </div>
+    </p-card>
+  </div>
+</div>
