@@ -19,7 +19,7 @@ export class UserService {
   API_URL: string;
 
   constructor(private http: AppHttClient) {
-    this.API_URL = `${environment.apiUrl}/users`;
+    this.API_URL = `${environment.apiUrl}/user`;
   }
 
   async create(user: User): Promise<User> {
@@ -32,12 +32,12 @@ export class UserService {
     params = params.append('page', filter.page.toString());
     params = params.append('size', filter.rows.toString());
 
-    await this.http.get<any>(this.API_URL, { params })
-      .toPromise();
+    return this.http.get<any>(this.API_URL, { params })
+      .toPromise()
   }
 
   async update(id: number, user: User): Promise<User> {
-    return this.http.put<User>(`${this.API_URL}/${id}`, user)
+    return this.http.put<User>(this.API_URL, user)
       .toPromise();
   }
 

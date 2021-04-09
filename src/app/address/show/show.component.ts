@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { GroupService } from '../group.service';
+import { Address } from 'src/app/models/address';
 import { ErrorService } from './../../error/error.service';
-import { Group } from './../../models/group';
+import { AddressService } from './../address.service';
 
 @Component({
   selector: 'app-show',
@@ -12,11 +12,11 @@ import { Group } from './../../models/group';
 })
 export class ShowComponent implements OnInit {
   loading: boolean = false;
-  group = new Group();
+  address = new Address();
   id = this.route.snapshot.params.id;
 
   constructor(
-    private userService: GroupService,
+    private userService: AddressService,
     private errorService: ErrorService,
     private toastr: ToastrService,
     private route: ActivatedRoute
@@ -28,17 +28,17 @@ export class ShowComponent implements OnInit {
 
   getById(id: number): void {
     this.userService.getById(id)
-      .then((result) => this.group = result)
+      .then((result) => this.address = result)
       .catch((error) => this.errorService.handle(error));
   }
 
   update(): void {
     this.loading = true;
 
-    this.userService.update(this.id, this.group)
+    this.userService.update(this.id, this.address)
       .then((result) => {
-        this.group = result;
-        this.toastr.success('Grupo salvo!');
+        this.address = result;
+        this.toastr.success('Endereço salvo!');
       })
       .catch((error) => this.errorService.handle(error))
       .finally(() => this.loading = false);

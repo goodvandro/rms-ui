@@ -35,6 +35,14 @@ const routes: Routes = [
     path: 'recommendation',
     loadChildren: () => import('./recommendation/recommendation.module').then(m => m.RecommendationModule)
   },
+  {
+    path: 'address',
+    loadChildren: () => import('./address/address.module').then(m => m.AddressModule)
+  },
+  {
+    path: 'permission',
+    loadChildren: () => import('./permission/permission.module').then(m => m.PermissionModule)
+  },
 ];
 
 @NgModule({

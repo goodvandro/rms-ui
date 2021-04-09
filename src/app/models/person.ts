@@ -6,6 +6,7 @@ export class Person {
   surname: string;
   contact: string;
   bi: string;
+  email: string;
 
   createdAt: Date;
   updatedAt: Date;

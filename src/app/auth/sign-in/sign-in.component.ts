@@ -22,19 +22,19 @@ export class SignInComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if (!this.auth.isAccessTokenInvalid()) {
+      this.router.navigate(['/dashboard']);
+    }
   }
 
   signIn() {
-    this.router.navigate(['/dashboard']);
-    this.toastr.info('Bem vindo');
-
-    // this.loading = true;
-    // this.auth.signIn({ email: this.email, password: this.password })
-    //   .then(() => {
-    //     this.router.navigate(['/dashboard']);
-    //     this.toastr.info('Bem vindo');
-    //   })
-    //   .catch(erro => this.errorHandler.handle(erro))
-    //   .finally(() => this.loading = false)
+    this.loading = true;
+    this.auth.signIn({ email: this.email, password: this.password })
+      .then(() => {
+        this.router.navigate(['/dashboard']);
+        this.toastr.info('Bem vindo');
+      })
+      .catch(erro => this.errorHandler.handle(erro))
+      .finally(() => this.loading = false)
   }
 }

@@ -18,7 +18,7 @@ export class GroupService {
   API_URL: string;
 
   constructor(private http: AppHttClient) {
-    this.API_URL = `${environment.apiUrl}/groups`;
+    this.API_URL = `${environment.apiUrl}/group`;
   }
 
   async create(group: Group): Promise<Group> {
@@ -31,12 +31,12 @@ export class GroupService {
     params = params.append('page', filter.page.toString());
     params = params.append('size', filter.rows.toString());
 
-    await this.http.get<any>(this.API_URL, { params })
+    return this.http.get<any>(this.API_URL, { params })
       .toPromise();
   }
 
   async update(id: number, group: Group): Promise<Group> {
-    return this.http.put<Group>(`${this.API_URL}/${id}`, group)
+    return this.http.put<Group>(`${this.API_URL}`, group)
       .toPromise();
   }
 

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DividerModule } from "primeng/divider";
+import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { TableModule } from 'primeng/table';
@@ -29,7 +30,8 @@ import { UserRouter } from './user.router';
     TableModule,
     CardModule,
     PasswordModule,
-    TooltipModule
+    TooltipModule,
+    DropdownModule
   ]
 })
 export class UserModule { }

@@ -47,18 +47,19 @@
         <ng-template pTemplate="body" let-rowData>
           <tr>
             <td>{{rowData.person.name +' '+rowData.person.surname}}</td>
-            <td>{{rowData.username}}</td>
+            <td>{{rowData.person.email}}</td>
             <td>{{rowData.createdAt | date}}</td>
             <td class="p-p-0">
               <button pButton pRipple type="button" icon="pi pi-pencil"
                 class="p-button-rounded p-button-warning p-button-outlined"
-                [routerLink]="['/user/read', rowData.id]"></button>
+                [routerLink]="['/user/index', rowData.id]"></button>
             </td>
           </tr>
         </ng-template>
 
         <ng-template pTemplate="paginatorleft">
-          <p-button type="button" icon="pi pi-plus" styleClass="p-button-text" pTooltip="Novo" tooltipPosition="right">
+          <p-button type="button" icon="pi pi-plus" styleClass="p-button-text" pTooltip="Novo" tooltipPosition="right"
+            routerLink="/user/new">
           </p-button>
         </ng-template>
 

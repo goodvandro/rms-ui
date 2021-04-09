@@ -10,7 +10,7 @@
   <div class="p-col">
     <div class="box box-stretched  p-shadow-1 p-d-flex p-jc-center p-ai-center"
       [ngStyle]="{background:'var(--white)', height: '90vh'}">
-      <form autocomplete="off" #f="ngForm">
+      <form autocomplete="off" #f="ngForm" (ngSubmit)="signIn()">
         <div class="p-fluid p-formgrid p-grid" [ngStyle]="{width: '20rem'}">
           <div class="p-field p-col-12">
             <label for="firstname1">E-mail</label>
@@ -24,8 +24,7 @@
           </div>
 
           <div class="p-col-12 p-fluid">
-            <button pButton pRipple label="Entrar" type="button" class="p-button-help" (click)="signIn()"
-              [disabled]="!f.valid || loading">
+            <button type="submit" pButton pRipple label="Entrar" class="p-button-help" [disabled]="!f.valid || loading">
             </button>
 
             <p class="p-ai-center p-text-center">

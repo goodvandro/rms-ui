@@ -1,8 +1,8 @@
 import { ToastrService } from 'ngx-toastr';
 import { ErrorService } from './../../error/error.service';
+import { Address } from './../../models/address';
 import { Component, OnInit } from '@angular/core';
-import { Group } from 'src/app/models/group';
-import { GroupService } from '../group.service';
+import { AddressService } from '../address.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,10 +12,10 @@ import { Router } from '@angular/router';
 })
 export class NewComponent implements OnInit {
   loading: boolean = false;
-  group = new Group();
+  address = new Address();
 
   constructor(
-    private userService: GroupService,
+    private userService: AddressService,
     private errorService: ErrorService,
     private toastr: ToastrService,
     private router: Router
@@ -25,10 +25,10 @@ export class NewComponent implements OnInit {
   }
 
   create(): void {
-    this.userService.create(this.group)
+    this.userService.create(this.address)
       .then((result) => {
-        this.router.navigate(['/group/index', result.id]);
-        this.toastr.success('Grupo adicionado!')
+        this.router.navigate(['/address/index', result.id]);
+        this.toastr.success('Endereço adicionado!')
       })
       .catch((error) => this.errorService.handle(error))
       .finally(() => this.loading = false)

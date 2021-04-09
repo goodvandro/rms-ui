@@ -24,7 +24,7 @@ import { SignOutComponent } from './sign-out/sign-out.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 export function tokenGetter() {
-  return localStorage.getItem("access_token");
+  return localStorage.getItem("igfToken");
 }
 
 @NgModule({

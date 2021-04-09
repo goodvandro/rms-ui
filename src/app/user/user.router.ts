@@ -6,12 +6,12 @@ import { ReadComponent } from './read/read.component';
 
 const routes: Routes = [
   {
-    path: 'read',
+    path: 'index',
     component: ReadComponent
   },
 
   {
-    path: 'read/:id',
+    path: 'index/:id',
     component: UpdateComponent
   },
 

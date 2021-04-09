@@ -31,6 +31,8 @@ import { GroupWorkService } from './../group-work/group-work.service';
 import { GroupModule } from './../group/group.module';
 import { GroupService } from './../group/group.service';
 import { LayoutModule } from './../layout/layout.module';
+import { PermissionModule } from './../permission/permission.module';
+import { PermissionService } from './../permission/permission.service';
 import { RecommendationCharacterModule } from './../recommendation-character/recommendation-character.module';
 import { RecommendationCharacterService } from './../recommendation-character/recommendation-character.service';
 import { RecommendationFileModule } from './../recommendation-file/recommendation-file.module';
@@ -76,7 +78,8 @@ registerLocaleData(localePt);
     RecommendationNatureModule,
     RecommendationLevelRiskModule,
     RecommendationFileModule,
-    RecommendationCharacterModule
+    RecommendationCharacterModule,
+    PermissionModule
   ],
   exports: [
     LayoutModule,
@@ -108,7 +111,8 @@ registerLocaleData(localePt);
     RecommendationNatureService,
     RecommendationLevelRiskService,
     RecommendationFileService,
-    RecommendationCharacterService
+    RecommendationCharacterService,
+    PermissionService
   ]
 })
 export class CoreModule { }

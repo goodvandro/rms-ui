@@ -3,6 +3,13 @@ import { environment } from 'src/environments/environment';
 import { AppHttClient } from './../auth/app-http-client';
 import { Address } from './../models/address';
 
+export class AddressFilter {
+  page: number = 0;
+  rows: number = 15;
+
+  street: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +17,7 @@ export class AddressService {
   API_URL: string;
 
   constructor(private http: AppHttClient) {
-    this.API_URL = `${environment.apiUrl}/addresses`;
+    this.API_URL = `${environment.apiUrl}/address`;
   }
 
   async create(address: Address): Promise<Address> {
@@ -18,13 +25,18 @@ export class AddressService {
       .toPromise();
   }
 
-  async read(): Promise<any> {
-    await this.http.get<any>(this.API_URL)
+  async read(filter: AddressFilter): Promise<any> {
+    return this.http.get<any>(this.API_URL)
+      .toPromise();
+  }
+
+  async readAll(): Promise<any> {
+    return this.http.get<any>(this.API_URL)
       .toPromise();
   }
 
   async update(id: number, address: Address): Promise<Address> {
-    return this.http.put<Address>(`${this.API_URL}/${id}`, address)
+    return this.http.put<Address>(`${this.API_URL}`, address)
       .toPromise();
   }
 

@@ -1,20 +1,18 @@
+import { ShowComponent } from './show/show.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { IndexComponent } from './index/index.component';
 import { NewComponent } from './new/new.component';
-import { ShowComponent } from './show/show.component';
+import { IndexComponent } from './index/index.component';
 
 const routes: Routes = [
   {
     path: 'index',
     component: IndexComponent
   },
-
   {
     path: 'index/:id',
     component: ShowComponent
   },
-
   {
     path: 'new',
     component: NewComponent
@@ -29,4 +27,4 @@ const routes: Routes = [
     RouterModule
   ]
 })
-export class GroupRouter { }
+export class PermissionRouter { }

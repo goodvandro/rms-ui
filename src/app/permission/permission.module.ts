@@ -9,9 +9,9 @@ import { PasswordModule } from 'primeng/password';
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { TooltipModule } from 'primeng/tooltip';
-import { AddressRouter } from './address.router';
 import { IndexComponent } from './index/index.component';
 import { NewComponent } from './new/new.component';
+import { PermissionRouter } from './permission.router';
 import { ShowComponent } from './show/show.component';
 
 @NgModule({
@@ -22,7 +22,7 @@ import { ShowComponent } from './show/show.component';
   ],
   imports: [
     CommonModule,
-    AddressRouter,
+    PermissionRouter,
     FormsModule,
     ButtonModule,
     DividerModule,
@@ -34,4 +34,4 @@ import { ShowComponent } from './show/show.component';
     TabViewModule
   ]
 })
-export class AddressModule { }
+export class PermissionModule { }
