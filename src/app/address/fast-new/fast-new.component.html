@@ -1,0 +1,32 @@
+<p-button type="button" icon="pi pi-plus" styleClass="p-button-text" pTooltip="Adicionar novo endereço"
+  tooltipPosition="left" (click)="showDialog()">
+</p-button>
+
+<p-dialog header="Novo Endereço" [(visible)]="display" [modal]="true" [style]="{width: '40vw'}" [baseZIndex]="10000">
+  <form autocomplete="off" #f="ngForm" (ngSubmit)="create()">
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12">
+        <label for="street">Rua</label>
+        <input id="street" type="text" pInputText [(ngModel)]="address.street" name="street" [ngStyle]="{width:'100%'}">
+      </div>
+
+      <div class="p-field p-col-12">
+        <label for="city">Cidade</label>
+        <input id="city" type="text" pInputText [(ngModel)]="address.city" name="city" [ngStyle]="{width:'100%'}">
+      </div>
+
+      <div class="p-field p-col-12 p-fluid">
+        <label for="district">Distrito</label>
+        <input id="district" type="text" pInputText [(ngModel)]="address.district" name="district"
+          [ngStyle]="{width:'100%'}">
+      </div>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="display=false" label="Cancelar" styleClass="p-button-text"></p-button>
+    <p-button type="button" icon="pi pi-check" (click)="f.ngSubmit.emit()" [disabled]="!f.form.valid" label="Salvar"
+      styleClass="p-button-text">
+    </p-button>
+  </ng-template>
+</p-dialog>

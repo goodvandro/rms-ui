@@ -11,7 +11,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'show/:id',
+    path: 'index/:id',
     component: ShowComponent
   },
 

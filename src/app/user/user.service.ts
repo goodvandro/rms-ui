@@ -27,6 +27,11 @@ export class UserService {
       .toPromise();
   }
 
+  async readAll(): Promise<any> {
+    return this.http.get<any>(this.API_URL,)
+      .toPromise()
+  }
+
   async read(filter: UserFilter): Promise<any> {
     let params = new HttpParams();
     params = params.append('page', filter.page.toString());
@@ -38,6 +43,12 @@ export class UserService {
 
   async update(id: number, user: User): Promise<User> {
     return this.http.put<User>(this.API_URL, user)
+      .toPromise();
+  }
+
+  async patch(id: number, user: User): Promise<User> {
+    console.log(user);
+    return this.http.patch<User>(this.API_URL, user)
       .toPromise();
   }
 

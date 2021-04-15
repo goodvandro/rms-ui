@@ -20,7 +20,7 @@ export class AppHttClient extends HttpClient {
   }
 
   public patch<T>(url: string, body: any, options?: any): Observable<T> {
-    return this.doRequest<T>(() => super.patch<T>(url, options));
+    return this.doRequest<T>(() => super.patch<T>(url, body, options));
   }
 
   public head<T>(url: string, options?: any): Observable<T> {

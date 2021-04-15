@@ -1,3 +1,5 @@
+import { Group } from './../../models/group';
+import { GroupService } from './../../group/group.service';
 import { Address } from './../../models/address';
 import { AddressService } from './../../address/address.service';
 import { Component, OnInit } from '@angular/core';
@@ -16,10 +18,12 @@ export class CreateComponent implements OnInit {
   loading: boolean = false;
   user = new User();
   addresses = [];
+  groups = [];
 
   constructor(
     private userService: UserService,
     private addressService: AddressService,
+    private groupService: GroupService,
     private errorService: ErrorService,
     private toastr: ToastrService,
     private router: Router
@@ -27,15 +31,36 @@ export class CreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.dropdownAddresses();
+    this.dropdownGroups();
+  }
+
+  async dropdownGroups() {
+    await this.groupService.readAll()
+      .then(async (result) => {
+        this.groups = await result.map((element: Group) => ({
+          value: element,
+          label: element.name
+        }));
+        this.loadDefaultGroup(result);
+      })
+      .catch((error) => this.errorService.handle(error))
   }
 
   dropdownAddresses(): void {
     this.addressService.readAll()
-      .then(result => this.addresses = result.map((address: Address) => ({
-        value: address.id,
-        label: `${address.street}, ${address.city}, ${address.district}`
+      .then(result => this.addresses = result.map((element: Address) => ({
+        value: element,
+        label: `${element.street}, ${element.city}, ${element.district}`
       })))
       .catch((error) => this.errorService.handle(error))
+  }
+
+  loadDefaultGroup(groups: Group[]) {
+    groups.forEach((element) => {
+      if (element.slug === 'default') {
+        this.user.groups.push(element);
+      }
+    })
   }
 
   create(): void {

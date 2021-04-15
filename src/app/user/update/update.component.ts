@@ -1,3 +1,5 @@
+import { Group } from './../../models/group';
+import { GroupService } from './../../group/group.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -17,10 +19,12 @@ export class UpdateComponent implements OnInit {
   user = new User();
   id = this.route.snapshot.params.id;
   addresses = [];
+  groups = [];
 
   constructor(
     private userService: UserService,
     private addressService: AddressService,
+    private groupService: GroupService,
     private errorService: ErrorService,
     private toastr: ToastrService,
     private route: ActivatedRoute
@@ -28,7 +32,17 @@ export class UpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.dropdownAddresses();
+    this.dropdownGroups();
     this.getById(this.id);
+  }
+
+  dropdownGroups(): void {
+    this.groupService.readAll()
+      .then(result => this.groups = result.map((address: Group) => ({
+        value: address,
+        label: address.name
+      })))
+      .catch((error) => this.errorService.handle(error))
   }
 
   dropdownAddresses(): void {

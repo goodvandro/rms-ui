@@ -15,7 +15,7 @@ export class NewComponent implements OnInit {
   address = new Address();
 
   constructor(
-    private userService: AddressService,
+    private addressService: AddressService,
     private errorService: ErrorService,
     private toastr: ToastrService,
     private router: Router
@@ -25,7 +25,7 @@ export class NewComponent implements OnInit {
   }
 
   create(): void {
-    this.userService.create(this.address)
+    this.addressService.create(this.address)
       .then((result) => {
         this.router.navigate(['/address/index', result.id]);
         this.toastr.success('Endereço adicionado!')

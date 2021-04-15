@@ -8,6 +8,7 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
 import { ButtonModule } from 'primeng/button';
 import { DividerModule } from "primeng/divider";
 import { InputTextModule } from 'primeng/inputtext';
+import { MultiSelectModule } from 'primeng/multiselect';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { PasswordModule } from 'primeng/password';
 import { ProgressBarModule } from 'primeng/progressbar';
@@ -58,7 +59,8 @@ export function tokenGetter() {
     ProgressBarModule,
     AvatarModule,
     AvatarGroupModule,
-    OverlayPanelModule
+    OverlayPanelModule,
+    MultiSelectModule
   ],
   exports: [
     SignOutComponent

@@ -35,6 +35,11 @@ export class GroupService {
       .toPromise();
   }
 
+  async readAll(): Promise<any> {
+    return this.http.get<any>(this.API_URL)
+      .toPromise();
+  }
+
   async update(id: number, group: Group): Promise<Group> {
     return this.http.put<Group>(`${this.API_URL}`, group)
       .toPromise();

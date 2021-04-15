@@ -1,9 +1,11 @@
-import { GroupWork } from './../../models/group-work';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { User } from 'src/app/models/user';
 import { ErrorService } from './../../error/error.service';
+import { GroupWork } from './../../models/group-work';
+import { UserService } from './../../user/user.service';
 import { GroupWorkService } from './../group-work.service';
-import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-show',
@@ -14,28 +16,42 @@ export class ShowComponent implements OnInit {
   loading: boolean = false;
   groupWork = new GroupWork();
   id = this.route.snapshot.params.id;
+  users = [];
 
   constructor(
-    private userService: GroupWorkService,
+    private groupService: GroupWorkService,
+    private userService: UserService,
     private errorService: ErrorService,
     private toastr: ToastrService,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    // this.getById(this.id);
+    this.dropdownUsers();
+    this.getById(this.id);
+  }
+
+  async dropdownUsers() {
+    await this.userService.readAll()
+      .then(async (result) => {
+        this.users = await result.map((element: User) => ({
+          value: element,
+          label: `${element.person.name} ${element.person.surname}`
+        }));
+      })
+      .catch((error) => this.errorService.handle(error))
   }
 
   getById(id: number): void {
-    this.userService.getById(id)
+    this.groupService.getById(id)
       .then((result) => this.groupWork = result)
       .catch((error) => this.errorService.handle(error));
   }
 
-  update(id: number): void {
+  update(): void {
     this.loading = true;
 
-    this.userService.update(id, this.groupWork)
+    this.groupService.update(this.id, this.groupWork)
       .then((result) => {
         this.groupWork = result;
         this.toastr.success('Grupo salvo!');

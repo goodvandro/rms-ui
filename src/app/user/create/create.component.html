@@ -48,15 +48,18 @@
           <div class="p-field p-col-12 p-md-8">
             <label for="address">Endereço</label>
             <div class="p-inputgroup">
-              <p-dropdown id="address" [options]="addresses" name="address" [(ngModel)]="user.person.address.id"
+              <p-dropdown id="address" [options]="addresses" name="address" [(ngModel)]="user.person.address"
                 placeholder="Selecione" [ngStyle]="{width: '100%'}">
               </p-dropdown>
-              <button type="button" pButton pRipple icon="pi pi-plus"></button>
+              <app-fast-new [(addresses)]="addresses"></app-fast-new>
             </div>
           </div>
 
-          <div class="p-col-12">
-            <p-divider></p-divider>
+          <div class="p-field p-col-12 p-md-8">
+            <label for="contact">Grupos</label>
+            <p-multiSelect [options]="groups" name="groups" [(ngModel)]="user.groups" disabled
+              defaultLabel="Selecione um ou mais grupos" display="chip" [filter]="false">
+            </p-multiSelect>
           </div>
         </div>
       </form>

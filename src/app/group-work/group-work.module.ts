@@ -5,6 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DividerModule } from "primeng/divider";
 import { InputTextModule } from 'primeng/inputtext';
+import { MultiSelectModule } from 'primeng/multiselect';
 import { PasswordModule } from 'primeng/password';
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
@@ -13,12 +14,14 @@ import { GroupWorkRouter } from './group-work.router';
 import { IndexComponent } from './index/index.component';
 import { NewComponent } from './new/new.component';
 import { ShowComponent } from './show/show.component';
+import { CastComponent } from './cast/cast.component';
 
 @NgModule({
   declarations: [
     IndexComponent,
     ShowComponent,
-    NewComponent
+    NewComponent,
+    CastComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +34,8 @@ import { ShowComponent } from './show/show.component';
     CardModule,
     PasswordModule,
     TooltipModule,
-    TabViewModule
+    TabViewModule,
+    MultiSelectModule
   ]
 })
 export class GroupWorkModule { }
