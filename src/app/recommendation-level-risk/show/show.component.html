@@ -1,8 +1,8 @@
 <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-warning p-button-outlined"
   (click)="showDialog()"></button>
 
-<p-dialog header="Detalhes do Nível de Risco" [(visible)]="display" [modal]="true" [style]="{width: '40vw'}"
-  [baseZIndex]="10000">
+<p-dialog header="Detalhes do Nível de Risco de Recomendação" [(visible)]="display" [modal]="true"
+  [style]="{width: '40vw'}" [baseZIndex]="10000">
   <form autocomplete="off" #f="ngForm" (ngSubmit)="update()">
     <div class="p-fluid p-formgrid p-grid">
       <div class="p-field p-col-12">
@@ -11,8 +11,8 @@
       </div>
 
       <div class="p-field p-col-12">
-        <label for="name">Slug</label>
-        <input id="name" type="text" pInputText [(ngModel)]="levelRisk.slug" name="name" [ngStyle]="{width:'100%'}">
+        <label for="slug">Slug</label>
+        <input id="slug" type="text" pInputText [(ngModel)]="levelRisk.slug" name="slug" [ngStyle]="{width:'100%'}">
       </div>
     </div>
   </form>

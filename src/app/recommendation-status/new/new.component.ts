@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { RecommendationStatus } from 'src/app/models/recommendation-status';
 import { ErrorService } from './../../error/error.service';
@@ -29,11 +30,12 @@ export class NewComponent implements OnInit {
     this.display = true;
   }
 
-  create(): void {
+  create(form: NgForm): void {
     this.recommendationStatusService.create(this.status)
       .then((result) => {
         this.statuses.push(result);
         this.display = false;
+        form.reset();
         this.toastr.success('Informações salvas!');
       })
       .catch((error) => this.errorService.handle(error))

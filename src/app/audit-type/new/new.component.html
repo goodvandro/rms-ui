@@ -4,7 +4,7 @@
 
 <p-dialog header="Novo Tipo de Auditoria" [(visible)]="display" [modal]="true" [style]="{width: '40vw'}"
   [baseZIndex]="10000">
-  <form autocomplete="off" #f="ngForm" (ngSubmit)="create()">
+  <form autocomplete="off" #f="ngForm" (ngSubmit)="create(f)">
     <div class="p-fluid p-formgrid p-grid">
       <div class="p-field p-col-12">
         <label for="name">Nome</label>
@@ -13,9 +13,9 @@
       </div>
 
       <div class="p-field p-col-12">
-        <label for="name">Slug</label>
-        <input id="name" type="text" pInputText [(ngModel)]="auditType.slug" name="name"
-          required [ngStyle]="{width:'100%'}">
+        <label for="slug">Slug</label>
+        <input id="slug" type="text" pInputText [(ngModel)]="auditType.slug" name="slug" required
+          [ngStyle]="{width:'100%'}">
       </div>
     </div>
   </form>

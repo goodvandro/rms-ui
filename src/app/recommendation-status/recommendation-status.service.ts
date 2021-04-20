@@ -10,7 +10,7 @@ export class RecommendationStatusService {
   API_URL: string;
 
   constructor(private http: AppHttClient) {
-    this.API_URL = `${environment.apiUrl}/auditType`;
+    this.API_URL = `${environment.apiUrl}/recommendationStatus`;
   }
 
   async create(status: RecommendationStatus): Promise<RecommendationStatus> {

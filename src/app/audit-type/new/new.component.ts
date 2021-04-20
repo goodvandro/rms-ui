@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ErrorService } from './../../error/error.service';
 import { AuditType } from './../../models/audit-type';
 import { AuditTypeService } from './../audit-type.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-new',
@@ -29,11 +30,12 @@ export class NewComponent implements OnInit {
     this.display = true;
   }
 
-  create(): void {
+  create(form: NgForm): void {
     this.auditTypeService.create(this.auditType)
       .then((result) => {
         this.types.push(result);
         this.display = false;
+        form.reset();
         this.toastr.success('Informações salvas!');
       })
       .catch((error) => this.errorService.handle(error))

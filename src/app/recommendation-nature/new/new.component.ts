@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ErrorService } from './../../error/error.service';
 import { RecommendationNature } from './../../models/recommendation-nature';
@@ -29,11 +30,12 @@ export class NewComponent implements OnInit {
     this.display = true;
   }
 
-  create(): void {
+  create(form: NgForm): void {
     this.recommendationNatureService.create(this.nature)
       .then((result) => {
         this.natures.push(result);
         this.display = false;
+        form.reset();
         this.toastr.success('Informações salvas!');
       })
       .catch((error) => this.errorService.handle(error))
