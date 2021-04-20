@@ -1,0 +1,26 @@
+<button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-warning p-button-outlined"
+  (click)="showDialog()"></button>
+
+<p-dialog header="Detalhes do Nível de Risco" [(visible)]="display" [modal]="true" [style]="{width: '40vw'}"
+  [baseZIndex]="10000">
+  <form autocomplete="off" #f="ngForm" (ngSubmit)="update()">
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12">
+        <label for="name">Nome</label>
+        <input id="name" type="text" pInputText [(ngModel)]="levelRisk.name" name="name" [ngStyle]="{width:'100%'}">
+      </div>
+
+      <div class="p-field p-col-12">
+        <label for="name">Slug</label>
+        <input id="name" type="text" pInputText [(ngModel)]="levelRisk.slug" name="name" [ngStyle]="{width:'100%'}">
+      </div>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-times" (click)="display=false" label="Cancelar" styleClass="p-button-text"></p-button>
+    <p-button type="button" icon="pi pi-check" (click)="f.ngSubmit.emit()" [disabled]="!f.form.valid" label="Salvar"
+      styleClass="p-button-text">
+    </p-button>
+  </ng-template>
+</p-dialog>

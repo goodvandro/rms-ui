@@ -63,9 +63,24 @@ const routes: Routes = [
       .then(m => m.PermissionModule)
   },
   {
+    path: 'recommendation-status',
+    loadChildren: () => import('./recommendation-status/recommendation-status.module')
+      .then(m => m.RecommendationStatusModule)
+  },
+  {
+    path: 'recommendation-nature',
+    loadChildren: () => import('./recommendation-nature/recommendation-nature.module')
+      .then(m => m.RecommendationNatureModule)
+  },
+  {
     path: 'recommendation-character',
     loadChildren: () => import('./recommendation-character/recommendation-character.module')
       .then(m => m.RecommendationCharacterModule)
+  },
+  {
+    path: 'recommendation-level-risk',
+    loadChildren: () => import('./recommendation-level-risk/recommendation-level-risk.module')
+      .then(m => m.RecommendationLevelRiskModule)
   },
 ];
 
