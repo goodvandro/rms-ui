@@ -1,3 +1,4 @@
+import { Address } from './../../models/address';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -40,8 +41,12 @@ export class NewComponent implements OnInit {
   }
 
   dropdownAddresses(): void {
-    this.addresses = this.addressService.JSON()
-      .map((address) => ({ value: address.id, label: address.name }))
+    this.addressService.readAll()
+      .then(result => this.addresses = result.map((element: Address) => ({
+        value: element,
+        label: `${element.street}, ${element.city}, ${element.district}`
+      })))
+      .catch((error) => this.errorService.handle(error))
   }
 
   create(): void {

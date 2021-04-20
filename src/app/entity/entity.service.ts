@@ -15,10 +15,10 @@ export class EntityFilter {
   providedIn: 'root'
 })
 export class EntityService {
-    API_URL: string;
+  API_URL: string;
 
   constructor(private http: AppHttClient) {
-    this.API_URL = `${environment.apiUrl}/groups`;
+    this.API_URL = `${environment.apiUrl}/entity`;
   }
 
   async create(entity: Entity): Promise<Entity> {
@@ -32,6 +32,11 @@ export class EntityService {
     params = params.append('size', filter.rows.toString());
 
     await this.http.get<any>(this.API_URL, { params })
+      .toPromise();
+  }
+
+  async readAll(): Promise<any> {
+    await this.http.get<any>(this.API_URL)
       .toPromise();
   }
 

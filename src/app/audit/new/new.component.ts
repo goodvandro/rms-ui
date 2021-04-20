@@ -43,19 +43,31 @@ export class NewComponent implements OnInit {
     this.dropdownStatuses();
   }
 
-  dropdownEntities(): void {
-    this.entities = this.entityService.JSON()
-      .map((entity) => ({ value: entity, label: entity.name }))
+  async dropdownEntities() {
+    await this.entityService.readAll()
+      .then((result) =>
+        this.entities = result.map(
+          (entity) => ({ value: entity, label: entity.name })
+        )
+      )
   }
 
-  dropdownTypes(): void {
-    this.types = this.auditTypeService.JSON()
-      .map((type) => ({ value: type, label: type.name }))
+  async dropdownTypes() {
+    await this.auditTypeService.readAll()
+      .then((result) =>
+        this.types = result.map(
+          (type) => ({ value: type, label: type.name })
+        )
+      )
   }
 
-  dropdownStatuses(): void {
-    this.statuses = this.auditStatusService.JSON()
-      .map((status) => ({ value: status, label: status.name }))
+  async dropdownStatuses() {
+    await this.auditStatusService.readAll()
+      .then((result) =>
+        this.statuses = result.map(
+          (status) => ({ value: status, label: status.name })
+        )
+      )
   }
 
   create(): void {
