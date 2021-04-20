@@ -45,17 +45,17 @@ export class NewComponent implements OnInit {
 
   dropdownEntities(): void {
     this.entities = this.entityService.JSON()
-      .map((entity) => ({ value: entity.id, label: entity.name }))
+      .map((entity) => ({ value: entity, label: entity.name }))
   }
 
   dropdownTypes(): void {
     this.types = this.auditTypeService.JSON()
-      .map((type) => ({ value: type.id, label: type.name }))
+      .map((type) => ({ value: type, label: type.name }))
   }
 
   dropdownStatuses(): void {
     this.statuses = this.auditStatusService.JSON()
-      .map((type) => ({ value: type.id, label: type.name }))
+      .map((status) => ({ value: status, label: status.name }))
   }
 
   create(): void {

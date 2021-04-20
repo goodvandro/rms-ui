@@ -2,12 +2,13 @@ import { AuditFile } from './audit-file';
 import { AuditStatus } from './audit-status';
 import { Entity } from './entity';
 import { GroupWork } from './group-work';
-import { TypeAudit } from './type-audit';
+import { AuditType } from './audit-type';
 
 export class Audit {
   id: number;
   number: string;
-  year: number;
+  year: string;
+  processCode: string;
   description: string;
 
   dispatchedAt: Date;
@@ -22,6 +23,6 @@ export class Audit {
   entityAudited = new Entity();
   groupWork = new GroupWork();
   status = new AuditStatus();
-  type = new TypeAudit();
+  type = new AuditType();
   files: AuditFile[];
 }

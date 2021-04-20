@@ -28,6 +28,14 @@ const routes: Routes = [
     loadChildren: () => import('./audit/audit.module').then(m => m.AuditModule)
   },
   {
+    path: 'audit-type',
+    loadChildren: () => import('./audit-type/audit-type.module').then(m => m.AuditTypeModule)
+  },
+  {
+    path: 'audit-status',
+    loadChildren: () => import('./audit-status/audit-status.module').then(m => m.AuditStatusModule)
+  },
+  {
     path: 'entity',
     loadChildren: () => import('./entity/entity.module').then(m => m.EntityModule)
   },

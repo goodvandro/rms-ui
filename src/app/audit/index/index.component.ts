@@ -20,17 +20,14 @@ export class IndexComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.audits = this.groupService.JSON();
+    this.read();
   }
 
   read(page = 0): void {
     this.filter.page = page;
 
     this.groupService.read(this.filter)
-      .then((result) => {
-        this.audits = result.content;
-        this.totalRecords = result.totalRecords;
-      })
+      .then((result) => this.audits = result)
       .catch((error) => this.errorService.handle(error))
       .finally(() => this.loading = false);
   }

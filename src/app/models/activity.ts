@@ -1,4 +1,4 @@
-import { TypeActivity } from './type-activity';
+import { ActivityType } from './activity-type';
 import { User } from './user';
 
 export class Activity {
@@ -6,7 +6,7 @@ export class Activity {
   description: string;
 
   user = new User();
-  typeActivity = new TypeActivity();
+  type = new ActivityType();
 
   createdAt: Date;
   updatedAt: Date;

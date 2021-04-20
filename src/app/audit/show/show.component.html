@@ -21,7 +21,8 @@
       <div class="p-fluid p-formgrid p-grid">
         <div class="p-field p-col-12 p-md-2">
           <label for="number">Código do processo</label>
-          <input id="number" type="text" pInputText name="number" [(ngModel)]="audit.number" disabled>
+          <input id="processCode" type="text" pInputText name="processCode" name="processCode"
+            [(ngModel)]="audit.processCode" disabled>
         </div>
 
         <div class="p-field p-col-12 p-md-2">
@@ -54,22 +55,22 @@
           </p-dropdown>
         </div>
 
-        <div class="p-field p-col-12 p-md-6">
+        <div class="p-field p-col-12 p-md-3">
           <label for="dispatchedAt">Data de despacho (Homologação)</label>
           <p-calendar id="dispatchedAt" name="dispatchedAt" [(ngModel)]="audit.dispatchedAt"></p-calendar>
         </div>
 
-        <div class="p-field p-col-12 p-md-6">
+        <div class="p-field p-col-12 p-md-3">
           <label for="reportedAt">Data de envio (Relatório Final)</label>
           <p-calendar id="reportedAt" name="reportedAt" [(ngModel)]="audit.reportedAt"></p-calendar>
         </div>
 
-        <div class="p-field p-col-12 p-md-6">
+        <div class="p-field p-col-12 p-md-3">
           <label for="createdAt">Data de Registado</label>
           <input id="createdAt" type="text" pInputText name="createdAt" [(ngModel)]="audit.createdAt" disabled>
         </div>
 
-        <div class="p-field p-col-12 p-md-6">
+        <div class="p-field p-col-12 p-md-3">
           <label for="updatedAt">Data de atualização</label>
           <input id="updatedAt" type="text" pInputText name="updatedAt" [(ngModel)]="audit.updatedAt" disabled>
         </div>

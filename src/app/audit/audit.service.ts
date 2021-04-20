@@ -19,11 +19,13 @@ export class AuditService {
   API_URL: string;
 
   constructor(private http: AppHttClient) {
-    this.API_URL = `${environment.apiUrl}/audits`;
+    this.API_URL = `${environment.apiUrl}/audit`;
   }
 
-  async create(group: Audit): Promise<Audit> {
-    return this.http.post<Audit>(this.API_URL, group)
+  async create(audit: Audit): Promise<Audit> {
+    delete audit.entityAuditor;
+
+    return this.http.post<Audit>(this.API_URL, audit)
       .toPromise();
   }
 
@@ -44,6 +46,12 @@ export class AuditService {
   async getById(id: number): Promise<Audit> {
     return this.http.get<Audit>(`${this.API_URL}/${id}`)
       .toPromise()
+  }
+
+  static convertField(audits: Audit[]) {
+    for (const audit of audits) {
+      audit.processCode = `${audit.year}.${audit.entityAudited.initial}.${audit.number}`;
+    }
   }
 
   JSON() {
