@@ -20,7 +20,7 @@ import { NavbarComponent } from './navbar/navbar.component';
   exports: [
     NavbarComponent,
     AsideComponent,
-    FooterComponent
+    FooterComponent,
   ]
 })
 export class LayoutModule { }

@@ -83,7 +83,7 @@ registerLocaleData(localePt);
   ],
   exports: [
     LayoutModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
   ],
   providers: [
     {

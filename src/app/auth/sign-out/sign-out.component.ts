@@ -19,14 +19,16 @@ export class SignOutComponent implements OnInit {
     private signOutService: SignOutService,
     private toastr: ToastrService,
     private errorService: ErrorService,
-    private authService: AuthService,
+    public authService: AuthService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.name = this.authService.jwtPayload.user.person.name;
-    this.surname = this.authService.jwtPayload.user.person.surname;
-    this.initial = (`${this.name.charAt(0)}${this.surname.charAt(0)}`).toUpperCase();
+    if (!this.authService.isAccessTokenInvalid()) {
+      this.name = this.authService.jwtPayload.user.person.name;
+      this.surname = this.authService.jwtPayload.user.person.surname;
+      this.initial = (`${this.name.charAt(0)}${this.surname.charAt(0)}`).toUpperCase();
+    }
   }
 
   signOut(): void {

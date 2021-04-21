@@ -17,7 +17,8 @@ export class AppComponent {
       this.router.url === '/forgot-password' ||
       this.router.url === '/recover-password' ||
       this.router.url === '/new-password' ||
-      this.router.url === '/password-confirmed'
+      this.router.url === '/password-confirmed' ||
+      this.router.url === '/new-password/force'
     );
   }
 }
