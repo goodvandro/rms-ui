@@ -19,7 +19,7 @@ export class AuthService {
     this.getToken();
   }
 
-  async signIn({ email, password }): Promise<void> {
+  async signIn({ email, password }): Promise<any> {
     const headers = new HttpHeaders()
       .append('Content-Type', 'application/x-www-form-urlencoded')
       .append('Authorization', environment.basicAuthorization);
@@ -30,6 +30,8 @@ export class AuthService {
       const response = await this.http.post<any>(
         this.oauthTokenUrl, body, { headers, withCredentials: true }
       ).toPromise();
+
+      localStorage.setItem('isFirst', JSON.stringify(response.user.isFirst))
 
       return this.setToken(response.access_token);
     } catch (error) {

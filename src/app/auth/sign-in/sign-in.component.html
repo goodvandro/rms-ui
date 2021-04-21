@@ -9,13 +9,15 @@
       <form autocomplete="off" #f="ngForm" (ngSubmit)="signIn()">
         <div class="p-fluid p-formgrid p-grid" [ngStyle]="{width: '20rem'}">
           <div class="p-field p-col-12">
-            <label for="firstname1">E-mail</label>
-            <input type="email" pInputText name="email" [(ngModel)]="email" placeholder="root@igf.gov.st" required>
+            <label for="email">E-mail</label>
+            <input type="email" pInputText id="email" name="email" [(ngModel)]="email" placeholder="root@igf.gov.st"
+              required>
           </div>
 
           <div class="p-field p-col-12">
-            <label for="lastname1">Senha</label>
-            <p-password name="password" [(ngModel)]="password" [toggleMask]="true" [feedback]="false" required="true">
+            <label for="password">Senha</label>
+            <p-password id="password" name="password" [(ngModel)]="password" [toggleMask]="true" [feedback]="false"
+              required="true">
             </p-password>
           </div>
 

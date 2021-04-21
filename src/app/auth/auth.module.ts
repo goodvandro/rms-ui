@@ -15,9 +15,11 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { PasswordModule } from 'primeng/password';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { environment } from 'src/environments/environment';
-import { AuthGuard } from './auth.guard';
+import { SharedModule } from './../shared/shared.module';
 import { AuthRouter } from './auth.router';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { AuthGuard } from './guard/auth.guard';
+import { AuthGuardFirstUser } from './guard/isFirst.guard';
 import { IconSystemComponent } from './icon-system/icon-system.component';
 import { NewPasswordForceComponent } from './new-password-force/new-password-force.component';
 import { NewPasswordComponent } from './new-password/new-password.component';
@@ -48,6 +50,7 @@ export function tokenGetter() {
     CommonModule,
     FormsModule,
     AuthRouter,
+    SharedModule,
 
     HttpClientModule,
     JwtModule.forRoot({
@@ -75,6 +78,7 @@ export function tokenGetter() {
   ],
   providers: [
     AuthGuard,
+    AuthGuardFirstUser,
     SignOutService
   ]
 })

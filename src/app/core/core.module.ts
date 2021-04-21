@@ -45,7 +45,9 @@ import { RecommendationStatusModule } from './../recommendation-status/recommend
 import { RecommendationStatusService } from './../recommendation-status/recommendation-status.service';
 import { RecommendationModule } from './../recommendation/recommendation.module';
 import { RecommendationService } from './../recommendation/recommendation.service';
+import { SharedModule } from './../shared/shared.module';
 import { StartModule } from './../start/start.module';
+import { PasswordService } from './../user/password.service';
 import { UserModule } from './../user/user.module';
 import { UserService } from './../user/user.service';
 
@@ -61,6 +63,7 @@ registerLocaleData(localePt);
     LayoutModule,
     ErrorModule,
 
+    SharedModule,
     AuthModule,
     StartModule,
     UserModule,
@@ -97,6 +100,7 @@ registerLocaleData(localePt);
     ConfirmationService,
     AuthService,
     UserService,
+    PasswordService,
     ActivityService,
     GroupService,
     GroupWorkService,
