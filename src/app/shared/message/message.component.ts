@@ -17,7 +17,6 @@ export class MessageComponent implements OnInit {
   }
 
   hasError(): boolean {
-    console.log(this.control)
     return this.control?.hasError(this.error) && this.control.touched;
   }
 }

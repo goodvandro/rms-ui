@@ -28,6 +28,7 @@ export class NewPasswordForceComponent implements OnInit {
 
   ngOnInit(): void {
     this.user.id = this.authService.jwtPayload.user.id;
+
     this.msgs = [
       {
         severity: 'warn',
@@ -37,7 +38,6 @@ export class NewPasswordForceComponent implements OnInit {
   }
 
   changePassword(form: NgForm) {
-    // this.validateForm(form);
     this.passwordService.changePassword(this.user)
       .then(() => {
         localStorage.removeItem('isFirst');

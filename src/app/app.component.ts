@@ -15,10 +15,10 @@ export class AppComponent {
     return (
       this.router.url === '/sign-in' ||
       this.router.url === '/forgot-password' ||
-      this.router.url === '/recover-password' ||
-      this.router.url === '/new-password' ||
+      this.router.url.match('/recover-password.*/') ||
+      this.router.url.match('/new-password.*/') ||
       this.router.url === '/password-confirmed' ||
-      this.router.url === '/new-password/force'
+      this.router.url === '/new-password-force'
     );
   }
 }

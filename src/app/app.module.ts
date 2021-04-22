@@ -13,7 +13,13 @@ import { CoreModule } from './core/core.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      preventDuplicates: true,
+      maxOpened: 1,
+      countDuplicates: true,
+      resetTimeoutOnDuplicate: true,
+      progressBar: true
+    }),
     AppRoutingModule,
     CoreModule,
   ],

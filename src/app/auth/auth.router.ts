@@ -17,15 +17,15 @@ const routes: Routes = [
     component: ForgotPasswordComponent,
   },
   {
-    path: 'recover-password',
+    path: 'recover-password/:email',
     component: RecoverPasswordComponent,
   },
   {
-    path: 'new-password',
+    path: 'new-password/:userId',
     component: NewPasswordComponent,
   },
   {
-    path: 'new-password/force',
+    path: 'new-password-force',
     component: NewPasswordForceComponent,
   },
   {

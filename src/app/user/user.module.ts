@@ -9,6 +9,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { PasswordModule } from 'primeng/password';
+import { ProgressBarModule } from 'primeng/progressbar';
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { TooltipModule } from 'primeng/tooltip';
@@ -41,7 +42,8 @@ import { UserRouter } from './user.router';
     DropdownModule,
     TabViewModule,
     DialogModule,
-    MultiSelectModule
+    MultiSelectModule,
+    ProgressBarModule
   ]
 })
 export class UserModule { }

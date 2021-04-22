@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,500&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Oswald:300|Roboto:300,500');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,500&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Oswald:300|Roboto:300,500");
 
 :root {
   --white: #fff;
@@ -10,7 +10,7 @@
   --red: #e83f5b;
   --green: #4cd62b;
   --blue-twitter: #2aa9e0;
-  --system-primary-color: #B23CFD;
+  --system-primary-color: #b23cfd;
 }
 
 body {
@@ -19,7 +19,10 @@ body {
   margin: 0;
 }
 
-body, input, textarea, button {
+body,
+input,
+textarea,
+button {
   font: 400 1rem "Roboto", sans-serif;
   color: #293845;
 }
@@ -31,4 +34,9 @@ label {
 a {
   color: var(--purple-500);
   text-decoration: none;
+}
+
+.span-required {
+  color: var(--red);
+  font-weight: 500;
 }

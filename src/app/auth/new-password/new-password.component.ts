@@ -1,12 +1,13 @@
+import { Message } from 'primeng/api';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Message } from 'primeng/api';
 import { ErrorService } from './../../error/error.service';
 import { User } from './../../models/user';
 import { PasswordService } from './../../user/password.service';
 import { AuthService } from './../auth.service';
+import { decrypt } from '../../configs/crypto-js';
 
 @Component({
   selector: 'app-new-password',
@@ -18,8 +19,9 @@ export class NewPasswordComponent implements OnInit {
 
   email: string;
   password: string;
-
   user = new User();
+
+  msgs: Message[];
 
   constructor(
     private auth: AuthService,
@@ -27,10 +29,26 @@ export class NewPasswordComponent implements OnInit {
     private errorService: ErrorService,
     private toastr: ToastrService,
     private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.user.id = this.auth.jwtPayload.user.id;
+    let userId: number;
+
+    if (this.auth.isAccessTokenInvalid()) {
+      userId = Number(decrypt(this.route.snapshot.params.userId));
+    } else {
+      userId = this.auth.jwtPayload.user.id;
+    }
+
+    this.user.id = userId;
+
+    this.msgs = [
+      {
+        severity: 'info',
+        detail: 'Estamos quase lá! Agora precisa nos informar a sua nova senha. Sugerimos que seja segura e fácil de se lembrar :)'
+      },
+    ]
   }
 
   changePassword(form: NgForm) {

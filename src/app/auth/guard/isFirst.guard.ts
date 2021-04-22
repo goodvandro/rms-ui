@@ -17,7 +17,7 @@ export class AuthGuardFirstUser implements CanActivate {
     const isFirst = JSON.parse(localStorage.getItem('isFirst'));
 
     if (isFirst) {
-      this.router.navigate(['/new-password/force']);
+      this.router.navigate(['/new-password-force']);
 
       return false;
     }

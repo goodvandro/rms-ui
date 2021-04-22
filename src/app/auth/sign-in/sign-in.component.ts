@@ -31,9 +31,12 @@ export class SignInComponent implements OnInit {
     this.loading = true;
     this.auth.signIn({ email: this.email, password: this.password })
       .then(() => {
-        this.router.navigate(['/dashboard']);
-        this.toastr.info('Bem vindo');
+        const user = this.auth.jwtPayload.user;
+        if (user.isFirst)
+          this.toastr.info(`Bem vindo ${user.person.name} :)`);
+        else this.toastr.info(`Bem vindo de volta, ${user.person.name} :)`);
       })
+      .then(() => this.router.navigate(['/dashboard']))
       .catch(erro => this.errorHandler.handle(erro))
       .finally(() => this.loading = false)
   }
