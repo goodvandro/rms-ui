@@ -17,12 +17,12 @@ export class AuthGuard implements CanActivate {
   ): Observable<boolean> | Promise<boolean> | boolean {
 
     if (this.auth.isAccessTokenInvalid()) {
-      console.log('Navegação com access token inválido. Obtendo novo token...');
+      console.log('Navigation with invalid access token. Getting new token...');
 
       return this.auth.getNewAccessToken()
         .then(() => {
           if (this.auth.isAccessTokenInvalid()) {
-            this.router.navigate(['/login']);
+            this.router.navigate(['/sign-in']);
             return false;
           }
 

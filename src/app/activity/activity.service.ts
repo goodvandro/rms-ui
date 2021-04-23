@@ -16,7 +16,7 @@ export class ActivityService {
   API_URL: string;
 
   constructor(private http: AppHttClient) {
-    this.API_URL = `${environment.apiUrl}/activities`;
+    this.API_URL = `${environment.apiUrl}/activity`;
   }
 
   async read(filter: ActivityFilter): Promise<any> {
@@ -25,6 +25,11 @@ export class ActivityService {
     params = params.append('size', filter.rows.toString());
 
     return this.http.get<any>(this.API_URL, { params })
+      .toPromise();
+  }
+
+  async create(activity: Activity): Promise<Activity> {
+    return this.http.post<Activity>(this.API_URL, activity)
       .toPromise();
   }
 

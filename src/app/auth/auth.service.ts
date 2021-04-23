@@ -33,6 +33,7 @@ export class AuthService {
 
       localStorage.setItem('isFirst', JSON.stringify(response.user.isFirst))
 
+      this.setRefreshToken(response.refresh_token);
       return this.setToken(response.access_token);
     } catch (error) {
       console.error('login-error', error);
@@ -49,6 +50,10 @@ export class AuthService {
   private setToken(token: string) {
     this.jwtPayload = this.jwtHelper.decodeToken(token);
     localStorage.setItem('igfToken', token);
+  }
+
+  private setRefreshToken(refreshToken: string) {
+    document.cookie = `refresh_token=${refreshToken}`;
   }
 
   private getToken() {

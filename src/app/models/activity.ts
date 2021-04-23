@@ -6,7 +6,7 @@ export class Activity {
   description: string;
 
   user = new User();
-  type = new ActivityType();
+  typeActivity = new ActivityType();
 
   createdAt: Date;
   updatedAt: Date;
