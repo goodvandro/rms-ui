@@ -51,10 +51,10 @@ export class ShowComponent implements OnInit {
       .catch((error) => this.errorService.handle(error));
   }
 
-  update(id: number): void {
+  update(): void {
     this.loading = true;
 
-    this.entityService.update(id, this.entity)
+    this.entityService.update(this.id, this.entity)
       .then((result) => {
         this.entity = result;
         this.toastr.success('Entidade adicionada!');

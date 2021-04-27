@@ -71,7 +71,7 @@ export class CreateComponent implements OnInit {
         this.router.navigate(['/user/index', result.id]);
         this.toastr.success('Utilizador adicionado!');
         this.toastr.info('Uma senha temporária foi enviada para o e-mail do utilizador!', '', {
-          timeOut: 10000
+          timeOut: 20000
         });
       })
       .catch((error) => this.errorService.handle(error))

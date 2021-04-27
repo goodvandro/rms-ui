@@ -5,7 +5,7 @@ export class Entity {
   id: number;
   name: string;
   initial: string;
-  isAuditor: boolean = false;
+  auditor: boolean = false;
 
   createdAt: Date;
   updatedAt: Date;

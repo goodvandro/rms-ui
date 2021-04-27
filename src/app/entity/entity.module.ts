@@ -10,6 +10,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
+import { AddressModule } from './../address/address.module';
 import { EntityRouter } from './entity.router';
 import { IndexComponent } from './index/index.component';
 import { NewComponent } from './new/new.component';
@@ -25,6 +26,7 @@ import { ShowComponent } from './show/show.component';
     CommonModule,
     EntityRouter,
     FormsModule,
+    AddressModule,
     ButtonModule,
     DividerModule,
     InputTextModule,
