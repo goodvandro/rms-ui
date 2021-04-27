@@ -8,12 +8,17 @@ $gray: #CFD8DC;
 $gray-light: #ECEFF1;
 $primary: #00ACC1;
 
-span {
-  position: relative;
-  list-style: none; // Hide the marker (proper method)
-  padding-left: $spacing;
-  outline: 0;
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  transition: color $speed $easing;
+a {
+  text-decoration: none;
+  color: $gray-light;
+
+  span {
+    position: relative;
+    list-style: none; // Hide the marker (proper method)
+    padding-left: $spacing;
+    outline: 0;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    transition: color $speed $easing;
+  }
 }
