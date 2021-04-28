@@ -34,12 +34,12 @@ export class AuditService {
     params = params.append('page', filter.page.toString());
     params = params.append('size', filter.rows.toString());
 
-    await this.http.get<any>(this.API_URL, { params })
+    return this.http.get<any>(this.API_URL, { params })
       .toPromise();
   }
 
   async update(id: number, audit: Audit): Promise<Audit> {
-    return this.http.put<Audit>(`${this.API_URL}/${id}`, audit)
+    return this.http.put<Audit>(`${this.API_URL}`, audit)
       .toPromise();
   }
 

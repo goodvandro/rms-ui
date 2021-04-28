@@ -37,11 +37,17 @@
             <input id="surname" type="text" pInputText name="surname" [(ngModel)]="user.person.surname" required>
           </div>
 
-          <div class="p-field p-col-12 p-md-4">
+          <div class="p-field p-col-12 p-md-2">
             <label for="bi">
               BI <span class="span-required">*</span>
             </label>
             <input id="bi" type="number" pInputText name="bi" [(ngModel)]="user.person.bi" required>
+          </div>
+
+          <div class="p-field p-col-12 p-md-2">
+            <label for="contact">Contacto</label>
+            <input id="contact" type="text" pInputText name="contact" [(ngModel)]="user.person.contact" minlength="7"
+              maxlength="15">
           </div>
 
           <div class="p-field p-col-12 p-md-8">
@@ -51,13 +57,14 @@
             <input id="email" type="email" pInputText name="email" [(ngModel)]="user.person.email" required email>
           </div>
 
-          <div class="p-field p-col-12 p-md-4">
-            <label for="contact">Contacto</label>
-            <input id="contact" type="text" pInputText name="contact" [(ngModel)]="user.person.contact" minlength="7"
-              maxlength="15">
+          <div class="p-field p-col-12 p-md-6">
+            <label for="entityAudited">Entidade</label>
+            <p-dropdown id="entityAudited" [options]="entities" name="entity" [(ngModel)]="user.person.entity"
+              placeholder="Selecione">
+            </p-dropdown>
           </div>
 
-          <div class="p-field p-col-12 p-md-8">
+          <div class="p-field p-col-12 p-md-6">
             <label for="address">
               Endereço <span class="span-required">*</span>
             </label>

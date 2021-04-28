@@ -1,3 +1,5 @@
+import { Address } from './../../models/address';
+import { EntityLevel } from './../../models/entity-level';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -32,18 +34,26 @@ export class ShowComponent implements OnInit {
   ngOnInit(): void {
     this.dropdownAddresses();
     this.dropdownLevels();
+    this.getById(this.id);
   }
 
   dropdownLevels(): void {
-    this.levels = this.entityLevelService.JSON()
-      .map((level) => ({ value: level.id, label: level.name }))
+    this.entityLevelService.readAll()
+      .then(result => this.levels = result.map((level: EntityLevel) => ({
+        value: level,
+        label: level.name
+      })))
+      .catch((error) => this.errorService.handle(error))
   }
 
   dropdownAddresses(): void {
-    this.addresses = this.addressService.JSON()
-      .map((address) => ({ value: address.id, label: address.name }))
+    this.addressService.readAll()
+      .then(result => this.addresses = result.map((element: Address) => ({
+        value: element,
+        label: `${element.street}, ${element.city}, ${element.district}`
+      })))
+      .catch((error) => this.errorService.handle(error))
   }
-
 
   getById(id: number): void {
     this.entityService.getById(id)

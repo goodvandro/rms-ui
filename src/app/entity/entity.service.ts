@@ -31,17 +31,17 @@ export class EntityService {
     params = params.append('page', filter.page.toString());
     params = params.append('size', filter.rows.toString());
 
-    await this.http.get<any>(this.API_URL, { params })
+    return this.http.get<any>(this.API_URL, { params })
       .toPromise();
   }
 
   async readAll(): Promise<any> {
-    await this.http.get<any>(this.API_URL)
+    return this.http.get<any>(this.API_URL)
       .toPromise();
   }
 
   async update(id: number, entity: Entity): Promise<Entity> {
-    return this.http.put<Entity>(`${this.API_URL}/${id}`, entity)
+    return this.http.put<Entity>(`${this.API_URL}`, entity)
       .toPromise();
   }
 

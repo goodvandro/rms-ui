@@ -1,4 +1,10 @@
+import { AuditStatus } from 'src/app/models/audit-status';
+import { AuditType } from 'src/app/models/audit-type';
+import { Entity } from 'src/app/models/entity';
+import { GroupWork } from 'src/app/models/group-work';
+import { GroupWorkService } from './../../group-work/group-work.service';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuditService } from '../audit.service';
 import { AuditStatusService } from './../../audit-status/audit-status.service';
@@ -15,10 +21,12 @@ import { Audit } from './../../models/audit';
 export class ShowComponent implements OnInit {
   loading: boolean = false;
   audit = new Audit();
+  id = this.route.snapshot.params.id;
 
   types = [];
   entities = [];
   statuses = [];
+  groupsWork = [];
   years = [
     { value: 2018, label: '2018' },
     { value: 2019, label: '2019' },
@@ -31,41 +39,64 @@ export class ShowComponent implements OnInit {
     private auditTypeService: AuditTypeService,
     private auditStatusService: AuditStatusService,
     private entityService: EntityService,
+    private groupWorkService: GroupWorkService,
     private errorService: ErrorService,
     private toastr: ToastrService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.dropdownEntities();
     this.dropdownTypes();
     this.dropdownStatuses();
+    this.dropdownGroupsWork();
+    this.getById();
   }
 
-  dropdownEntities(): void {
-    this.entities = this.entityService.JSON()
-      .map((entity) => ({ value: entity, label: entity.name }))
+  async dropdownEntities() {
+    await this.entityService.readAll()
+      .then((result) => this.entities = result.map((entity: Entity) => ({
+        value: entity.id,
+        label: entity.name
+      })))
   }
 
-  dropdownTypes(): void {
-    this.types = this.auditTypeService.JSON()
-      .map((type) => ({ value: type, label: type.name }))
+  async dropdownTypes() {
+    await this.auditTypeService.readAll()
+      .then((result) => this.types = result.map((type: AuditType) => ({
+        value: type.id,
+        label: type.name
+      })))
   }
 
-  dropdownStatuses(): void {
-    this.statuses = this.auditStatusService.JSON()
-      .map((status) => ({ value: status, label: status.name }))
+  async dropdownStatuses() {
+    await this.auditStatusService.readAll()
+      .then((result) => {
+        this.statuses = result.map((status: AuditStatus) => ({
+          value: status.id,
+          label: status.name
+        }));
+      });
   }
 
-  getById(id: number): void {
-    this.auditService.getById(id)
+  dropdownGroupsWork() {
+    this.groupWorkService.readAll()
+      .then((result) => this.groupsWork = result.map((group: GroupWork) => ({
+        value: group,
+        label: group.name
+      })))
+  }
+
+  getById(): void {
+    this.auditService.getById(this.id)
       .then((result) => this.audit = result)
       .catch((error) => this.errorService.handle(error));
   }
 
-  update(id: number): void {
+  update(): void {
     this.loading = true;
 
-    this.auditService.update(id, this.audit)
+    this.auditService.update(this.id, this.audit)
       .then((result) => {
         this.audit = result;
         this.toastr.success('Auditoria salva!');

@@ -1,6 +1,6 @@
 <div class="p-grid">
   <div class="p-col-12">
-    <h3>NOVA ENTIDADE</h3>
+    <h3>DETALHES DA ENTIDADE</h3>
   </div>
 
   <div class="p-col-12">
@@ -32,18 +32,17 @@
 
           <div class="p-field p-col-12 p-md-6">
             <label for="level">Nível</label>
-            <p-dropdown id="level" [options]="levels" name="level" [(ngModel)]="entity.level.id"
-              placeholder="Selecione">
+            <p-dropdown id="level" [options]="levels" name="level" [(ngModel)]="entity.level" placeholder="Selecione">
             </p-dropdown>
           </div>
 
           <div class="p-field p-col-12 p-md-6">
             <label for="address">Endereço</label>
             <div class="p-inputgroup">
-              <p-dropdown id="address" [options]="addresses" name="address" [(ngModel)]="entity.address.id"
-                placeholder="Selecione" [ngStyle]="{width: '100%'}">
+              <p-dropdown id="address" [options]="addresses" name="address" [(ngModel)]="entity.address"
+                placeholder="Selecione" [ngStyle]="{width: '100%'}" [required]="true">
               </p-dropdown>
-              <button type="button" pButton pRipple icon="pi pi-plus"></button>
+              <app-fast-new [(addresses)]="addresses"></app-fast-new>
             </div>
           </div>
 

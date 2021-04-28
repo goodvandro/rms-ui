@@ -61,4 +61,44 @@ export class AddressService {
       },
     ]
   }
+
+  getCities() {
+    return [
+      {
+        id: 1,
+        city: 'São Tomé',
+        district: 'Água Grande',
+      },
+      {
+        id: 2,
+        city: 'Trindade',
+        district: 'Mé-Zóchi',
+      },
+      {
+        id: 3,
+        city: 'Santana',
+        district: 'Cantagalo',
+      },
+      {
+        id: 4,
+        city: 'Angolares',
+        district: 'Caué',
+      },
+      {
+        id: 5,
+        city: 'Neves',
+        district: 'Lembá',
+      },
+      {
+        id: 6,
+        city: 'Guadalupe',
+        district: 'Lobata',
+      },
+      {
+        id: 7,
+        city: 'Santo António',
+        district: 'Pagué',
+      },
+    ]
+  }
 }

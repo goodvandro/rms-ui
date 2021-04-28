@@ -12,6 +12,9 @@
 
       <div class="p-field p-col-12">
         <label for="city">Cidade</label>
+        <!-- <p-dropdown [options]="cities" name="city" [(ngModel)]="address.city" placeholder="Selecione a cidade"
+          optionLabel="city" [ngStyle]="{width:'100%'}"></p-dropdown> -->
+
         <input id="city" type="text" pInputText [(ngModel)]="address.city" name="city" [ngStyle]="{width:'100%'}">
       </div>
 

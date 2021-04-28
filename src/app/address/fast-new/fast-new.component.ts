@@ -14,6 +14,7 @@ export class FastNewComponent implements OnInit {
   loading: boolean = false;
   display: boolean = false;
   address = new Address();
+  cities = [];
 
   constructor(
     private addressService: AddressService,
@@ -21,6 +22,10 @@ export class FastNewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // this.cities = this.addressService.getCities().map((city) => ({
+    //   name: city.city,
+    //   code: city.city
+    // }))
   }
 
   showDialog() {

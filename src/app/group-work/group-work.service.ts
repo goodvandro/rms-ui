@@ -35,6 +35,11 @@ export class GroupWorkService {
       .toPromise();
   }
 
+  async readAll(): Promise<any> {
+    return this.http.get<any>(this.API_URL)
+      .toPromise();
+  }
+
   async update(id: number, groupWork: GroupWork): Promise<GroupWork> {
     return this.http.put<GroupWork>(`${this.API_URL}`, groupWork)
       .toPromise();

@@ -30,28 +30,42 @@
             <input id="surname" type="text" pInputText name="surname" [(ngModel)]="user.person.surname">
           </div>
 
-          <div class="p-field p-col-12 p-md-4">
-            <label for="bi">BI</label>
-            <input id="bi" type="text" pInputText name="bi" [(ngModel)]="user.person.bi">
+          <div class="p-field p-col-12 p-md-2">
+            <label for="bi">
+              BI <span class="span-required">*</span>
+            </label>
+            <input id="bi" type="number" pInputText name="bi" [(ngModel)]="user.person.bi" required>
           </div>
 
-          <div class="p-field p-col-12 p-md-8">
-            <label for="email">E-mail</label>
-            <input id="email" type="text" pInputText name="email" [(ngModel)]="user.person.email">
-          </div>
-
-          <div class="p-field p-col-12 p-md-4">
+          <div class="p-field p-col-12 p-md-2">
             <label for="contact">Contacto</label>
-            <input id="contact" type="text" pInputText name="contact" [(ngModel)]="user.person.contact">
+            <input id="contact" type="text" pInputText name="contact" [(ngModel)]="user.person.contact" minlength="7"
+              maxlength="15">
           </div>
 
           <div class="p-field p-col-12 p-md-8">
-            <label for="address">Endereço</label>
+            <label for="email">
+              E-mail <span class="span-required">*</span>
+            </label>
+            <input id="email" type="email" pInputText name="email" [(ngModel)]="user.person.email" required email>
+          </div>
+
+          <div class="p-field p-col-12 p-md-6">
+            <label for="entityAudited">Entidade</label>
+            <p-dropdown id="entityAudited" [options]="entities" name="entity" [(ngModel)]="user.person.entity.id"
+              placeholder="Selecione">
+            </p-dropdown>
+          </div>
+
+          <div class="p-field p-col-12 p-md-6">
+            <label for="address">
+              Endereço <span class="span-required">*</span>
+            </label>
             <div class="p-inputgroup">
               <p-dropdown id="address" [options]="addresses" name="address" [(ngModel)]="user.person.address.id"
-                placeholder="Selecione" [ngStyle]="{width: '100%'}">
+                placeholder="Selecione" [ngStyle]="{width: '100%'}" [required]="true">
               </p-dropdown>
-              <button type="button" pButton pRipple icon="pi pi-plus"></button>
+              <app-fast-new [(addresses)]="addresses"></app-fast-new>
             </div>
           </div>
 

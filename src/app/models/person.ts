@@ -1,4 +1,5 @@
 import { Address } from "./address";
+import { Entity } from "./entity";
 
 export class Person {
   id: number;
@@ -15,4 +16,5 @@ export class Person {
   userUpdatedId: number;
 
   address = new Address();
+  entity = new Entity();
 }

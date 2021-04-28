@@ -58,7 +58,7 @@ export class NewComponent implements OnInit {
     this.entityService.create(this.entity)
       .then((result) => {
         this.router.navigate(['/entity/show', result.id]);
-        this.toastr.success('Grupo adicionado!')
+        this.toastr.success('Entidade adicionada!')
       })
       .catch((error) => this.errorService.handle(error))
       .finally(() => this.loading = false)

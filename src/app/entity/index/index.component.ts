@@ -15,7 +15,7 @@ export class IndexComponent implements OnInit {
   entities = [];
 
   constructor(
-    private groupService: EntityService,
+    private entityService: EntityService,
     private errorService: ErrorService,
   ) { }
 
@@ -26,7 +26,7 @@ export class IndexComponent implements OnInit {
   read(page = 0): void {
     this.filter.page = page;
 
-    this.groupService.read(this.filter)
+    this.entityService.read(this.filter)
       .then((result) => this.entities = result)
       .catch((error) => this.errorService.handle(error))
       .finally(() => this.loading = false);

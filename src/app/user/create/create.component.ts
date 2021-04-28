@@ -1,12 +1,14 @@
-import { Group } from './../../models/group';
-import { GroupService } from './../../group/group.service';
-import { Address } from './../../models/address';
-import { AddressService } from './../../address/address.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user';
+import { AddressService } from './../../address/address.service';
+import { EntityService } from './../../entity/entity.service';
 import { ErrorService } from './../../error/error.service';
+import { GroupService } from './../../group/group.service';
+import { Address } from './../../models/address';
+import { Entity } from './../../models/entity';
+import { Group } from './../../models/group';
 import { UserService } from './../user.service';
 
 @Component({
@@ -19,10 +21,12 @@ export class CreateComponent implements OnInit {
   user = new User();
   addresses = [];
   groups = [];
+  entities = [];
 
   constructor(
     private userService: UserService,
     private addressService: AddressService,
+    private entityService: EntityService,
     private groupService: GroupService,
     private errorService: ErrorService,
     private toastr: ToastrService,
@@ -32,6 +36,7 @@ export class CreateComponent implements OnInit {
   ngOnInit(): void {
     this.dropdownAddresses();
     this.dropdownGroups();
+    this.dropdownEntities();
   }
 
   async dropdownGroups() {
@@ -53,6 +58,15 @@ export class CreateComponent implements OnInit {
         label: `${element.street}, ${element.city}, ${element.district}`
       })))
       .catch((error) => this.errorService.handle(error))
+  }
+
+  dropdownEntities() {
+    this.entityService.readAll()
+      .then((result) =>
+        this.entities = result.map(
+          (entity: Entity) => ({ value: entity, label: entity.name })
+        )
+      )
   }
 
   loadDefaultGroup(groups: Group[]) {

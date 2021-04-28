@@ -26,33 +26,40 @@
               [(ngModel)]="audit.processCode" disabled>
           </div>
 
+          <div class="p-field p-col-12 p-md-10">
+            <label for="description">Descrição da ação</label>
+            <input id="description" type="text" pInputText name="description" [(ngModel)]="audit.description">
+          </div>
+
           <div class="p-field p-col-12 p-md-2">
             <label for="year">Ano de realização</label>
             <p-dropdown id="year" [options]="years" name="year" [(ngModel)]="audit.year" placeholder="Selecione">
             </p-dropdown>
           </div>
 
-          <div class="p-field p-col-12 p-md-8">
-            <label for="description">Descrição da ação</label>
-            <input id="description" type="text" pInputText name="description" [(ngModel)]="audit.description">
-          </div>
-
-          <div class="p-field p-col-12 p-md-6">
-            <label for="entityAudited">Entidade auditada</label>
-            <p-dropdown id="entityAudited" [options]="entities" name="entityAudited"
-              [(ngModel)]="audit.entityAudited.id" placeholder="Selecione">
-            </p-dropdown>
-          </div>
-
-          <div class="p-field p-col-12 p-md-3">
+          <div class="p-field p-col-12 p-md-2">
             <label for="type">Tipo de auditoria</label>
             <p-dropdown id="type" [options]="types" name="type" [(ngModel)]="audit.type" placeholder="Selecione">
             </p-dropdown>
           </div>
 
-          <div class="p-field p-col-12 p-md-3">
+          <div class="p-field p-col-12 p-md-2">
             <label for="status">Status</label>
-            <p-dropdown id="status" [options]="statuses" name="status" [(ngModel)]="audit.status.id" [disabled]="true">
+            <p-dropdown id="status" [options]="statuses" name="status" [(ngModel)]="audit.status" [disabled]="true">
+            </p-dropdown>
+          </div>
+
+          <div class="p-field p-col-12 p-md-6">
+            <label for="entityAudited">Entidade auditada</label>
+            <p-dropdown id="entityAudited" [options]="entities" name="entityAudited" [(ngModel)]="audit.entityAudited"
+              placeholder="Selecione">
+            </p-dropdown>
+          </div>
+
+          <div class="p-field p-col-12 p-md-6">
+            <label for="groupWork">Grupo de trabalho</label>
+            <p-dropdown id="groupWork" [options]="groupsWork" name="groupWork" [(ngModel)]="audit.groupWork"
+              placeholder="Selecione">
             </p-dropdown>
           </div>
 
