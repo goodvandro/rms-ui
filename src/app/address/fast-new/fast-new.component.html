@@ -24,7 +24,7 @@
   </form>
 
   <ng-template pTemplate="footer">
-    <p-button icon="pi pi-check" (click)="display=false" label="Cancelar" styleClass="p-button-text"></p-button>
+    <p-button icon="pi pi-times" (click)="display=false" label="Cancelar" styleClass="p-button-text"></p-button>
     <p-button type="button" icon="pi pi-check" (click)="f.ngSubmit.emit()" [disabled]="!f.form.valid" label="Salvar"
       styleClass="p-button-text">
     </p-button>

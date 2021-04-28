@@ -7,6 +7,7 @@ import { AddressService } from './../../address/address.service';
 import { EntityLevelService } from './../../entity-level/entity-level.service';
 import { ErrorService } from './../../error/error.service';
 import { EntityService } from './../entity.service';
+import { EntityLevel } from 'src/app/models/entity-level';
 
 @Component({
   selector: 'app-new',
@@ -36,8 +37,12 @@ export class NewComponent implements OnInit {
   }
 
   dropdownLevels(): void {
-    this.levels = this.entityLevelService.JSON()
-      .map((level) => ({ value: level.id, label: level.name }))
+    this.entityLevelService.readAll()
+      .then(result => this.levels = result.map((level: EntityLevel) => ({
+        value: level,
+        label: level.name
+      })))
+      .catch((error) => this.errorService.handle(error))
   }
 
   dropdownAddresses(): void {

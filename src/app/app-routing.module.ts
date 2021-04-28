@@ -48,6 +48,11 @@ const routes: Routes = [
       .then(m => m.EntityModule)
   },
   {
+    path: 'entity-level',
+    loadChildren: () => import('./entity-level/entity-level.module')
+      .then(m => m.EntityLevelModule)
+  },
+  {
     path: 'recommendation',
     loadChildren: () => import('./recommendation/recommendation.module')
       .then(m => m.RecommendationModule)
