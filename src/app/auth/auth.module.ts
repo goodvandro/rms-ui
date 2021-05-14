@@ -23,7 +23,6 @@ import { AuthGuardFirstUser } from './guard/isFirst.guard';
 import { IconSystemComponent } from './icon-system/icon-system.component';
 import { NewPasswordForceComponent } from './new-password-force/new-password-force.component';
 import { NewPasswordComponent } from './new-password/new-password.component';
-import { PasswordConfirmedComponent } from './password-confirmed/password-confirmed.component';
 import { RecoverPasswordComponent } from './recover-password/recover-password.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignOutService } from './sign-out.service';
@@ -40,7 +39,6 @@ export function tokenGetter() {
     ForgotPasswordComponent,
     RecoverPasswordComponent,
     NewPasswordComponent,
-    PasswordConfirmedComponent,
     UnauthorizedComponent,
     SignOutComponent,
     NewPasswordForceComponent,

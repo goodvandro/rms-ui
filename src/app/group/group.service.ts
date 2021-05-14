@@ -6,7 +6,7 @@ import { Group } from './../models/group';
 
 export class GroupFilter {
   page: number = 0;
-  rows: number = 15;
+  rows: number = 10;
 
   name: string;
 }
@@ -36,7 +36,7 @@ export class GroupService {
   }
 
   async readAll(): Promise<any> {
-    return this.http.get<any>(this.API_URL)
+    return this.http.get<any>(`${this.API_URL}/list`)
       .toPromise();
   }
 

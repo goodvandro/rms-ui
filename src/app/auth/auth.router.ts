@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { NewPasswordForceComponent } from './new-password-force/new-password-force.component';
 import { NewPasswordComponent } from './new-password/new-password.component';
-import { PasswordConfirmedComponent } from './password-confirmed/password-confirmed.component';
 import { RecoverPasswordComponent } from './recover-password/recover-password.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 
@@ -27,10 +26,6 @@ const routes: Routes = [
   {
     path: 'new-password-force',
     component: NewPasswordForceComponent,
-  },
-  {
-    path: 'password-confirmed',
-    component: PasswordConfirmedComponent,
   },
 ]
 

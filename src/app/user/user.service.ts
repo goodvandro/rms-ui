@@ -6,7 +6,7 @@ import { User } from './../models/user';
 
 export class UserFilter {
   page: number = 0;
-  rows: number = 15;
+  rows: number = 10;
 
   name: string;
   email: string;
@@ -28,7 +28,7 @@ export class UserService {
   }
 
   async readAll(): Promise<any> {
-    return this.http.get<any>(this.API_URL,)
+    return this.http.get<any>(`${this.API_URL}/list`)
       .toPromise()
   }
 
@@ -47,7 +47,6 @@ export class UserService {
   }
 
   async patch(id: number, user: User): Promise<User> {
-    console.log(user);
     return this.http.patch<User>(this.API_URL, user)
       .toPromise();
   }

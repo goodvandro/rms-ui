@@ -5,7 +5,7 @@ import { Address } from './../models/address';
 
 export class AddressFilter {
   page: number = 0;
-  rows: number = 15;
+  rows: number = 10;
 
   street: string;
 }
@@ -31,7 +31,7 @@ export class AddressService {
   }
 
   async readAll(): Promise<any> {
-    return this.http.get<any>(this.API_URL)
+    return this.http.get<any>(`${this.API_URL}/list`)
       .toPromise();
   }
 

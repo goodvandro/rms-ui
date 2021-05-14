@@ -8,6 +8,7 @@ import { User } from './../../models/user';
 import { PasswordService } from './../../user/password.service';
 import { AuthService } from './../auth.service';
 import { decrypt } from '../../configs/crypto-js';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-new-password',
@@ -29,7 +30,8 @@ export class NewPasswordComponent implements OnInit {
     private errorService: ErrorService,
     private toastr: ToastrService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
@@ -75,5 +77,9 @@ export class NewPasswordComponent implements OnInit {
         this.toastr.info('Bem vindo');
       })
       .catch(erro => this.errorService.handle(erro))
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

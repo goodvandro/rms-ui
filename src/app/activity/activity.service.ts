@@ -6,7 +6,7 @@ import { Activity } from './../models/activity';
 
 export class ActivityFilter {
   page: number = 0;
-  rows: number = 15;
+  rows: number = 10;
 }
 
 @Injectable({

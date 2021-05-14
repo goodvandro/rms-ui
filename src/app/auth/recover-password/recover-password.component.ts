@@ -21,7 +21,6 @@ export class RecoverPasswordComponent implements OnInit {
 
   constructor(
     private passwordService: PasswordService,
-    private toastr: ToastrService,
     private errorService: ErrorService,
     private router: Router,
     private route: ActivatedRoute
@@ -47,6 +46,7 @@ export class RecoverPasswordComponent implements OnInit {
       code: this.code
     })
       .then((user) => {
+        sessionStorage.setItem('recoverPasswordEmail', user.username);
         const userIdEncrypted = encrypt(user.id.toString())
         this.router.navigate(['/new-password', userIdEncrypted]);
       })

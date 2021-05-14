@@ -6,7 +6,7 @@ import { Audit } from './../models/audit';
 
 export class AuditFilter {
   page: number = 0;
-  rows: number = 15;
+  rows: number = 10;
 
   number: string;
   year: number;

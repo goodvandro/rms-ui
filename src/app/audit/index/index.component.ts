@@ -9,7 +9,7 @@ import { AuditFilter, AuditService } from '../audit.service';
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
-  loading: boolean = true;
+  loading: boolean;
   filter = new AuditFilter();
   totalRecords: number = 0;
   audits = [];
@@ -20,20 +20,24 @@ export class IndexComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.read();
+    this.loading = true;
   }
 
   read(page = 0): void {
     this.filter.page = page;
 
     this.groupService.read(this.filter)
-      .then((result) => this.audits = result)
+      .then((result) => {
+        this.audits = result.content;
+        this.totalRecords = result.totalElements;
+      })
       .catch((error) => this.errorService.handle(error))
       .finally(() => this.loading = false);
   }
 
-  onLazyLoad(event: LazyLoadEvent) {
+  lazyLoad(event: LazyLoadEvent) {
     const page = event.first / event.rows;
+    this.filter.rows = event.rows;
     this.read(page);
   }
 }

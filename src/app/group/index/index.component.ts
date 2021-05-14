@@ -9,7 +9,7 @@ import { GroupFilter, GroupService } from '../group.service';
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
-  loading: boolean = true;
+  loading: boolean;
   filter = new GroupFilter();
   totalRecords: number = 0;
   groups = [];
@@ -20,20 +20,25 @@ export class IndexComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.read();
+    this.loading = true;
   }
 
   read(page = 0): void {
+    this.loading = true;
     this.filter.page = page;
 
     this.groupService.read(this.filter)
-      .then((result) => this.groups = result)
+      .then((result) => {
+        this.groups = result.content,
+        this.totalRecords = result.totalElements;
+      })
       .catch((error) => this.errorService.handle(error))
       .finally(() => this.loading = false);
   }
 
-  onLazyLoad(event: LazyLoadEvent) {
+  lazyLoad(event: LazyLoadEvent) {
     const page = event.first / event.rows;
+    this.filter.rows = event.rows;
     this.read(page);
   }
 }
