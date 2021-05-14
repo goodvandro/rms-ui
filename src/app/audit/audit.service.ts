@@ -1,5 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import * as moment from 'moment';
 import { environment } from 'src/environments/environment';
 import { AppHttClient } from './../auth/app-http-client';
 import { Audit } from './../models/audit';
@@ -35,22 +36,43 @@ export class AuditService {
     params = params.append('size', filter.rows.toString());
 
     return this.http.get<any>(this.API_URL, { params })
-      .toPromise();
+      .toPromise()
+      .then((result) => {
+        const audits: Audit[] = result.content;
+        this.convertField(audits);
+        return {
+          content: audits,
+          totalElements: result.totalElements
+        }
+      });
   }
 
   async update(id: number, audit: Audit): Promise<Audit> {
     return this.http.put<Audit>(`${this.API_URL}`, audit)
-      .toPromise();
+      .toPromise()
+      .then((result => {
+        const audit = result as Audit;
+        this.convertField([audit]);
+        return audit;
+      }))
   }
 
   async getById(id: number): Promise<Audit> {
     return this.http.get<Audit>(`${this.API_URL}/${id}`)
       .toPromise()
+      .then((result => {
+        const audit = result as Audit;
+        this.convertField([audit]);
+        return audit;
+      }))
   }
 
-  static convertField(audits: Audit[]) {
+  private convertField(audits: Audit[]) {
     for (const audit of audits) {
       audit.processCode = `${audit.year}.${audit.entityAudited.initial}.${audit.number}`;
+
+      audit.dispatchedAt = moment(audit.dispatchedAt, 'YYYY-MM-DD').toDate();
+      audit.reportedAt = moment(audit.reportedAt, 'YYYY-MM-DD').toDate();
     }
   }
 

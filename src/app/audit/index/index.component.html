@@ -31,7 +31,6 @@
         <ng-template pTemplate="header">
           <tr>
             <th>Código</th>
-            <th>Ano</th>
             <th>Entidade auditada</th>
             <th>Descrição</th>
             <th>Registado em</th>
@@ -40,8 +39,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-rowData>
           <tr>
-            <td>{{rowData.number}}</td>
-            <td>{{rowData.year}}</td>
+            <td>{{rowData.processCode}}</td>
             <td>{{rowData.entityAudited.name}}</td>
             <td>{{rowData.description}}</td>
             <td>{{rowData.createdAt | date}}</td>

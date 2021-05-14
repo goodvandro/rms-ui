@@ -28,10 +28,10 @@ export class ShowComponent implements OnInit {
   statuses = [];
   groupsWork = [];
   years = [
-    { value: 2018, label: '2018' },
-    { value: 2019, label: '2019' },
-    { value: 2020, label: '2020' },
-    { value: 2021, label: '2021' }
+    { value: '018', label: '2018' },
+    { value: '019', label: '2019' },
+    { value: '020', label: '2020' },
+    { value: '021', label: '2021' }
   ];
 
   constructor(
@@ -82,7 +82,7 @@ export class ShowComponent implements OnInit {
   dropdownGroupsWork() {
     this.groupWorkService.readAll()
       .then((result) => this.groupsWork = result.map((group: GroupWork) => ({
-        value: group,
+        value: group.id,
         label: group.name
       })))
   }
