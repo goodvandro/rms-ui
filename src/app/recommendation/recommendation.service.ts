@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AppHttClient } from './../auth/app-http-client';
 import { Recommendation } from './../models/recommendation';
+import * as moment from 'moment';
 
 export class RecommendationFilter {
   page: number = 0;
@@ -18,7 +19,7 @@ export class RecommendationService {
   API_URL: string;
 
   constructor(private http: AppHttClient) {
-    this.API_URL = `${environment.apiUrl}/recommendations`;
+    this.API_URL = `${environment.apiUrl}/recommendation`;
   }
 
   async create(recommendation: Recommendation): Promise<Recommendation> {
@@ -31,8 +32,16 @@ export class RecommendationService {
     params = params.append('page', filter.page.toString());
     params = params.append('size', filter.rows.toString());
 
-    await this.http.get<any>(this.API_URL, { params })
-      .toPromise();
+    const result = await this.http.get<any>(this.API_URL, { params })
+      .toPromise()
+
+    const recommendations: Recommendation[] = result.content;
+    this.convertField(recommendations);
+
+    return {
+      content: recommendations,
+      totalElements: result.totalElements
+    }
   }
 
   async update(
@@ -48,6 +57,13 @@ export class RecommendationService {
   async getById(id: number): Promise<Recommendation> {
     return this.http.get<Recommendation>(`${this.API_URL}/${id}`)
       .toPromise()
+  }
+
+  private convertField(recommendations: Recommendation[]) {
+    for (const recommendation of recommendations) {
+      recommendation.createdAt = moment(recommendation.createdAt, 'YYYY-MM-DD').toDate();
+      recommendation.updatedAt = moment(recommendation.updatedAt, 'YYYY-MM-DD').toDate();
+    }
   }
 
   JSON() {

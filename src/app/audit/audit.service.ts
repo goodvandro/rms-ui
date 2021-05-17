@@ -67,6 +67,18 @@ export class AuditService {
       }))
   }
 
+  async getByProcessCode(processCode: string): Promise<Audit> {
+    let params = new HttpParams();
+    params = params.append('processCode', processCode);
+
+    const result = await this.http.get<Audit>(`${this.API_URL}/byCode`, { params })
+      .toPromise();
+
+    const audit = result as Audit;
+    this.convertField([audit]);
+    return audit;
+  }
+
   private convertField(audits: Audit[]) {
     for (const audit of audits) {
       audit.processCode = `${audit.year}.${audit.entityAudited.initial}.${audit.number}`;

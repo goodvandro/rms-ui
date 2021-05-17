@@ -13,7 +13,7 @@ export class IndexComponent implements OnInit {
   loading: boolean = true;
   filter = new RecommendationFilter();
   totalRecords: number = 0;
-  audits = [];
+  recommendations = [];
 
   constructor(
     private recommendationService: RecommendationService,
@@ -21,7 +21,6 @@ export class IndexComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.audits = this.recommendationService.JSON();
   }
 
   read(page = 0): void {
@@ -29,15 +28,17 @@ export class IndexComponent implements OnInit {
 
     this.recommendationService.read(this.filter)
       .then((result) => {
-        this.audits = result.content;
-        this.totalRecords = result.totalRecords;
+        console.log(result);
+        this.recommendations = result.content;
+        this.totalRecords = result.totalElements;
       })
       .catch((error) => this.errorService.handle(error))
       .finally(() => this.loading = false);
   }
 
-  onLazyLoad(event: LazyLoadEvent) {
+  lazyLoad(event: LazyLoadEvent) {
     const page = event.first / event.rows;
+    this.filter.rows = event.rows;
     this.read(page);
   }
 }

@@ -6,8 +6,12 @@ import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
 import { DividerModule } from "primeng/divider";
 import { DropdownModule } from 'primeng/dropdown';
+import { EditorModule } from 'primeng/editor';
+import { FieldsetModule } from 'primeng/fieldset';
+import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+import { ProgressBarModule } from 'primeng/progressbar';
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { TooltipModule } from 'primeng/tooltip';
@@ -35,7 +39,11 @@ import { ShowComponent } from './show/show.component';
     TooltipModule,
     TabViewModule,
     CalendarModule,
-    DropdownModule
+    DropdownModule,
+    EditorModule,
+    ProgressBarModule,
+    FieldsetModule,
+    InputNumberModule
   ]
 })
 export class RecommendationModule { }

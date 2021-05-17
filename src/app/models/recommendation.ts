@@ -1,3 +1,4 @@
+import { Audit } from './audit';
 import { Compliance } from './compliance';
 import { RecommendationCharacter } from './recommendation-character';
 import { RecommendationFile } from './recommendation-file';
@@ -7,7 +8,7 @@ import { RecommendationStatus } from './recommendation-status';
 
 export class Recommendation {
   id: number;
-  number: number;
+  // number: number;
   description: string;
   constatation: string;
   amount: number;
@@ -18,10 +19,11 @@ export class Recommendation {
   userCreatedId: number;
   userUpdatedId: number;
 
+  audit = new Audit();
   status = new RecommendationStatus();
   nature = new RecommendationNature();
   character = new RecommendationCharacter();
-  leveRisk = new RecommendationLevelRisk();
+  levelRisk = new RecommendationLevelRisk();
 
   files: RecommendationFile[];
   compliances: Compliance[];
