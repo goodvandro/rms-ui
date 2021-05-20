@@ -30,10 +30,8 @@
         (onLazyLoad)="lazyLoad($event)">
         <ng-template pTemplate="header">
           <tr>
-            <th>Número</th>
+            <th>Nº Processo</th>
             <th>Descrição</th>
-            <th>Constatação</th>
-            <th>Medidas Tomadas</th>
             <th>Status</th>
             <th>Caráter</th>
             <th>Natureza</th>
@@ -43,10 +41,8 @@
         </ng-template>
         <ng-template pTemplate="body" let-rowData>
           <tr>
-            <td>{{rowData.number}}</td>
-            <td>{{rowData.description}}</td>
-            <td>{{rowData.constatation}}</td>
-            <td></td>
+            <td>{{rowData.audit.processCode}}</td>
+            <td><span [innerHTML]="rowData.description"></span></td>
             <td>{{rowData.status.name}}</td>
             <td>{{rowData.character.name}}</td>
             <td>{{rowData.nature.name}}</td>

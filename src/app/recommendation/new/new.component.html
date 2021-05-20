@@ -28,8 +28,8 @@
                   <label for="processCode">Código do processo de auditoria</label>
                   <span class="p-input-icon-right">
                     <i class="pi pi-spin pi-spinner" *ngIf="searchingAudit"></i>
-                    <input id="processCode" type="text" pInputText name="processCode"
-                      [(ngModel)]="processCode" (input)="getAuditByProcessCode($event)">
+                    <input id="processCode" type="text" pInputText name="processCode" [(ngModel)]="processCode"
+                      (input)="getAuditByProcessCode($event)">
                   </span>
                 </div>
 
@@ -57,64 +57,72 @@
           <div class="p-col-12 p-mt-4">
             <p-fieldset legend="REGISTO DA CONSTATAÇÃO E DETALHES DA RECOMENDAÇÃO" [toggleable]="true">
               <div class="p-grid">
-                <div class="p-field p-col-12 p-md-6">
-                  <label for="constatation">Descrição da constatação</label>
-                  <p-editor name="constatation" [(ngModel)]="recommendation.constatation" [style]="{'height':'220px'}">
-                    <ng-template pTemplate="header">
-                      <span class="ql-formats">
-                        <button type="button" class="ql-bold" aria-label="Bold"></button>
-                        <button type="button" class="ql-italic" aria-label="Italic"></button>
-                        <button type="button" class="ql-underline" aria-label="Underline"></button>
-                      </span>
-                    </ng-template>
-                  </p-editor>
-                </div>
-
-                <div class="p-field p-col-12 p-md-6">
+                <div class="p-field p-col-12 p-md-9">
                   <label for="description">Descrição da recomendação</label>
-                  <p-editor name="description" [(ngModel)]="recommendation.description" [style]="{'height':'220px'}">
-                    <ng-template pTemplate="header">
-                      <span class="ql-formats">
-                        <button type="button" class="ql-bold" aria-label="Bold"></button>
-                        <button type="button" class="ql-italic" aria-label="Italic"></button>
-                        <button type="button" class="ql-underline" aria-label="Underline"></button>
-                      </span>
-                    </ng-template>
-                  </p-editor>
+                  <input id="description" type="text" pInputText name="description"
+                    [(ngModel)]="recommendation.description">
                 </div>
 
-                <div class="p-field p-col-12 p-md-2">
+                <div class="p-field p-col-12 p-md-3">
+                  <label for="status">Status</label>
+                  <p-dropdown id="status" [options]="statuses" name="status" [(ngModel)]="recommendation.status">
+                  </p-dropdown>
+                </div>
+
+                <div class="p-field p-col-12 p-md-3">
                   <label for="amount">Valor em causa</label>
                   <p-inputNumber inputId="amount" name="amount" [(ngModel)]="recommendation.amount" mode="currency"
                     currency="STN" locale="pt-PT">
                   </p-inputNumber>
                 </div>
 
-                <div class="p-field p-col-12 p-md-2">
-                  <label for="status">Status</label>
-                  <p-dropdown id="status" [options]="statuses" name="status" [(ngModel)]="recommendation.status">
-                  </p-dropdown>
-                </div>
 
-                <div class="p-field p-col-12 p-md-6">
+                <div class="p-field p-col-12 p-md-3">
                   <label for="nature">Natureza</label>
                   <p-dropdown id="nature" [options]="natures" name="nature" [(ngModel)]="recommendation.nature"
                     placeholder="Selecione">
                   </p-dropdown>
                 </div>
 
-                <div class="p-field p-col-12 p-md-6">
+                <div class="p-field p-col-12 p-md-3">
                   <label for="character">Carácter</label>
                   <p-dropdown id="character" [options]="characters" name="character"
                     [(ngModel)]="recommendation.character" placeholder="Selecione">
                   </p-dropdown>
                 </div>
 
-                <div class="p-field p-col-12 p-md-6">
+                <div class="p-field p-col-12 p-md-3">
                   <label for="levelRisk">Nível de risco</label>
                   <p-dropdown id="levelRisk" [options]="levelsRisk" name="levelRisk"
                     [(ngModel)]="recommendation.levelRisk" placeholder="Selecione">
                   </p-dropdown>
+                </div>
+
+                <div class="p-field p-col-12 p-md-6">
+                  <label for="constatation">Descrição da constatação</label>
+                  <p-editor name="constatation" [(ngModel)]="recommendation.constatation" [style]="{'height':'120px'}">
+                    <ng-template pTemplate="header">
+                      <span class="ql-formats">
+                        <button type="button" class="ql-bold" aria-label="Bold"></button>
+                        <button type="button" class="ql-italic" aria-label="Italic"></button>
+                        <button type="button" class="ql-underline" aria-label="Underline"></button>
+                      </span>
+                    </ng-template>
+                  </p-editor>
+                </div>
+
+                <div class="p-field p-col-12 p-md-6">
+                  <label for="measuresTaken">Medidas tomadas</label>
+                  <p-editor name="measuresTaken" [(ngModel)]="recommendation.measuresTaken"
+                    [style]="{'height':'120px'}">
+                    <ng-template pTemplate="header">
+                      <span class="ql-formats">
+                        <button type="button" class="ql-bold" aria-label="Bold"></button>
+                        <button type="button" class="ql-italic" aria-label="Italic"></button>
+                        <button type="button" class="ql-underline" aria-label="Underline"></button>
+                      </span>
+                    </ng-template>
+                  </p-editor>
                 </div>
 
                 <div class="p-field p-col-12 p-md-3">
@@ -130,19 +138,6 @@
                 </div>
               </div>
             </p-fieldset>
-          </div>
-        </div>
-
-        <div class="p-grid">
-          <div class="p-col-12">
-            <p-tabView>
-              <p-tabPanel header="Anexos">
-                Em desenvolvimento
-              </p-tabPanel>
-              <p-tabPanel header="Cumprimentos">
-                Em desenvolvimento
-              </p-tabPanel>
-            </p-tabView>
           </div>
         </div>
       </form>

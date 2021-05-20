@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuditService } from 'src/app/audit/audit.service';
+import { Audit } from 'src/app/models/audit';
 import { RecommendationCharacter } from 'src/app/models/recommendation-character';
 import { RecommendationLevelRisk } from 'src/app/models/recommendation-level-risk';
 import { RecommendationStatus } from 'src/app/models/recommendation-status';
@@ -107,6 +108,7 @@ export class ShowComponent implements OnInit {
 
   update(): void {
     this.loading = true;
+    delete this.recommendation.audit.processCode;
 
     this.recommendationService.update(this.id, this.recommendation)
       .then((result) => {

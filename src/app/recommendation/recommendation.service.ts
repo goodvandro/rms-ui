@@ -49,20 +49,36 @@ export class RecommendationService {
     recommendation: Recommendation
   ): Promise<Recommendation> {
     return this.http.put<Recommendation>(
-      `${this.API_URL}/${id}`, recommendation
+      `${this.API_URL}`, recommendation
     )
-      .toPromise();
+      .toPromise()
+      .then((result) => {
+        const recommendation = result as Recommendation;
+        this.convertField([recommendation]);
+        return recommendation;
+      })
   }
 
   async getById(id: number): Promise<Recommendation> {
     return this.http.get<Recommendation>(`${this.API_URL}/${id}`)
       .toPromise()
+      .then((result) => {
+        const recommendation = result as Recommendation;
+        this.convertField([recommendation]);
+        return recommendation;
+      })
   }
 
   private convertField(recommendations: Recommendation[]) {
     for (const recommendation of recommendations) {
       recommendation.createdAt = moment(recommendation.createdAt, 'YYYY-MM-DD').toDate();
       recommendation.updatedAt = moment(recommendation.updatedAt, 'YYYY-MM-DD').toDate();
+
+      recommendation.audit.processCode =
+        `${recommendation.audit.year}.${recommendation.audit.entityAudited.initial}.${recommendation.audit.number}`;
+
+      recommendation.audit.dispatchedAt = moment(recommendation.audit.dispatchedAt, 'YYYY-MM-DD').toDate();
+      recommendation.audit.reportedAt = moment(recommendation.audit.reportedAt, 'YYYY-MM-DD').toDate();
     }
   }
 
