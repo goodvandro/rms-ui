@@ -24,7 +24,7 @@
         </div>
       </div>
 
-      <p-table [value]="compliance" [paginator]="true" [rows]="filter.rows" [showCurrentPageReport]="true"
+      <p-table [value]="compliances" [paginator]="true" [rows]="filter.rows" [showCurrentPageReport]="true"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} linhas"
         [rowsPerPageOptions]="[10,25,50]" [totalRecords]="totalRecords" [loading]="loading" [lazy]="true"
         (onLazyLoad)="lazyLoad($event)">
