@@ -1,7 +1,7 @@
 export const app = {
-  // host: '10.234.3.109:8081',
+  host: '10.234.3.109:8081',
   // host: '192.168.0.164:8081',
-  host: 'igf-api.herokuapp.com'
+  // host: 'igf-api.herokuapp.com'
 }
 
 export const environment = {

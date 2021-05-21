@@ -87,6 +87,16 @@ const routes: Routes = [
     loadChildren: () => import('./recommendation-level-risk/recommendation-level-risk.module')
       .then(m => m.RecommendationLevelRiskModule)
   },
+  {
+    path: 'compliance',
+    loadChildren: () => import('./compliance/compliance.module')
+      .then(m => m.ComplianceModule)
+  },
+  {
+    path: 'compliance-level',
+    loadChildren: () => import('./compliance-level/compliance-level.module')
+      .then(m => m.ComplianceLevelModule)
+  },
 ];
 
 @NgModule({

@@ -30,6 +30,7 @@
         (onLazyLoad)="lazyLoad($event)">
         <ng-template pTemplate="header">
           <tr>
+            <th>Nº Rec.</th>
             <th>Nº Processo</th>
             <th>Descrição</th>
             <th>Status</th>
@@ -41,6 +42,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-rowData>
           <tr>
+            <td>{{rowData.id}}</td>
             <td>{{rowData.audit.processCode}}</td>
             <td><span [innerHTML]="rowData.description"></span></td>
             <td>{{rowData.status.name}}</td>

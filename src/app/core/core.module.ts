@@ -20,6 +20,10 @@ import { AuditModule } from './../audit/audit.module';
 import { AuditService } from './../audit/audit.service';
 import { AuthModule } from './../auth/auth.module';
 import { AuthService } from './../auth/auth.service';
+import { ComplianceLevelModule } from './../compliance-level/compliance-level.module';
+import { ComplianceLevelService } from './../compliance-level/compliance-level.service';
+import { ComplianceModule } from './../compliance/compliance.module';
+import { ComplianceService } from './../compliance/compliance.service';
 import { EntityLevelModule } from './../entity-level/entity-level.module';
 import { EntityLevelService } from './../entity-level/entity-level.service';
 import { EntityModule } from './../entity/entity.module';
@@ -82,7 +86,9 @@ registerLocaleData(localePt);
     RecommendationLevelRiskModule,
     RecommendationFileModule,
     RecommendationCharacterModule,
-    PermissionModule
+    PermissionModule,
+    ComplianceModule,
+    ComplianceLevelModule
   ],
   exports: [
     LayoutModule,
@@ -116,7 +122,9 @@ registerLocaleData(localePt);
     RecommendationLevelRiskService,
     RecommendationFileService,
     RecommendationCharacterService,
-    PermissionService
+    PermissionService,
+    ComplianceService,
+    ComplianceLevelService
   ]
 })
 export class CoreModule { }

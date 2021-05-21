@@ -10,7 +10,6 @@ export class Recommendation {
   id: number;
   description: string;
   constatation: string;
-  measuresTaken: string;
   amount: number;
 
   createdAt: Date;
