@@ -4,8 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
+import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from "primeng/divider";
 import { DropdownModule } from 'primeng/dropdown';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { EditorModule } from 'primeng/editor';
 import { FieldsetModule } from 'primeng/fieldset';
 import { InputTextModule } from 'primeng/inputtext';
@@ -38,6 +40,8 @@ import { ShowComponent } from './show/show.component';
     EditorModule,
     ProgressBarModule,
     FieldsetModule,
+    DynamicDialogModule,
+    DialogModule
   ]
 })
 export class ComplianceModule { }

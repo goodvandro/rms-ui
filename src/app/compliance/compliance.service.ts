@@ -68,6 +68,13 @@ export class ComplianceService {
     for (const compliance of compliances) {
       compliance.createdAt = moment(compliance.createdAt, 'YYYY-MM-DD').toDate();
       compliance.updatedAt = moment(compliance.updatedAt, 'YYYY-MM-DD').toDate();
+
+      compliance.recommendation.audit.dispatchedAt =
+        moment(compliance.recommendation.audit.dispatchedAt, 'YYYY-MM-DD')
+          .toDate();
+      compliance.recommendation.audit.reportedAt =
+        moment(compliance.recommendation.audit.reportedAt, 'YYYY-MM-DD')
+          .toDate();
     }
   }
 }

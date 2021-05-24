@@ -9,6 +9,8 @@ export class RecommendationFilter {
   page: number = 0;
   rows: number = 15;
 
+  processCode: string;
+  number: number;
   description: string;
 }
 
@@ -31,6 +33,18 @@ export class RecommendationService {
     let params = new HttpParams();
     params = params.append('page', filter.page.toString());
     params = params.append('size', filter.rows.toString());
+
+    if (filter.number) {
+      params = params.append('number', filter.number.toString());
+    }
+
+    if (filter.processCode) {
+      params = params.append('processCode', filter.processCode);
+    }
+
+    if (filter.description) {
+      params = params.append('description', filter.description);
+    }
 
     const result = await this.http.get<any>(this.API_URL, { params })
       .toPromise()

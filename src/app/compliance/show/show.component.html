@@ -1,1 +1,156 @@
-<p>show works!</p>
+<div class="p-grid">
+  <div class="p-col-12">
+    <h3>DETALHES DA RECOMENDAÇÃO</h3>
+  </div>
+
+  <div class="p-col-12">
+    <p-progressBar mode="indeterminate" [style]="{'height': '2px'}" *ngIf="loading"></p-progressBar>
+    <p-card>
+      <form autocomplete="off" #f="ngForm" (ngSubmit)="update()">
+        <div class="p-grid">
+          <div class="p-col-12">
+            <button pButton pRipple type="button" icon="pi pi-chevron-left"
+              class="p-button-text p-button-raised p-button-lg p-mx-1" routerLink="/compliance/index"></button>
+
+            <button pButton pRipple type="submit" label="Salvar" class="p-button-raised p-button-lg p-mx-1"></button>
+
+            <button pButton pRipple type="button" label="Novo"
+              class="p-button-raised p-button-info p-button-lg p-mx-1"></button>
+            <p-divider></p-divider>
+          </div>
+        </div>
+
+        <div class="p-grid p-fluid p-formgrid">
+          <div class="p-col-6">
+            <h4>DADOS DA AÇÃO DE AUDITORIA</h4>
+            <table class="styled-table" style="width:100%">
+              <tr>
+                <th>Código do Processo:</th>
+                <td> {{compliance.recommendation.audit.processCode}} </td>
+              </tr>
+              <tr>
+                <th>Entidade:</th>
+                <td> {{compliance.recommendation.audit.entityAudited.name}} </td>
+              </tr>
+              <tr>
+                <th>Endereço:</th>
+                <td> {{compliance.recommendation.audit.entityAudited.address.street}} </td>
+              </tr>
+              <tr>
+                <th>Descrição da Ação:</th>
+                <td> {{compliance.recommendation.audit.description}} </td>
+              </tr>
+              <tr>
+                <th>Data de Despacho:</th>
+                <td> {{compliance.recommendation.audit.dispatchedAt | date}} </td>
+              </tr>
+              <tr>
+                <th>Data de Comunicação:</th>
+                <td> {{compliance.recommendation.audit.reportedAt | date}} </td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="p-col-6">
+            <h4>DETALHES DA RECOMENDAÇÃO</h4>
+            <table class="styled-table" style="width:100%">
+              <tr>
+                <th>Nº de Recomendação:</th>
+                <td> {{compliance.recommendation.id}} </td>
+              </tr>
+              <tr>
+                <th>Descrição da Recomendação:</th>
+                <td> {{compliance.recommendation.description}} </td>
+              </tr>
+              <tr>
+                <th>Valor em causa:</th>
+                <td> {{compliance.recommendation.amount}} </td>
+              </tr>
+              <tr>
+                <th>Carácter:</th>
+                <td> {{compliance.recommendation.character.name}} </td>
+              </tr>
+              <tr>
+                <th>Nível de Risco:</th>
+                <td> {{compliance.recommendation.levelRisk.name}} </td>
+              </tr>
+              <tr>
+                <th>Natureza:</th>
+                <td> {{compliance.recommendation.nature.name}} </td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="p-col-12">
+            <p-divider></p-divider>
+          </div>
+
+          <div class="p-col-12">
+            <div class="p-grid">
+              <div class="p-field p-col-12 p-md-6">
+                <label for="measuresTaken">Medidas tomadas</label>
+                <p-editor name="measuresTaken" [(ngModel)]="compliance.measuresTaken" [style]="{'height':'120px'}">
+                  <ng-template pTemplate="header">
+                    <span class="ql-formats">
+                      <button type="button" class="ql-bold" aria-label="Bold"></button>
+                      <button type="button" class="ql-italic" aria-label="Italic"></button>
+                      <button type="button" class="ql-underline" aria-label="Underline"></button>
+                    </span>
+                  </ng-template>
+                </p-editor>
+              </div>
+
+              <div class="p-field p-col-12 p-md-6">
+                <label for="evaluationObs">Observação da avaliação</label>
+                <p-editor name="evaluationObs" [(ngModel)]="compliance.evaluationObs" [style]="{'height':'120px'}">
+                  <ng-template pTemplate="header">
+                    <span class="ql-formats">
+                      <button type="button" class="ql-bold" aria-label="Bold"></button>
+                      <button type="button" class="ql-italic" aria-label="Italic"></button>
+                      <button type="button" class="ql-underline" aria-label="Underline"></button>
+                    </span>
+                  </ng-template>
+                </p-editor>
+              </div>
+
+              <div class="p-field p-col-12 p-md-6">
+                <label for="evaluatedAt">Data da avaliação</label>
+                <p-calendar id="evaluatedAt" name="evaluatedAt" [(ngModel)]="compliance.evaluatedAt">
+                </p-calendar>
+              </div>
+
+              <div class="p-field p-col-12 p-md-6">
+                <label for="level">Nível</label>
+                <p-dropdown id="level" [options]="levels" name="level" [(ngModel)]="compliance.level"
+                  placeholder="Selecione">
+                </p-dropdown>
+              </div>
+
+              <div class="p-field p-col-12 p-md-6">
+                <label for="createdAt">Registado em</label>
+                <input id="createdAt" type="text" pInputText name="createdAt" [(ngModel)]="compliance.createdAt"
+                  disabled>
+              </div>
+
+              <div class="p-field p-col-12 p-md-6">
+                <label for="updatedAt">Atualizado em</label>
+                <input id="updatedAt" type="text" pInputText name="updatedAt" [(ngModel)]="compliance.updatedAt"
+                  disabled>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-grid">
+          <div class="p-col-12">
+            <p-tabView>
+              <p-tabPanel header="Anexos">
+                Em desenvolvimento
+              </p-tabPanel>
+            </p-tabView>
+          </div>
+        </div>
+      </form>
+    </p-card>
+  </div>
+</div>

@@ -95,7 +95,7 @@ export class ShowComponent implements OnInit {
 
   update(): void {
     this.loading = true;
-
+    delete this.audit.processCode;
     this.auditService.update(this.id, this.audit)
       .then((result) => {
         this.audit = result;
