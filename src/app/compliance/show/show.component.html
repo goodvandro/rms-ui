@@ -1,6 +1,6 @@
 <div class="p-grid">
   <div class="p-col-12">
-    <h3>DETALHES DA RECOMENDAÇÃO</h3>
+    <h3>DETALHES DO CUMPRIMENTO</h3>
   </div>
 
   <div class="p-col-12">
@@ -64,7 +64,7 @@
               </tr>
               <tr>
                 <th>Valor em causa:</th>
-                <td> {{compliance.recommendation.amount}} </td>
+                <td> {{compliance.recommendation.amount | number}} </td>
               </tr>
               <tr>
                 <th>Carácter:</th>
@@ -89,7 +89,8 @@
             <div class="p-grid">
               <div class="p-field p-col-12 p-md-6">
                 <label for="measuresTaken">Medidas tomadas</label>
-                <p-editor name="measuresTaken" [(ngModel)]="compliance.measuresTaken" [style]="{'height':'120px'}">
+                <p-editor name="measuresTaken" [(ngModel)]="compliance.measuresTaken" [style]="{'height':'120px'}"
+                  [readonly]="true">
                   <ng-template pTemplate="header">
                     <span class="ql-formats">
                       <button type="button" class="ql-bold" aria-label="Bold"></button>
@@ -121,7 +122,7 @@
 
               <div class="p-field p-col-12 p-md-6">
                 <label for="level">Nível</label>
-                <p-dropdown id="level" [options]="levels" name="level" [(ngModel)]="compliance.level"
+                <p-dropdown id="level" [options]="levels" name="level" [(ngModel)]="compliance.level.id"
                   placeholder="Selecione">
                 </p-dropdown>
               </div>
@@ -144,8 +145,8 @@
         <div class="p-grid">
           <div class="p-col-12">
             <p-tabView>
-              <p-tabPanel header="Anexos">
-                Em desenvolvimento
+              <p-tabPanel header="ANEXOS">
+                <app-files [files]="compliance.files"></app-files>
               </p-tabPanel>
             </p-tabView>
           </div>

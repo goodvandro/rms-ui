@@ -20,9 +20,10 @@ import { ComplianceRouter } from './compliance.router';
 import { IndexComponent } from './index/index.component';
 import { NewComponent } from './new/new.component';
 import { ShowComponent } from './show/show.component';
+import { FilesComponent } from './files/files.component';
 
 @NgModule({
-  declarations: [IndexComponent, NewComponent, ShowComponent],
+  declarations: [IndexComponent, NewComponent, ShowComponent, FilesComponent],
   imports: [
     CommonModule,
     ComplianceRouter,

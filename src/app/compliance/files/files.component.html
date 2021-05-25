@@ -1,0 +1,22 @@
+<p-table [value]="files" [rows]="10">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData>
+    <tr>
+      <td>{{rowData.name}}</td>
+      <td>{{rowData.description}}</td>
+      <td class="p-p-0">
+        <button pButton pRipple type="button" icon="pi pi-trash"
+          class="p-button-rounded p-button-danger p-button-outlined"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-button type="button" icon="pi pi-plus" styleClass="p-button-text" pTooltip="Adicionar anexo" tooltipPosition="right">
+</p-button>

@@ -27,6 +27,7 @@ export class ShowComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.dropdownLevels();
     this.getById();
   }
 
