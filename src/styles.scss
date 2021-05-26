@@ -13,10 +13,15 @@
   --system-primary-color: #b23cfd;
 }
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background: var(--background);
-  padding: 0;
-  margin: 0;
 }
 
 body,
@@ -25,6 +30,15 @@ textarea,
 button {
   font: 400 1rem "Roboto", sans-serif;
   color: #293845;
+}
+
+.ng-main {
+  height: 100%;
+}
+
+.np-menubar {
+  height: calc(100% - 100px);
+  overflow: auto;
 }
 
 label {
@@ -39,4 +53,9 @@ a {
 .span-required {
   color: var(--red);
   font-weight: 500;
+}
+
+.ng-content {
+  overflow: auto;
+  height: calc(100% - 100px);
 }

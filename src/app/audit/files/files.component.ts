@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ErrorService } from 'src/app/error/error.service';
@@ -36,16 +37,18 @@ export class FilesComponent implements OnInit {
     }
   }
 
-  create(): void {
+  create(form: NgForm): void {
     const formData = new FormData();
     formData.append('file', this.file);
-    formData.append('description', JSON.stringify(this.description));
-    formData.append('auditId', JSON.stringify(this.auditId));
+    formData.append('description', this.description);
+    formData.append('idAudit', this.auditId);
 
     this.auditFileService.create(formData)
       .then((result) => {
         this.files.push(result);
-        this.toastr.success('Anexo adicionado!')
+        this.display = false;
+        form.reset();
+        this.toastr.success('Anexo adicionado!');
       })
       .catch((error) => this.errorService.handle(error))
   }

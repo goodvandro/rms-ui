@@ -1,43 +1,19 @@
-<div class="p-grid p-m-0 p-p-0" [ngStyle]="{minHeight: '100vh'}">
-  <div class="p-col-12 p-d-flex p-flex-column p-mx-0 p-p-0" [ngStyle]="{height:'100%'}">
-    <div class="p-col-12 p-shadow-1" [ngStyle]="{background:'var(--system-primary-color)', color:'var(--white)'}"
-      *ngIf="!showAuth()">
-      <app-navbar></app-navbar>
-    </div>
-
-    <div class="p-grid p-mx-0 p-my-1 p-p-0" [ngStyle]="{height: '100%'}">
-      <div class="p-col-fixed p-px-0 p-mr-1 p-shadow-3" [ngStyle]="{background:'var(--white)'}" *ngIf="!showAuth()"
-        style="width:15rem">
-        <app-aside></app-aside>
-      </div>
-
-      <div class="p-col">
-        <router-outlet></router-outlet>
-      </div>
-    </div>
-
-    <div class="p-col-12 p-shadow-1 p-mb-0 p-p-0 p-d-flex p-jc-center" [ngStyle]="{background:'#FBFBFB'}">
-      <app-footer></app-footer>
-    </div>
+<div class="p-grid p-m-0 p-p-0 ng-main">
+  <div class="p-col-12 p-p-0 p-m-0 p-shadow-1"
+    [ngStyle]="{background:'var(--system-primary-color)', color:'var(--white)'}" *ngIf="!showAuth()">
+    <app-navbar></app-navbar>
   </div>
-</div>
 
-<!--
-  <div class="p-grid p-m-0 p-p-0" style="height: 100vh;">
-  <div class="p-col-fixed p-mt-0 p-px-0 p-shadow-1" [ngStyle]="{background:'var(--white)'}" *ngIf="!showAuth()" style="width:15rem">
+  <div class="p-col-fixed p-px-0 p-mr-1 p-shadow-1 np-menubar" [ngStyle]="{background:'var(--white)'}"
+    *ngIf="!showAuth()" [ngStyle]="{width:'15rem'}">
     <app-aside></app-aside>
   </div>
 
-  <div class="p-col p-pt-0 p-d-flex p-flex-column" style="height:100%;">
-    <div class="p-col-12 p-shadow-1 p-mb-4" [ngStyle]="{background:'var(--purple-500)', color:'var(--white)'}" *ngIf="!showAuth()">
-      <app-navbar></app-navbar>
-    </div>
-
+  <div class="p-col p-m-0 ng-content">
     <router-outlet></router-outlet>
+  </div>
 
-    <div class="p-col-12 p-shadow-1 p-mb-0 p-mt-auto p-d-flex p-jc-center" [ngStyle]="{background:'var(--white)'}">
-      <app-footer></app-footer>
-    </div>
+  <div class="p-col-12 p-shadow-1 p-m-0 p-p-0 p-d-flex p-jc-center" [ngStyle]="{background:'#FBFBFB'}">
+    <app-footer></app-footer>
   </div>
 </div>
- -->

@@ -23,7 +23,7 @@
 </p-button>
 
 <p-dialog header="Novo anexo" [(visible)]="display" [modal]="true" [style]="{width: '40vw'}" [baseZIndex]="10000">
-  <form autocomplete="off" #f="ngForm" (ngSubmit)="create()">
+  <form autocomplete="off" #f="ngForm" (ngSubmit)="create(f)">
     <div class="p-fluid p-formgrid p-grid">
       <div class="p-field p-col-12">
         <label for="name">Descrição</label>

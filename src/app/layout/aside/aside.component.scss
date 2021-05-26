@@ -1,108 +1,48 @@
-$spacing: 24px;
-$plus-size: 10px;
-$plus-thickness: 2px;
-$speed: 300ms;
-$easing: ease-in-out;
-$gray-dark: #546E7A;
-$gray: #CFD8DC;
-$gray-light: #ECEFF1;
-$primary: #00ACC1;
-
-p, ul, li {
+nav {
+  font-size: 14px;
+  position: relative;
+  margin: 0;
+  width: 100%;
+}
+nav ul {
+  list-style: none;
   margin: 0;
   padding: 0;
-  margin-bottom: $spacing;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
 }
-
-a { color: $primary; }
-
-code { background: $gray-light; }
-
-.wrapper {
-  max-width: 640px;
-  margin-left: auto;
-  margin-right: auto;
+nav ul li {
+  /* Sub Menu */
 }
-
-.details-group {
-  width: 100%;
-  // border: 1px solid $gray;
-  // border-radius: 5px;
-  background-color: white;
+nav ul li a {
+  display: block;
+  border: thin solid #ebebeb;
+  padding: 12px;
+  color: #333;
+  text-decoration: none;
+  -webkit-transition: 0.2s linear;
+  -moz-transition: 0.2s linear;
+  -ms-transition: 0.2s linear;
+  -o-transition: 0.2s linear;
+  transition: 0.2s linear;
 }
-
-.details {
-  overflow: hidden;
-  border-bottom: 1px solid $gray;
-  transition: height $speed $easing;
-
-  &:last-child {
-    border-bottom: 0;
-  }
-
-  &__summary,
-  &__content {
-    padding: $spacing;
-  }
-
-  &__summary {
-    position: relative;
-    list-style: none; // Hide the marker (proper method)
-    padding-left: $spacing*2;
-    outline: 0;
-    cursor: pointer;
-    font-size: .8rem;
-    text-transform: uppercase;
-    transition: color $speed $easing;
-
-    [open] > & {
-      color: $primary;
-    }
-
-    // Hide the marker in Webkit
-    &::-webkit-details-marker {
-      display: none;
-    }
-
-    // Our replacement marker
-    &:before,
-    &:after {
-      content: "";
-      position: absolute;
-    }
-
-    &:before {
-      left: $spacing/2 + $plus-size/2;
-      top: 50%;
-      height: $plus-thickness;
-      margin-top: -$plus-thickness/2;
-      width: $plus-size;
-      background: $primary;
-    }
-
-    &:after {
-      left: $spacing/2 + $plus-size;
-      top: 50%;
-      height: $plus-size;
-      margin-top: -$plus-size/2;
-      width: $plus-thickness;
-      margin-left: -$plus-thickness/2;
-      background: $primary;
-      transition: all $speed $easing;
-    }
-
-    [open] &:after {
-      opacity: 0;
-      transform: translateY(25%);
-    }
-  }
-
-  &__content {
-    padding-top: 0;
-    padding-left: $spacing*2;
-  }
+nav ul li a:hover {
+  background: #f8f8f8;
+  color: #515151;
+}
+nav ul li a .fa {
+  width: 16px;
+  text-align: center;
+  margin-right: 5px;
+  float: right;
+}
+nav ul ul {
+  background-color: #ebebeb;
+}
+nav ul li ul li a {
+  background: #f8f8f8;
+  border-left: 4px solid transparent;
+  padding: 10px 20px;
+}
+nav ul li ul li a:hover {
+  background: #ebebeb;
+  border-left: 4px solid #3498db;
 }
