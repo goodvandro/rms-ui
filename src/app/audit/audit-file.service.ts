@@ -14,8 +14,13 @@ export class AuditFileService {
     this.API_URL = `${environment.apiUrl}/auditFile`;
   }
 
-  create(formData: FormData): Promise<AuditFile> {
+  async create(formData: FormData): Promise<AuditFile> {
     return this.http.post<AuditFile>(this.API_URL, formData)
+      .toPromise();
+  }
+
+  async update(file: AuditFile): Promise<AuditFile> {
+    return this.http.put<AuditFile>(this.API_URL, file)
       .toPromise();
   }
 }

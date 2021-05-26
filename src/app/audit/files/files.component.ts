@@ -14,11 +14,13 @@ import { AuditFileService } from './../audit-file.service';
 export class FilesComponent implements OnInit {
   @Input() files: AuditFile[] = [];
 
+  loading: boolean = false;
   display: boolean = false;
+  displayEdit: boolean = false;
 
   auditId = this.route.snapshot.params.id;
-  description: string;
-  file: any;
+
+  file = new AuditFile();
 
   constructor(
     private auditFileService: AuditFileService,
@@ -30,17 +32,28 @@ export class FilesComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  showEdit(file: AuditFile): void {
+    this.displayEdit = true;
+    this.file = file;
+  }
+
+  showCreate(): void {
+    this.display = true;
+    this.file = new AuditFile();
+  }
+
   onFileSelect(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      this.file = file;
+      this.file.file = file;
     }
   }
 
   create(form: NgForm): void {
+    this.loading = true;
     const formData = new FormData();
-    formData.append('file', this.file);
-    formData.append('description', this.description);
+    formData.append('file', this.file.file);
+    formData.append('description', this.file.description);
     formData.append('idAudit', this.auditId);
 
     this.auditFileService.create(formData)
@@ -51,5 +64,18 @@ export class FilesComponent implements OnInit {
         this.toastr.success('Anexo adicionado!');
       })
       .catch((error) => this.errorService.handle(error))
+      .finally(() => this.loading = false);
+  }
+
+  update(): void {
+    this.loading = true;
+    delete this.file.file;
+    this.auditFileService.update(this.file)
+      .then(() => {
+        this.toastr.success('Informações salvas com sucesso!');
+        this.displayEdit = false;
+      })
+      .catch((error) => this.errorService.handle(error))
+      .finally(() => this.loading = false)
   }
 }
