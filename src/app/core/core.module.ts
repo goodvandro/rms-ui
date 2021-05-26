@@ -16,6 +16,7 @@ import { AuditStatusModule } from './../audit-status/audit-status.module';
 import { AuditStatusService } from './../audit-status/audit-status.service';
 import { AuditTypeModule } from './../audit-type/audit-type.module';
 import { AuditTypeService } from './../audit-type/audit-type.service';
+import { AuditFileService } from './../audit/audit-file.service';
 import { AuditModule } from './../audit/audit.module';
 import { AuditService } from './../audit/audit.service';
 import { AuthModule } from './../auth/auth.module';
@@ -124,7 +125,8 @@ registerLocaleData(localePt);
     RecommendationCharacterService,
     PermissionService,
     ComplianceService,
-    ComplianceLevelService
+    ComplianceLevelService,
+    AuditFileService
   ]
 })
 export class CoreModule { }

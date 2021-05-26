@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
+import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from "primeng/divider";
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
@@ -12,6 +13,7 @@ import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { TooltipModule } from 'primeng/tooltip';
 import { AuditRouter } from './audit.router';
+import { FilesComponent } from './files/files.component';
 import { IndexComponent } from './index/index.component';
 import { NewComponent } from './new/new.component';
 import { ShowComponent } from './show/show.component';
@@ -20,7 +22,8 @@ import { ShowComponent } from './show/show.component';
   declarations: [
     IndexComponent,
     NewComponent,
-    ShowComponent
+    ShowComponent,
+    FilesComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +38,8 @@ import { ShowComponent } from './show/show.component';
     TooltipModule,
     TabViewModule,
     CalendarModule,
-    DropdownModule
+    DropdownModule,
+    DialogModule
   ]
 })
 export class AuditModule { }

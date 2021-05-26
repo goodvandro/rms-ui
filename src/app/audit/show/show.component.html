@@ -22,8 +22,7 @@
         <div class="p-fluid p-formgrid p-grid">
           <div class="p-field p-col-12 p-md-2">
             <label for="processCode">Código do processo</label>
-            <input id="processCode" type="text" pInputText name="processCode"
-              [(ngModel)]="audit.processCode" disabled>
+            <input id="processCode" type="text" pInputText name="processCode" [(ngModel)]="audit.processCode" disabled>
           </div>
 
           <div class="p-field p-col-12 p-md-10">
@@ -88,7 +87,7 @@
           <div class="p-col-12">
             <p-tabView>
               <p-tabPanel header="Anexos">
-                Em desenvolvimento
+                <app-files [(files)]="audit.files"></app-files>
               </p-tabPanel>
               <p-tabPanel header="Relatórios">
                 Em desenvolvimento

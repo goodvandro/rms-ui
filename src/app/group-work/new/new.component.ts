@@ -43,7 +43,7 @@ export class NewComponent implements OnInit {
   create(): void {
     this.groupWorkService.create(this.groupWork)
       .then((result) => {
-        this.toastr.success('Grupo de trabalho adicionado!')
+        this.toastr.success('Grupo de trabalho adicionado!');
         this.router.navigate(['/group-work/index', result.id]);
       })
       .catch((error) => this.errorService.handle(error))
