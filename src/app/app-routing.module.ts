@@ -97,6 +97,11 @@ const routes: Routes = [
     loadChildren: () => import('./compliance-level/compliance-level.module')
       .then(m => m.ComplianceLevelModule)
   },
+  {
+    path: 'report',
+    loadChildren: () => import('./report/report.module')
+      .then(m => m.ReportModule)
+  },
 ];
 
 @NgModule({
