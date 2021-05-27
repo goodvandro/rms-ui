@@ -1,16 +1,38 @@
 <div class="p-grid statistic-container">
-  <div class="p-col card">
-    <span>Auditorias realizadas</span>
-    <h3>390</h3>
+  <div class="p-col-4">
+    <p-card>
+      <span>Recomendações indicadas</span>
+      <h3>390</h3>
+    </p-card>
   </div>
 
-  <div class="p-col card">
-    <span>Recomendações indicadas</span>
-    <h3>390</h3>
+  <div class="p-col-4">
+    <p-card>
+      <span>Auditorias realizadas</span>
+      <h3>390</h3>
+    </p-card>
   </div>
 
-  <div class="p-col card">
-    <span>Cumprimentos realizados</span>
-    <h3>390</h3>
+  <div class="p-col-4">
+    <p-card>
+      <span>Cumprimentos realizados</span>
+      <h3>390</h3>
+    </p-card>
+  </div>
+</div>
+
+<div class="p-col-12">
+  <div class="p-grid">
+    <div class="p-col-6">
+      <p-card>
+        <p-chart type="doughnut" [data]="data"></p-chart>
+      </p-card>
+    </div>
+
+    <div class="p-col-6">
+      <p-card>
+        <p-chart type="bar" [data]="basicData"></p-chart>
+      </p-card>
+    </div>
   </div>
 </div>

@@ -1,10 +1,5 @@
 .statistic-container {
-  height: 10rem;
   background: rgb(195, 207, 217);
   overflow: auto hidden;
-  padding: 1.5rem;
-
-  .card {
-    background: var(--white);
-  }
+  padding: 0.5rem;
 }
