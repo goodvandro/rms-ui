@@ -87,12 +87,18 @@
         <div class="p-grid">
           <div class="p-col-12">
             <p-tabView>
+              <p-tabPanel header="Grupo de Trabalho">
+                Grupo de Trabalho
+              </p-tabPanel>
+
               <p-tabPanel header="Anexos">
                 <app-files [(files)]="audit.files"></app-files>
               </p-tabPanel>
+
               <p-tabPanel header="Relatórios">
                 <app-reports [(reports)]="audit.reports"></app-reports>
               </p-tabPanel>
+
               <p-tabPanel header="Recomendações">
                 Em desenvolvimento
               </p-tabPanel>
