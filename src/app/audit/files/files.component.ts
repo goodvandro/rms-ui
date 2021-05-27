@@ -72,8 +72,8 @@ export class FilesComponent implements OnInit {
     delete this.file.file;
     this.auditFileService.update(this.file)
       .then(() => {
-        this.toastr.success('Informações salvas com sucesso!');
         this.displayEdit = false;
+        this.toastr.success('Informações salvas com sucesso!');
       })
       .catch((error) => this.errorService.handle(error))
       .finally(() => this.loading = false)

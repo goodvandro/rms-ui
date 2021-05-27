@@ -7,6 +7,7 @@ import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from "primeng/divider";
 import { DropdownModule } from 'primeng/dropdown';
+import { EditorModule } from 'primeng/editor';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { TableModule } from 'primeng/table';
@@ -16,6 +17,7 @@ import { AuditRouter } from './audit.router';
 import { FilesComponent } from './files/files.component';
 import { IndexComponent } from './index/index.component';
 import { NewComponent } from './new/new.component';
+import { ReportsComponent } from './reports/reports.component';
 import { ShowComponent } from './show/show.component';
 
 @NgModule({
@@ -23,7 +25,8 @@ import { ShowComponent } from './show/show.component';
     IndexComponent,
     NewComponent,
     ShowComponent,
-    FilesComponent
+    FilesComponent,
+    ReportsComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +42,8 @@ import { ShowComponent } from './show/show.component';
     TabViewModule,
     CalendarModule,
     DropdownModule,
-    DialogModule
+    DialogModule,
+    EditorModule
   ]
 })
 export class AuditModule { }

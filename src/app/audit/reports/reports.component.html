@@ -1,0 +1,73 @@
+<p-table [value]="reports" [rows]="10">
+  <ng-template pTemplate="header">
+    <tr>
+      <th [ngStyle]="{width:'70%'}">Título</th>
+      <th [ngStyle]="{width:'25%'}">Dt. registo</th>
+      <th [ngStyle]="{width:'5%'}"></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData>
+    <tr>
+      <td>{{rowData.subject}}</td>
+      <td>{{rowData.createdAt | date}}</td>
+      <td class="p-p-0">
+        <button pButton pRipple type="button" icon="pi pi-pencil"
+          class="p-button-rounded p-button-warning p-button-outlined" (click)="showEdit(rowData)"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-button type="button" icon="pi pi-plus" styleClass="p-button-text" pTooltip="Adicionar anexo" tooltipPosition="right"
+  (click)="showNew()">
+</p-button>
+
+<p-dialog header="Novo Relatório" [(visible)]="displayNew" [modal]="true" [style]="{width: '80vw'}"
+  [baseZIndex]="10000">
+  <form autocomplete="off" #fNew="ngForm" (ngSubmit)="create(fNew)">
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12">
+        <label for="subject">Título</label>
+        <input id="subject" type="text" pInputText [(ngModel)]="report.subject" name="description" required
+          [ngStyle]="{width:'100%'}">
+      </div>
+
+      <div class="p-field p-col-12">
+        <label for="body">Corpo</label>
+        <p-editor name="body" [(ngModel)]="report.body" [style]="{'height':'320px'}"></p-editor>
+      </div>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-times" (click)="displayNew=false" label="Cancelar" styleClass="p-button-text"></p-button>
+    <p-button type="button" icon="pi pi-check" (click)="fNew.ngSubmit.emit()" [disabled]="!fNew.form.valid"
+      label="Salvar" styleClass="p-button-text">
+    </p-button>
+  </ng-template>
+</p-dialog>
+
+<p-dialog header="Editar Relatório" [(visible)]="displayEdit" [modal]="true" [style]="{width: '80vw'}"
+  [baseZIndex]="10000">
+  <form autocomplete="off" #fEdit="ngForm" (ngSubmit)="update()">
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12">
+        <label for="subject">Título</label>
+        <input id="subject" type="text" pInputText [(ngModel)]="report.subject" name="description" required
+          [ngStyle]="{width:'100%'}">
+      </div>
+
+      <div class="p-field p-col-12">
+        <label for="body">Corpo</label>
+        <p-editor name="body" [(ngModel)]="report.body" [style]="{'height':'320px'}"></p-editor>
+      </div>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-times" (click)="displayEdit=false" label="Cancelar" styleClass="p-button-text"></p-button>
+    <p-button type="button" icon="pi pi-check" (click)="fEdit.ngSubmit.emit()" [disabled]="!fEdit.form.valid"
+      label="Salvar" styleClass="p-button-text">
+    </p-button>
+  </ng-template>
+</p-dialog>

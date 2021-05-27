@@ -1,6 +1,6 @@
 import { Audit } from "./audit";
 
-export class Report {
+export class AuditReport {
   id: number;
   subject: string;
   body: string;

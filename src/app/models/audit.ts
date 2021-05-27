@@ -1,8 +1,9 @@
 import { AuditFile } from './audit-file';
+import { AuditReport } from './audit-report';
 import { AuditStatus } from './audit-status';
+import { AuditType } from './audit-type';
 import { Entity } from './entity';
 import { GroupWork } from './group-work';
-import { AuditType } from './audit-type';
 
 export class Audit {
   id: number;
@@ -24,5 +25,7 @@ export class Audit {
   groupWork = new GroupWork();
   status = new AuditStatus();
   type = new AuditType();
+
+  reports: AuditReport[];
   files: AuditFile[];
 }
