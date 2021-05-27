@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { JwtModule } from "@auth0/angular-jwt";
 import { AvatarModule } from 'primeng/avatar';
-import { AvatarGroupModule } from 'primeng/avatargroup';
 import { ButtonModule } from 'primeng/button';
 import { DividerModule } from "primeng/divider";
 import { InputTextModule } from 'primeng/inputtext';
@@ -65,7 +64,6 @@ export function tokenGetter() {
     DividerModule,
     ProgressBarModule,
     AvatarModule,
-    AvatarGroupModule,
     OverlayPanelModule,
     MultiSelectModule,
     MessagesModule,

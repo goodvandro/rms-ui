@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './../../auth/auth.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  selector: 'app-avatar',
+  templateUrl: './avatar.component.html',
+  styleUrls: ['./avatar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class AvatarComponent implements OnInit {
   name: string;
   surname: string;
   initial: string;
+
+  user = this.authService.jwtPayload.user;
 
   constructor(
     public authService: AuthService
@@ -22,4 +24,5 @@ export class NavbarComponent implements OnInit {
       this.initial = (`${this.name.charAt(0)}${this.surname.charAt(0)}`).toUpperCase();
     }
   }
+
 }

@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
@@ -8,12 +10,14 @@ import { DividerModule } from "primeng/divider";
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { PasswordModule } from 'primeng/password';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { TooltipModule } from 'primeng/tooltip';
 import { AddressModule } from '../address/address.module';
+import { AvatarComponent } from './avatar/avatar.component';
 import { CreateComponent } from './create/create.component';
 import { GroupsComponent } from './groups/groups.component';
 import { ReadComponent } from './read/read.component';
@@ -25,7 +29,8 @@ import { UserRouter } from './user.router';
     ReadComponent,
     CreateComponent,
     UpdateComponent,
-    GroupsComponent
+    GroupsComponent,
+    AvatarComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +48,13 @@ import { UserRouter } from './user.router';
     TabViewModule,
     DialogModule,
     MultiSelectModule,
-    ProgressBarModule
+    ProgressBarModule,
+    OverlayPanelModule,
+    AvatarGroupModule,
+    AvatarModule
+  ],
+  exports: [
+    AvatarComponent
   ]
 })
 export class UserModule { }

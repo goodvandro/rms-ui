@@ -1,0 +1,13 @@
+<p-avatar [label]="initial" styleClass="p-mr-2 avatar" size="large" shape="circle"
+  *ngIf="!authService.isAccessTokenInvalid()" [style]="{'background-color': '#9c27b0', 'color': '#ffffff'}"
+  (click)="op.toggle($event)"></p-avatar>
+
+<p-overlayPanel #op [style]="{width: '250px'}">
+  <ng-template pTemplate>
+    <ul>
+      <li> <b>Utilizador: </b> {{name +' '+ surname}} </li>
+      <li> <b>Grupo: </b> {{user.group}} </li>
+      <li><b>Entidade: </b> ----- </li>
+    </ul>
+  </ng-template>
+</p-overlayPanel>

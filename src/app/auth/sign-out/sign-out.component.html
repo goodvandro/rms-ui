@@ -1,8 +1,1 @@
-<p-avatar [label]="initial" styleClass="p-mr-2" size="large" shape="circle" *ngIf="!authService.isAccessTokenInvalid()"
-  [style]="{'background-color': '#9c27b0', 'color': '#ffffff'}" (click)="op.toggle($event)"></p-avatar>
-
-<p-overlayPanel #op [showCloseIcon]="true" [style]="{width: '450px'}">
-  <ng-template pTemplate>
-    <a (click)="signOut()">Sair</a>
-  </ng-template>
-</p-overlayPanel>
+<i class="pi pi-sign-out" (click)="signOut()"></i>

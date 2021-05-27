@@ -2,3 +2,14 @@ a {
   text-decoration: none;
   color: white;
 }
+
+ul {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  margin: 0 10px 0;
+
+  li {
+    margin-right: 10px;
+  }
+}

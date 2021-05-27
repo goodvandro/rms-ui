@@ -11,10 +11,6 @@ import { SignOutService } from '../sign-out.service';
   styleUrls: ['./sign-out.component.scss']
 })
 export class SignOutComponent implements OnInit {
-  name: string;
-  surname: string;
-  initial: string;
-
   constructor(
     private signOutService: SignOutService,
     private toastr: ToastrService,
@@ -24,11 +20,6 @@ export class SignOutComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (!this.authService.isAccessTokenInvalid()) {
-      this.name = this.authService.jwtPayload.user.person.name;
-      this.surname = this.authService.jwtPayload.user.person.surname;
-      this.initial = (`${this.name.charAt(0)}${this.surname.charAt(0)}`).toUpperCase();
-    }
   }
 
   signOut(): void {
