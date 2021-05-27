@@ -25,6 +25,8 @@ export class NewComponent implements OnInit {
   }
 
   create(): void {
+    this.loading = true;
+
     this.addressService.create(this.address)
       .then((result) => {
         this.router.navigate(['/address/index', result.id]);

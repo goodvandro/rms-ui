@@ -4,6 +4,7 @@
   </div>
 
   <div class="p-col-12">
+    <p-progressBar mode="indeterminate" [style]="{'height': '2px'}" *ngIf="loading"></p-progressBar>
     <p-card>
       <form autocomplete="off" #f="ngForm" (ngSubmit)="create()">
         <div class="p-grid">

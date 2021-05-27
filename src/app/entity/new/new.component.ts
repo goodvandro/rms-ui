@@ -55,6 +55,7 @@ export class NewComponent implements OnInit {
   }
 
   create(): void {
+    this.loading = true;
     this.entityService.create(this.entity)
       .then((result) => {
         this.router.navigate(['/entity/show', result.id]);

@@ -4,6 +4,7 @@
   </div>
 
   <div class="p-col-12">
+    <p-progressBar mode="indeterminate" [style]="{'height': '2px'}" *ngIf="loading"></p-progressBar>
     <p-card>
       <form autocomplete="off" #f="ngForm" (ngSubmit)="update()">
         <div class="p-grid">
@@ -13,7 +14,7 @@
 
             <button pButton pRipple type="submit" label="Salvar" class="p-button-raised p-button-lg p-mx-1"></button>
 
-            <button pButton pRipple type="button" label="Novo"
+            <button pButton pRipple type="button" label="Novo" routerLink="/entity/new"
               class="p-button-raised p-button-info p-button-lg p-mx-1"></button>
             <p-divider></p-divider>
           </div>

@@ -8,6 +8,7 @@ import { DividerModule } from "primeng/divider";
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+import { ProgressBarModule } from 'primeng/progressbar';
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { TooltipModule } from 'primeng/tooltip';
@@ -37,7 +38,8 @@ import { ShowComponent } from './show/show.component';
     TooltipModule,
     TabViewModule,
     DialogModule,
-    DropdownModule
+    DropdownModule,
+    ProgressBarModule
   ],
   exports: [
     FastNewComponent

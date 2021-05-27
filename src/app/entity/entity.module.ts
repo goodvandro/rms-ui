@@ -8,6 +8,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+import { ProgressBarModule } from 'primeng/progressbar';
 import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 import { AddressModule } from './../address/address.module';
@@ -35,7 +36,8 @@ import { ShowComponent } from './show/show.component';
     PasswordModule,
     TooltipModule,
     DropdownModule,
-    InputSwitchModule
+    InputSwitchModule,
+    ProgressBarModule
   ]
 })
 export class EntityModule { }

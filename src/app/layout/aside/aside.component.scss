@@ -8,23 +8,29 @@ nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
+
+  li {
+    /* Sub Menu */
+
+    a {
+      display: block;
+      padding: 12px;
+      color: #333;
+      text-decoration: none;
+      border-top: thin solid #ebebeb;
+      -webkit-transition: 0.2s linear;
+      -moz-transition: 0.2s linear;
+      -ms-transition: 0.2s linear;
+      -o-transition: 0.2s linear;
+      transition: 0.2s linear;
+
+      .right {
+        float: right;
+      }
+    }
+  }
 }
-nav ul li {
-  /* Sub Menu */
-}
-nav ul li a {
-  display: block;
-  border: thin solid #ebebeb;
-  padding: 12px;
-  color: #333;
-  text-decoration: none;
-  -webkit-transition: 0.2s linear;
-  -moz-transition: 0.2s linear;
-  -ms-transition: 0.2s linear;
-  -o-transition: 0.2s linear;
-  transition: 0.2s linear;
-}
-nav ul li a:hover {
+nav ul li nav ul li a:hover {
   background: #f8f8f8;
   color: #515151;
 }

@@ -1,10 +1,10 @@
-import { User } from './../../models/user';
-import { UserService } from './../../user/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { GroupWork } from 'src/app/models/group-work';
 import { ErrorService } from './../../error/error.service';
+import { User } from './../../models/user';
+import { UserService } from './../../user/user.service';
 import { GroupWorkService } from './../group-work.service';
 
 @Component({
@@ -41,6 +41,8 @@ export class NewComponent implements OnInit {
   }
 
   create(): void {
+    this.loading = true;
+
     this.groupWorkService.create(this.groupWork)
       .then((result) => {
         this.toastr.success('Grupo de trabalho adicionado!');

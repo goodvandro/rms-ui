@@ -54,7 +54,7 @@ export class ShowComponent implements OnInit {
     this.groupService.update(this.id, this.groupWork)
       .then((result) => {
         this.groupWork = result;
-        this.toastr.success('Grupo salvo!');
+        this.toastr.success('Informações salvas com sucesso!');
       })
       .catch((error) => this.errorService.handle(error))
       .finally(() => this.loading = false);
