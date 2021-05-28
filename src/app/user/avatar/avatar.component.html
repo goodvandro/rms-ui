@@ -2,12 +2,12 @@
   *ngIf="!authService.isAccessTokenInvalid()" [style]="{'background-color': '#9c27b0', 'color': '#ffffff'}"
   (click)="op.toggle($event)"></p-avatar>
 
-<p-overlayPanel #op [style]="{width: '250px'}">
+<p-overlayPanel #op [style]="{width: '320px'}">
   <ng-template pTemplate>
     <ul>
       <li> <b>Utilizador: </b> {{name +' '+ surname}} </li>
       <li> <b>Grupo: </b> {{user.group}} </li>
-      <li><b>Entidade: </b> ----- </li>
+      <li><b>Entidade: </b> {{user.person.entity.initial}} </li>
     </ul>
   </ng-template>
 </p-overlayPanel>

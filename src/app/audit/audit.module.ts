@@ -10,6 +10,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { EditorModule } from 'primeng/editor';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+import { ProgressBarModule } from 'primeng/progressbar';
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { TooltipModule } from 'primeng/tooltip';
@@ -19,6 +20,7 @@ import { IndexComponent } from './index/index.component';
 import { NewComponent } from './new/new.component';
 import { ReportsComponent } from './reports/reports.component';
 import { ShowComponent } from './show/show.component';
+import { ToLoggedEntityComponent } from './to-logged-entity/to-logged-entity.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { ShowComponent } from './show/show.component';
     NewComponent,
     ShowComponent,
     FilesComponent,
-    ReportsComponent
+    ReportsComponent,
+    ToLoggedEntityComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +46,8 @@ import { ShowComponent } from './show/show.component';
     CalendarModule,
     DropdownModule,
     DialogModule,
-    EditorModule
+    EditorModule,
+    ProgressBarModule
   ]
 })
 export class AuditModule { }

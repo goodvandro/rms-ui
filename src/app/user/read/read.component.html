@@ -3,11 +3,6 @@
     <h3>UTILIZADORES</h3>
   </div>
 
-  <!-- <div class="p-col-12 p-d-flex p-jc-start p-pr-4">
-    <button pButton pRipple type="button" icon="pi pi-plus" routerLink="/user/new"
-      class="p-button-rounded p-button-lg p-button-raised"></button>
-  </div> -->
-
   <div class="p-col-12">
     <p-card>
       <div class="p-fluid p-grid p-d-flex p-jc-end p-ai-center">
@@ -42,7 +37,7 @@
             <th>Nome</th>
             <th>E-mail</th>
             <th>Cadastrado em</th>
-            <th></th>
+            <th [ngStyle]="{width:'5%'}"></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData>

@@ -97,6 +97,7 @@ export class NewComponent implements OnInit {
   create(): void {
     this.loading = true;
     delete this.audit.processCode;
+
     this.auditService.create(this.audit)
       .then((result) => {
         this.router.navigate(['/audit/show', result.id]);

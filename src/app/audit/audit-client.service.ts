@@ -1,11 +1,11 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
-import { environment } from './../../environments/environment.prod';
+import { environment } from './../../environments/environment';
 import { AppHttClient } from './../auth/app-http-client';
 import { Audit } from './../models/audit';
 
-export class AuditFilter {
+export class AuditClientFilter {
   page: number = 0;
   rows: number = 10;
 
@@ -20,10 +20,10 @@ export class AuditClientService {
   API_URL: string;
 
   constructor(private http: AppHttClient) {
-    this.API_URL = `${environment.apiUrl}/audit`;
+    this.API_URL = `${environment.apiUrl}/audit/entityAudited`;
   }
 
-  async read(filter: AuditFilter): Promise<any> {
+  async read(filter: AuditClientFilter): Promise<any> {
     let params = new HttpParams();
     params = params.append('page', filter.page.toString());
     params = params.append('size', filter.rows.toString());

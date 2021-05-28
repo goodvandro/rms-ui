@@ -1,30 +1,7 @@
 <nav class='animated bounceInDown'>
+  <!-- *ngIf="isAdmin() || isSuperAdmin()" -->
   <ul>
-    <li>
-      <a routerLink="/dashboard">Home</a>
-    </li>
-
-    <li class='sub-menu'>
-      <a href='javascript:;'>
-        Utilizadores
-        <div class='pi pi-angle-down right'></div>
-      </a>
-      <ul>
-        <li> <a routerLink="/user/new">Registar</a> </li>
-        <li> <a routerLink="/user/index">Visualizar</a> </li>
-      </ul>
-    </li>
-
-    <li class='sub-menu'>
-      <a href='javascript:;'>
-        Segurança
-        <div class='pi pi-angle-down right'></div>
-      </a>
-      <ul>
-        <li> <a routerLink="/group/index">Grupos</a> </li>
-        <li> <a routerLink="/activity/index">Atividades</a> </li>
-      </ul>
-    </li>
+    <li> <a routerLink="/dashboard">Home</a> </li>
 
     <li class='sub-menu'>
       <a href='javascript:;'>
@@ -36,7 +13,6 @@
         <li> <a routerLink="/audit/index">Visualizar</a> </li>
         <li> <a routerLink="/audit-type/index">Tipos de Auditoria</a> </li>
         <li> <a routerLink="/audit-status/index">Status de Auditoria</a> </li>
-        <li> <a routerLink="/audit-report/index">Relatórios</a> </li>
         <li> <a routerLink="/group-work/index">Grupos de Trabalho</a> </li>
       </ul>
     </li>
@@ -82,6 +58,17 @@
 
     <li class='sub-menu'>
       <a href='javascript:;'>
+        Utilizadores
+        <div class='pi pi-angle-down right'></div>
+      </a>
+      <ul>
+        <li> <a routerLink="/user/new">Registar</a> </li>
+        <li> <a routerLink="/user/index">Visualizar</a> </li>
+      </ul>
+    </li>
+
+    <li class='sub-menu'>
+      <a href='javascript:;'>
         Parâmetros
         <div class='pi pi-angle-down right'></div>
       </a>
@@ -89,5 +76,25 @@
         <li> <a routerLink="/address/index">Endereços</a> </li>
       </ul>
     </li>
+  </ul>
+
+  <!-- *ngIf="isSuperAdmin()" -->
+  <ul>
+    <li class='sub-menu'>
+      <a href='javascript:;'>
+        Segurança
+        <div class='pi pi-angle-down right'></div>
+      </a>
+      <ul>
+        <li> <a routerLink="/group/index">Grupos</a> </li>
+        <li> <a routerLink="/activity/index">Atividades</a> </li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul *ngIf="isDefault()">
+    <li *ngIf="isDefault()"> <a routerLink="/client/audit/index">Auditorias</a> </li>
+    <li> <a routerLink="/client/recommendation/index">Recomendações</a> </li>
+    <li> <a routerLink="/client/compliance/index">Cumprimento</a> </li>
   </ul>
 </nav>

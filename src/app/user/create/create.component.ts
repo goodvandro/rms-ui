@@ -79,6 +79,7 @@ export class CreateComponent implements OnInit {
 
   create(): void {
     this.loading = true;
+
     this.user.username = this.user.person.email;
     this.userService.create(this.user)
       .then((result) => {
