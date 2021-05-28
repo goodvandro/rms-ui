@@ -54,7 +54,7 @@ export class NewComponent implements OnInit {
   async dropdownEntities() {
     await this.entityService.readAll()
       .then((result) => this.entities = result.map((entity: Entity) => ({
-        value: entity,
+        value: entity.id,
         label: entity.name
       })))
   }
@@ -62,7 +62,7 @@ export class NewComponent implements OnInit {
   async dropdownTypes() {
     await this.auditTypeService.readAll()
       .then((result) => this.types = result.map((type: AuditType) => ({
-        value: type,
+        value: type.id,
         label: type.name
       })))
   }
@@ -71,7 +71,7 @@ export class NewComponent implements OnInit {
     await this.auditStatusService.readAll()
       .then((result) => {
         this.statuses = result.map((status: AuditStatus) => ({
-          value: status,
+          value: status.id,
           label: status.name
         }));
         this.loadDefaultStatus(result)
@@ -81,7 +81,7 @@ export class NewComponent implements OnInit {
   async dropdownGroupsWork() {
     await this.groupWorkService.readAll()
       .then((result) => this.groupsWork = result.map((group: GroupWork) => ({
-        value: group,
+        value: group.id,
         label: group.name
       })))
   }

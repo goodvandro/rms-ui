@@ -12,7 +12,8 @@
             <button pButton pRipple type="button" icon="pi pi-chevron-left"
               class="p-button-text p-button-raised p-button-lg p-mx-1" routerLink="/audit/index"></button>
 
-            <button pButton pRipple type="submit" label="Salvar" class="p-button-raised p-button-lg p-mx-1"></button>
+            <button pButton pRipple type="submit" label="Salvar" class="p-button-raised p-button-lg p-mx-1"
+              [disabled]="!f.valid || loading"></button>
 
             <button pButton pRipple type="button" label="Novo"
               class="p-button-raised p-button-info p-button-lg p-mx-1"></button>
@@ -29,59 +30,62 @@
 
           <div class="p-field p-col-12 p-md-10">
             <label for="description">Descrição da ação</label>
-            <input id="description" type="text" pInputText name="description" [(ngModel)]="audit.description">
+            <input id="description" type="text" pInputText name="description" [(ngModel)]="audit.description" required>
           </div>
 
           <div class="p-field p-col-12 p-md-2">
             <label for="year">Ano de realização</label>
-            <p-dropdown id="year" [options]="years" name="year" [(ngModel)]="audit.year" placeholder="Selecione">
+            <p-dropdown id="year" [options]="years" name="year" [(ngModel)]="audit.year" placeholder="Selecione"
+              required>
             </p-dropdown>
           </div>
 
           <div class="p-field p-col-12 p-md-2">
             <label for="type">Tipo de auditoria</label>
-            <p-dropdown id="type" [options]="types" name="type" [(ngModel)]="audit.type" placeholder="Selecione">
+            <p-dropdown id="type" [options]="types" name="type" [(ngModel)]="audit.type.id" placeholder="Selecione"
+              required>
             </p-dropdown>
           </div>
 
           <div class="p-field p-col-12 p-md-2">
             <label for="status">Status</label>
-            <p-dropdown id="status" [options]="statuses" name="status" [(ngModel)]="audit.status" [disabled]="true">
+            <p-dropdown id="status" [options]="statuses" name="status" [(ngModel)]="audit.status.id" [disabled]="true"
+              required>
             </p-dropdown>
           </div>
 
           <div class="p-field p-col-12 p-md-6">
             <label for="entityAudited">Entidade auditada</label>
-            <p-dropdown id="entityAudited" [options]="entities" name="entityAudited" [(ngModel)]="audit.entityAudited"
-              placeholder="Selecione">
+            <p-dropdown id="entityAudited" [options]="entities" name="entityAudited"
+              [(ngModel)]="audit.entityAudited.id" placeholder="Selecione" required>
             </p-dropdown>
           </div>
 
           <div class="p-field p-col-12 p-md-6">
             <label for="groupWork">Grupo de trabalho</label>
-            <p-dropdown id="groupWork" [options]="groupsWork" name="groupWork" [(ngModel)]="audit.groupWork"
-              placeholder="Selecione">
+            <p-dropdown id="groupWork" [options]="groupsWork" name="groupWork" [(ngModel)]="audit.groupWork.id"
+              placeholder="Selecione" required>
             </p-dropdown>
           </div>
 
           <div class="p-field p-col-12 p-md-3">
             <label for="dispatchedAt">Data de despacho (Homologação)</label>
-            <p-calendar id="dispatchedAt" name="dispatchedAt" [(ngModel)]="audit.dispatchedAt"></p-calendar>
+            <p-calendar id="dispatchedAt" name="dispatchedAt" [(ngModel)]="audit.dispatchedAt" required></p-calendar>
           </div>
 
           <div class="p-field p-col-12 p-md-3">
             <label for="reportedAt">Data de envio (Relatório Final)</label>
-            <p-calendar id="reportedAt" name="reportedAt" [(ngModel)]="audit.reportedAt"></p-calendar>
+            <p-calendar id="reportedAt" name="reportedAt" [(ngModel)]="audit.reportedAt" required></p-calendar>
           </div>
 
           <div class="p-field p-col-12 p-md-3">
             <label for="createdAt">Data de Registado</label>
-            <input id="createdAt" type="text" pInputText name="createdAt" [(ngModel)]="audit.createdAt" disabled>
+            <p-calendar id="createdAt" name="createdAt" [(ngModel)]="audit.createdAt" [disabled]="true"></p-calendar>
           </div>
 
           <div class="p-field p-col-12 p-md-3">
             <label for="updatedAt">Data de atualização</label>
-            <input id="updatedAt" type="text" pInputText name="updatedAt" [(ngModel)]="audit.updatedAt" disabled>
+            <p-calendar id="updatedAt" name="updatedAt" [(ngModel)]="audit.updatedAt" [disabled]="true"></p-calendar>
           </div>
         </div>
       </form>
