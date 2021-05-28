@@ -12,6 +12,7 @@ import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { TooltipModule } from 'primeng/tooltip';
 import { CastComponent } from './cast/cast.component';
+import { GroupWorkByAuditComponent } from './group-work-by-audit/group-work-by-audit.component';
 import { GroupWorkRouter } from './group-work.router';
 import { IndexComponent } from './index/index.component';
 import { NewComponent } from './new/new.component';
@@ -22,7 +23,8 @@ import { ShowComponent } from './show/show.component';
     IndexComponent,
     ShowComponent,
     NewComponent,
-    CastComponent
+    CastComponent,
+    GroupWorkByAuditComponent
   ],
   imports: [
     CommonModule,
@@ -38,6 +40,9 @@ import { ShowComponent } from './show/show.component';
     TabViewModule,
     MultiSelectModule,
     ProgressBarModule
+  ],
+  exports: [
+    GroupWorkByAuditComponent
   ]
 })
 export class GroupWorkModule { }

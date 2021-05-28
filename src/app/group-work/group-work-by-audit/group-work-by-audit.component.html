@@ -1,0 +1,14 @@
+<p-table [value]="groupWorkUsers" [rows]="10">
+  <ng-template pTemplate="header">
+    <tr>
+      <th [ngStyle]="{width:'50%'}">Nome</th>
+      <th [ngStyle]="{width:'50%'}">Descrição</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData>
+    <tr>
+      <td> {{rowData.person.name}} {{rowData.person.surname}} </td>
+      <td>{{rowData.person.email}}</td>
+    </tr>
+  </ng-template>
+</p-table>
