@@ -85,6 +85,8 @@ export class AuditService {
 
       audit.dispatchedAt = moment(audit.dispatchedAt, 'YYYY-MM-DD').toDate();
       audit.reportedAt = moment(audit.reportedAt, 'YYYY-MM-DD').toDate();
+      audit.createdAt = moment(audit.createdAt, 'YYYY-MM-DD hh:mm:ss').toDate();
+      audit.updatedAt = moment(audit.updatedAt, 'YYYY-MM-DD hh:mm:ss').toDate();
     }
   }
 
