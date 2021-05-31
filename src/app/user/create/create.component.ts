@@ -43,10 +43,9 @@ export class CreateComponent implements OnInit {
     await this.groupService.readAll()
       .then(async (result) => {
         this.groups = await result.map((element: Group) => ({
-          value: element,
+          value: element.id,
           label: element.name
         }));
-        this.loadDefaultGroup(result);
       })
       .catch((error) => this.errorService.handle(error))
   }
@@ -54,7 +53,7 @@ export class CreateComponent implements OnInit {
   dropdownAddresses(): void {
     this.addressService.readAll()
       .then(result => this.addresses = result.map((element: Address) => ({
-        value: element,
+        value: element.id,
         label: `${element.street}, ${element.city}, ${element.district}`
       })))
       .catch((error) => this.errorService.handle(error))
@@ -69,13 +68,13 @@ export class CreateComponent implements OnInit {
       )
   }
 
-  loadDefaultGroup(groups: Group[]) {
-    groups.forEach((element) => {
-      if (element.slug === 'default') {
-        this.user.groups.push(element);
-      }
-    })
-  }
+  // loadDefaultGroup(groups: Group[]) {
+  //   groups.forEach((element) => {
+  //     if (element.slug === 'default') {
+  //       this.user.groups.push(element);
+  //     }
+  //   })
+  // }
 
   create(): void {
     this.loading = true;

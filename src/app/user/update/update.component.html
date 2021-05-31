@@ -51,14 +51,21 @@
             <input id="email" type="email" pInputText name="email" [(ngModel)]="user.person.email" required email>
           </div>
 
-          <div class="p-field p-col-12 p-md-6">
+          <div class="p-field p-col-12 p-md-4">
+            <label for="contact">Perfil</label>
+            <p-dropdown id="group" [options]="groups" name="group" [(ngModel)]="user.group.id" placeholder="Selecione"
+              [ngStyle]="{width: '100%'}" [required]="true">
+            </p-dropdown>
+          </div>
+
+          <div class="p-field p-col-12 p-md-4">
             <label for="entityAudited">Entidade</label>
             <p-dropdown id="entityAudited" [options]="entities" name="entity" [(ngModel)]="user.person.entity.id"
               placeholder="Selecione">
             </p-dropdown>
           </div>
 
-          <div class="p-field p-col-12 p-md-6">
+          <div class="p-field p-col-12 p-md-4">
             <label for="address">
               Endereço <span class="span-required">*</span>
             </label>
@@ -68,23 +75,6 @@
               </p-dropdown>
               <app-fast-new [(addresses)]="addresses"></app-fast-new>
             </div>
-          </div>
-
-          <div class="p-field p-col-12 p-md-4">
-            <label for="contact">Grupos</label>
-            <p-multiSelect [options]="groups" name="groups" [(ngModel)]="user.groups"
-              defaultLabel="Selecione um ou mais grupos" display="chip" [filter]="false" appendTo="body">
-            </p-multiSelect>
-          </div>
-
-          <div class="p-col-12">
-            <p-divider></p-divider>
-
-            <p-tabView>
-              <p-tabPanel header="GRUPOS">
-                <app-groups [(userGroups)]="user.groups"></app-groups>
-              </p-tabPanel>
-            </p-tabView>
           </div>
         </div>
       </form>

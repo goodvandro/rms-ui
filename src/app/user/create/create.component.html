@@ -57,30 +57,30 @@
             <input id="email" type="email" pInputText name="email" [(ngModel)]="user.person.email" required email>
           </div>
 
-          <div class="p-field p-col-12 p-md-6">
+          <div class="p-field p-col-12 p-md-4">
+            <label for="group">Perfil</label>
+            <p-dropdown id="group" [options]="groups" name="group" [(ngModel)]="user.group.id" placeholder="Selecione"
+              [ngStyle]="{width: '100%'}" [required]="true">
+            </p-dropdown>
+          </div>
+
+          <div class="p-field p-col-12 p-md-4">
             <label for="entityAudited">Entidade</label>
             <p-dropdown id="entityAudited" [options]="entities" name="entity" [(ngModel)]="user.person.entity"
               placeholder="Selecione">
             </p-dropdown>
           </div>
 
-          <div class="p-field p-col-12 p-md-6">
+          <div class="p-field p-col-12 p-md-4">
             <label for="address">
               Endereço <span class="span-required">*</span>
             </label>
             <div class="p-inputgroup">
-              <p-dropdown id="address" [options]="addresses" name="address" [(ngModel)]="user.person.address"
+              <p-dropdown id="address" [options]="addresses" name="address" [(ngModel)]="user.person.address.id"
                 placeholder="Selecione" [ngStyle]="{width: '100%'}" [required]="true">
               </p-dropdown>
               <app-fast-new [(addresses)]="addresses"></app-fast-new>
             </div>
-          </div>
-
-          <div class="p-field p-col-12 p-md-8">
-            <label for="contact">Grupos</label>
-            <p-multiSelect [options]="groups" name="groups" [(ngModel)]="user.groups" disabled
-              defaultLabel="Selecione um ou mais grupos" display="chip" [filter]="false">
-            </p-multiSelect>
           </div>
         </div>
       </form>

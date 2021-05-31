@@ -1,7 +1,8 @@
-import { HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 import { AppHttClient } from '../auth/app-http-client';
+import { AuthService } from '../auth/auth.service';
 import { environment } from './../../environments/environment';
 import { User } from './../models/user';
 
@@ -19,7 +20,10 @@ export class UserFilter {
 export class UserService {
   API_URL: string;
 
-  constructor(private http: AppHttClient) {
+  constructor(
+    private http: AppHttClient,
+    private auth: AuthService,
+  ) {
     this.API_URL = `${environment.apiUrl}/user`;
   }
 
@@ -78,6 +82,15 @@ export class UserService {
         this.convertField([user]);
         return user;
       })
+  }
+
+  async setAuthorities(): Promise<void> {
+    const result: User = await this.http.get<User>(`${this.API_URL}/me`)
+      .toPromise()
+    const authorities: string[] = result.group.permissions.map(
+      (permission) => permission.role
+    );
+    this.auth.setAuthorities(authorities);
   }
 
   private convertField(users: User[]) {

@@ -15,5 +15,6 @@ export class User {
   userUpdatedId: number;
 
   person = new Person();
-  groups: Group[] = [];
+  group = new Group();
+  authorities: string[];
 }

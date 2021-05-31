@@ -92,8 +92,8 @@
     </li>
   </ul>
 
-  <ul *ngIf="isDefault()">
-    <li *ngIf="isDefault()"> <a routerLink="/client/audit/index">Auditorias</a> </li>
+  <ul *ngIf="!isAuditor()">
+    <li> <a routerLink="/client/audit/index">Auditorias</a> </li>
     <li> <a routerLink="/client/recommendation/index">Recomendações</a> </li>
     <li> <a routerLink="/client/compliance/index">Cumprimento</a> </li>
   </ul>

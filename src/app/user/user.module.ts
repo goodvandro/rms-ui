@@ -19,7 +19,6 @@ import { TooltipModule } from 'primeng/tooltip';
 import { AddressModule } from '../address/address.module';
 import { AvatarComponent } from './avatar/avatar.component';
 import { CreateComponent } from './create/create.component';
-import { GroupsComponent } from './groups/groups.component';
 import { ReadComponent } from './read/read.component';
 import { UpdateComponent } from './update/update.component';
 import { UserRouter } from './user.router';
@@ -29,7 +28,6 @@ import { UserRouter } from './user.router';
     ReadComponent,
     CreateComponent,
     UpdateComponent,
-    GroupsComponent,
     AvatarComponent
   ],
   imports: [

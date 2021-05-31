@@ -8,13 +8,21 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./aside.component.scss']
 })
 export class AsideComponent implements OnInit {
-  user = this.authService.jwtPayload.user;
+  user: any;
 
   constructor(
     private authService: AuthService,
   ) { }
 
   ngOnInit(): void {
+    if (!this.authService.isAccessTokenInvalid()) {
+      this.user = this.authService.jwtPayload.user;
+
+      const authorities = this.authService.getAuthorities();
+
+      console.log(authorities);
+    }
+
     $('.sub-menu ul').hide();
     $(".sub-menu a").click(function () {
       $(this).parent(".sub-menu").children("ul").slideToggle("100");
@@ -23,14 +31,18 @@ export class AsideComponent implements OnInit {
   }
 
   isDefault(): boolean {
-    return this.user.group === 'default';
+    return this.user?.group === 'default';
   }
 
   isAdmin(): boolean {
-    return this.user.group === 'admin';
+    return this.user?.group === 'admin';
   }
 
   isSuperAdmin(): boolean {
-    return this.user.group === 'super_admin';
+    return this.user?.group === 'super_admin';
+  }
+
+  isAuditor(): boolean {
+    return this.user?.person.entity.initial.toUpperCase() === 'IGF'
   }
 }

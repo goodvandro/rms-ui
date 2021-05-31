@@ -44,7 +44,7 @@ export class UpdateComponent implements OnInit {
   dropdownGroups(): void {
     this.groupService.readAll()
       .then(result => this.groups = result.map((group: Group) => ({
-        value: group,
+        value: group.id,
         label: group.name
       })))
       .catch((error) => this.errorService.handle(error))

@@ -8,7 +8,7 @@ import { User } from './../../models/user';
 import { PasswordService } from './../../user/password.service';
 import { AuthService } from './../auth.service';
 import { decrypt } from '../../configs/crypto-js';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-new-password',
@@ -56,7 +56,7 @@ export class NewPasswordComponent implements OnInit {
   changePassword(form: NgForm) {
     this.loading = true;
 
-    delete this.user.groups;
+    delete this.user.group;
     delete this.user.person;
 
     this.passwordService.changePassword(this.user)
