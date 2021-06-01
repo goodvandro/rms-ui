@@ -25,6 +25,7 @@ import { AuthModule } from './../auth/auth.module';
 import { AuthService } from './../auth/auth.service';
 import { ComplianceLevelModule } from './../compliance-level/compliance-level.module';
 import { ComplianceLevelService } from './../compliance-level/compliance-level.service';
+import { ComplianceClientService } from './../compliance/compliance-client.service';
 import { ComplianceModule } from './../compliance/compliance.module';
 import { ComplianceService } from './../compliance/compliance.service';
 import { EntityLevelModule } from './../entity-level/entity-level.module';
@@ -50,6 +51,7 @@ import { RecommendationNatureModule } from './../recommendation-nature/recommend
 import { RecommendationNatureService } from './../recommendation-nature/recommendation-nature.service';
 import { RecommendationStatusModule } from './../recommendation-status/recommendation-status.module';
 import { RecommendationStatusService } from './../recommendation-status/recommendation-status.service';
+import { RecommendationClientService } from './../recommendation/recommendation-client.service';
 import { RecommendationModule } from './../recommendation/recommendation.module';
 import { RecommendationService } from './../recommendation/recommendation.service';
 import { ReportModule } from './../report/report.module';
@@ -134,7 +136,9 @@ registerLocaleData(localePt);
     AuditFileService,
     AuditReportService,
     ReportService,
-    AuditClientService
+    AuditClientService,
+    ComplianceClientService,
+    RecommendationClientService
   ]
 })
 export class CoreModule { }

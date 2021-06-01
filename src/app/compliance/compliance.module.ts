@@ -21,9 +21,12 @@ import { IndexComponent } from './index/index.component';
 import { NewComponent } from './new/new.component';
 import { ShowComponent } from './show/show.component';
 import { FilesComponent } from './files/files.component';
+import { ClientShowComponent } from './client-show/client-show.component';
+import { ClientIndexComponent } from './client-index/client-index.component';
+import { ClientNewComponent } from './client-new/client-new.component';
 
 @NgModule({
-  declarations: [IndexComponent, NewComponent, ShowComponent, FilesComponent],
+  declarations: [IndexComponent, NewComponent, ShowComponent, FilesComponent, ClientShowComponent, ClientIndexComponent, ClientNewComponent],
   imports: [
     CommonModule,
     ComplianceRouter,

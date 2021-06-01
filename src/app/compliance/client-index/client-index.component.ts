@@ -4,11 +4,11 @@ import { ErrorService } from 'src/app/error/error.service';
 import { ComplianceClientFilter, ComplianceClientService } from './../compliance-client.service';
 
 @Component({
-  selector: 'app-index',
-  templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss']
+  selector: 'app-client-index',
+  templateUrl: './client-index.component.html',
+  styleUrls: ['./client-index.component.scss']
 })
-export class IndexComponent implements OnInit {
+export class ClientIndexComponent implements OnInit {
   loading: boolean;
   filter = new ComplianceClientFilter();
   totalRecords: number = 0;

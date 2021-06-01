@@ -1,21 +1,22 @@
+import { ComplianceService } from './../compliance.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LazyLoadEvent } from 'primeng/api';
 import { Recommendation } from 'src/app/models/recommendation';
-import { ComplianceService } from '../compliance.service';
 import { ComplianceLevelService } from './../../compliance-level/compliance-level.service';
 import { ErrorService } from './../../error/error.service';
 import { Compliance } from './../../models/compliance';
 import { ComplianceLevel } from './../../models/compliance-level';
 import { RecommendationFilter, RecommendationService } from './../../recommendation/recommendation.service';
+import { ComplianceClientService } from './../compliance-client.service';
 
 @Component({
-  selector: 'app-new',
-  templateUrl: './new.component.html',
-  styleUrls: ['./new.component.scss']
+  selector: 'app-client-new',
+  templateUrl: './client-new.component.html',
+  styleUrls: ['./client-new.component.scss']
 })
-export class NewComponent implements OnInit {
+export class ClientNewComponent implements OnInit {
   loading: boolean = false;
   displayRecommendations: boolean = false;
 
@@ -28,9 +29,10 @@ export class NewComponent implements OnInit {
   levels = [];
 
   constructor(
-    private complianceService: ComplianceService,
-    private complianceLevelService: ComplianceLevelService,
     private recommendationService: RecommendationService,
+    private complianceService: ComplianceService,
+    private complianceClientService: ComplianceClientService,
+    private complianceLevelService: ComplianceLevelService,
     private errorService: ErrorService,
     private toastr: ToastrService,
     private router: Router
@@ -78,7 +80,7 @@ export class NewComponent implements OnInit {
     delete this.compliance.recommendation.audit.processCode;
     this.complianceService.create(this.compliance)
       .then((result) => {
-        this.router.navigate(['/compliance/show', result.id]);
+        this.router.navigate(['/compliance/client/show', result.id]);
         this.toastr.success('Cumprimento adicionado adicionada!')
       })
       .catch((error) => this.errorService.handle(error))

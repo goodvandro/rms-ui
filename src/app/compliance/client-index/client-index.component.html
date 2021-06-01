@@ -1,0 +1,70 @@
+<div class="p-grid">
+  <div class="p-col-12">
+    <h3>CUMPRIMENTOS</h3>
+  </div>
+
+  <div class="p-col-12">
+    <p-card>
+      <div class="p-fluid p-grid p-d-flex p-jc-end p-ai-center">
+        <div class="p-field p-col-12 p-md-2 p-my-0">
+          <span class="p-float-label p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input type="text" id="number" pInputText [(ngModel)]="filter.number">
+            <label for="number">Nº Rec.</label>
+          </span>
+        </div>
+
+        <div class="p-field p-col-12 p-md-1 p-px-0 p-mr-0 p-my-0">
+          <button pButton pRipple type="button" icon="pi pi-search"
+            class="p-button-rounded p-button-secondary p-button-raised"></button>
+        </div>
+
+        <div class="p-field p-col-12 p-my-0 p-py-0">
+          <p-divider></p-divider>
+        </div>
+      </div>
+
+      <p-table [value]="compliances" [paginator]="true" [rows]="filter.rows" [showCurrentPageReport]="true"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} linhas"
+        [rowsPerPageOptions]="[10,25,50]" [totalRecords]="totalRecords" [loading]="loading" [lazy]="true"
+        (onLazyLoad)="lazyLoad($event)">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Nº Reco.</th>
+            <th>Medidas tomadas</th>
+            <th>Desc. da Avaliação</th>
+            <th>Data de avaliação</th>
+            <th>Nível de cumprimento</th>
+            <th [ngStyle]="{width:'5%'}"></th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-rowData>
+          <tr>
+            <td>{{rowData.recommendation.id}}</td>
+            <td> <span [innerHTML]="rowData.measuresTaken"></span> </td>
+            <td> <span [innerHTML]="rowData.evaluationObs"></span> </td>
+            <td>{{rowData.evaluatedAt | date}}</td>
+            <td>{{rowData.level.name}}</td>
+            <td class="p-p-0">
+              <button pButton pRipple type="button" icon="pi pi-pencil"
+                class="p-button-rounded p-button-warning p-button-outlined"
+                [routerLink]="['/compliance/show', rowData.id]"></button>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="paginatorleft">
+          <p-button type="button" icon="pi pi-plus" styleClass="p-button-text" pTooltip="Novo" tooltipPosition="right"
+            routerLink="/compliance/client/new">
+          </p-button>
+        </ng-template>
+
+        <ng-template pTemplate="paginatorright">
+          <p-button type="button" icon="pi pi-refresh" styleClass="p-button-text" pTooltip="Atualizar"
+            tooltipPosition="left"></p-button>
+        </ng-template>
+      </p-table>
+    </p-card>
+  </div>
+</div>
