@@ -55,18 +55,21 @@ export class NewComponent implements OnInit {
 
   async dropdownStatuses() {
     await this.statusService.readAll()
-      .then((result) => this.statuses = result.map(
-        (status: RecommendationStatus) => ({
-          value: status,
-          label: status.name
-        })))
+      .then((result) => {
+        this.statuses = result.map(
+          (status: RecommendationStatus) => ({
+            value: status.id,
+            label: status.name
+          }));
+        this.loadDefaultStatus(result)
+      });
   }
 
   async dropdownNatures() {
     await this.natureService.readAll()
       .then((result) => this.natures = result.map(
         (nature: RecommendationNature) => ({
-          value: nature,
+          value: nature.id,
           label: nature.name
         })))
   }
@@ -75,7 +78,7 @@ export class NewComponent implements OnInit {
     await this.characterService.readAll()
       .then((result) => this.characters = result.map(
         (character: RecommendationCharacter) => ({
-          value: character,
+          value: character.id,
           label: character.name
         })))
   }
@@ -84,9 +87,17 @@ export class NewComponent implements OnInit {
     await this.levelRiskService.readAll()
       .then((result) => this.levelsRisk = result.map(
         (levelRisk: RecommendationLevelRisk) => ({
-          value: levelRisk,
+          value: levelRisk.id,
           label: levelRisk.name
         })))
+  }
+
+  loadDefaultStatus(statuses: RecommendationStatus[]) {
+    statuses.forEach((status) => {
+      if (status.slug === 'pendent') {
+        this.recommendation.status = status;
+      }
+    })
   }
 
   getAuditByProcessCode(event: any): void {

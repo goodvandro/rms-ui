@@ -30,13 +30,13 @@
         (onLazyLoad)="lazyLoad($event)">
         <ng-template pTemplate="header">
           <tr>
-            <th>Nº Rec.</th>
-            <th>Nº Processo</th>
+            <th [ngStyle]="{width:'7%'}">Nº Rec.</th>
+            <th [ngStyle]="{width:'12%'}">Nº Processo</th>
             <th>Descrição</th>
-            <th>Status</th>
-            <th>Caráter</th>
-            <th>Natureza</th>
-            <th>Data Registo</th>
+            <th [ngStyle]="{width:'10%'}">Status</th>
+            <th [ngStyle]="{width:'12%'}">Caráter</th>
+            <th [ngStyle]="{width:'12%'}">Natureza</th>
+            <th [ngStyle]="{width:'10%'}">Data Registo</th>
             <th [ngStyle]="{width:'5%'}"></th>
           </tr>
         </ng-template>

@@ -73,7 +73,7 @@ export class NewComponent implements OnInit {
           value: status.id,
           label: status.name
         }));
-        this.loadDefaultStatus(result)
+        this.loadDefaultStatus(result);
       });
   }
 

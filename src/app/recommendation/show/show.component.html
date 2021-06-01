@@ -72,10 +72,36 @@
                 <h4>REGISTO DA CONSTATAÇÃO E DETALHES DA RECOMENDAÇÃO</h4>
               </div>
 
-              <div class="p-field p-col-12 p-md-9">
+              <!-- <div class="p-field p-col-12 p-md-9">
                 <label for="description">Descrição da recomendação</label>
                 <input id="description" type="text" pInputText name="description"
                   [(ngModel)]="recommendation.description">
+              </div> -->
+
+              <div class="p-field p-col-12 p-md-6">
+                <label for="constatation">Constatação</label>
+                <p-editor name="constatation" [(ngModel)]="recommendation.constatation" [style]="{'height':'120px'}">
+                  <ng-template pTemplate="header">
+                    <span class="ql-formats">
+                      <button type="button" class="ql-bold" aria-label="Bold"></button>
+                      <button type="button" class="ql-italic" aria-label="Italic"></button>
+                      <button type="button" class="ql-underline" aria-label="Underline"></button>
+                    </span>
+                  </ng-template>
+                </p-editor>
+              </div>
+
+              <div class="p-field p-col-12 p-md-6">
+                <label for="description">Recomendação</label>
+                <p-editor name="description" [(ngModel)]="recommendation.description" [style]="{'height':'120px'}">
+                  <ng-template pTemplate="header">
+                    <span class="ql-formats">
+                      <button type="button" class="ql-bold" aria-label="Bold"></button>
+                      <button type="button" class="ql-italic" aria-label="Italic"></button>
+                      <button type="button" class="ql-underline" aria-label="Underline"></button>
+                    </span>
+                  </ng-template>
+                </p-editor>
               </div>
 
               <div class="p-field p-col-12 p-md-3">
@@ -112,7 +138,7 @@
                 </p-dropdown>
               </div>
 
-              <div class="p-field p-col-12 p-md-6">
+              <!-- <div class="p-field p-col-12 p-md-6">
                 <label for="constatation">Descrição da constatação</label>
                 <p-editor name="constatation" [(ngModel)]="recommendation.constatation" [style]="{'height':'120px'}">
                   <ng-template pTemplate="header">
@@ -123,7 +149,7 @@
                     </span>
                   </ng-template>
                 </p-editor>
-              </div>
+              </div> -->
 
               <!-- <div class="p-field p-col-12 p-md-6">
                 <label for="measuresTaken">Medidas tomadas</label>
