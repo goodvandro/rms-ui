@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ClientIndexComponent } from './client-index/client-index.component';
+import { ClientShowComponent } from './client-show/client-show.component';
 import { IndexComponent } from './index/index.component';
 import { NewComponent } from './new/new.component';
 import { ShowComponent } from './show/show.component';
-import { ToLoggedEntityComponent } from './to-logged-entity/to-logged-entity.component';
 
 const routes: Routes = [
   {
@@ -22,8 +23,12 @@ const routes: Routes = [
   },
 
   {
-    path: 'by-logged-entity',
-    component: ToLoggedEntityComponent
+    path: 'client/index',
+    component: ClientIndexComponent
+  },
+  {
+    path: 'client/show/:id',
+    component: ClientShowComponent
   },
 ]
 

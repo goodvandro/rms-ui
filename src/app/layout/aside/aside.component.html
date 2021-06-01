@@ -2,7 +2,9 @@
   <!-- *ngIf="isAdmin() || isSuperAdmin()" -->
   <ul>
     <li> <a routerLink="/dashboard">Home</a> </li>
+  </ul>
 
+  <ul *ngIf="isAuditor()">
     <li class='sub-menu'>
       <a href='javascript:;'>
         Auditorias
@@ -76,10 +78,7 @@
         <li> <a routerLink="/address/index">Endereços</a> </li>
       </ul>
     </li>
-  </ul>
 
-  <!-- *ngIf="isSuperAdmin()" -->
-  <ul>
     <li class='sub-menu'>
       <a href='javascript:;'>
         Segurança
@@ -92,9 +91,9 @@
     </li>
   </ul>
 
-  <!-- <ul *ngIf="!isAuditor()">
-    <li> <a routerLink="/client/audit/index">Auditorias</a> </li>
-    <li> <a routerLink="/client/recommendation/index">Recomendações</a> </li>
-    <li> <a routerLink="/client/compliance/index">Cumprimento</a> </li>
-  </ul> -->
+  <ul *ngIf="!isAuditor()">
+    <li> <a routerLink="/audit/client/index">Auditorias</a> </li>
+    <li> <a routerLink="/recommendation/client/index">Recomendações</a> </li>
+    <li> <a routerLink="/compliance/client/index">Cumprimento</a> </li>
+  </ul>
 </nav>

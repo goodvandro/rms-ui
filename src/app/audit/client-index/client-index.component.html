@@ -6,7 +6,7 @@
   <div class="p-col-12">
     <p-card>
       <div class="p-fluid p-grid p-d-flex p-jc-end p-ai-center">
-        <div class="p-field p-col-12 p-md-2 p-my-0">
+        <div class="p-field p-col-12 p-md-3 p-my-0">
           <span class="p-float-label p-input-icon-left">
             <i class="pi pi-search"></i>
             <input type="text" id="number" pInputText [(ngModel)]="filter.number">
@@ -30,11 +30,11 @@
         (onLazyLoad)="lazyLoad($event)">
         <ng-template pTemplate="header">
           <tr>
-            <th>Código</th>
-            <th>Entidade auditada</th>
+            <th [ngStyle]="{width:'12%'}">Código</th>
+            <th [ngStyle]="{width:'25%'}">Entidade auditada</th>
             <th>Descrição</th>
-            <th>Registado em</th>
-            <th></th>
+            <th [ngStyle]="{width:'15%'}">Registado em</th>
+            <th [ngStyle]="{width:'5%'}"></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData>
@@ -46,20 +46,9 @@
             <td class="p-p-0">
               <button pButton pRipple type="button" icon="pi pi-pencil"
                 class="p-button-rounded p-button-warning p-button-outlined"
-                [routerLink]="['/audit/show', rowData.id]"></button>
+                [routerLink]="['/audit/client/show', rowData.id]"></button>
             </td>
           </tr>
-        </ng-template>
-
-        <ng-template pTemplate="paginatorleft">
-          <p-button type="button" icon="pi pi-plus" styleClass="p-button-text" pTooltip="Novo" tooltipPosition="right"
-            routerLink="/audit/new">
-          </p-button>
-        </ng-template>
-
-        <ng-template pTemplate="paginatorright">
-          <p-button type="button" icon="pi pi-refresh" styleClass="p-button-text" pTooltip="Atualizar"
-            tooltipPosition="left"></p-button>
         </ng-template>
       </p-table>
     </p-card>

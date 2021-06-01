@@ -4,11 +4,11 @@ import { ErrorService } from 'src/app/error/error.service';
 import { AuditClientFilter, AuditClientService } from '../audit-client.service';
 
 @Component({
-  selector: 'app-to-logged-entity',
-  templateUrl: './to-logged-entity.component.html',
-  styleUrls: ['./to-logged-entity.component.scss']
+  selector: 'app-client-index',
+  templateUrl: './client-index.component.html',
+  styleUrls: ['./client-index.component.scss']
 })
-export class ToLoggedEntityComponent implements OnInit {
+export class ClientIndexComponent implements OnInit {
   loading: boolean;
   filter = new AuditClientFilter();
   totalRecords: number = 0;
@@ -40,4 +40,5 @@ export class ToLoggedEntityComponent implements OnInit {
     this.filter.rows = event.rows;
     this.read(page);
   }
+
 }

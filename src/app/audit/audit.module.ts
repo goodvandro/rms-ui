@@ -16,12 +16,13 @@ import { TabViewModule } from 'primeng/tabview';
 import { TooltipModule } from 'primeng/tooltip';
 import { GroupWorkModule } from '../group-work/group-work.module';
 import { AuditRouter } from './audit.router';
+import { ClientIndexComponent } from './client-index/client-index.component';
 import { FilesComponent } from './files/files.component';
 import { IndexComponent } from './index/index.component';
 import { NewComponent } from './new/new.component';
 import { ReportsComponent } from './reports/reports.component';
 import { ShowComponent } from './show/show.component';
-import { ToLoggedEntityComponent } from './to-logged-entity/to-logged-entity.component';
+import { ClientShowComponent } from './client-show/client-show.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ToLoggedEntityComponent } from './to-logged-entity/to-logged-entity.com
     ShowComponent,
     FilesComponent,
     ReportsComponent,
-    ToLoggedEntityComponent
+    ClientIndexComponent,
+    ClientShowComponent
   ],
   imports: [
     CommonModule,

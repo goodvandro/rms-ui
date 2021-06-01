@@ -22,7 +22,9 @@ export class AsideComponent implements OnInit {
 
       console.log(authorities);
     }
+  }
 
+  ngAfterViewInit() {
     $('.sub-menu ul').hide();
     $(".sub-menu a").click(function () {
       $(this).parent(".sub-menu").children("ul").slideToggle("100");

@@ -1,0 +1,112 @@
+<div class="p-grid">
+  <div class="p-col-12">
+    <h3>DETALHES DA AÇÃO DE AUDITORIA</h3>
+  </div>
+
+  <div class="p-col-12">
+    <p-progressBar mode="indeterminate" [style]="{'height': '2px'}" *ngIf="loading"></p-progressBar>
+    <p-card>
+      <form autocomplete="off" #f="ngForm">
+        <div class="p-grid">
+          <div class="p-col-12">
+            <button pButton pRipple type="button" icon="pi pi-chevron-left"
+              class="p-button-text p-button-raised p-button-lg p-mx-1" routerLink="/audit/client/index"></button>
+
+            <button pButton pRipple type="button" label="Novo" routerLink="/audit/new"
+              class="p-button-raised p-button-info p-button-lg p-mx-1"></button>
+            <p-divider></p-divider>
+          </div>
+        </div>
+
+        <div class="p-fluid p-formgrid p-grid">
+          <div class="p-field p-col-12 p-md-2">
+            <label for="processCode">Código do processo</label>
+            <input id="processCode" type="text" pInputText name="processCode" [(ngModel)]="audit.processCode" disabled>
+          </div>
+
+          <div class="p-field p-col-12 p-md-10">
+            <label for="description">Descrição da ação</label>
+            <input id="description" type="text" pInputText name="description" [(ngModel)]="audit.description" disabled>
+          </div>
+
+          <div class="p-field p-col-12 p-md-2">
+            <label for="year">Ano de realização</label>
+            <p-dropdown id="year" [options]="years" name="year" [(ngModel)]="audit.year" placeholder="Selecione"
+              [disabled]="true">
+            </p-dropdown>
+          </div>
+
+          <div class="p-field p-col-12 p-md-2">
+            <label for="type">Tipo de auditoria</label>
+            <p-dropdown id="type" [options]="types" name="type" [(ngModel)]="audit.type.id" placeholder="Selecione"
+              [disabled]="true">
+            </p-dropdown>
+          </div>
+
+          <div class="p-field p-col-12 p-md-2">
+            <label for="status">Status</label>
+            <p-dropdown id="status" [options]="statuses" name="status" [(ngModel)]="audit.status.id" [disabled]="true">
+            </p-dropdown>
+          </div>
+
+          <div class="p-field p-col-12 p-md-6">
+            <label for="entityAudited">Entidade auditada</label>
+            <p-dropdown id="entityAudited" [options]="entities" name="entityAudited"
+              [(ngModel)]="audit.entityAudited.id" placeholder="Selecione" [disabled]="true">
+            </p-dropdown>
+          </div>
+
+          <div class="p-field p-col-12 p-md-6">
+            <label for="groupWork">Grupo de trabalho</label>
+            <p-dropdown id="groupWork" [options]="groupsWork" name="groupWork" [(ngModel)]="audit.groupWork.id"
+              placeholder="Selecione" [disabled]="true">
+            </p-dropdown>
+          </div>
+
+          <div class="p-field p-col-12 p-md-3">
+            <label for="dispatchedAt">Data de despacho (Homologação)</label>
+            <p-calendar id="dispatchedAt" name="dispatchedAt" [(ngModel)]="audit.dispatchedAt" [disabled]="true">
+            </p-calendar>
+          </div>
+
+          <div class="p-field p-col-12 p-md-3">
+            <label for="reportedAt">Data de envio (Relatório Final)</label>
+            <p-calendar id="reportedAt" name="reportedAt" [(ngModel)]="audit.reportedAt" [disabled]="true"></p-calendar>
+          </div>
+
+          <div class="p-field p-col-12 p-md-3">
+            <label for="createdAt">Data de Registado</label>
+            <p-calendar id="createdAt" name="createdAt" [(ngModel)]="audit.createdAt" [showTime]="true"
+              [disabled]="true">
+            </p-calendar>
+          </div>
+
+          <div class="p-field p-col-12 p-md-3">
+            <label for="updatedAt">Data de atualização</label>
+            <p-calendar id="updatedAt" name="updatedAt" [(ngModel)]="audit.updatedAt" [showTime]="true"
+              [disabled]="true">
+            </p-calendar>
+          </div>
+        </div>
+
+        <!-- <div class="p-grid">
+          <div class="p-col-12">
+            <p-tabView>
+              <p-tabPanel header="Anexos">
+                <app-files [(files)]="audit.files"></app-files>
+              </p-tabPanel>
+
+              <p-tabPanel header="Relatórios">
+                <app-reports [(reports)]="audit.reports"></app-reports>
+              </p-tabPanel>
+
+              <p-tabPanel header="Recomendações">
+                Em desenvolvimento
+              </p-tabPanel>
+            </p-tabView>
+          </div>
+        </div> -->
+      </form>
+    </p-card>
+  </div>
+</div>
