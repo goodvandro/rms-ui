@@ -43,7 +43,7 @@ export class NewComponent implements OnInit {
   dropdownLevels(): void {
     this.complianceLevelService.readAll()
       .then(result => this.levels = result.map((level: ComplianceLevel) => ({
-        value: level,
+        value: level.id,
         label: level.name
       })))
       .catch((error) => this.errorService.handle(error))

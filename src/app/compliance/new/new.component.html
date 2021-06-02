@@ -12,7 +12,8 @@
             <button pButton pRipple type="button" icon="pi pi-chevron-left"
               class="p-button-text p-button-raised p-button-lg p-mx-1" routerLink="/compliance/index"></button>
 
-            <button pButton pRipple type="submit" label="Salvar" class="p-button-raised p-button-lg p-mx-1"></button>
+            <button pButton pRipple type="submit" label="Salvar" class="p-button-raised p-button-lg p-mx-1"
+              [disabled]="!f.valid || loading"></button>
 
             <button pButton pRipple type="button" label="Novo"
               class="p-button-raised p-button-info p-button-lg p-mx-1"></button>
@@ -30,7 +31,7 @@
                   </label>
                   <div class="p-inputgroup">
                     <input id="recommendationNumber" type="text" pInputText name="recommendationNumber"
-                      [(ngModel)]="compliance.recommendation.id" disabled>
+                      [(ngModel)]="compliance.recommendation.id" disabled required>
                     <button type="button" pButton pRipple icon="pi pi-search"
                       (click)="displayRecommendations=true"></button>
                   </div>
@@ -52,7 +53,8 @@
               <div class="p-grid">
                 <div class="p-field p-col-12 p-md-6">
                   <label for="measuresTaken">Medidas tomadas</label>
-                  <p-editor name="measuresTaken" [(ngModel)]="compliance.measuresTaken" [style]="{'height':'120px'}">
+                  <p-editor name="measuresTaken" [(ngModel)]="compliance.measuresTaken" [style]="{'height':'120px'}"
+                    [disabled]="true">
                     <ng-template pTemplate="header">
                       <span class="ql-formats">
                         <button type="button" class="ql-bold" aria-label="Bold"></button>
@@ -65,7 +67,8 @@
 
                 <div class="p-field p-col-12 p-md-6">
                   <label for="evaluationObs">Observação da avaliação</label>
-                  <p-editor name="evaluationObs" [(ngModel)]="compliance.evaluationObs" [style]="{'height':'120px'}">
+                  <p-editor name="evaluationObs" [(ngModel)]="compliance.evaluationObs" [style]="{'height':'120px'}"
+                    [required]="true">
                     <ng-template pTemplate="header">
                       <span class="ql-formats">
                         <button type="button" class="ql-bold" aria-label="Bold"></button>
@@ -84,7 +87,7 @@
 
                 <div class="p-field p-col-12 p-md-6">
                   <label for="level">Nível</label>
-                  <p-dropdown id="level" [options]="levels" name="level" [(ngModel)]="compliance.level"
+                  <p-dropdown id="level" [options]="levels" name="level" [(ngModel)]="compliance.level.id"
                     placeholder="Selecione">
                   </p-dropdown>
                 </div>
