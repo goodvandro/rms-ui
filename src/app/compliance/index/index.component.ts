@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
 import { ErrorService } from 'src/app/error/error.service';
-import { ComplianceClientFilter, ComplianceClientService } from './../compliance-client.service';
+import { ComplianceFilter, ComplianceService } from './../compliance.service';
 
 @Component({
   selector: 'app-index',
@@ -10,12 +10,12 @@ import { ComplianceClientFilter, ComplianceClientService } from './../compliance
 })
 export class IndexComponent implements OnInit {
   loading: boolean;
-  filter = new ComplianceClientFilter();
+  filter = new ComplianceFilter();
   totalRecords: number = 0;
   compliances = [];
 
   constructor(
-    private complianceClientService: ComplianceClientService,
+    private complianceService: ComplianceService,
     private errorService: ErrorService,
   ) { }
 
@@ -26,7 +26,7 @@ export class IndexComponent implements OnInit {
   read(page = 0): void {
     this.filter.page = page;
 
-    this.complianceClientService.read(this.filter)
+    this.complianceService.read(this.filter)
       .then((result) => {
         this.compliances = result.content;
         this.totalRecords = result.totalElements;
