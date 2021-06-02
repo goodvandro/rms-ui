@@ -1,16 +1,16 @@
 <div class="p-grid">
   <div class="p-col-12">
-    <h3>AÇÕES DE AUDITORIA</h3>
+    <h3>RECOMENDAÇÕES</h3>
   </div>
 
   <div class="p-col-12">
     <p-card>
       <div class="p-fluid p-grid p-d-flex p-jc-end p-ai-center">
-        <div class="p-field p-col-12 p-md-3 p-my-0">
+        <div class="p-field p-col-12 p-md-2 p-my-0">
           <span class="p-float-label p-input-icon-left">
             <i class="pi pi-search"></i>
-            <input type="text" id="number" pInputText [(ngModel)]="filter.number">
-            <label for="number">Código do processo</label>
+            <input type="text" id="description" pInputText [(ngModel)]="filter.description">
+            <label for="description">Código do processo</label>
           </span>
         </div>
 
@@ -24,29 +24,35 @@
         </div>
       </div>
 
-      <p-table [value]="audits" [paginator]="true" [rows]="filter.rows" [showCurrentPageReport]="true"
+      <p-table [value]="recommendations" [paginator]="true" [rows]="filter.rows" [showCurrentPageReport]="true"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} linhas"
         [rowsPerPageOptions]="[10,25,50]" [totalRecords]="totalRecords" [loading]="loading" [lazy]="true"
         (onLazyLoad)="lazyLoad($event)">
         <ng-template pTemplate="header">
           <tr>
-            <th [ngStyle]="{width:'12%'}">Código</th>
-            <th [ngStyle]="{width:'25%'}">Entidade auditada</th>
+            <th [ngStyle]="{width:'7%'}">Nº Rec.</th>
+            <th [ngStyle]="{width:'12%'}">Nº Processo</th>
             <th>Descrição</th>
-            <th [ngStyle]="{width:'15%'}">Registado em</th>
+            <th [ngStyle]="{width:'10%'}">Status</th>
+            <th [ngStyle]="{width:'12%'}">Caráter</th>
+            <th [ngStyle]="{width:'12%'}">Natureza</th>
+            <th [ngStyle]="{width:'10%'}">Data Registo</th>
             <th [ngStyle]="{width:'5%'}"></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData>
           <tr>
-            <td>{{rowData.processCode}}</td>
-            <td>{{rowData.entityAudited.name}}</td>
-            <td>{{rowData.description}}</td>
+            <td>{{rowData.id}}</td>
+            <td>{{rowData.audit.processCode}}</td>
+            <td><span [innerHTML]="rowData.description"></span></td>
+            <td>{{rowData.status.name}}</td>
+            <td>{{rowData.character.name}}</td>
+            <td>{{rowData.nature.name}}</td>
             <td>{{rowData.createdAt | date}}</td>
             <td class="p-p-0">
               <button pButton pRipple type="button" icon="pi pi-pencil"
                 class="p-button-rounded p-button-warning p-button-outlined"
-                [routerLink]="['/audit/client/show', rowData.id]"></button>
+                [routerLink]="['/recommendation/client/show', rowData.id]"></button>
             </td>
           </tr>
         </ng-template>

@@ -15,11 +15,11 @@ import { RecommendationNatureService } from './../../recommendation-nature/recom
 import { RecommendationStatusService } from './../../recommendation-status/recommendation-status.service';
 
 @Component({
-  selector: 'app-show',
-  templateUrl: './show.component.html',
-  styleUrls: ['./show.component.scss']
+  selector: 'app-client-show',
+  templateUrl: './client-show.component.html',
+  styleUrls: ['./client-show.component.scss']
 })
-export class ShowComponent implements OnInit {
+export class ClientShowComponent implements OnInit {
   loading: boolean = false;
   recommendation = new Recommendation();
   id = this.route.snapshot.params.id;

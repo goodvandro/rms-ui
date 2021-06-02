@@ -65,7 +65,7 @@
                 </div> -->
 
                 <div class="p-field p-col-12 p-md-6">
-                  <label for="constatation">Constatação</label>
+                  <label for="constatation">Observação</label>
                   <p-editor name="constatation" [(ngModel)]="recommendation.constatation" [style]="{'height':'120px'}"
                     required>
                     <ng-template pTemplate="header">
@@ -94,7 +94,7 @@
 
                 <div class="p-field p-col-12 p-md-3">
                   <label for="status">Status</label>
-                  <p-dropdown id="status" [options]="statuses" name="status" [(ngModel)]="recommendation.status"
+                  <p-dropdown id="status" [options]="statuses" name="status" [(ngModel)]="recommendation.status.id"
                     required>
                   </p-dropdown>
                 </div>
@@ -102,10 +102,9 @@
                 <div class="p-field p-col-12 p-md-3">
                   <label for="amount">Valor em causa</label>
                   <p-inputNumber inputId="amount" name="amount" [(ngModel)]="recommendation.amount" mode="currency"
-                    currency="STN" locale="pt-PT" required>
+                    currency="STN" locale="pt-PT">
                   </p-inputNumber>
                 </div>
-
 
                 <div class="p-field p-col-12 p-md-3">
                   <label for="nature">Natureza</label>

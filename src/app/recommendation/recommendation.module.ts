@@ -19,12 +19,16 @@ import { IndexComponent } from './index/index.component';
 import { NewComponent } from './new/new.component';
 import { RecommendationRouter } from './recommendation.router';
 import { ShowComponent } from './show/show.component';
+import { ClientIndexComponent } from './client-index/client-index.component';
+import { ClientShowComponent } from './client-show/client-show.component';
 
 @NgModule({
   declarations: [
     IndexComponent,
     NewComponent,
-    ShowComponent
+    ShowComponent,
+    ClientIndexComponent,
+    ClientShowComponent
   ],
   imports: [
     CommonModule,

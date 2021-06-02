@@ -24,11 +24,6 @@ export class RecommendationClientService {
     this.API_URL = `${environment.apiUrl}/recommendation/entityAudited`;
   }
 
-  async create(recommendation: Recommendation): Promise<Recommendation> {
-    return this.http.post<Recommendation>(this.API_URL, recommendation)
-      .toPromise();
-  }
-
   async read(filter: RecommendationClientFilter): Promise<any> {
     let params = new HttpParams();
     params = params.append('page', filter.page.toString());
@@ -56,31 +51,6 @@ export class RecommendationClientService {
       content: recommendations,
       totalElements: result.totalElements
     }
-  }
-
-  async update(
-    id: number,
-    recommendation: Recommendation
-  ): Promise<Recommendation> {
-    return this.http.put<Recommendation>(
-      `${this.API_URL}`, recommendation
-    )
-      .toPromise()
-      .then((result) => {
-        const recommendation = result as Recommendation;
-        this.convertField([recommendation]);
-        return recommendation;
-      })
-  }
-
-  async getById(id: number): Promise<Recommendation> {
-    return this.http.get<Recommendation>(`${this.API_URL}/${id}`)
-      .toPromise()
-      .then((result) => {
-        const recommendation = result as Recommendation;
-        this.convertField([recommendation]);
-        return recommendation;
-      })
   }
 
   private convertField(recommendations: Recommendation[]) {
