@@ -23,6 +23,7 @@ import { NewComponent } from './new/new.component';
 import { ReportsComponent } from './reports/reports.component';
 import { ShowComponent } from './show/show.component';
 import { ClientShowComponent } from './client-show/client-show.component';
+import { RecommendationsComponent } from './recommendations/recommendations.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ClientShowComponent } from './client-show/client-show.component';
     FilesComponent,
     ReportsComponent,
     ClientIndexComponent,
-    ClientShowComponent
+    ClientShowComponent,
+    RecommendationsComponent
   ],
   imports: [
     CommonModule,
