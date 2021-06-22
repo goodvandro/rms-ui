@@ -1,0 +1,73 @@
+<p-table [value]="files" [rows]="10">
+  <ng-template pTemplate="header">
+    <tr>
+      <th [ngStyle]="{width:'30%'}">Nome</th>
+      <th [ngStyle]="{width:'65%'}">Descrição</th>
+      <th [ngStyle]="{width:'5%'}"></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData>
+    <tr>
+      <td [ngStyle]="{width:'30%'}">{{rowData.name}}</td>
+      <td>{{rowData.description}}</td>
+      <td class="p-p-0">
+        <button pButton pRipple type="button" icon="pi pi-pencil"
+          class="p-button-rounded p-button-warning p-button-outlined" (click)="showEdit(rowData)"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-button type="button" icon="pi pi-plus" styleClass="p-button-text" pTooltip="Adicionar anexo" tooltipPosition="right"
+  (click)="showCreate()">
+</p-button>
+
+<p-dialog header="Novo anexo" [(visible)]="display" [modal]="true" [style]="{width: '40vw'}" [baseZIndex]="10000">
+  <form autocomplete="off" #f="ngForm" (ngSubmit)="create(f)">
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12">
+        <label for="description">Descrição</label>
+        <input id="description" type="text" pInputText [(ngModel)]="file.description" name="description" required
+          [ngStyle]="{width:'100%'}">
+      </div>
+
+      <div class="p-field p-col-12">
+        <label for="file">Anexo</label>
+        <input id="file" type="file" pInputText name="file" [ngStyle]="{width:'100%'}" (change)="onFileSelect($event)"
+          required>
+      </div>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-times" (click)="display=false" label="Cancelar" styleClass="p-button-text"></p-button>
+    <p-button type="button" icon="pi pi-check" (click)="f.ngSubmit.emit()" [disabled]="!f.form.valid" label="Salvar"
+      styleClass="p-button-text">
+    </p-button>
+  </ng-template>
+</p-dialog>
+
+<p-dialog header="Editar descrição de anexo" [(visible)]="displayEdit" [modal]="true" [style]="{width: '40vw'}"
+  [baseZIndex]="10000">
+  <form autocomplete="off" #fEdit="ngForm" (ngSubmit)="update()">
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12">
+        <label for="name">Nome</label>
+        <input id="name" type="text" pInputText [(ngModel)]="file.name" name="name" [ngStyle]="{width:'100%'}" disabled>
+      </div>
+
+      <div class="p-field p-col-12">
+        <label for="description">Descrição</label>
+        <input id="description" type="text" pInputText [(ngModel)]="file.description" name="description" required
+          [ngStyle]="{width:'100%'}">
+      </div>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-times" (click)="displayEdit=false" label="Cancelar" styleClass="p-button-text"></p-button>
+    <p-button type="button" icon="pi pi-check" (click)="fEdit.ngSubmit.emit()" [disabled]="!fEdit.form.valid"
+      label="Salvar" styleClass="p-button-text">
+    </p-button>
+  </ng-template>
+</p-dialog>

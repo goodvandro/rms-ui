@@ -10,7 +10,7 @@
         <div class="p-grid">
           <div class="p-col-12">
             <button pButton pRipple type="button" icon="pi pi-chevron-left"
-              class="p-button-text p-button-raised p-button-lg p-mx-1" routerLink="/compliance/index"></button>
+              class="p-button-text p-button-raised p-button-lg p-mx-1" routerLink="/compliance/client/index"></button>
 
             <button pButton pRipple type="submit" label="Salvar" class="p-button-raised p-button-lg p-mx-1"></button>
 
@@ -35,13 +35,21 @@
                       (click)="displayRecommendations=true"></button>
                   </div>
                 </div>
+              </div>
 
-                <div class="p-field p-col-12 p-md-9">
-                  <label for="recommendationDescription">
-                    Descrição da recomendação
-                  </label>
-                  <input id="recommendationDescription" type="text" pInputText name="recommendationDescription"
-                    [(ngModel)]="compliance.recommendation.description" disabled>
+              <div class="p-grid">
+                <div class="p-field p-col-12 p-md-6">
+                  <label for="description">Recomendação</label>
+                  <p-editor name="recommendationDescription" [(ngModel)]="compliance.recommendation.description"
+                    [style]="{'height':'120px'}" [readonly]="true">
+                    <ng-template pTemplate="header">
+                      <span class="ql-formats">
+                        <button type="button" class="ql-bold" aria-label="Bold"></button>
+                        <button type="button" class="ql-italic" aria-label="Italic"></button>
+                        <button type="button" class="ql-underline" aria-label="Underline"></button>
+                      </span>
+                    </ng-template>
+                  </p-editor>
                 </div>
               </div>
             </p-fieldset>

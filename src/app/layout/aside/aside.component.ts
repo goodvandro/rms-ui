@@ -17,10 +17,7 @@ export class AsideComponent implements OnInit {
   ngOnInit(): void {
     if (!this.authService.isAccessTokenInvalid()) {
       this.user = this.authService.jwtPayload.user;
-
       const authorities = this.authService.getAuthorities();
-
-      console.log(authorities);
     }
   }
 

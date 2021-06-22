@@ -4,6 +4,7 @@ import { AuditStatus } from './audit-status';
 import { AuditType } from './audit-type';
 import { Entity } from './entity';
 import { GroupWork } from './group-work';
+import { Recommendation } from './recommendation';
 
 export class Audit {
   id: number;
@@ -26,6 +27,7 @@ export class Audit {
   status = new AuditStatus();
   type = new AuditType();
 
+  recommendations: Recommendation[];
   reports: AuditReport[];
   files: AuditFile[];
 }

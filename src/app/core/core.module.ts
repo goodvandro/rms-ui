@@ -43,8 +43,6 @@ import { PermissionModule } from './../permission/permission.module';
 import { PermissionService } from './../permission/permission.service';
 import { RecommendationCharacterModule } from './../recommendation-character/recommendation-character.module';
 import { RecommendationCharacterService } from './../recommendation-character/recommendation-character.service';
-import { RecommendationFileModule } from './../recommendation-file/recommendation-file.module';
-import { RecommendationFileService } from './../recommendation-file/recommendation-file.service';
 import { RecommendationLevelRiskModule } from './../recommendation-level-risk/recommendation-level-risk.module';
 import { RecommendationLevelRiskService } from './../recommendation-level-risk/recommendation-level-risk.service';
 import { RecommendationNatureModule } from './../recommendation-nature/recommendation-nature.module';
@@ -52,6 +50,7 @@ import { RecommendationNatureService } from './../recommendation-nature/recommen
 import { RecommendationStatusModule } from './../recommendation-status/recommendation-status.module';
 import { RecommendationStatusService } from './../recommendation-status/recommendation-status.service';
 import { RecommendationClientService } from './../recommendation/recommendation-client.service';
+import { RecommendationFileService } from './../recommendation/recommendation-file.service';
 import { RecommendationModule } from './../recommendation/recommendation.module';
 import { RecommendationService } from './../recommendation/recommendation.service';
 import { ReportModule } from './../report/report.module';
@@ -91,7 +90,6 @@ registerLocaleData(localePt);
     RecommendationStatusModule,
     RecommendationNatureModule,
     RecommendationLevelRiskModule,
-    RecommendationFileModule,
     RecommendationCharacterModule,
     PermissionModule,
     ComplianceModule,
@@ -138,7 +136,7 @@ registerLocaleData(localePt);
     ReportService,
     AuditClientService,
     ComplianceClientService,
-    RecommendationClientService
+    RecommendationClientService,
   ]
 })
 export class CoreModule { }

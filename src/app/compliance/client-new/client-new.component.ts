@@ -1,4 +1,3 @@
-import { ComplianceService } from './../compliance.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -8,8 +7,10 @@ import { ComplianceLevelService } from './../../compliance-level/compliance-leve
 import { ErrorService } from './../../error/error.service';
 import { Compliance } from './../../models/compliance';
 import { ComplianceLevel } from './../../models/compliance-level';
-import { RecommendationFilter, RecommendationService } from './../../recommendation/recommendation.service';
+import { RecommendationClientFilter, RecommendationClientService } from './../../recommendation/recommendation-client.service';
+import { RecommendationService } from './../../recommendation/recommendation.service';
 import { ComplianceClientService } from './../compliance-client.service';
+import { ComplianceService } from './../compliance.service';
 
 @Component({
   selector: 'app-client-new',
@@ -22,7 +23,7 @@ export class ClientNewComponent implements OnInit {
 
   compliance = new Compliance();
 
-  filter = new RecommendationFilter();
+  filter = new RecommendationClientFilter();
   totalRecords: number = 0;
   recommendations = [];
 
@@ -30,6 +31,7 @@ export class ClientNewComponent implements OnInit {
 
   constructor(
     private recommendationService: RecommendationService,
+    private recommendationClientService: RecommendationClientService,
     private complianceService: ComplianceService,
     private complianceClientService: ComplianceClientService,
     private complianceLevelService: ComplianceLevelService,
@@ -60,9 +62,8 @@ export class ClientNewComponent implements OnInit {
   read(page = 0): void {
     this.filter.page = page;
 
-    this.recommendationService.read(this.filter)
+    this.recommendationClientService.read(this.filter)
       .then((result) => {
-        console.log(result);
         this.recommendations = result.content;
         this.totalRecords = result.totalElements;
       })
@@ -73,17 +74,22 @@ export class ClientNewComponent implements OnInit {
   getRecommendation(recommendation: Recommendation) {
     this.compliance.recommendation = recommendation;
     this.displayRecommendations = false;
+    console.log('compliance: ', this.compliance);
   }
 
   create(): void {
     this.loading = true;
-    delete this.compliance.recommendation.audit.processCode;
+    console.log('compliance: ', this.compliance);
+
     this.complianceService.create(this.compliance)
       .then((result) => {
         this.router.navigate(['/compliance/client/show', result.id]);
         this.toastr.success('Cumprimento adicionado adicionada!')
       })
-      .catch((error) => this.errorService.handle(error))
-      .finally(() => this.loading = false)
+      .catch((error) => {
+        this.errorService.handle(error);
+        console.log('compliance2: ', this.compliance);
+      })
+      .finally(() => this.loading = false);
   }
 }

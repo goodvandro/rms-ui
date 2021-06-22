@@ -1,0 +1,19 @@
+.styled-table,
+th,
+td {
+  border: 1px solid rgb(202, 199, 199);
+  border-collapse: collapse;
+}
+th,
+td {
+  padding: 5px;
+  text-align: left;
+}
+
+.styled-table {
+  border-collapse: collapse;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 10px rgba(83, 82, 82, 0.15);
+}

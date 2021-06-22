@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuditService } from 'src/app/audit/audit.service';
+import { ComplianceService } from 'src/app/compliance/compliance.service';
+import { Compliance } from 'src/app/models/compliance';
 import { RecommendationCharacter } from 'src/app/models/recommendation-character';
 import { RecommendationLevelRisk } from 'src/app/models/recommendation-level-risk';
 import { RecommendationStatus } from 'src/app/models/recommendation-status';
@@ -21,7 +24,9 @@ import { RecommendationStatusService } from './../../recommendation-status/recom
 })
 export class ClientShowComponent implements OnInit {
   loading: boolean = false;
+  display: boolean = false;
   recommendation = new Recommendation();
+  compliance = new Compliance();
   id = this.route.snapshot.params.id;
 
   statuses = [];
@@ -31,6 +36,7 @@ export class ClientShowComponent implements OnInit {
 
   constructor(
     private recommendationService: RecommendationService,
+    private complianceService: ComplianceService,
     private statusService: RecommendationStatusService,
     private natureService: RecommendationNatureService,
     private characterService: RecommendationCharacterService,
@@ -105,16 +111,18 @@ export class ClientShowComponent implements OnInit {
       .catch((error) => this.errorService.handle(error));
   }
 
-  update(): void {
+  createCompliance(form: NgForm) {
     this.loading = true;
-    delete this.recommendation.audit.processCode;
+    this.compliance.recommendation.id = this.id;
+    delete this.compliance.recommendation.audit.processCode;
 
-    this.recommendationService.update(this.id, this.recommendation)
-      .then((result) => {
-        this.recommendation = result;
-        this.toastr.success('Recomendação salva!');
+    this.complianceService.create(this.compliance)
+      .then(() => {
+        this.display = false;
+        form.reset();
+        this.toastr.success('Cumprimento submetido com sucesso!');
       })
       .catch((error) => this.errorService.handle(error))
-      .finally(() => this.loading = false);
+      .finally(() => this.loading = false)
   }
 }

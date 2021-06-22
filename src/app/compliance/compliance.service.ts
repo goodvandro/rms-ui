@@ -23,6 +23,8 @@ export class ComplianceService {
   }
 
   async create(compliance: Compliance): Promise<Compliance> {
+    delete compliance.recommendation.audit.processCode;
+
     return this.http.post<Compliance>(this.API_URL, compliance)
       .toPromise();
   }

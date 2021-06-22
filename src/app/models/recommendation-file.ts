@@ -1,7 +1,10 @@
 export class RecommendationFile {
   id: number;
   name: string;
+  description: string;
   originalName: string;
+
+  file: any;
 
   createdAt: Date;
   updatedAt: Date;

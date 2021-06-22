@@ -22,6 +22,11 @@ export class ComplianceClientService {
     this.API_URL = `${environment.apiUrl}/compliance/entityAudited`;
   }
 
+  async create(compliance: Compliance): Promise<Compliance> {
+    return this.http.post<Compliance>(this.API_URL, compliance)
+      .toPromise();
+  }
+
   async read(filter: ComplianceClientFilter): Promise<any> {
     let params = new HttpParams();
     params = params.append('page', filter.page.toString());
@@ -53,7 +58,10 @@ export class ComplianceClientService {
     for (const compliance of compliances) {
       compliance.createdAt = moment(compliance.createdAt, 'YYYY-MM-DD').toDate();
       compliance.updatedAt = moment(compliance.updatedAt, 'YYYY-MM-DD').toDate();
-      compliance.evaluatedAt = moment(compliance.evaluatedAt, 'YYYY-MM-DD').toDate();
+
+      if (compliance.evaluatedAt) {
+        compliance.evaluatedAt = moment(compliance.evaluatedAt, 'YYYY-MM-DD').toDate();
+      }
 
       compliance.recommendation.audit.dispatchedAt =
         moment(compliance.recommendation.audit.dispatchedAt, 'YYYY-MM-DD')
@@ -61,6 +69,9 @@ export class ComplianceClientService {
       compliance.recommendation.audit.reportedAt =
         moment(compliance.recommendation.audit.reportedAt, 'YYYY-MM-DD')
           .toDate();
+
+      compliance.recommendation.audit.processCode =
+        `${compliance.recommendation.audit.year}.${compliance.recommendation.audit.entityAudited.initial}.${compliance.recommendation.audit.number}`;
     }
   }
 }
