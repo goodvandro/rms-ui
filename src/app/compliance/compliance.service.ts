@@ -68,16 +68,25 @@ export class ComplianceService {
 
   private convertField(compliances: Compliance[]) {
     for (const compliance of compliances) {
-      compliance.createdAt = moment(compliance.createdAt, 'YYYY-MM-DD').toDate();
-      compliance.updatedAt = moment(compliance.updatedAt, 'YYYY-MM-DD').toDate();
-      compliance.evaluatedAt = moment(compliance.evaluatedAt, 'YYYY-MM-DD').toDate();
 
-      compliance.recommendation.audit.dispatchedAt =
-        moment(compliance.recommendation.audit.dispatchedAt, 'YYYY-MM-DD')
-          .toDate();
-      compliance.recommendation.audit.reportedAt =
-        moment(compliance.recommendation.audit.reportedAt, 'YYYY-MM-DD')
-          .toDate();
+      if (compliance.createdAt)
+        compliance.createdAt = moment(compliance.createdAt, 'YYYY-MM-DD').toDate();
+
+      if (compliance.updatedAt)
+        compliance.updatedAt = moment(compliance.updatedAt, 'YYYY-MM-DD').toDate();
+
+      if (compliance.evaluatedAt)
+        compliance.evaluatedAt = moment(compliance.evaluatedAt, 'YYYY-MM-DD').toDate();
+
+      if (compliance.recommendation.audit.dispatchedAt)
+        compliance.recommendation.audit.dispatchedAt =
+          moment(compliance.recommendation.audit.dispatchedAt, 'YYYY-MM-DD')
+            .toDate();
+
+      if (compliance.recommendation.audit.reportedAt)
+        compliance.recommendation.audit.reportedAt =
+          moment(compliance.recommendation.audit.reportedAt, 'YYYY-MM-DD')
+            .toDate();
     }
   }
 }
