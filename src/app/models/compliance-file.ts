@@ -4,6 +4,8 @@ export class ComplianceFile {
   description: string;
   originalName: string;
 
+  file: any;
+
   createdAt: Date;
   updatedAt: Date;
 

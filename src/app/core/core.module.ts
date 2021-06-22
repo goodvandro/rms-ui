@@ -26,6 +26,7 @@ import { AuthService } from './../auth/auth.service';
 import { ComplianceLevelModule } from './../compliance-level/compliance-level.module';
 import { ComplianceLevelService } from './../compliance-level/compliance-level.service';
 import { ComplianceClientService } from './../compliance/compliance-client.service';
+import { ComplianceFileService } from './../compliance/compliance-file.service';
 import { ComplianceModule } from './../compliance/compliance.module';
 import { ComplianceService } from './../compliance/compliance.service';
 import { EntityLevelModule } from './../entity-level/entity-level.module';
@@ -131,6 +132,7 @@ registerLocaleData(localePt);
     PermissionService,
     ComplianceService,
     ComplianceLevelService,
+    ComplianceFileService,
     AuditFileService,
     AuditReportService,
     ReportService,
