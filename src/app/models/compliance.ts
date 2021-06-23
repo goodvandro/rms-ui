@@ -1,4 +1,5 @@
 import { ComplianceFile } from './compliance-file';
+import { ComplianceHistoric } from './compliance-historic';
 import { ComplianceLevel } from './compliance-level';
 import { Recommendation } from './recommendation';
 
@@ -18,4 +19,5 @@ export class Compliance {
   recommendation = new Recommendation();
 
   files: ComplianceFile[];
+  histories: ComplianceHistoric[];
 }

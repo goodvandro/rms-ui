@@ -23,6 +23,7 @@ import { NewComponent } from './new/new.component';
 import { RecommendationRouter } from './recommendation.router';
 import { ShowComponent } from './show/show.component';
 import { FilesComponent } from './files/files.component';
+import { CompliancesComponent } from './compliances/compliances.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { FilesComponent } from './files/files.component';
     ShowComponent,
     ClientIndexComponent,
     ClientShowComponent,
-    FilesComponent
+    FilesComponent,
+    CompliancesComponent
   ],
   imports: [
     CommonModule,

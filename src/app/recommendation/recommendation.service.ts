@@ -85,8 +85,8 @@ export class RecommendationService {
 
   private convertField(recommendations: Recommendation[]) {
     for (const recommendation of recommendations) {
-      recommendation.createdAt = moment(recommendation.createdAt, 'YYYY-MM-DD').toDate();
-      recommendation.updatedAt = moment(recommendation.updatedAt, 'YYYY-MM-DD').toDate();
+      recommendation.createdAt = moment(recommendation.createdAt, 'YYYY-MM-DD hh:mm:ss').toDate();
+      recommendation.updatedAt = moment(recommendation.updatedAt, 'YYYY-MM-DD hh:mm:ss').toDate();
 
       recommendation.audit.processCode =
         `${recommendation.audit.year}.${recommendation.audit.entityAudited.initial}.${recommendation.audit.number}`;

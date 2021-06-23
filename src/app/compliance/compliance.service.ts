@@ -70,10 +70,10 @@ export class ComplianceService {
     for (const compliance of compliances) {
 
       if (compliance.createdAt)
-        compliance.createdAt = moment(compliance.createdAt, 'YYYY-MM-DD').toDate();
+        compliance.createdAt = moment(compliance.createdAt, 'YYYY-MM-DD hh:mm:ss').toDate();
 
       if (compliance.updatedAt)
-        compliance.updatedAt = moment(compliance.updatedAt, 'YYYY-MM-DD').toDate();
+        compliance.updatedAt = moment(compliance.updatedAt, 'YYYY-MM-DD hh:mm:ss').toDate();
 
       if (compliance.evaluatedAt)
         compliance.evaluatedAt = moment(compliance.evaluatedAt, 'YYYY-MM-DD').toDate();

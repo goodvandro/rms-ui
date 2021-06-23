@@ -1,0 +1,19 @@
+<p-table [value]="histories" [rows]="10">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Medidas tomadas</th>
+      <th>Desc. da Avaliação</th>
+      <th>Data de avaliação</th>
+      <th>Nível de cumprimento</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-rowData>
+    <tr>
+      <td> <span [innerHTML]="rowData.measuresTaken"></span> </td>
+      <td> <span [innerHTML]="rowData.evaluationObs"></span> </td>
+      <td>{{rowData.evaluatedAt | date}}</td>
+      <td>{{rowData.level.name}}</td>
+    </tr>
+  </ng-template>
+</p-table>

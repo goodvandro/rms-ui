@@ -14,7 +14,7 @@
 
             <button pButton pRipple type="submit" label="Salvar" class="p-button-raised p-button-lg p-mx-1"></button>
 
-            <button pButton pRipple type="button" label="Novo"
+            <button pButton pRipple type="button" label="Novo" routerLink="/compliance/new"
               class="p-button-raised p-button-info p-button-lg p-mx-1"></button>
             <p-divider></p-divider>
           </div>
@@ -127,16 +127,18 @@
                 </p-dropdown>
               </div>
 
-              <div class="p-field p-col-12 p-md-6">
-                <label for="createdAt">Registado em</label>
-                <input id="createdAt" type="text" pInputText name="createdAt" [(ngModel)]="compliance.createdAt"
-                  disabled>
+              <div class="p-field p-col-12 p-md-3">
+                <label for="createdAt">Data de Registado</label>
+                <p-calendar id="createdAt" name="createdAt" [(ngModel)]="compliance.createdAt" [showTime]="true"
+                  [disabled]=true>
+                </p-calendar>
               </div>
 
-              <div class="p-field p-col-12 p-md-6">
-                <label for="updatedAt">Atualizado em</label>
-                <input id="updatedAt" type="text" pInputText name="updatedAt" [(ngModel)]="compliance.updatedAt"
-                  disabled>
+              <div class="p-field p-col-12 p-md-3">
+                <label for="updatedAt">Data de Atualização</label>
+                <p-calendar id="updatedAt" name="updatedAt" [(ngModel)]="compliance.updatedAt" [showTime]="true"
+                  [disabled]=true>
+                </p-calendar>
               </div>
             </div>
           </div>
@@ -147,6 +149,10 @@
             <p-tabView>
               <p-tabPanel header="ANEXOS">
                 <app-files [files]="compliance.files"></app-files>
+              </p-tabPanel>
+
+              <p-tabPanel header="HISTÓRICO DE AVALIAÇÃO">
+                <app-histories [histories]="compliance.histories"></app-histories>
               </p-tabPanel>
             </p-tabView>
           </div>
