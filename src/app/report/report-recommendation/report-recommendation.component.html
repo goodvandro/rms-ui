@@ -1,0 +1,137 @@
+<div class="p-grid">
+  <div class="p-col-12">
+    <h3>RELATÓRIO RESUMO DAS RECOMENDAÇÕES</h3>
+  </div>
+
+  <div class="p-col-12">
+    <p-card>
+      <form autocomplete="off" #f="ngForm" (ngSubmit)="read()">
+        <div class="p-fluid p-grid p-d-flex p-jc-start p-ai-center">
+          <div class="p-field p-col-4">
+            <span class="p-float-label">
+              <p-calendar class="p-inputtext-sm" selectionMode="range" inputId="range" dateFormat="dd/mm/yy"
+                name="dispatchedAt" [(ngModel)]="filter.dispatchedAt" [numberOfMonths]="2" [required]="true">
+              </p-calendar>
+              <label for="dispatchedAt">Período de corte (data de despacho/homologação)</label>
+            </span>
+          </div>
+        </div>
+
+        <div class="p-fluid p-grid p-d-flex p-jc-start p-ai-center">
+          <div class="p-field p-col">
+            <h5>Carácter das recomendações (optional)</h5>
+            <div class="p-formgroup-inline">
+              <div class="p-field-checkbox">
+                <p-radioButton name="recommendationCharacterSlug" value="criminal"
+                  [(ngModel)]="filter.recommendationCharacterSlug" inputId="recommendationCharacterSlug1">
+                </p-radioButton>
+                <label for="recommendationCharacterSlug1">Criminal</label>
+              </div>
+
+              <div class="p-field-checkbox">
+                <p-radioButton name="recommendationCharacterSlug" value="disciplinar"
+                  [(ngModel)]="filter.recommendationCharacterSlug" inputId="recommendationCharacterSlug2">
+                </p-radioButton>
+                <label for="recommendationCharacterSlug2">Disciplinar</label>
+              </div>
+
+              <div class="p-field-checkbox">
+                <p-radioButton name="recommendationCharacterSlug" value="procedimental"
+                  [(ngModel)]="filter.recommendationCharacterSlug" inputId="recommendationCharacterSlug3">
+                </p-radioButton>
+                <label for="recommendationCharacterSlug3">Procedimental</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-fluid p-grid p-d-flex p-jc-start p-ai-center">
+          <div class="p-field p-col">
+            <h5>Nível de risco (optional)</h5>
+            <div class="p-formgroup-inline">
+              <div class="p-field-checkbox">
+                <p-radioButton name="recommendationLevelRisk" value="muito_critico"
+                  [(ngModel)]="filter.recommendationLevelRisk" inputId="recommendationLevelRisk1"></p-radioButton>
+                <label for="recommendationLevelRisk1">Muito crítico</label>
+              </div>
+
+              <div class="p-field-checkbox">
+                <p-radioButton name="recommendationLevelRisk" value="critico"
+                  [(ngModel)]="filter.recommendationLevelRisk" inputId="recommendationLevelRisk2"></p-radioButton>
+                <label for="recommendationLevelRisk2">Crítico</label>
+              </div>
+
+              <div class="p-field-checkbox">
+                <p-radioButton name="recommendationLevelRisk" value="moderado"
+                  [(ngModel)]="filter.recommendationLevelRisk" inputId="recommendationLevelRisk3"></p-radioButton>
+                <label for="recommendationLevelRisk3">Moderado</label>
+              </div>
+
+              <div class="p-field-checkbox">
+                <p-radioButton name="recommendationLevelRisk" value="aceitavel"
+                  [(ngModel)]="filter.recommendationLevelRisk" inputId="recommendationLevelRisk4"></p-radioButton>
+                <label for="recommendationLevelRisk4">Aceitável</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-grid p-d-flex p-jc-start p-ai-center">
+          <div class="p-col-12">
+            <button pButton pRipple type="submit" label="Gerar" class="p-button-raised p-button-sm"
+              [disabled]="!f.valid || loadingFilter"></button>
+            <button pButton pRipple type="button" label="Limpar" (click)="clearFilter(f)"
+              class="p-button-text p-button-raised p-button-sm p-mx-1"></button>
+          </div>
+
+          <div class="p-field p-col-12 p-my-0 p-py-0">
+            <p-divider></p-divider>
+          </div>
+        </div>
+      </form>
+
+      <p-table [value]="reports" [paginator]="true" [rows]="filter.rows" [showCurrentPageReport]="true"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} linhas"
+        [rowsPerPageOptions]="[10,25,50, totalRecords]" [totalRecords]="totalRecords" [loading]="loading" [lazy]="true"
+        (onLazyLoad)="lazyLoad($event)">
+        <ng-template pTemplate="caption">
+          <div class="p-d-flex">
+            <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()"
+              class="p-button-success p-mr-2" pTooltip="XLS" tooltipPosition="bottom"></button>
+
+            <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()"
+              class="p-button-warning p-mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th [ngStyle]="{width:'8%'}">Nº Processo</th>
+            <th [ngStyle]="{width:'30%'}">Descrição da Ação de Auditoria</th>
+            <th>Data Env.</th>
+            <th>Total Rec.</th>
+            <th>Avaliadas</th>
+            <th>Cumpridas</th>
+            <th>Em Curso</th>
+            <th>Não Cumpridas</th>
+            <th>Não Avaliadas</th>
+            <th>Dias</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData>
+          <tr>
+            <td>{{rowData.auditProcessCode}}</td>
+            <td>{{rowData.auditDescription}}</td>
+            <td>{{rowData.auditReportedAt | date:'dd/MM/yyyy'}}</td>
+            <td>{{rowData.totalRecommendations}}</td>
+            <td>{{rowData.totalRecommendationsEvaluated}}</td>
+            <td>{{rowData.totalRecommendationsCompleted}}</td>
+            <td>{{rowData.totalRecommendationsOngoing}}</td>
+            <td>{{rowData.totalRecommendationsNotCompleted}}</td>
+            <td>{{rowData.totalRecommendationsNotEvaluated}}</td>
+            <td>{{rowData.days}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-card>
+  </div>
+</div>

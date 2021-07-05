@@ -89,6 +89,16 @@
         <li> <a routerLink="/activity/index">Atividades</a> </li>
       </ul>
     </li>
+
+    <li class='sub-menu'>
+      <a href='javascript:;'>
+        Relatórios
+        <div class='pi pi-angle-down right'></div>
+      </a>
+      <ul>
+        <li> <a routerLink="/report/recommendation">Recomendações</a> </li>
+      </ul>
+    </li>
   </ul>
 
   <ul *ngIf="!isAuditor()">

@@ -9,16 +9,15 @@ import { DividerModule } from "primeng/divider";
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+import { RadioButtonModule } from 'primeng/radiobutton';
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { TooltipModule } from 'primeng/tooltip';
-import { IndexComponent } from './index/index.component';
-import { NewComponent } from './new/new.component';
+import { ReportRecommendationComponent } from './report-recommendation/report-recommendation.component';
 import { AuditReportRouter } from './report.router';
-import { ShowComponent } from './show/show.component';
 
 @NgModule({
-  declarations: [IndexComponent, ShowComponent, NewComponent],
+  declarations: [ReportRecommendationComponent],
   imports: [
     CommonModule,
     AuditReportRouter,
@@ -33,7 +32,8 @@ import { ShowComponent } from './show/show.component';
     TabViewModule,
     CalendarModule,
     DropdownModule,
-    DialogModule
+    DialogModule,
+    RadioButtonModule
   ]
 })
 export class ReportModule { }

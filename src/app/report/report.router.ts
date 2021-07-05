@@ -1,23 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { IndexComponent } from './index/index.component';
-import { NewComponent } from './new/new.component';
-import { ShowComponent } from './show/show.component';
+import { ReportRecommendationComponent } from './report-recommendation/report-recommendation.component';
 
 const routes: Routes = [
   {
-    path: 'index',
-    component: IndexComponent
-  },
-
-  {
-    path: 'show/:id',
-    component: ShowComponent
-  },
-
-  {
-    path: 'new',
-    component: NewComponent
+    path: 'recommendation',
+    component: ReportRecommendationComponent
   },
 ]
 

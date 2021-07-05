@@ -21,8 +21,12 @@
     "@angular/platform-browser-dynamic": "~10.0.2",
     "@angular/router": "~10.0.2",
     "@auth0/angular-jwt": "^5.0.2",
+    "@types/file-saver": "^2.0.2",
     "chart.js": "^2.9.4",
+    "file-saver": "^2.0.5",
     "jquery": "^3.6.0",
+    "jspdf": "^2.3.1",
+    "jspdf-autotable": "^3.5.15",
     "moment": "^2.29.1",
     "ngx-toastr": "^13.2.1",
     "primeflex": "^2.0.0",
@@ -32,6 +36,7 @@
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "url-polyfill": "^1.1.12",
+    "xlsx": "^0.17.0",
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
