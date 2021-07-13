@@ -64,22 +64,22 @@ export class ReportRecommendationComponent implements OnInit {
     form.reset();
   }
 
-  exportPdf() {
-    var doc = new jsPDF('p', 'pt');
-    doc.autoTable(this.exportColumns, this.reports);
-    doc.save('reports.pdf');
+  // exportPdf() {
+  //   var doc = new jsPDF('p', 'pt');
+  //   doc.autoTable(this.exportColumns, this.reports);
+  //   doc.save('reports.pdf');
 
-    // import("jspdf").then(jsPDF => {
-    //   import("jspdf-autotable").then(() => {
-    //     const doc = new jsPDF.default('p', 'in', [0, 0]);
-    //     doc.autoTable({
-    //       head: [this.exportColumns],
-    //       body: [this.reports]
-    //     });
-    //     doc.save('reports.pdf');
-    //   })
-    // })
-  }
+  //   // import("jspdf").then(jsPDF => {
+  //   //   import("jspdf-autotable").then(() => {
+  //   //     const doc = new jsPDF.default('p', 'in', [0, 0]);
+  //   //     doc.autoTable({
+  //   //       head: [this.exportColumns],
+  //   //       body: [this.reports]
+  //   //     });
+  //   //     doc.save('reports.pdf');
+  //   //   })
+  //   // })
+  // }
 
   exportExcel() {
     import("xlsx").then(xlsx => {
