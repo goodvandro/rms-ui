@@ -7,9 +7,9 @@ export const app = {
 
 export const environment = {
   production: false,
-  apiUrl: `http://${app.testingHost}`,
+  apiUrl: `https://${app.testingHost}`,
   allowedDomains: [`${app.testingHost}`],
-  disallowedRoutes: [`http://${app.testingHost}/oauth/token`],
+  disallowedRoutes: [`https://${app.testingHost}/oauth/token`],
   basicAuthorization: 'Basic YW5ndWxhcjpAbmd1bEByMA=='
 
   // apiUrl: 'https://igf-api.herokuapp.com',
