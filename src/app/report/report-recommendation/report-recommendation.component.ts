@@ -21,9 +21,8 @@ export class ReportRecommendationComponent implements OnInit {
   totalRecords: number = 0;
   reports = [];
 
-  cols: any[];
-
-  exportColumns: any[];
+  cols = ['Code', 'Name', 'Dt. Env. Rel.', 'Total Rec.'];
+  headers = this.createHeaders(this.cols);
 
   constructor(
     private reportService: ReportService,
@@ -32,15 +31,21 @@ export class ReportRecommendationComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
+  }
 
-    this.cols = [
-      { field: 'auditProcessCode', header: 'Code' },
-      { field: 'auditDescription', header: 'Name' },
-      { field: 'auditReportedAt', header: 'Dt. Env. Rel.' },
-      { field: 'totalRecommendations', header: 'Total Rec.' }
-    ];
-
-    this.exportColumns = this.cols.map(col => ({ title: col.header, dataKey: col.field }));
+  createHeaders(keys) {
+    var result = [];
+    for (var i = 0; i < keys.length; i += 1) {
+      result.push({
+        'id': keys[i],
+        'name': keys[i],
+        'prompt': keys[i],
+        'width': 65,
+        'align': 'center',
+        'padding': 0
+      });
+    }
+    return result;
   }
 
   read(page = 0): void {
@@ -64,22 +69,19 @@ export class ReportRecommendationComponent implements OnInit {
     form.reset();
   }
 
-  // exportPdf() {
-  //   var doc = new jsPDF('p', 'pt');
-  //   doc.autoTable(this.exportColumns, this.reports);
-  //   doc.save('reports.pdf');
+  exportPdf() {
+    // var doc = new jsPDF('p', 'pt');
+    // doc.table(1, 1, this.reports, this.headers, { autoSize: true });
+    // doc.save('reports.pdf');
 
-  //   // import("jspdf").then(jsPDF => {
-  //   //   import("jspdf-autotable").then(() => {
-  //   //     const doc = new jsPDF.default('p', 'in', [0, 0]);
-  //   //     doc.autoTable({
-  //   //       head: [this.exportColumns],
-  //   //       body: [this.reports]
-  //   //     });
-  //   //     doc.save('reports.pdf');
-  //   //   })
-  //   // })
-  // }
+    // import("jspdf").then(jsPDF => {
+    //   import("jspdf-autotable").then(() => {
+    //     const doc = new jsPDF.default('p', 'in', [0, 0]);
+    //     doc.autoTable(this.exportColumns, this.reports);
+    //     doc.save('reports.pdf');
+    //   })
+    // })
+  }
 
   exportExcel() {
     import("xlsx").then(xlsx => {
