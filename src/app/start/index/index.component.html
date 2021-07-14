@@ -1,37 +1,37 @@
 <div class="p-grid statistic-container">
   <div class="p-col-4">
     <p-card>
-      <span>Recomendações indicadas</span>
-      <h3>390</h3>
+      <span>Auditorias</span>
+      <h3> {{basicInfo.totalAudits}} </h3>
     </p-card>
   </div>
 
   <div class="p-col-4">
     <p-card>
-      <span>Auditorias realizadas</span>
-      <h3>390</h3>
+      <span>Recomendações</span>
+      <h3> {{basicInfo.totalRecommendations}} </h3>
     </p-card>
   </div>
 
   <div class="p-col-4">
     <p-card>
-      <span>Cumprimentos realizados</span>
-      <h3>390</h3>
+      <span>Cumprimentos</span>
+      <h3> {{basicInfo.totalCompliances}} </h3>
     </p-card>
   </div>
 </div>
 
 <div class="p-col-12">
   <div class="p-grid">
-    <div class="p-col-6">
-      <p-card>
-        <p-chart type="doughnut" [data]="data"></p-chart>
+    <div class="p-col-5">
+      <p-card subheader="Dados das Recomendações Deste Mês">
+        <p-chart type="doughnut" [data]="monthDataSet"></p-chart>
       </p-card>
     </div>
 
-    <div class="p-col-6">
-      <p-card>
-        <p-chart type="bar" [data]="basicData"></p-chart>
+    <div class="p-col-7">
+      <p-card subheader="Dados das Recomendações do Ano Corrente">
+        <p-chart type="bar" [data]="yearDataSet"></p-chart>
       </p-card>
     </div>
   </div>

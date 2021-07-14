@@ -56,6 +56,21 @@ export class ReportService {
       });
   }
 
+  async getBasicInfo(): Promise<any> {
+    return this.http.get<any>(`${this.API_URL}/report/basicInfo`)
+      .toPromise()
+  }
+
+  async getByCurrentMonth(): Promise<any> {
+    return this.http.get<any>(`${this.API_URL}/report/recommendation/byCurrentMonth`)
+      .toPromise()
+  }
+
+  async getByCurrentYear(): Promise<any> {
+    return this.http.get<any>(`${this.API_URL}/report/recommendation/byCurrentYear`)
+      .toPromise()
+  }
+
   private convertReportRecommendationField(reports: ReportRecommendation[]) {
     for (const report of reports) {
 
