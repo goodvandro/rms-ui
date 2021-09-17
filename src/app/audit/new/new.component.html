@@ -61,21 +61,29 @@
             </p-dropdown>
           </div>
 
-          <div class="p-field p-col-12 p-md-6">
-            <label for="groupWork">Grupo de trabalho</label>
-            <p-dropdown id="groupWork" [options]="groupsWork" name="groupWork" [(ngModel)]="audit.groupWork.id"
-              placeholder="Selecione" required>
-            </p-dropdown>
+          <div class="p-field p-col-12 p-md-3">
+            <label for="dispatchedAt">Prazo de Abrangência</label>
+            <p-calendar id="deadlineScope" selectionMode="range" name="deadlineScope" [numberOfMonths]="2"
+              [(ngModel)]="audit.deadlineScope">
+            </p-calendar>
           </div>
 
           <div class="p-field p-col-12 p-md-3">
             <label for="dispatchedAt">Data de despacho (Homologação)</label>
-            <p-calendar id="dispatchedAt" name="dispatchedAt" [(ngModel)]="audit.dispatchedAt"></p-calendar>
+            <p-calendar id="dispatchedAt" name="dispatchedAt" [(ngModel)]="audit.dispatchedAt" [required]="true">
+            </p-calendar>
           </div>
 
           <div class="p-field p-col-12 p-md-3">
             <label for="reportedAt">Data de envio (Relatório Final)</label>
             <p-calendar id="reportedAt" name="reportedAt" [(ngModel)]="audit.reportedAt"></p-calendar>
+          </div>
+
+          <div class="p-field p-col-12 p-md-6">
+            <label for="groupWork">Equipa de trabalho</label>
+            <p-dropdown id="groupWork" [options]="groupsWork" name="groupWork" [(ngModel)]="audit.groupWork.id"
+              placeholder="Selecione" required>
+            </p-dropdown>
           </div>
 
           <div class="p-field p-col-12 p-md-3">

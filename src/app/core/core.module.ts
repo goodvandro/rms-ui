@@ -1,3 +1,4 @@
+import { AuditHistoryService } from './../audit-history/audit-history.service';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import localePt from '@angular/common/locales/pt';
@@ -139,6 +140,7 @@ registerLocaleData(localePt);
     AuditClientService,
     ComplianceClientService,
     RecommendationClientService,
+    AuditHistoryService,
   ]
 })
 export class CoreModule { }

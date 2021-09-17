@@ -73,7 +73,7 @@ export class NewComponent implements OnInit {
           value: status.id,
           label: status.name
         }));
-        this.loadDefaultStatus(result);
+        // this.loadDefaultStatus(result);
       });
   }
 
@@ -85,17 +85,25 @@ export class NewComponent implements OnInit {
       })))
   }
 
-  loadDefaultStatus(statuses: AuditStatus[]) {
-    statuses.forEach((status) => {
-      if (status.slug === 'pendent') {
-        this.audit.status = status;
-      }
-    })
-  }
+  // loadDefaultStatus(statuses: AuditStatus[]) {
+  //   statuses.forEach((status) => {
+  //     if (status.slug === 'pendent') {
+  //       this.audit.status = status;
+  //     }
+  //   })
+  // }
 
   create(): void {
     this.loading = true;
-    delete this.audit.processCode;
+
+    if (this.audit.deadlineScope) {
+      if (!!this.audit.deadlineScope[0]) {
+        this.audit.deadlineScopeStart = this.audit.deadlineScope[0]
+      }
+      if (!!this.audit.deadlineScope[1]) {
+        this.audit.deadlineScopeEnd = this.audit.deadlineScope[1]
+      }
+    }
 
     this.auditService.create(this.audit)
       .then((result) => {

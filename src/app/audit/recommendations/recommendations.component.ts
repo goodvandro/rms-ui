@@ -8,9 +8,17 @@ import { Recommendation } from 'src/app/models/recommendation';
 })
 export class RecommendationsComponent implements OnInit {
   @Input() recommendations: Recommendation[] = [];
+  display: boolean = false;
+
+  recommendation = new Recommendation();
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  showDialog(data: Recommendation) {
+    this.recommendation = data;
+    this.display = true;
   }
 }

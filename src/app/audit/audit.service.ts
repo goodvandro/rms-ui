@@ -25,6 +25,8 @@ export class AuditService {
 
   async create(audit: Audit): Promise<Audit> {
     delete audit.entityAuditor;
+    delete audit.processCode;
+    delete audit.deadlineScope;
 
     return this.http.post<Audit>(this.API_URL, audit)
       .toPromise();
@@ -83,10 +85,17 @@ export class AuditService {
     for (const audit of audits) {
       audit.processCode = `${audit.year}.${audit.entityAudited.initial}.${audit.number}`;
 
-      audit.dispatchedAt = moment(audit.dispatchedAt, 'YYYY-MM-DD').toDate();
-      audit.reportedAt = moment(audit.reportedAt, 'YYYY-MM-DD').toDate();
-      audit.createdAt = moment(audit.createdAt, 'YYYY-MM-DD hh:mm:ss').toDate();
-      audit.updatedAt = moment(audit.updatedAt, 'YYYY-MM-DD hh:mm:ss').toDate();
+      if (audit.dispatchedAt)
+        audit.dispatchedAt = moment(audit.dispatchedAt, 'YYYY-MM-DD').toDate();
+
+      if (audit.reportedAt)
+        audit.reportedAt = moment(audit.reportedAt, 'YYYY-MM-DD').toDate();
+
+      if (audit.createdAt)
+        audit.createdAt = moment(audit.createdAt, 'YYYY-MM-DD hh:mm:ss').toDate();
+
+      if (audit.updatedAt)
+        audit.updatedAt = moment(audit.updatedAt, 'YYYY-MM-DD hh:mm:ss').toDate();
     }
   }
 

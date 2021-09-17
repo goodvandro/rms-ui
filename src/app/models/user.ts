@@ -7,6 +7,7 @@ export class User {
 
   password: string;
   passwordConfirm: string;
+  // userCodConfirm: string;
 
   createdAt: Date;
   updatedAt: Date;

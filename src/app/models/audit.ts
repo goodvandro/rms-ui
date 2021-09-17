@@ -18,6 +18,10 @@ export class Audit {
   createdAt: Date;
   updatedAt: Date;
 
+  deadlineScopeStart: Date;
+  deadlineScopeEnd: Date;
+  deadlineScope: Date[]
+
   userCreatedId: number;
   userUpdatedId: number;
 

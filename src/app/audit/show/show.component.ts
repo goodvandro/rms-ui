@@ -1,17 +1,25 @@
+import { AuditStatusHistory } from './../../models/audit-status-history';
+import { AuditHistoryService } from './../../audit-history/audit-history.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { PrimeIcons } from 'primeng/api';
 import { AuditStatus } from 'src/app/models/audit-status';
 import { AuditType } from 'src/app/models/audit-type';
 import { Entity } from 'src/app/models/entity';
 import { GroupWork } from 'src/app/models/group-work';
-import { AuditService } from '../audit.service';
+import { AuditService } from './../audit.service';
 import { AuditStatusService } from './../../audit-status/audit-status.service';
 import { AuditTypeService } from './../../audit-type/audit-type.service';
 import { EntityService } from './../../entity/entity.service';
 import { ErrorService } from './../../error/error.service';
 import { GroupWorkService } from './../../group-work/group-work.service';
 import { Audit } from './../../models/audit';
+
+type StatusHistory = {
+  status: string;
+  date: Date;
+}
 
 @Component({
   selector: 'app-show',
@@ -34,43 +42,56 @@ export class ShowComponent implements OnInit {
     { value: '021', label: '2021' }
   ];
 
+  auditStatusHistories: StatusHistory[];
+
   constructor(
     private auditService: AuditService,
     private auditTypeService: AuditTypeService,
     private auditStatusService: AuditStatusService,
     private entityService: EntityService,
     private groupWorkService: GroupWorkService,
+    private auditHistoryService: AuditHistoryService,
     private errorService: ErrorService,
     private toastr: ToastrService,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.auditStatusHistories = [
+      { status: 'Fechado', date: null },
+      { status: 'Concluído', date: null },
+      { status: 'Relatório enviado', date: null },
+      { status: 'Homologação', date: null },
+      { status: 'Realizada', date: null },
+      { status: 'Registo', date: null }
+    ];
+
     this.dropdownEntities();
     this.dropdownTypes();
     this.dropdownStatuses();
     this.dropdownGroupsWork();
     this.getById();
+    this.getHistoryStatusByAuditId();
   }
 
-  async dropdownEntities() {
-    await this.entityService.readAll()
+  dropdownEntities() {
+    this.entityService.readAll()
       .then((result) => this.entities = result.map((entity: Entity) => ({
         value: entity.id,
         label: entity.name
       })))
   }
 
-  async dropdownTypes() {
-    await this.auditTypeService.readAll()
+  dropdownTypes() {
+    this.auditTypeService.readAll()
       .then((result) => this.types = result.map((type: AuditType) => ({
         value: type.id,
         label: type.name
       })))
   }
 
-  async dropdownStatuses() {
-    await this.auditStatusService.readAll()
+  dropdownStatuses() {
+    this.auditStatusService.readAll()
       .then((result) => {
         this.statuses = result.map((status: AuditStatus) => ({
           value: status.id,
@@ -80,7 +101,7 @@ export class ShowComponent implements OnInit {
   }
 
   dropdownGroupsWork() {
-    this.groupWorkService.readAll()
+    return this.groupWorkService.readAll()
       .then((result) => this.groupsWork = result.map((group: GroupWork) => ({
         value: group.id,
         label: group.name
@@ -103,5 +124,29 @@ export class ShowComponent implements OnInit {
       })
       .catch((error) => this.errorService.handle(error))
       .finally(() => this.loading = false);
+  }
+
+  getHistoryStatusByAuditId(): void {
+    this.auditHistoryService.getByAuditId(this.id)
+      .then((result) => {
+        let histories: StatusHistory[];
+
+        histories = result.map((history) => ({
+          status: history.auditStatusHistoryType.name,
+          date: history.date,
+        }))
+
+        this.auditStatusHistories.forEach((auditStatusHistory, i) => {
+          histories.forEach((statusHistory, y) => {
+            if (auditStatusHistory.status === statusHistory.status) {
+              console.log(this.auditStatusHistories[i].date)
+              console.log(histories[y].date)
+              this.auditStatusHistories[i].date = histories[y].date;
+            }
+          })
+        })
+
+        console.log(this.auditStatusHistories)
+      })
   }
 }

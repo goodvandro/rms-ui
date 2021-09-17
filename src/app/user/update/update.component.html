@@ -76,6 +76,12 @@
               <app-fast-new [(addresses)]="addresses"></app-fast-new>
             </div>
           </div>
+
+          <div class="p-field p-col-12 p-md-4">
+            <label for="passwordConfirm">Código de Confirmação</label>
+            <input id="passwordConfirm" type="text" pInputText name="passwordConfirm"
+              [(ngModel)]="user.passwordConfirm">
+          </div>
         </div>
       </form>
     </p-card>

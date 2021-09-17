@@ -12,6 +12,7 @@ export class Recommendation {
   constatation: string;
   amount: number;
 
+  complianceDeadline: Date;
   createdAt: Date;
   updatedAt: Date;
 

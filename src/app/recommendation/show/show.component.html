@@ -69,17 +69,11 @@
           <div class="p-col-12">
             <div class="p-grid">
               <div class="p-col-12">
-                <h4>REGISTO DA CONSTATAÇÃO E DETALHES DA RECOMENDAÇÃO</h4>
+                <h4>INFORMAÇÕES DA CONCLUSÃO E DETALHES DA RECOMENDAÇÃO</h4>
               </div>
 
-              <!-- <div class="p-field p-col-12 p-md-9">
-                <label for="description">Descrição da recomendação</label>
-                <input id="description" type="text" pInputText name="description"
-                  [(ngModel)]="recommendation.description">
-              </div> -->
-
               <div class="p-field p-col-12 p-md-6">
-                <label for="constatation">Observação</label>
+                <label for="constatation">Conclusão</label>
                 <p-editor name="constatation" [(ngModel)]="recommendation.constatation" [style]="{'height':'120px'}">
                   <ng-template pTemplate="header">
                     <span class="ql-formats">
@@ -136,6 +130,13 @@
                 <p-dropdown id="levelRisk" [options]="levelsRisk" name="levelRisk"
                   [(ngModel)]="recommendation.levelRisk.id" placeholder="Selecione">
                 </p-dropdown>
+              </div>
+
+              <div class="p-field p-col-12 p-md-3">
+                <label for="complianceDeadline">Prazo para Cumprimento</label>
+                <p-calendar id="complianceDeadline" name="complianceDeadline"
+                  [(ngModel)]="recommendation.complianceDeadline" [showTime]="true">
+                </p-calendar>
               </div>
 
               <div class="p-field p-col-12 p-md-3">

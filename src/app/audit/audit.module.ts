@@ -8,22 +8,24 @@ import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from "primeng/divider";
 import { DropdownModule } from 'primeng/dropdown';
 import { EditorModule } from 'primeng/editor';
+import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
+import { TimelineModule } from 'primeng/timeline';
 import { TooltipModule } from 'primeng/tooltip';
 import { GroupWorkModule } from '../group-work/group-work.module';
 import { AuditRouter } from './audit.router';
 import { ClientIndexComponent } from './client-index/client-index.component';
+import { ClientShowComponent } from './client-show/client-show.component';
 import { FilesComponent } from './files/files.component';
 import { IndexComponent } from './index/index.component';
 import { NewComponent } from './new/new.component';
+import { RecommendationsComponent } from './recommendations/recommendations.component';
 import { ReportsComponent } from './reports/reports.component';
 import { ShowComponent } from './show/show.component';
-import { ClientShowComponent } from './client-show/client-show.component';
-import { RecommendationsComponent } from './recommendations/recommendations.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { RecommendationsComponent } from './recommendations/recommendations.comp
     DropdownModule,
     DialogModule,
     EditorModule,
-    ProgressBarModule
+    ProgressBarModule,
+    InputNumberModule,
+    TimelineModule
   ]
 })
 export class AuditModule { }
