@@ -62,7 +62,7 @@ export class ShowComponent implements OnInit {
       { status: 'Concluído', date: null },
       { status: 'Relatório enviado', date: null },
       { status: 'Homologação', date: null },
-      { status: 'Realizada', date: null },
+      { status: 'Realizado', date: null },
       { status: 'Registo', date: null }
     ];
 
@@ -100,12 +100,12 @@ export class ShowComponent implements OnInit {
       });
   }
 
-  dropdownGroupsWork() {
-    return this.groupWorkService.readAll()
-      .then((result) => this.groupsWork = result.map((group: GroupWork) => ({
-        value: group.id,
-        label: group.name
-      })))
+  async dropdownGroupsWork() {
+    const result_1 = await this.groupWorkService.readAll();
+    return this.groupsWork = result_1.map((group: GroupWork) => ({
+      value: group.id,
+      label: group.name
+    }));
   }
 
   getById(): void {
@@ -139,8 +139,6 @@ export class ShowComponent implements OnInit {
         this.auditStatusHistories.forEach((auditStatusHistory, i) => {
           histories.forEach((statusHistory, y) => {
             if (auditStatusHistory.status === statusHistory.status) {
-              console.log(this.auditStatusHistories[i].date)
-              console.log(histories[y].date)
               this.auditStatusHistories[i].date = histories[y].date;
             }
           })
