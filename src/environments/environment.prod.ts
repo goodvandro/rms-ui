@@ -14,8 +14,8 @@ export const environment = {
   // disallowedRoutes: ['https://igf-api.herokuapp.com/oauth/token'],
 
   production: true,
-  apiUrl: `http://${app.stagingHost}`,
-  allowedDomains: [`${app.stagingHost}`],
-  disallowedRoutes: [`http://${app.stagingHost}/oauth/token`],
+  apiUrl: `http://${app.testingHost}`,
+  allowedDomains: [`${app.testingHost}`],
+  disallowedRoutes: [`http://${app.testingHost}/oauth/token`],
   basicAuthorization: 'Basic YW5ndWxhcjpAbmd1bEByMA=='
 };
