@@ -16,6 +16,7 @@ import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { TimelineModule } from 'primeng/timeline';
 import { TooltipModule } from 'primeng/tooltip';
+import { SidebarModule } from 'primeng/sidebar';
 import { GroupWorkModule } from '../group-work/group-work.module';
 import { AuditRouter } from './audit.router';
 import { ClientIndexComponent } from './client-index/client-index.component';
@@ -57,7 +58,8 @@ import { ShowComponent } from './show/show.component';
     EditorModule,
     ProgressBarModule,
     InputNumberModule,
-    TimelineModule
+    TimelineModule,
+    SidebarModule
   ]
 })
 export class AuditModule { }

@@ -4,14 +4,7 @@ import * as moment from 'moment';
 import { environment } from 'src/environments/environment';
 import { AppHttClient } from './../auth/app-http-client';
 import { Audit } from './../models/audit';
-
-export class AuditFilter {
-  page: number = 0;
-  rows: number = 10;
-
-  number: string;
-  year: number;
-}
+import { AuditFilter, getFilterParams } from './audit.filter.resource';
 
 @Injectable({
   providedIn: 'root'
@@ -33,11 +26,11 @@ export class AuditService {
   }
 
   async read(filter: AuditFilter): Promise<any> {
-    let params = new HttpParams();
-    params = params.append('page', filter.page.toString());
-    params = params.append('size', filter.rows.toString());
+    const params: HttpParams = getFilterParams(filter);
 
-    return this.http.get<any>(this.API_URL, { params })
+    return this.http.get<any>(this.API_URL, {
+      params
+    })
       .toPromise()
       .then((result) => {
         const audits: Audit[] = result.content;

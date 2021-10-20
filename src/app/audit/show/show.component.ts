@@ -35,6 +35,7 @@ export class ShowComponent implements OnInit {
   entities = [];
   statuses = [];
   groupsWork = [];
+
   years = [
     { value: '018', label: '2018' },
     { value: '019', label: '2019' },
