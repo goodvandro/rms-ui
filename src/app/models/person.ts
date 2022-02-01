@@ -1,4 +1,4 @@
-import { Address } from "./address";
+// import { Address } from "./address";
 import { Entity } from "./entity";
 
 export class Person {
@@ -9,12 +9,16 @@ export class Person {
   bi: string;
   email: string;
 
+  city: string;
+  district: string;
+  street: string;
+
   createdAt: Date;
   updatedAt: Date;
 
   userCreatedId: number;
   userUpdatedId: number;
 
-  address = new Address();
+  // address = new Address();
   entity = new Entity();
 }

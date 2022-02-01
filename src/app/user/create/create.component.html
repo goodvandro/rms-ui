@@ -64,23 +64,40 @@
             </p-dropdown>
           </div>
 
-          <div class="p-field p-col-12 p-md-4">
+          <div class="p-field p-col-12 p-md-8">
             <label for="entityAudited">Entidade</label>
             <p-dropdown id="entityAudited" [options]="entities" name="entity" [(ngModel)]="user.person.entity"
               placeholder="Selecione">
             </p-dropdown>
           </div>
 
+          <!-- <div class="p-field p-col-12 p-md-4">
+                  <label for="address">
+                    Endereço <span class="span-required">*</span>
+                  </label>
+                  <div class="p-inputgroup">
+                    <p-dropdown id="address" [options]="addresses" name="address" [(ngModel)]="user.person.address.id"
+                      placeholder="Selecione" [ngStyle]="{width: '100%'}" [required]="true">
+                    </p-dropdown>
+                    <app-fast-new [(addresses)]="addresses"></app-fast-new>
+                  </div>
+                </div> -->
+        </div>
+
+        <div class="p-fluid p-formgrid p-grid">
           <div class="p-field p-col-12 p-md-4">
-            <label for="address">
-              Endereço <span class="span-required">*</span>
-            </label>
-            <div class="p-inputgroup">
-              <p-dropdown id="address" [options]="addresses" name="address" [(ngModel)]="user.person.address.id"
-                placeholder="Selecione" [ngStyle]="{width: '100%'}" [required]="true">
-              </p-dropdown>
-              <app-fast-new [(addresses)]="addresses"></app-fast-new>
-            </div>
+            <label for="district">Distrito</label>
+            <input id="district" type="text" pInputText name="district" [(ngModel)]="user.person.district">
+          </div>
+
+          <div class="p-field p-col-12 p-md-4">
+            <label for="city">Cidade</label>
+            <input id="city" type="text" pInputText name="city" [(ngModel)]="user.person.city">
+          </div>
+
+          <div class="p-field p-col-12 p-md-4">
+            <label for="street">Rua</label>
+            <input id="street" type="text" pInputText name="street" [(ngModel)]="user.person.street">
           </div>
         </div>
       </form>

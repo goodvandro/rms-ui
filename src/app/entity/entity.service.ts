@@ -1,5 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import * as moment from 'moment';
 import { environment } from 'src/environments/environment';
 import { AppHttClient } from './../auth/app-http-client';
 import { Entity } from './../models/entity';
@@ -42,50 +43,70 @@ export class EntityService {
 
   async update(id: number, entity: Entity): Promise<Entity> {
     return this.http.put<Entity>(`${this.API_URL}`, entity)
-      .toPromise();
+      .toPromise()
+      .then((result => {
+        const entity = result as Entity;
+        this.convertField([entity]);
+        return entity;
+      }))
   }
 
   async getById(id: number): Promise<Entity> {
     return this.http.get<Entity>(`${this.API_URL}/${id}`)
       .toPromise()
+      .then((result => {
+        const entity = result as Entity;
+        this.convertField([entity]);
+        return entity;
+      }))
   }
 
-  JSON() {
-    return [
-      {
-        id: 1,
-        name: 'Inspeção Geral das Finanças',
-        initial: 'IGF',
-        isAuditor: true,
-        address: {
-          id: 1,
-          city: 'São Tomé',
-          district: 'Água Grande',
-          street: 'Rua 3',
-        },
-        level: {
-          id: 1,
-          name: 'Central'
-        },
-        createdAt: new Date()
-      },
-      {
-        id: 2,
-        name: 'Direção do Comércio',
-        initial: 'DA',
-        isAuditor: false,
-        address: {
-          id: 1,
-          city: 'São Tomé',
-          district: 'Água Grande',
-          street: 'Rua 3',
-        },
-        level: {
-          id: 1,
-          name: 'Central'
-        },
-        createdAt: new Date()
-      }
-    ]
+  private convertField(entities: Entity[]) {
+    for (const entity of entities) {
+      if (entity.createdAt)
+        entity.createdAt = moment(entity.createdAt, 'YYYY-MM-DD hh:mm:ss').toDate();
+
+      if (entity.updatedAt)
+        entity.updatedAt = moment(entity.updatedAt, 'YYYY-MM-DD hh:mm:ss').toDate();
+    }
   }
+
+  // JSON() {
+  //   return [
+  //     {
+  //       id: 1,
+  //       name: 'Inspeção Geral das Finanças',
+  //       initial: 'IGF',
+  //       isAuditor: true,
+  //       address: {
+  //         id: 1,
+  //         city: 'São Tomé',
+  //         district: 'Água Grande',
+  //         street: 'Rua 3',
+  //       },
+  //       level: {
+  //         id: 1,
+  //         name: 'Central'
+  //       },
+  //       createdAt: new Date()
+  //     },
+  //     {
+  //       id: 2,
+  //       name: 'Direção do Comércio',
+  //       initial: 'DA',
+  //       isAuditor: false,
+  //       address: {
+  //         id: 1,
+  //         city: 'São Tomé',
+  //         district: 'Água Grande',
+  //         street: 'Rua 3',
+  //       },
+  //       level: {
+  //         id: 1,
+  //         name: 'Central'
+  //       },
+  //       createdAt: new Date()
+  //     }
+  //   ]
+  // }
 }

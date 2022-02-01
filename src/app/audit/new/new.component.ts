@@ -12,6 +12,7 @@ import { EntityService } from './../../entity/entity.service';
 import { ErrorService } from './../../error/error.service';
 import { GroupWorkService } from './../../group-work/group-work.service';
 import { Audit } from './../../models/audit';
+import { Message, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-new',
@@ -32,6 +33,8 @@ export class NewComponent implements OnInit {
     { value: 2019, label: '2019' },
   ];
 
+  msgs: Message[];
+
   constructor(
     private auditService: AuditService,
     private auditTypeService: AuditTypeService,
@@ -44,11 +47,21 @@ export class NewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.show();
     this.dropdownEntities();
     this.dropdownTypes();
     this.dropdownStatuses();
     this.dropdownGroupsWork();
   }
+
+  show() {
+    this.msgs.push({ severity: 'info', summary: 'Info Message', detail: 'PrimeNG rocks' });
+  }
+
+  hide() {
+    this.msgs = [];
+  }
+
 
   async dropdownEntities() {
     await this.entityService.readAll()

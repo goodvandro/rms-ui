@@ -24,6 +24,9 @@ export const getFilterParams = (filter: AuditFilter): HttpParams => {
   if (filter.processCode)
     params = params.append('processCode', filter.processCode);
 
+  if (filter.description)
+    params = params.append('description', filter.description);
+
   if (filter.number)
     params = params.append('number', filter.number);
 

@@ -8,7 +8,7 @@ import { UserService } from '../user.service';
 import { AddressService } from './../../address/address.service';
 import { EntityService } from './../../entity/entity.service';
 import { GroupService } from './../../group/group.service';
-import { Address } from './../../models/address';
+// import { Address } from './../../models/address';
 import { Group } from './../../models/group';
 
 @Component({
@@ -26,7 +26,7 @@ export class UpdateComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private addressService: AddressService,
+    // private addressService: AddressService,
     private groupService: GroupService,
     private entityService: EntityService,
     private errorService: ErrorService,
@@ -36,7 +36,7 @@ export class UpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.dropdownEntities();
-    this.dropdownAddresses();
+    // this.dropdownAddresses();
     this.dropdownGroups();
     this.getById(this.id);
   }
@@ -50,14 +50,14 @@ export class UpdateComponent implements OnInit {
       .catch((error) => this.errorService.handle(error))
   }
 
-  dropdownAddresses(): void {
-    this.addressService.readAll()
-      .then(result => this.addresses = result.map((address: Address) => ({
-        value: address.id,
-        label: `${address.street}, ${address.city}, ${address.district}`
-      })))
-      .catch((error) => this.errorService.handle(error))
-  }
+  // dropdownAddresses(): void {
+  //   this.addressService.readAll()
+  //     .then(result => this.addresses = result.map((address: Address) => ({
+  //       value: address.id,
+  //       label: `${address.street}, ${address.city}, ${address.district}`
+  //     })))
+  //     .catch((error) => this.errorService.handle(error))
+  // }
 
   dropdownEntities() {
     this.entityService.readAll()

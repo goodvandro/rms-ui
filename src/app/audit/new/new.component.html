@@ -22,6 +22,10 @@
         </div>
 
         <div class="p-fluid p-formgrid p-grid">
+          <div class="p-col-12">
+            <p-messages [(value)]="msgs"></p-messages>
+          </div>
+
           <div class="p-field p-col-12 p-md-2">
             <label for="processCode">Código do processo</label>
             <input id="processCode" type="text" pInputText name="processCode" name="processCode"
@@ -70,7 +74,7 @@
 
           <div class="p-field p-col-12 p-md-3">
             <label for="dispatchedAt">Data de despacho (Homologação)</label>
-            <p-calendar id="dispatchedAt" name="dispatchedAt" [(ngModel)]="audit.dispatchedAt" [required]="true">
+            <p-calendar id="dispatchedAt" name="dispatchedAt" [(ngModel)]="audit.dispatchedAt">
             </p-calendar>
           </div>
 
@@ -86,7 +90,7 @@
             </p-dropdown>
           </div>
 
-          <div class="p-field p-col-12 p-md-3">
+          <!-- <div class="p-field p-col-12 p-md-3">
             <label for="createdAt">Data de Registado</label>
             <p-calendar id="createdAt" name="createdAt" [(ngModel)]="audit.createdAt" [disabled]="true"></p-calendar>
           </div>
@@ -94,7 +98,7 @@
           <div class="p-field p-col-12 p-md-3">
             <label for="updatedAt">Data de atualização</label>
             <p-calendar id="updatedAt" name="updatedAt" [(ngModel)]="audit.updatedAt" [disabled]="true"></p-calendar>
-          </div>
+          </div> -->
         </div>
       </form>
     </p-card>

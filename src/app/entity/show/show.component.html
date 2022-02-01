@@ -38,28 +38,39 @@
           </div>
 
           <div class="p-field p-col-12 p-md-6">
-            <label for="address">Endereço</label>
-            <div class="p-inputgroup">
-              <p-dropdown id="address" [options]="addresses" name="address" [(ngModel)]="entity.address"
-                placeholder="Selecione" [ngStyle]="{width: '100%'}" [required]="true">
-              </p-dropdown>
-              <app-fast-new [(addresses)]="addresses"></app-fast-new>
-            </div>
+            <label for="isAuditor">Auditora</label><br>
+            <p-inputSwitch id="isAuditor" name="isAuditor" [(ngModel)]="entity.auditor"></p-inputSwitch>
           </div>
+        </div>
 
+        <div class="p-fluid p-formgrid p-grid">
           <div class="p-field p-col-12 p-md-6">
             <label for="createdAt">Registado em</label>
-            <input id="createdAt" type="text" pInputText name="createdAt" [(ngModel)]="entity.createdAt" disabled>
+            <p-calendar id="createdAt" name="createdAt" [(ngModel)]="entity.createdAt" [showTime]="true" disabled>
+            </p-calendar>
           </div>
 
           <div class="p-field p-col-12 p-md-6">
             <label for="updatedAt">Atualizado em</label>
-            <input id="updatedAt" type="text" pInputText name="updatedAt" [(ngModel)]="entity.updatedAt" disabled>
+            <p-calendar id="updatedAt" name="updatedAt" [(ngModel)]="entity.updatedAt" [showTime]="true" disabled>
+            </p-calendar>
+          </div>
+        </div>
+
+        <div class="p-fluid p-formgrid p-grid">
+          <div class="p-field p-col-12 p-md-4">
+            <label for="district">Distrito</label>
+            <input id="district" type="text" pInputText name="district" [(ngModel)]="entity.district">
           </div>
 
-          <div class="p-field p-col-12 p-md-6">
-            <label for="isAuditor">Auditora</label><br>
-            <p-inputSwitch id="isAuditor" name="isAuditor" [(ngModel)]="entity.auditor"></p-inputSwitch>
+          <div class="p-field p-col-12 p-md-4">
+            <label for="city">Cidade</label>
+            <input id="city" type="text" pInputText name="city" [(ngModel)]="entity.city">
+          </div>
+
+          <div class="p-field p-col-12 p-md-4">
+            <label for="street">Rua</label>
+            <input id="street" type="text" pInputText name="street" [(ngModel)]="entity.street">
           </div>
         </div>
       </form>

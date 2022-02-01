@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user';
-import { AddressService } from './../../address/address.service';
+// import { AddressService } from './../../address/address.service';
 import { EntityService } from './../../entity/entity.service';
 import { ErrorService } from './../../error/error.service';
 import { GroupService } from './../../group/group.service';
-import { Address } from './../../models/address';
+// import { Address } from './../../models/address';
 import { Entity } from './../../models/entity';
 import { Group } from './../../models/group';
 import { UserService } from './../user.service';
@@ -25,7 +25,7 @@ export class CreateComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private addressService: AddressService,
+    // private addressService: AddressService,
     private entityService: EntityService,
     private groupService: GroupService,
     private errorService: ErrorService,
@@ -34,7 +34,7 @@ export class CreateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.dropdownAddresses();
+    // this.dropdownAddresses();
     this.dropdownGroups();
     this.dropdownEntities();
   }
@@ -50,14 +50,14 @@ export class CreateComponent implements OnInit {
       .catch((error) => this.errorService.handle(error))
   }
 
-  dropdownAddresses(): void {
-    this.addressService.readAll()
-      .then(result => this.addresses = result.map((element: Address) => ({
-        value: element.id,
-        label: `${element.street}, ${element.city}, ${element.district}`
-      })))
-      .catch((error) => this.errorService.handle(error))
-  }
+  // dropdownAddresses(): void {
+  //   this.addressService.readAll()
+  //     .then(result => this.addresses = result.map((element: Address) => ({
+  //       value: element.id,
+  //       label: `${element.street}, ${element.city}, ${element.district}`
+  //     })))
+  //     .catch((error) => this.errorService.handle(error))
+  // }
 
   dropdownEntities() {
     this.entityService.readAll()

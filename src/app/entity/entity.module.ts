@@ -2,9 +2,11 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
 import { DividerModule } from "primeng/divider";
 import { DropdownModule } from 'primeng/dropdown';
+import { FieldsetModule } from 'primeng/fieldset';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
@@ -37,7 +39,9 @@ import { ShowComponent } from './show/show.component';
     TooltipModule,
     DropdownModule,
     InputSwitchModule,
-    ProgressBarModule
+    ProgressBarModule,
+    FieldsetModule,
+    CalendarModule
   ]
 })
 export class EntityModule { }

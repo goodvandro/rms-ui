@@ -27,28 +27,29 @@
               <div class="p-grid">
                 <div class="p-field p-col-12 p-md-3">
                   <label for="processCode">Código do processo de auditoria</label>
-                  <span class="p-input-icon-right">
-                    <i class="pi pi-spin pi-spinner" *ngIf="searchingAudit"></i>
-                    <input id="processCode" type="text" pInputText name="processCode" [(ngModel)]="processCode"
-                      (input)="getAuditByProcessCode($event)" required>
-                  </span>
+
+                  <div class="p-inputgroup">
+                    <input id="processCode" type="text" pInputText name="processCode" [(ngModel)]="audit.processCode"
+                      disabled required>
+                    <button type="button" pButton pRipple icon="pi pi-search" (click)="displayAudits=true"></button>
+                  </div>
                 </div>
 
                 <div class="p-field p-col-12 p-md-9">
                   <label for="auditDescription">Descrição da ação</label>
                   <input id="auditDescription" type="text" pInputText name="auditDescription"
-                    [(ngModel)]="audit.description">
+                    [(ngModel)]="audit.description" disabled>
                 </div>
 
                 <div class="p-field p-col-12 p-md-6">
                   <label for="dispatchedAt">Data de despacho (Homologação)</label>
-                  <p-calendar id="dispatchedAt" name="dispatchedAt" [(ngModel)]="audit.dispatchedAt">
+                  <p-calendar id="dispatchedAt" name="dispatchedAt" [(ngModel)]="audit.dispatchedAt" disabled>
                   </p-calendar>
                 </div>
 
                 <div class="p-field p-col-12 p-md-6">
                   <label for="reportedAt">Data de envio (Relatório Final)</label>
-                  <p-calendar id="reportedAt" name="reportedAt" [(ngModel)]="recommendation.audit.reportedAt">
+                  <p-calendar id="reportedAt" name="reportedAt" [(ngModel)]="audit.reportedAt" disabled>
                   </p-calendar>
                 </div>
               </div>
@@ -147,3 +148,54 @@
     </p-card>
   </div>
 </div>
+
+
+<p-dialog header="Lista de Auditorias" [(visible)]="displayAudits" [modal]="true" [style]="{width: '70vw'}"
+  [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+
+  <form class="p-formgroup-inline p-pt-2" (ngSubmit)="readAudits()">
+    <div class="p-field">
+      <span class="p-float-label">
+        <input type="text" class="p-inputtext-sm" pInputText name="processCode" [(ngModel)]="filter.processCode">
+        <label for="inputtext">Código de Processo</label>
+      </span>
+    </div>
+
+    <div class="p-field">
+      <span class="p-float-label">
+        <input type="text" class="p-inputtext-sm" pInputText name="description" [(ngModel)]="filter.description">
+        <label for="inputtext">Descrição</label>
+      </span>
+    </div>
+
+    <button pButton pRipple type="submit" label="Pesquisar"></button>
+  </form>
+
+  <p-table [value]="audits" [paginator]="true" [rows]="filter.rows" [showCurrentPageReport]="true"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} linhas" [totalRecords]="totalRecords"
+    [loading]="loading" [lazy]="true" (onLazyLoad)="lazyLoad($event)">
+    <ng-template pTemplate="header">
+      <tr>
+        <th [ngStyle]="{width:'15%'}">Código</th>
+        <th>Entidade auditada</th>
+        <th>Descrição</th>
+        <th [style]="{width:'4em'}"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData>
+      <tr>
+        <td>{{rowData.processCode}}</td>
+        <td>{{rowData.entityAudited.name}}</td>
+        <td>{{rowData.description}}</td>
+        <td class="p-p-0">
+          <button type="button" pButton icon="pi pi-search" (click)="getAudit(rowData)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="displayAudits=false" label="Fechar" styleClass="p-button-text">
+    </p-button>
+  </ng-template>
+</p-dialog>

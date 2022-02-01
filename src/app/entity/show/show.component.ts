@@ -1,10 +1,10 @@
-import { Address } from './../../models/address';
+// import { Address } from './../../models/address';
 import { EntityLevel } from './../../models/entity-level';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { EntityService } from '../entity.service';
-import { AddressService } from './../../address/address.service';
+// import { AddressService } from './../../address/address.service';
 import { EntityLevelService } from './../../entity-level/entity-level.service';
 import { ErrorService } from './../../error/error.service';
 import { Entity } from './../../models/entity';
@@ -24,7 +24,7 @@ export class ShowComponent implements OnInit {
 
   constructor(
     private entityService: EntityService,
-    private addressService: AddressService,
+    // private addressService: AddressService,
     private entityLevelService: EntityLevelService,
     private errorService: ErrorService,
     private toastr: ToastrService,
@@ -32,7 +32,7 @@ export class ShowComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.dropdownAddresses();
+    // this.dropdownAddresses();
     this.dropdownLevels();
     this.getById(this.id);
   }
@@ -46,14 +46,14 @@ export class ShowComponent implements OnInit {
       .catch((error) => this.errorService.handle(error))
   }
 
-  dropdownAddresses(): void {
-    this.addressService.readAll()
-      .then(result => this.addresses = result.map((element: Address) => ({
-        value: element,
-        label: `${element.street}, ${element.city}, ${element.district}`
-      })))
-      .catch((error) => this.errorService.handle(error))
-  }
+  // dropdownAddresses(): void {
+  //   this.addressService.readAll()
+  //     .then(result => this.addresses = result.map((element: Address) => ({
+  //       value: element,
+  //       label: `${element.street}, ${element.city}, ${element.district}`
+  //     })))
+  //     .catch((error) => this.errorService.handle(error))
+  // }
 
   getById(id: number): void {
     this.entityService.getById(id)

@@ -32,7 +32,7 @@ export class NewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.dropdownAddresses();
+    // this.dropdownAddresses();
     this.dropdownLevels();
   }
 
@@ -45,14 +45,14 @@ export class NewComponent implements OnInit {
       .catch((error) => this.errorService.handle(error))
   }
 
-  dropdownAddresses(): void {
-    this.addressService.readAll()
-      .then(result => this.addresses = result.map((element: Address) => ({
-        value: element,
-        label: `${element.street}, ${element.city}, ${element.district}`
-      })))
-      .catch((error) => this.errorService.handle(error))
-  }
+  // dropdownAddresses(): void {
+  //   this.addressService.readAll()
+  //     .then(result => this.addresses = result.map((element: Address) => ({
+  //       value: element,
+  //       label: `${element.street}, ${element.city}, ${element.district}`
+  //     })))
+  //     .catch((error) => this.errorService.handle(error))
+  // }
 
   create(): void {
     this.loading = true;

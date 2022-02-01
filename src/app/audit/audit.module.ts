@@ -10,13 +10,15 @@ import { DropdownModule } from 'primeng/dropdown';
 import { EditorModule } from 'primeng/editor';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
+import { MessageModule } from 'primeng/message';
+import { MessagesModule } from 'primeng/messages';
 import { PasswordModule } from 'primeng/password';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { SidebarModule } from 'primeng/sidebar';
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { TimelineModule } from 'primeng/timeline';
 import { TooltipModule } from 'primeng/tooltip';
-import { SidebarModule } from 'primeng/sidebar';
 import { GroupWorkModule } from '../group-work/group-work.module';
 import { AuditRouter } from './audit.router';
 import { ClientIndexComponent } from './client-index/client-index.component';
@@ -59,7 +61,9 @@ import { ShowComponent } from './show/show.component';
     ProgressBarModule,
     InputNumberModule,
     TimelineModule,
-    SidebarModule
+    SidebarModule,
+    MessagesModule,
+    MessageModule,
   ]
 })
 export class AuditModule { }
