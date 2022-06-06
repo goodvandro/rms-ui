@@ -47,20 +47,20 @@ export class NewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.show();
+    // this.show();
     this.dropdownEntities();
     this.dropdownTypes();
     this.dropdownStatuses();
     this.dropdownGroupsWork();
   }
 
-  show() {
+/*  show() {
     this.msgs.push({ severity: 'info', summary: 'Info Message', detail: 'PrimeNG rocks' });
   }
 
   hide() {
     this.msgs = [];
-  }
+  }*/
 
 
   async dropdownEntities() {
