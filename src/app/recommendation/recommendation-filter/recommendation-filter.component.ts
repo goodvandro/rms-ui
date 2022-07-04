@@ -12,6 +12,8 @@ import { RecommendationNatureService } from 'src/app/recommendation-nature/recom
 import { RecommendationStatusService } from 'src/app/recommendation-status/recommendation-status.service';
 import { RecommendationFilter } from '../recommendation-filter-resource';
 import { DropdownModel } from '../../models/dropdown-model';
+import { UserService } from 'src/app/user/user.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-recommendation-filter',
@@ -30,6 +32,7 @@ export class RecommendationFilterComponent implements OnInit {
   characters = [];
   levelsRisk = [];
   entities = [];
+  users = [];
 
   constructor(
     private entityService: EntityService,
@@ -37,6 +40,7 @@ export class RecommendationFilterComponent implements OnInit {
     private natureService: RecommendationNatureService,
     private characterService: RecommendationCharacterService,
     private levelRiskService: RecommendationLevelRiskService,
+    private userService: UserService,
   ) { }
 
   ngOnInit(): void {
@@ -45,6 +49,18 @@ export class RecommendationFilterComponent implements OnInit {
     this.dropdownNatures();
     this.dropdownCharacters();
     this.dropdownLevelsRisk();
+    this.dropdownUsers();
+  }
+
+  async dropdownUsers() {
+    await this.userService.readAll()
+      .then((result: User[]) => {
+        this.users = result.map(
+          (user: User): DropdownModel => ({
+            value: user,
+            label: user.person.name
+          }));
+      });
   }
 
   async dropdownEntities() {

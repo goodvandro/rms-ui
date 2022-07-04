@@ -32,8 +32,8 @@ export class UserService {
       .toPromise();
   }
 
-  async readAll(): Promise<any> {
-    return this.http.get<any>(`${this.API_URL}/list`)
+  async readAll(): Promise<User[]> {
+    return this.http.get<User[]>(`${this.API_URL}/list`)
       .toPromise()
   }
 

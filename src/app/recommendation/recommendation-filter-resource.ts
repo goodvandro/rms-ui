@@ -5,6 +5,7 @@ import { Entity } from '../models/entity';
 import { RecommendationNature } from '../models/recommendation-nature';
 import { HttpParams } from '@angular/common/http';
 import * as moment from 'moment';
+import { User } from '../models/user';
 
 export class RecommendationFilter {
   page: number = 0;
@@ -20,12 +21,14 @@ export class RecommendationFilter {
   character: RecommendationCharacter;
   levelRisk: RecommendationLevelRisk;
   nature: RecommendationNature;
+  userCreated: User;
 
   amountMin: number;
   amountMax: number;
 
   createdAt: Date[];
   updatedAt: Date[];
+  complianceDeadline: Date[];
 }
 
 export const getFilterParams = (filter: RecommendationFilter): HttpParams => {
@@ -57,6 +60,14 @@ export const getFilterParams = (filter: RecommendationFilter): HttpParams => {
     params = params.append('levelRiskId', String(filter.levelRisk.id));
   }
 
+  if (filter.userCreated) {
+    params = params.append('userCreatedId', String(filter.userCreated.id));
+  }
+
+  if (filter.nature) {
+    params = params.append('natureId', String(filter.nature.id));
+  }
+
   if (filter.amountMin) {
     params = params.append('amountMin', String(filter.amountMin));
   }
@@ -77,6 +88,13 @@ export const getFilterParams = (filter: RecommendationFilter): HttpParams => {
       params = params.append('updatedAtFrom', moment(filter.updatedAt[0]).format('YYYY-MM-DD'));
     if (!!filter.updatedAt[1])
       params = params.append('updatedAtTo', moment(filter.updatedAt[1]).format('YYYY-MM-DD'));
+  }
+
+  if (filter.complianceDeadline) {
+    if (!!filter.complianceDeadline[0])
+      params = params.append('complianceDeadlineFrom', moment(filter.complianceDeadline[0]).format('YYYY-MM-DD'));
+    if (!!filter.complianceDeadline[1])
+      params = params.append('complianceDeadlineTo', moment(filter.complianceDeadline[1]).format('YYYY-MM-DD'));
   }
 
   return params;
