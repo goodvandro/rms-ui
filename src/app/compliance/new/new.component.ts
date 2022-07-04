@@ -60,7 +60,6 @@ export class NewComponent implements OnInit {
 
     this.recommendationService.read(this.filter)
       .then((result) => {
-        console.log(result);
         this.recommendations = result.content;
         this.totalRecords = result.totalElements;
       })

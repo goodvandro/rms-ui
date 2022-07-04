@@ -144,8 +144,6 @@ export class ShowComponent implements OnInit {
             }
           })
         })
-
-        console.log(this.auditStatusHistories)
       })
   }
 }

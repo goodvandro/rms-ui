@@ -59,7 +59,5 @@ export class SignInComponent implements OnInit {
     this.activity.typeActivity.id = 1;
 
     this.activityService.create(this.activity)
-      .then(() => console.log('atividade registada!'))
-      .catch((error) => this.errorService.handle(error));
   }
 }

@@ -27,7 +27,6 @@ export class ClientIndexComponent implements OnInit {
 
     this.recommendationClientService.read(this.filter)
       .then((result) => {
-        console.log(result);
         this.recommendations = result.content;
         this.totalRecords = result.totalElements;
       })

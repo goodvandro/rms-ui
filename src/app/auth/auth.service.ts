@@ -105,7 +105,6 @@ export class AuthService {
         .toPromise();
       this.setToken(response.access_token);
 
-      console.log('New access token created successfully!');
       return await Promise.resolve(null);
     } catch (response_1) {
       console.error('Error renewing token.', response_1);

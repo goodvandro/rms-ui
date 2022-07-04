@@ -45,8 +45,6 @@ export class AppHttClient extends HttpClient {
 
   private doRequest<T>(fn: Function): Observable<T> {
     if (this.auth.isAccessTokenInvalid()) {
-      console.log('HTTP request with invalid access token. Getting new token...');
-
       const chamadaNovoAccessToken = this.auth.getNewAccessToken()
         .then(() => {
           if (this.auth.isAccessTokenInvalid()) {

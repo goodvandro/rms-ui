@@ -13,14 +13,9 @@ import { AuditFilter } from '../audit.filter.resource';
 export class IndexComponent implements OnInit {
   loading: boolean;
   visibleSidebarFilter: boolean = false;
-  filter = new AuditFilter();
+  filter: AuditFilter = new AuditFilter();
   totalRecords: number = 0;
   audits = [];
-
-  minYearFilter: number = 2015;
-  maxYearFilter = new Date().getFullYear();
-
-  yearsFilter = [];
 
   constructor(
     private groupService: AuditService,
@@ -29,8 +24,6 @@ export class IndexComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-
-    this.dropdownYearsFilter();
   }
 
   read(page = 0): void {
@@ -53,21 +46,10 @@ export class IndexComponent implements OnInit {
 
   clearFilter(form: NgForm) {
     form.reset();
-    // this.read();
   }
 
-  dropdownYearsFilter() {
-    let year: number = this.minYearFilter;
-
-    while (year <= this.maxYearFilter) {
-      this.yearsFilter.push({
-        label: year.toString(),
-        value: year.toString().substring(1)
-      });
-
-      year++;
-    }
-
-    this.yearsFilter.reverse();
+  setFilter(newFilter: AuditFilter): void {
+    this.filter = newFilter;
+    this.read();
   }
 }

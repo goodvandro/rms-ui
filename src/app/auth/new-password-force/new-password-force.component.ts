@@ -50,7 +50,6 @@ export class NewPasswordForceComponent implements OnInit {
 
   validateForm(formGroup: NgForm) {
     Object.keys(formGroup.controls).forEach(field => {
-      console.log(field)
       // const control = formGroup.get(field);
       // if (control instanceof FormControl) {
       //   control.markAsTouched({ onlySelf: true });

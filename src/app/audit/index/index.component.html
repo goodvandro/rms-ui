@@ -5,13 +5,8 @@
 
   <div class="p-col-12">
     <p-card>
-      <div class="p-fluid p-grid p-d-flex p-jc-end p-ai-center">
-        <p-button type="button" class="p-mr-2" (click)="visibleSidebarFilter = true" icon="pi pi-filter"></p-button>
-
-        <div class="p-field p-col-12 p-my-0 p-py-0">
-          <p-divider></p-divider>
-        </div>
-      </div>
+      <app-audit-filter [(auditFilter)]="filter" (setFilter)="setFilter($event)">
+      </app-audit-filter>
 
       <p-table [value]="audits" [paginator]="true" [rows]="filter.rows" [showCurrentPageReport]="true"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} linhas"
@@ -54,34 +49,3 @@
     </p-card>
   </div>
 </div>
-
-<p-sidebar [(visible)]="visibleSidebarFilter" position="right" [baseZIndex]="10000" styleClass="p-sidebar-md">
-  <form autocomplete="off" #f="ngForm" (ngSubmit)="read()">
-    <div class="p-fluid p-formgrid p-grid">
-      <div class="p-col-12">
-        <h2 style="font-weight:normal">Filtro de Auditoria</h2>
-      </div>
-
-      <div class="p-field p-col-12">
-        <label for="processCode">Código de processo</label>
-        <input id="processCode" type="text" pInputText name="processCode" [(ngModel)]="filter.processCode">
-      </div>
-
-      <div class="p-field p-col-6">
-        <label for="number">Número</label>
-        <input id="number" type="text" pInputText name="number" [(ngModel)]="filter.number">
-      </div>
-
-      <div class="p-field p-col-6">
-        <label for="year">Ano</label>
-        <p-dropdown [options]="yearsFilter" [(ngModel)]="filter.year" name="year" placeholder="Seleciona o ano"
-          [showClear]="true"></p-dropdown>
-      </div>
-    </div>
-
-    <button pButton pRipple type="button" label="Limpar" class="p-button-text p-button-raised p-mx-1"
-      (click)="clearFilter(f)"></button>
-
-    <button pButton pRipple type=" submit" label="Filtrar" class="p-button-raised p-button-info p-mx-1"></button>
-  </form>
-</p-sidebar>

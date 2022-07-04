@@ -11,11 +11,7 @@ import { RecommendationLevelRiskService } from 'src/app/recommendation-level-ris
 import { RecommendationNatureService } from 'src/app/recommendation-nature/recommendation-nature.service';
 import { RecommendationStatusService } from 'src/app/recommendation-status/recommendation-status.service';
 import { RecommendationFilter } from '../recommendation.service';
-
-interface DropdownModel {
-  value: Object;
-  label: string;
-}
+import { DropdownModel } from '../../models/dropdown-model';
 
 @Component({
   selector: 'app-recommendation-filter',

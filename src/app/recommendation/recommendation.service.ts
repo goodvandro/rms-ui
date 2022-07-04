@@ -77,7 +77,6 @@ export class RecommendationService {
     }
 
     if (filter.amountMin) {
-      console.log(filter.amountMin);
       params = params.append('amountMin', String(filter.amountMin));
     }
 

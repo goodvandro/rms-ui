@@ -74,22 +74,17 @@ export class ClientNewComponent implements OnInit {
   getRecommendation(recommendation: Recommendation) {
     this.compliance.recommendation = recommendation;
     this.displayRecommendations = false;
-    console.log('compliance: ', this.compliance);
   }
 
   create(): void {
     this.loading = true;
-    console.log('compliance: ', this.compliance);
 
     this.complianceService.create(this.compliance)
       .then((result) => {
         this.router.navigate(['/compliance/client/show', result.id]);
         this.toastr.success('Cumprimento adicionado adicionada!')
       })
-      .catch((error) => {
-        this.errorService.handle(error);
-        console.log('compliance2: ', this.compliance);
-      })
+      .catch((error) => this.errorService.handle(error))
       .finally(() => this.loading = false);
   }
 }

@@ -17,8 +17,6 @@ export class AuthGuard implements CanActivate {
   ): Observable<boolean> | Promise<boolean> | boolean {
 
     if (this.auth.isAccessTokenInvalid()) {
-      console.log('Navigation with invalid access token. Getting new token...');
-
       return this.auth.getNewAccessToken()
         .then(() => {
           if (this.auth.isAccessTokenInvalid()) {

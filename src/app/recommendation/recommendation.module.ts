@@ -13,6 +13,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { SidebarModule } from 'primeng/sidebar';
 import { SliderModule } from 'primeng/slider';
 import { TableModule } from 'primeng/table';
@@ -60,7 +61,8 @@ import { ShowComponent } from './show/show.component';
     DialogModule,
     SidebarModule,
     SliderModule,
-    InputNumberModule
+    InputNumberModule,
+    ScrollPanelModule
   ]
 })
 export class RecommendationModule { }

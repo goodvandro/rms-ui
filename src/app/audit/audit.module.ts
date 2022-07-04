@@ -14,12 +14,14 @@ import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
 import { PasswordModule } from 'primeng/password';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { SidebarModule } from 'primeng/sidebar';
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { TimelineModule } from 'primeng/timeline';
 import { TooltipModule } from 'primeng/tooltip';
 import { GroupWorkModule } from '../group-work/group-work.module';
+import { AuditFilterComponent } from './audit-filter/audit-filter.component';
 import { AuditRouter } from './audit.router';
 import { ClientIndexComponent } from './client-index/client-index.component';
 import { ClientShowComponent } from './client-show/client-show.component';
@@ -39,7 +41,8 @@ import { ShowComponent } from './show/show.component';
     ReportsComponent,
     ClientIndexComponent,
     ClientShowComponent,
-    RecommendationsComponent
+    RecommendationsComponent,
+    AuditFilterComponent
   ],
   imports: [
     CommonModule,
@@ -64,6 +67,7 @@ import { ShowComponent } from './show/show.component';
     SidebarModule,
     MessagesModule,
     MessageModule,
+    ScrollPanelModule,
   ]
 })
 export class AuditModule { }
