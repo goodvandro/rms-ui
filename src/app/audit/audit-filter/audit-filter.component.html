@@ -2,88 +2,80 @@
   <p-button type="button" class="p-m-2" (click)="openFilter=true" icon="pi pi-filter" label="Filtrar"></p-button>
 </div>
 
-<p-sidebar [(visible)]="openFilter" position="right" [baseZIndex]="10000" styleClass="p-sidebar-md">
-  <p-scrollPanel [style]="{width: '100%', height: '100vh'}">
-    <form #form="ngForm" (ngSubmit)="setFilter()">
-      <h3 style="font-weight:normal">FILTROS DE AUDITORIAS</h3>
+<p-sidebar [(visible)]="openFilter" position="right" [baseZIndex]="10000" [style]="{width:'30em', overflowY: 'scroll'}">
+  <form #form="ngForm" (ngSubmit)="setFilter()">
+    <h3 style="font-weight:normal">FILTROS DE AUDITORIAS</h3>
 
-      <p-button type="submit" label="Filtrar" styleClass="p-button-success p-mr-2"></p-button>
+    <p-button type="submit" label="Filtrar" styleClass="p-button-success p-mr-2"></p-button>
 
-      <p-button type="button" (click)="resetFilter(form)" label="Limpar" styleClass="p-button-danger p-mr-2">
-      </p-button>
+    <p-button type="button" (click)="resetFilter(form)" label="Limpar" styleClass="p-button-danger p-mr-2">
+    </p-button>
 
-      <div class="p-field p-col-12 p-my-0 p-py-0">
-        <p-divider></p-divider>
+    <div class="p-field p-col-12 p-my-0 p-py-0">
+      <p-divider></p-divider>
+    </div>
+
+    <div class="p-fluid p-grid">
+      <div class="p-field p-col-12">
+        <label for="auditDescription">Nº Processo</label>
+        <input id="auditDescription" type="text" pInputText name="processCode" [(ngModel)]="filter.processCode">
       </div>
 
-      <div class="p-fluid p-grid">
-        <div class="p-field p-col-12">
-          <label for="auditDescription">Nº Processo</label>
-          <input id="auditDescription" type="text" pInputText name="processCode" [(ngModel)]="filter.processCode">
-        </div>
-
-        <div class="p-field p-col-12">
-          <label for="type">Tipo de Auditoria</label>
-          <p-dropdown id="type" [options]="types" name="type" [(ngModel)]="filter.type" placeholder="Selecione"
-            required>
-          </p-dropdown>
-        </div>
-
-        <div class="p-field p-col-12">
-          <label for="year">Ano</label>
-          <p-dropdown [options]="yearsFilter" [(ngModel)]="filter.year" name="year" placeholder="Seleciona o ano"
-            [showClear]="true"></p-dropdown>
-        </div>
-
-        <div class="p-field p-col-12">
-          <label for="entityAudited">Entidade Auditada</label>
-          <p-dropdown id="entityAudited" [options]="entities" name="entityAudited" [(ngModel)]="filter.entityAudited"
-            placeholder="Selecione" required>
-          </p-dropdown>
-        </div>
-
-        <div class="p-field p-col-12">
-          <label for="status">Status</label>
-          <p-dropdown id="status" [options]="statuses" name="status" [(ngModel)]="filter.status" placeholder="Selecione"
-            required>
-          </p-dropdown>
-        </div>
-
-        <div class="p-field p-col-12">
-          <label for="type">Grupo de Trabalho</label>
-          <p-dropdown id="type" [options]="types" name="type" [(ngModel)]="filter.type" placeholder="Selecione"
-            required>
-          </p-dropdown>
-        </div>
-
-        <div class="p-field p-col-12">
-          <label for="createdAt">Data de Registo</label>
-          <p-calendar id="createdAt" selectionMode="range" name="createdAt" [numberOfMonths]="2"
-            [(ngModel)]="filter.createdAt">
-          </p-calendar>
-        </div>
-
-        <div class="p-field p-col-12">
-          <label for="updatedAt">Data de Atualização</label>
-          <p-calendar id="updatedAt" selectionMode="range" name="updatedAt" [numberOfMonths]="2"
-            [(ngModel)]="filter.updatedAt">
-          </p-calendar>
-        </div>
-
-        <div class="p-field p-col-12">
-          <label for="dispatchedAt">Data de Despacho (Homologação)</label>
-          <p-calendar id="dispatchedAt" selectionMode="range" name="dispatchedAt" [numberOfMonths]="2"
-            [(ngModel)]="filter.dispatchedAt">
-          </p-calendar>
-        </div>
-
-        <div class="p-field p-col-12">
-          <label for="reportedAt">Data de Envio (Relatório Final)</label>
-          <p-calendar id="reportedAt" selectionMode="range" name="reportedAt" [numberOfMonths]="2"
-            [(ngModel)]="filter.reportedAt">
-          </p-calendar>
-        </div>
+      <div class="p-field p-col-12">
+        <label for="type">Tipo de Auditoria</label>
+        <p-dropdown id="type" [options]="types" name="type" [(ngModel)]="filter.type" placeholder="Selecione" required>
+        </p-dropdown>
       </div>
-    </form>
-  </p-scrollPanel>
+
+      <div class="p-field p-col-12">
+        <label for="year">Ano</label>
+        <p-dropdown [options]="yearsFilter" [(ngModel)]="filter.year" name="year" placeholder="Seleciona o ano"
+          [showClear]="true"></p-dropdown>
+      </div>
+
+      <div class="p-field p-col-12">
+        <label for="entityAudited">Entidade Auditada</label>
+        <p-dropdown id="entityAudited" [options]="entities" name="entityAudited" [(ngModel)]="filter.entityAudited"
+          placeholder="Selecione" required>
+        </p-dropdown>
+      </div>
+
+      <div class="p-field p-col-12">
+        <label for="status">Status</label>
+        <p-dropdown id="status" [options]="statuses" name="status" [(ngModel)]="filter.status" placeholder="Selecione"
+          required>
+        </p-dropdown>
+      </div>
+
+      <div class="p-field p-col-12">
+        <label for="type">Grupo de Trabalho</label>
+        <p-dropdown id="type" [options]="types" name="type" [(ngModel)]="filter.type" placeholder="Selecione" required>
+        </p-dropdown>
+      </div>
+
+      <div class="p-field p-col-12">
+        <label for="createdAt">Data de Registo</label>
+        <p-calendar id="createdAt" selectionMode="range" name="createdAt" [(ngModel)]="filter.createdAt">
+        </p-calendar>
+      </div>
+
+      <div class="p-field p-col-12">
+        <label for="updatedAt">Data de Atualização</label>
+        <p-calendar id="updatedAt" selectionMode="range" name="updatedAt" [(ngModel)]="filter.updatedAt">
+        </p-calendar>
+      </div>
+
+      <div class="p-field p-col-12">
+        <label for="dispatchedAt">Data de Despacho (Homologação)</label>
+        <p-calendar id="dispatchedAt" selectionMode="range" name="dispatchedAt" [(ngModel)]="filter.dispatchedAt">
+        </p-calendar>
+      </div>
+
+      <div class="p-field p-col-12">
+        <label for="reportedAt">Data de Envio (Relatório Final)</label>
+        <p-calendar id="reportedAt" selectionMode="range" name="reportedAt" [(ngModel)]="filter.reportedAt">
+        </p-calendar>
+      </div>
+    </div>
+  </form>
 </p-sidebar>

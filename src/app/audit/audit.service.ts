@@ -92,41 +92,4 @@ export class AuditService {
     }
   }
 
-  JSON() {
-    return [
-      {
-        id: 1,
-        number: '017.SAU.01',
-        year: 2020,
-        entityAudited: {
-          id: 1,
-          name: 'Direção Geral das Alfandegas'
-        },
-        description: 'Inspeção Ordinária a Direção Geral das Alfandegas',
-        createdAt: new Date()
-      },
-      {
-        id: 2,
-        number: '017.SAU.02',
-        year: 2020,
-        entityAudited: {
-          id: 1,
-          name: 'Direção Geral das Alfandegas'
-        },
-        description: 'Inspeção Ordinária a Direção Geral das Alfandegas',
-        createdAt: new Date()
-      },
-      {
-        id: 2021,
-        number: '017.SAU.03',
-        year: 2021,
-        entityAudited: {
-          id: 1,
-          name: 'Direção Geral das Alfandegas'
-        },
-        description: 'Inspeção Ordinária a Direção Geral das Alfandegas',
-        createdAt: new Date()
-      },
-    ]
-  }
 }

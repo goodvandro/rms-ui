@@ -14,10 +14,10 @@
         (onLazyLoad)="lazyLoad($event)">
         <ng-template pTemplate="header">
           <tr>
-            <th [ngStyle]="{width:'15%'}">Código</th>
-            <th>Entidade auditada</th>
-            <th>Descrição</th>
-            <th>Registado em</th>
+            <th [ngStyle]="{width:'10%'}">Código</th>
+            <th [ngStyle]="{width:'30%'}">Entidade auditada</th>
+            <th [ngStyle]="{width:'45%'}">Descrição</th>
+            <th [ngStyle]="{width:'10%'}">Registado em</th>
             <th [ngStyle]="{width:'5%'}"></th>
           </tr>
         </ng-template>
@@ -25,8 +25,8 @@
           <tr>
             <td>{{rowData.processCode}}</td>
             <td>{{rowData.entityAudited.name}}</td>
-            <td>{{rowData.description}}</td>
-            <td>{{rowData.createdAt | date}}</td>
+            <td class="ellipsis">{{rowData.description}}</td>
+            <td>{{rowData.createdAt | date:'dd-mm-yyyy'}}</td>
             <td class="p-p-0">
               <button pButton pRipple type="button" icon="pi pi-pencil"
                 class="p-button-rounded p-button-warning p-button-outlined"
