@@ -10,7 +10,7 @@ import { RecommendationFilter } from './../recommendation-filter-resource';
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
-  loading: boolean = true;
+  loading: boolean = false;
   openFilter: boolean = false;
 
   filter: RecommendationFilter = new RecommendationFilter();
@@ -29,7 +29,8 @@ export class IndexComponent implements OnInit {
     this.openFilter = true;
   }
 
-  read(page = 0): void {
+  read(page: number = 0): void {
+    this.loading = true;
     this.filter.page = page;
 
     this.recommendationService.read(this.filter)

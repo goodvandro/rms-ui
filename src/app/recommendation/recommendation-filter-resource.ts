@@ -9,7 +9,7 @@ import { User } from '../models/user';
 
 export class RecommendationFilter {
   page: number = 0;
-  rows: number = 15;
+  rows: number = 10;
 
   number: number;
 
