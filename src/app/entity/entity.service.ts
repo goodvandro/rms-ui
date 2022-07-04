@@ -36,8 +36,8 @@ export class EntityService {
       .toPromise();
   }
 
-  async readAll(): Promise<any> {
-    return this.http.get<any>(`${this.API_URL}/list`)
+  async readAll(): Promise<Entity[]> {
+    return this.http.get<Entity[]>(`${this.API_URL}/list`)
       .toPromise();
   }
 

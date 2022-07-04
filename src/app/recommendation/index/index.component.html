@@ -5,24 +5,8 @@
 
   <div class="p-col-12">
     <p-card>
-      <div class="p-fluid p-grid p-d-flex p-jc-end p-ai-center">
-        <div class="p-field p-col-12 p-md-2 p-my-0">
-          <span class="p-float-label p-input-icon-left">
-            <i class="pi pi-search"></i>
-            <input type="text" id="description" pInputText [(ngModel)]="filter.description">
-            <label for="description">Código do processo</label>
-          </span>
-        </div>
-
-        <div class="p-field p-col-12 p-md-1 p-px-0 p-mr-0 p-my-0">
-          <button pButton pRipple type="button" icon="pi pi-search"
-            class="p-button-rounded p-button-secondary p-button-raised"></button>
-        </div>
-
-        <div class="p-field p-col-12 p-my-0 p-py-0">
-          <p-divider></p-divider>
-        </div>
-      </div>
+      <app-recommendation-filter [(recommendationFilter)]="filter" (setFilter)="setFilter($event)">
+      </app-recommendation-filter>
 
       <p-table [value]="recommendations" [paginator]="true" [rows]="filter.rows" [showCurrentPageReport]="true"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} linhas"

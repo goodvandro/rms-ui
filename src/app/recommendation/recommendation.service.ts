@@ -4,14 +4,32 @@ import { environment } from 'src/environments/environment';
 import { AppHttClient } from './../auth/app-http-client';
 import { Recommendation } from './../models/recommendation';
 import * as moment from 'moment';
+import { RecommendationLevelRisk } from '../models/recommendation-level-risk';
+import { RecommendationStatus } from '../models/recommendation-status';
+import { RecommendationCharacter } from '../models/recommendation-character';
+import { Entity } from '../models/entity';
+import { RecommendationNature } from '../models/recommendation-nature';
 
 export class RecommendationFilter {
   page: number = 0;
   rows: number = 15;
 
-  processCode: string;
   number: number;
+
+  processCode: string;
   description: string;
+
+  entityAudited: Entity;
+  status: RecommendationStatus;
+  character: RecommendationCharacter;
+  levelRisk: RecommendationLevelRisk;
+  nature: RecommendationNature;
+
+  amountMin: number;
+  amountMax: number;
+
+  createdAt: Date[];
+  updatedAt: Date[];
 }
 
 @Injectable({
@@ -42,8 +60,44 @@ export class RecommendationService {
       params = params.append('processCode', filter.processCode);
     }
 
-    if (filter.description) {
-      params = params.append('description', filter.description);
+    if (filter.entityAudited) {
+      params = params.append('entityAuditedId', String(filter.entityAudited.id));
+    }
+
+    if (filter.status) {
+      params = params.append('statusId', String(filter.status.id));
+    }
+
+    if (filter.character) {
+      params = params.append('characterId', String(filter.character.id));
+    }
+
+    if (filter.levelRisk) {
+      params = params.append('levelRiskId', String(filter.levelRisk.id));
+    }
+
+
+    if (filter.amountMin) {
+      console.log(filter.amountMin);
+      params = params.append('amountMin', String(filter.amountMin));
+    }
+
+    if (filter.amountMax) {
+      params = params.append('amountMax', String(filter.amountMax));
+    }
+
+    if (filter.createdAt) {
+      if (!!filter.createdAt[0])
+        params = params.append('createdAtFrom', moment(filter.createdAt[0]).format('YYYY-MM-DD'));
+      if (!!filter.createdAt[1])
+        params = params.append('createdAtTo', moment(filter.createdAt[1]).format('YYYY-MM-DD'));
+    }
+
+    if (filter.updatedAt) {
+      if (!!filter.updatedAt[0])
+        params = params.append('updatedAtFrom', moment(filter.updatedAt[0]).format('YYYY-MM-DD'));
+      if (!!filter.updatedAt[1])
+        params = params.append('updatedAtTo', moment(filter.updatedAt[1]).format('YYYY-MM-DD'));
     }
 
     const result = await this.http.get<any>(this.API_URL, { params })
@@ -94,106 +148,5 @@ export class RecommendationService {
       recommendation.audit.dispatchedAt = moment(recommendation.audit.dispatchedAt, 'YYYY-MM-DD').toDate();
       recommendation.audit.reportedAt = moment(recommendation.audit.reportedAt, 'YYYY-MM-DD').toDate();
     }
-  }
-
-  JSON() {
-    return [
-      {
-        id: 1,
-        number: 10001,
-        description: 'Preencher diariamente o livro e responsabilizar um técnico pelo controlo do mesmo',
-        constatation: 'Falta de preenchimento do livro de ponto',
-        amount: 4900,
-        status: {
-          id: 1,
-          name: 'Aberto'
-        },
-        character: {
-          id: 1,
-          name: 'Procedimental'
-        },
-        nature: {
-          id: 1,
-          name: 'Contabilidade'
-        },
-        leveRisk: {
-          id: 1,
-          name: 'Crítico'
-        },
-        createdAt: new Date()
-      },
-      {
-        id: 1,
-        number: 10001,
-        description: 'Preencher diariamente o livro e responsabilizar um técnico pelo controlo do mesmo',
-        constatation: 'Falta de preenchimento do livro de ponto',
-        amount: 4900,
-        status: {
-          id: 1,
-          name: 'Aberto'
-        },
-        character: {
-          id: 1,
-          name: 'Procedimental'
-        },
-        nature: {
-          id: 1,
-          name: 'Contabilidade'
-        },
-        leveRisk: {
-          id: 1,
-          name: 'Crítico'
-        },
-        createdAt: new Date()
-      },
-      {
-        id: 1,
-        number: 10001,
-        description: 'Preencher diariamente o livro e responsabilizar um técnico pelo controlo do mesmo',
-        constatation: 'Falta de preenchimento do livro de ponto',
-        amount: 4900,
-        status: {
-          id: 1,
-          name: 'Aberto'
-        },
-        character: {
-          id: 1,
-          name: 'Procedimental'
-        },
-        nature: {
-          id: 1,
-          name: 'Contabilidade'
-        },
-        leveRisk: {
-          id: 1,
-          name: 'Crítico'
-        },
-        createdAt: new Date()
-      },
-      {
-        id: 1,
-        number: 10001,
-        description: 'Preencher diariamente o livro e responsabilizar um técnico pelo controlo do mesmo',
-        constatation: 'Falta de preenchimento do livro de ponto',
-        amount: 4900,
-        status: {
-          id: 1,
-          name: 'Aberto'
-        },
-        character: {
-          id: 1,
-          name: 'Procedimental'
-        },
-        nature: {
-          id: 1,
-          name: 'Contabilidade'
-        },
-        leveRisk: {
-          id: 1,
-          name: 'Crítico'
-        },
-        createdAt: new Date()
-      },
-    ]
   }
 }

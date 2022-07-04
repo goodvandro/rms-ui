@@ -11,7 +11,9 @@ import { RecommendationFilter } from './../recommendation.service';
 })
 export class IndexComponent implements OnInit {
   loading: boolean = true;
-  filter = new RecommendationFilter();
+  openFilter: boolean = false;
+
+  filter: RecommendationFilter = new RecommendationFilter();
   totalRecords: number = 0;
   recommendations = [];
 
@@ -23,12 +25,16 @@ export class IndexComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  openFilterDialog(): void {
+    this.openFilter = true;
+  }
+
   read(page = 0): void {
     this.filter.page = page;
+    console.log(this.filter);
 
     this.recommendationService.read(this.filter)
       .then((result) => {
-        console.log(result);
         this.recommendations = result.content;
         this.totalRecords = result.totalElements;
       })
@@ -40,5 +46,10 @@ export class IndexComponent implements OnInit {
     const page = event.first / event.rows;
     this.filter.rows = event.rows;
     this.read(page);
+  }
+
+  setFilter(newFilter: RecommendationFilter): void {
+    this.filter = newFilter;
+    this.read();
   }
 }

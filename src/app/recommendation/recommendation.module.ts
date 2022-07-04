@@ -13,17 +13,20 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { SidebarModule } from 'primeng/sidebar';
+import { SliderModule } from 'primeng/slider';
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { TooltipModule } from 'primeng/tooltip';
 import { ClientIndexComponent } from './client-index/client-index.component';
 import { ClientShowComponent } from './client-show/client-show.component';
+import { CompliancesComponent } from './compliances/compliances.component';
+import { FilesComponent } from './files/files.component';
 import { IndexComponent } from './index/index.component';
 import { NewComponent } from './new/new.component';
+import { RecommendationFilterComponent } from './recommendation-filter/recommendation-filter.component';
 import { RecommendationRouter } from './recommendation.router';
 import { ShowComponent } from './show/show.component';
-import { FilesComponent } from './files/files.component';
-import { CompliancesComponent } from './compliances/compliances.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ import { CompliancesComponent } from './compliances/compliances.component';
     ClientIndexComponent,
     ClientShowComponent,
     FilesComponent,
-    CompliancesComponent
+    CompliancesComponent,
+    RecommendationFilterComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +57,10 @@ import { CompliancesComponent } from './compliances/compliances.component';
     ProgressBarModule,
     FieldsetModule,
     InputNumberModule,
-    DialogModule
+    DialogModule,
+    SidebarModule,
+    SliderModule,
+    InputNumberModule
   ]
 })
 export class RecommendationModule { }
