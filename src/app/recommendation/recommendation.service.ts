@@ -76,7 +76,6 @@ export class RecommendationService {
       params = params.append('levelRiskId', String(filter.levelRisk.id));
     }
 
-
     if (filter.amountMin) {
       console.log(filter.amountMin);
       params = params.append('amountMin', String(filter.amountMin));

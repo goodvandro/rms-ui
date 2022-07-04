@@ -31,7 +31,6 @@ export class IndexComponent implements OnInit {
 
   read(page = 0): void {
     this.filter.page = page;
-    console.log(this.filter);
 
     this.recommendationService.read(this.filter)
       .then((result) => {
