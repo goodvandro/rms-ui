@@ -10,7 +10,7 @@ import { RecommendationCharacterService } from 'src/app/recommendation-character
 import { RecommendationLevelRiskService } from 'src/app/recommendation-level-risk/recommendation-level-risk.service';
 import { RecommendationNatureService } from 'src/app/recommendation-nature/recommendation-nature.service';
 import { RecommendationStatusService } from 'src/app/recommendation-status/recommendation-status.service';
-import { RecommendationFilter } from '../recommendation.service';
+import { RecommendationFilter } from '../recommendation-filter-resource';
 import { DropdownModel } from '../../models/dropdown-model';
 
 @Component({

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
 import { RecommendationService } from '../recommendation.service';
 import { ErrorService } from './../../error/error.service';
-import { RecommendationFilter } from './../recommendation.service';
+import { RecommendationFilter } from './../recommendation-filter-resource';
 
 @Component({
   selector: 'app-index',

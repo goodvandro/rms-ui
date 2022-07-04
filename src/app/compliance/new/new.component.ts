@@ -3,12 +3,13 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LazyLoadEvent } from 'primeng/api';
 import { Recommendation } from 'src/app/models/recommendation';
+import { RecommendationFilter } from 'src/app/recommendation/recommendation-filter-resource';
 import { ComplianceService } from '../compliance.service';
 import { ComplianceLevelService } from './../../compliance-level/compliance-level.service';
 import { ErrorService } from './../../error/error.service';
 import { Compliance } from './../../models/compliance';
 import { ComplianceLevel } from './../../models/compliance-level';
-import { RecommendationFilter, RecommendationService } from './../../recommendation/recommendation.service';
+import { RecommendationService } from './../../recommendation/recommendation.service';
 
 @Component({
   selector: 'app-new',
