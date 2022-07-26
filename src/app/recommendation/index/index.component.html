@@ -15,11 +15,11 @@
         <ng-template pTemplate="header">
           <tr>
             <th [ngStyle]="{width:'10%'}">Nº Processo</th>
-            <th [ngStyle]="{width:'20%'}">Entidade</th>
-            <th [ngStyle]="{width:'25%'}">Conclusão</th>
+            <th [ngStyle]="{width:'35%'}">Entidade</th>
             <th [ngStyle]="{width:'10%'}">Status</th>
             <th [ngStyle]="{width:'10%'}">Caráter</th>
             <th [ngStyle]="{width:'10%'}">Natureza</th>
+            <th [ngStyle]="{width:'10%'}">Nível de Risco</th>
             <th [ngStyle]="{width:'10%'}">Data Registo</th>
             <th [ngStyle]="{width:'5%'}"></th>
           </tr>
@@ -28,11 +28,11 @@
           <tr>
             <td>{{rowData.audit.processCode}}</td>
             <td>{{rowData.audit.entityAudited.name}}</td>
-            <td class="ellipsis" [innerHTML]="rowData.description"></td>
             <td>{{rowData.status.name}}</td>
             <td>{{rowData.character.name}}</td>
             <td>{{rowData.nature.name}}</td>
-            <td>{{rowData.createdAt | date:'dd/mm/yyyy'}}</td>
+            <td>{{rowData.levelRisk.name}}</td>
+            <td>{{rowData.createdAt | date:'dd/MM/yyyy'}}</td>
             <td class="p-p-0">
               <button pButton pRipple type="button" icon="pi pi-pencil"
                 class="p-button-rounded p-button-warning p-button-outlined"

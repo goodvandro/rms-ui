@@ -7,7 +7,7 @@ import { ReportRecommendation } from './../models/reports';
 
 export class ReportRecommendationFilter {
   page: number = 0;
-  rows: number = 10;
+  rows: number = 15;
 
   dispatchedAt: Date[];
   recommendationCharacterSlug: string;
