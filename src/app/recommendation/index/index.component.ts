@@ -7,7 +7,7 @@ import { RecommendationFilter } from './../recommendation-filter-resource';
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss']
+  styleUrls: ['./index.component.scss'],
 })
 export class IndexComponent implements OnInit {
   loading: boolean = false;
@@ -19,10 +19,11 @@ export class IndexComponent implements OnInit {
 
   constructor(
     private recommendationService: RecommendationService,
-    private errorService: ErrorService,
-  ) { }
+    private errorService: ErrorService
+  ) {}
 
   ngOnInit(): void {
+    this.loading = true;
   }
 
   openFilterDialog(): void {
@@ -30,16 +31,16 @@ export class IndexComponent implements OnInit {
   }
 
   read(page: number = 0): void {
-    this.loading = true;
     this.filter.page = page;
 
-    this.recommendationService.read(this.filter)
+    this.recommendationService
+      .read(this.filter)
       .then((result) => {
         this.recommendations = result.content;
         this.totalRecords = result.totalElements;
       })
       .catch((error) => this.errorService.handle(error))
-      .finally(() => this.loading = false);
+      .finally(() => (this.loading = false));
   }
 
   lazyLoad(event: LazyLoadEvent) {
