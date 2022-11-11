@@ -1,17 +1,13 @@
+import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AppHttClient } from './../auth/app-http-client';
+import * as moment from 'moment';
 import { Address } from './../models/address';
-
-export class AddressFilter {
-  page: number = 0;
-  rows: number = 10;
-
-  street: string;
-}
+import { AddressFilter, getFilterParams } from './address-filter-resource';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AddressService {
   API_URL: string;
@@ -21,84 +17,47 @@ export class AddressService {
   }
 
   async create(address: Address): Promise<Address> {
-    return this.http.post<Address>(this.API_URL, address)
-      .toPromise();
+    return this.http.post<Address>(this.API_URL, address).toPromise();
   }
 
   async read(filter: AddressFilter): Promise<any> {
-    return this.http.get<any>(this.API_URL)
+    const params: HttpParams = getFilterParams(filter);
+
+    const result = await this.http
+      .get<any>(this.API_URL, { params })
       .toPromise();
+
+    const addresses: Address[] = result.content;
+    this.convertField(addresses);
+
+    return {
+      content: addresses,
+      totalElements: addresses.length,
+    };
   }
 
   async readAll(): Promise<any> {
-    return this.http.get<any>(`${this.API_URL}/list`)
-      .toPromise();
+    return this.http.get<any>(`${this.API_URL}/list`).toPromise();
   }
 
   async update(id: number, address: Address): Promise<Address> {
-    return this.http.put<Address>(`${this.API_URL}`, address)
-      .toPromise();
+    return this.http.put<Address>(`${this.API_URL}`, address).toPromise();
   }
 
   async getById(id: number): Promise<Address> {
-    return this.http.get<Address>(`${this.API_URL}/${id}`)
-      .toPromise()
+    return this.http.get<Address>(`${this.API_URL}/${id}`).toPromise();
   }
 
-  JSON() {
-    return [
-      {
-        id: 1,
-        name: 'Praça da Independência',
-      },
-      {
-        id: 2,
-        name: 'Ponta Mina',
-      },
-      {
-        id: 3,
-        name: 'Bairro 3 de Fevereiro',
-      },
-    ]
-  }
-
-  getCities() {
-    return [
-      {
-        id: 1,
-        city: 'São Tomé',
-        district: 'Água Grande',
-      },
-      {
-        id: 2,
-        city: 'Trindade',
-        district: 'Mé-Zóchi',
-      },
-      {
-        id: 3,
-        city: 'Santana',
-        district: 'Cantagalo',
-      },
-      {
-        id: 4,
-        city: 'Angolares',
-        district: 'Caué',
-      },
-      {
-        id: 5,
-        city: 'Neves',
-        district: 'Lembá',
-      },
-      {
-        id: 6,
-        city: 'Guadalupe',
-        district: 'Lobata',
-      },
-      {
-        id: 7,
-        city: 'Santo António',
-        district: 'Pagué',
-      },
-    ]
+  private convertField(recommendations: Address[]) {
+    for (const recommendation of recommendations) {
+      recommendation.createdAt = moment(
+        recommendation.createdAt,
+        'YYYY-MM-DD hh:mm:ss'
+      ).toDate();
+      recommendation.updatedAt = moment(
+        recommendation.updatedAt,
+        'YYYY-MM-DD hh:mm:ss'
+      ).toDate();
+    }
   }
 }

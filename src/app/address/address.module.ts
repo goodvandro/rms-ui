@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
-import { DividerModule } from "primeng/divider";
+import { DividerModule } from 'primeng/divider';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
@@ -17,13 +17,17 @@ import { FastNewComponent } from './fast-new/fast-new.component';
 import { IndexComponent } from './index/index.component';
 import { NewComponent } from './new/new.component';
 import { ShowComponent } from './show/show.component';
+import { AddressFilterComponent } from './address-filter/address-filter.component';
+import { CalendarModule } from 'primeng/calendar';
+import { SidebarModule } from 'primeng/sidebar';
 
 @NgModule({
   declarations: [
     IndexComponent,
     ShowComponent,
     NewComponent,
-    FastNewComponent
+    FastNewComponent,
+    AddressFilterComponent,
   ],
   imports: [
     CommonModule,
@@ -39,10 +43,10 @@ import { ShowComponent } from './show/show.component';
     TabViewModule,
     DialogModule,
     DropdownModule,
-    ProgressBarModule
+    ProgressBarModule,
+    CalendarModule,
+    SidebarModule,
   ],
-  exports: [
-    FastNewComponent
-  ]
+  exports: [FastNewComponent],
 })
-export class AddressModule { }
+export class AddressModule {}

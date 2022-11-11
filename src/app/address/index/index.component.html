@@ -5,60 +5,71 @@
 
   <div class="p-col-12">
     <p-card>
-      <div class="p-fluid p-grid p-d-flex p-jc-end p-ai-center">
-        <div class="p-field p-col-12 p-md-2 p-my-0">
-          <span class="p-float-label p-input-icon-left">
-            <i class="pi pi-search"></i>
-            <input type="text" id="street" pInputText [(ngModel)]="filter.street">
-            <label for="street">Nome</label>
-          </span>
-        </div>
-        <div class="p-field p-col-12 p-md-1 p-px-0 p-mr-0 p-my-0">
-          <button pButton pRipple type="button" icon="pi pi-search"
-            class="p-button-rounded p-button-secondary p-button-raised"></button>
-        </div>
+      <app-address-filter
+        [(addressFilter)]="filter"
+        (setFilter)="setFilter($event)"
+      ></app-address-filter>
 
-        <div class="p-field p-col-12 p-my-0 p-py-0">
-          <p-divider></p-divider>
-        </div>
-      </div>
-
-      <p-table [value]="addresses" [paginator]="true" [rows]="filter.rows" [showCurrentPageReport]="true"
+      <p-table
+        [value]="addresses"
+        [paginator]="true"
+        [rows]="filter.rows"
+        [showCurrentPageReport]="true"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} linhas"
-        [rowsPerPageOptions]="[10,25,50]" [totalRecords]="totalRecords" [loading]="loading" [lazy]="true"
-        (onLazyLoad)="lazyLoad($event)">
+        [rowsPerPageOptions]="[10, 25, 50]"
+        [totalRecords]="totalRecords"
+        [loading]="loading"
+        [lazy]="true"
+        (onLazyLoad)="lazyLoad($event)"
+      >
         <ng-template pTemplate="header">
           <tr>
             <th>Distrito</th>
             <th>Cidade</th>
             <th>Rua</th>
             <th>Data registo</th>
-            <th [ngStyle]="{width:'5%'}"></th>
+            <th [ngStyle]="{ width: '5%' }"></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData>
           <tr>
-            <td>{{rowData.district}}</td>
-            <td>{{rowData.city}}</td>
-            <td>{{rowData.street}}</td>
-            <td>{{rowData.createdAt | date}}</td>
+            <td>{{ rowData.district }}</td>
+            <td>{{ rowData.city }}</td>
+            <td>{{ rowData.street }}</td>
+            <td>{{ rowData.createdAt | date }}</td>
             <td class="p-p-0">
-              <button pButton pRipple type="button" icon="pi pi-pencil"
+              <button
+                pButton
+                pRipple
+                type="button"
+                icon="pi pi-pencil"
                 class="p-button-rounded p-button-warning p-button-outlined"
-                [routerLink]="['/address/index', rowData.id]"></button>
+                [routerLink]="['/address/index', rowData.id]"
+              ></button>
             </td>
           </tr>
         </ng-template>
 
         <ng-template pTemplate="paginatorleft">
-          <p-button type="button" icon="pi pi-plus" styleClass="p-button-text" pTooltip="Novo" tooltipPosition="right"
-            routerLink="/address/new">
+          <p-button
+            type="button"
+            icon="pi pi-plus"
+            styleClass="p-button-text"
+            pTooltip="Novo"
+            tooltipPosition="right"
+            routerLink="/address/new"
+          >
           </p-button>
         </ng-template>
 
         <ng-template pTemplate="paginatorright">
-          <p-button type="button" icon="pi pi-refresh" styleClass="p-button-text" pTooltip="Atualizar"
-            tooltipPosition="left"></p-button>
+          <p-button
+            type="button"
+            icon="pi pi-refresh"
+            styleClass="p-button-text"
+            pTooltip="Atualizar"
+            tooltipPosition="left"
+          ></p-button>
         </ng-template>
       </p-table>
     </p-card>
