@@ -11,7 +11,6 @@
         (onLazyLoad)="lazyLoad($event)">
         <ng-template pTemplate="header">
           <tr>
-            <th>ID</th>
             <th>Tipo</th>
             <th>Utilizador</th>
             <th>Descrição</th>
@@ -21,7 +20,6 @@
 
         <ng-template pTemplate="body" let-rowData>
           <tr>
-            <td>{{rowData.id}}</td>
             <td>{{rowData.typeActivity.name}}</td>
             <td>{{rowData.user.username}}</td>
             <td>{{rowData.description}}</td>

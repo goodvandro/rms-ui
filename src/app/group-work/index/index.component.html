@@ -28,7 +28,6 @@
         [rowsPerPageOptions]="[10,25,50]">
         <ng-template pTemplate="header">
           <tr>
-            <th>ID</th>
             <th>Nome</th>
             <th>Data de registo</th>
             <th></th>
@@ -36,7 +35,6 @@
         </ng-template>
         <ng-template pTemplate="body" let-rowData>
           <tr>
-            <td>{{rowData.id}}</td>
             <td>{{rowData.name}}</td>
             <td>{{rowData.createdAt | date}}</td>
             <td class="p-p-0">
