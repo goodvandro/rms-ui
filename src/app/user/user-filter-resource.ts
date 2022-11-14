@@ -1,32 +1,32 @@
+import { Entity } from '../models/entity';
+import { Group } from '../models/group';
 import { HttpParams } from '@angular/common/http';
 import * as moment from 'moment';
 
-export class AddressFilter {
+export class UserFilter {
   page: number = 0;
   rows: number = 10;
 
-  city: string;
-  district: string;
-  street: string;
+  name: string;
+  email: string;
 
   createdAt: Date[];
+  group: Group;
+  entity: Entity;
 }
 
-export const getFilterParams = (filter: AddressFilter): HttpParams => {
+export const getFilterParams = (filter: UserFilter): HttpParams => {
   let params = new HttpParams();
+
   params = params.append('page', filter.page.toString());
   params = params.append('size', filter.rows.toString());
 
-  if (filter.city) {
-    params = params.append('city', filter.city);
+  if (filter.name) {
+    params = params.append('name', filter.name);
   }
 
-  if (filter.district) {
-    params = params.append('district', filter.district);
-  }
-
-  if (filter.street) {
-    params = params.append('street', filter.street);
+  if (filter.email) {
+    params = params.append('email', filter.email);
   }
 
   if (filter.createdAt) {
@@ -40,6 +40,14 @@ export const getFilterParams = (filter: AddressFilter): HttpParams => {
         'createdAtTo',
         moment(filter.createdAt[1]).format('YYYY-MM-DD')
       );
+  }
+
+  if (filter.group) {
+    params = params.append('group', filter.group.id.toString());
+  }
+
+  if (filter.entity) {
+    params = params.append('entity', filter.entity.id.toString());
   }
 
   return params;

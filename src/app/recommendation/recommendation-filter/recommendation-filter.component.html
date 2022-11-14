@@ -1,14 +1,34 @@
 <div class="p-fluid p-grid p-d-flex p-jc-end p-ai-center">
-  <p-button type="button" class="p-m-2" (click)="openFilter=true" icon="pi pi-filter" label="Filtrar"></p-button>
+  <p-button
+    type="button"
+    class="p-m-2"
+    (click)="openFilter = true"
+    icon="pi pi-filter"
+    label="Filtrar"
+  ></p-button>
 </div>
 
-<p-sidebar [(visible)]="openFilter" position="right" [baseZIndex]="10000" [style]="{width:'30em', overflowY: 'scroll'}">
+<p-sidebar
+  [(visible)]="openFilter"
+  position="right"
+  [baseZIndex]="10000"
+  [style]="{ width: '30em', overflowY: 'scroll' }"
+>
   <form #form="ngForm" (ngSubmit)="setFilter()">
-    <h3 style="font-weight:normal">FILTROS DE RECOMENDAÇÕES</h3>
+    <h3 style="font-weight: normal">FILTROS DE RECOMENDAÇÕES</h3>
 
-    <p-button type="submit" label="Filtrar" styleClass="p-button-success p-mr-2"></p-button>
+    <p-button
+      type="submit"
+      label="Filtrar"
+      styleClass="p-button-success p-mr-2"
+    ></p-button>
 
-    <p-button type="button" (click)="resetFilter(form)" label="Limpar" styleClass="p-button-danger p-mr-2">
+    <p-button
+      type="button"
+      (click)="resetFilter(form)"
+      label="Limpar"
+      styleClass="p-button-danger p-mr-2"
+    >
     </p-button>
 
     <div class="p-field p-col-12 p-my-0 p-py-0">
@@ -18,74 +38,133 @@
     <div class="p-fluid p-grid">
       <div class="p-field p-col-12">
         <label for="auditDescription">Nº Processo</label>
-        <input id="auditDescription" type="text" pInputText name="processCode" [(ngModel)]="filter.processCode">
+        <input
+          id="auditDescription"
+          type="text"
+          pInputText
+          name="processCode"
+          [(ngModel)]="filter.processCode"
+        />
       </div>
 
       <div class="p-field p-col-12">
         <label for="entityAudited">Entidade Auditada</label>
-        <p-dropdown id="entityAudited" [options]="entities" name="entityAudited" [(ngModel)]="filter.entityAudited"
-          placeholder="Selecione" required>
+        <p-dropdown
+          id="entityAudited"
+          [options]="entities"
+          name="entityAudited"
+          [(ngModel)]="filter.entityAudited"
+          placeholder="Selecione"
+        >
         </p-dropdown>
       </div>
 
       <div class="p-field p-col-12">
         <label for="status">Status</label>
-        <p-dropdown id="status" [options]="statuses" name="status" [(ngModel)]="filter.status" placeholder="Selecione"
-          required>
+        <p-dropdown
+          id="status"
+          [options]="statuses"
+          name="status"
+          [(ngModel)]="filter.status"
+          placeholder="Selecione"
+        >
         </p-dropdown>
       </div>
 
       <div class="p-field p-col-12">
         <label for="character">Carácter</label>
-        <p-dropdown id="character" [options]="characters" name="character" [(ngModel)]="filter.character"
-          placeholder="Selecione" required>
+        <p-dropdown
+          id="character"
+          [options]="characters"
+          name="character"
+          [(ngModel)]="filter.character"
+          placeholder="Selecione"
+        >
         </p-dropdown>
       </div>
 
       <div class="p-field p-col-12">
         <label for="levelRisk">Nível de Risco</label>
-        <p-dropdown id="levelRisk" [options]="levelsRisk" name="levelRisk" [(ngModel)]="filter.levelRisk"
-          placeholder="Selecione" required>
+        <p-dropdown
+          id="levelRisk"
+          [options]="levelsRisk"
+          name="levelRisk"
+          [(ngModel)]="filter.levelRisk"
+          placeholder="Selecione"
+        >
         </p-dropdown>
       </div>
 
       <div class="p-field p-col-12">
         <label for="userCreated">Utilizador</label>
-        <p-dropdown [filter]="true" id="userCreated" [options]="users" name="userCreated"
-          [(ngModel)]="filter.userCreated" placeholder="Selecione" required>
+        <p-dropdown
+          [filter]="true"
+          id="userCreated"
+          [options]="users"
+          name="userCreated"
+          [(ngModel)]="filter.userCreated"
+          placeholder="Selecione"
+        >
         </p-dropdown>
       </div>
 
       <div class="p-field p-col-12">
         <label for="nature">Natureza</label>
-        <p-dropdown id="nature" [options]="natures" name="nature" [(ngModel)]="filter.nature" placeholder="Selecione"
-          required>
+        <p-dropdown
+          id="nature"
+          [options]="natures"
+          name="nature"
+          [(ngModel)]="filter.nature"
+          placeholder="Selecione"
+        >
         </p-dropdown>
       </div>
 
       <div class="p-field p-col-12">
         <label for="createdAt">Data de Registo</label>
-        <p-calendar id="createdAt" selectionMode="range" name="createdAt" [(ngModel)]="filter.createdAt">
+        <p-calendar
+          id="createdAt"
+          selectionMode="range"
+          name="createdAt"
+          [(ngModel)]="filter.createdAt"
+        >
         </p-calendar>
       </div>
 
       <div class="p-field p-col-12">
         <label for="updatedAt">Data de Atualização</label>
-        <p-calendar id="updatedAt" selectionMode="range" name="updatedAt" [(ngModel)]="filter.updatedAt">
+        <p-calendar
+          id="updatedAt"
+          selectionMode="range"
+          name="updatedAt"
+          [(ngModel)]="filter.updatedAt"
+        >
         </p-calendar>
       </div>
 
       <div class="p-field p-col-6">
         <label for="amountMin">Montante Mínimo</label>
-        <p-inputNumber name="amountMin" [(ngModel)]="filter.amountMin" inputId="locale-german" mode="decimal"
-          locale="de-DE" [minFractionDigits]="2">
+        <p-inputNumber
+          name="amountMin"
+          [(ngModel)]="filter.amountMin"
+          inputId="locale-german"
+          mode="decimal"
+          locale="de-DE"
+          [minFractionDigits]="2"
+        >
         </p-inputNumber>
       </div>
 
       <div class="p-field p-col-6">
         <label for="amountMax">Montante Máximo</label>
-        <p-inputNumber name="amountMax" [(ngModel)]="filter.amountMax" inputId="locale-german" mode="decimal"
-          locale="de-DE" [minFractionDigits]="2">
+        <p-inputNumber
+          name="amountMax"
+          [(ngModel)]="filter.amountMax"
+          inputId="locale-german"
+          mode="decimal"
+          locale="de-DE"
+          [minFractionDigits]="2"
+        >
         </p-inputNumber>
       </div>
     </div>

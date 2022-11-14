@@ -6,7 +6,7 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
-import { DividerModule } from "primeng/divider";
+import { DividerModule } from 'primeng/divider';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { MultiSelectModule } from 'primeng/multiselect';
@@ -22,13 +22,17 @@ import { CreateComponent } from './create/create.component';
 import { ReadComponent } from './read/read.component';
 import { UpdateComponent } from './update/update.component';
 import { UserRouter } from './user.router';
+import { UserFilterComponent } from './user-filter/user-filter.component';
+import { SidebarModule } from 'primeng/sidebar';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   declarations: [
     ReadComponent,
     CreateComponent,
     UpdateComponent,
-    AvatarComponent
+    AvatarComponent,
+    UserFilterComponent,
   ],
   imports: [
     CommonModule,
@@ -49,10 +53,10 @@ import { UserRouter } from './user.router';
     ProgressBarModule,
     OverlayPanelModule,
     AvatarGroupModule,
-    AvatarModule
+    AvatarModule,
+    CalendarModule,
+    SidebarModule,
   ],
-  exports: [
-    AvatarComponent
-  ]
+  exports: [AvatarComponent],
 })
-export class UserModule { }
+export class UserModule {}
