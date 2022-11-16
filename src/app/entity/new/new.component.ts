@@ -12,7 +12,7 @@ import { EntityLevel } from 'src/app/models/entity-level';
 @Component({
   selector: 'app-new',
   templateUrl: './new.component.html',
-  styleUrls: ['./new.component.scss']
+  styleUrls: ['./new.component.scss'],
 })
 export class NewComponent implements OnInit {
   loading: boolean = false;
@@ -24,25 +24,27 @@ export class NewComponent implements OnInit {
 
   constructor(
     private entityService: EntityService,
-    private addressService: AddressService,
     private entityLevelService: EntityLevelService,
     private errorService: ErrorService,
     private toastr: ToastrService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    // this.dropdownAddresses();
     this.dropdownLevels();
   }
 
   dropdownLevels(): void {
-    this.entityLevelService.readAll()
-      .then(result => this.levels = result.map((level: EntityLevel) => ({
-        value: level,
-        label: level.name
-      })))
-      .catch((error) => this.errorService.handle(error))
+    this.entityLevelService
+      .readAll()
+      .then(
+        (result) =>
+          (this.levels = result.map((level: EntityLevel) => ({
+            value: level,
+            label: level.name,
+          })))
+      )
+      .catch((error) => this.errorService.handle(error));
   }
 
   // dropdownAddresses(): void {
@@ -56,12 +58,13 @@ export class NewComponent implements OnInit {
 
   create(): void {
     this.loading = true;
-    this.entityService.create(this.entity)
+    this.entityService
+      .create(this.entity)
       .then((result) => {
         this.router.navigate(['/entity/show', result.id]);
-        this.toastr.success('Entidade adicionada!')
+        this.toastr.success('Entidade adicionada!');
       })
       .catch((error) => this.errorService.handle(error))
-      .finally(() => this.loading = false)
+      .finally(() => (this.loading = false));
   }
 }

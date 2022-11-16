@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
-import { DividerModule } from "primeng/divider";
+import { DividerModule } from 'primeng/divider';
 import { DropdownModule } from 'primeng/dropdown';
 import { FieldsetModule } from 'primeng/fieldset';
 import { InputSwitchModule } from 'primeng/inputswitch';
@@ -18,12 +18,15 @@ import { EntityRouter } from './entity.router';
 import { IndexComponent } from './index/index.component';
 import { NewComponent } from './new/new.component';
 import { ShowComponent } from './show/show.component';
+import { EntityFilterComponent } from './entity-filter/entity-filter.component';
+import { SidebarModule } from 'primeng/sidebar';
 
 @NgModule({
   declarations: [
     IndexComponent,
     ShowComponent,
-    NewComponent
+    NewComponent,
+    EntityFilterComponent,
   ],
   imports: [
     CommonModule,
@@ -41,7 +44,8 @@ import { ShowComponent } from './show/show.component';
     InputSwitchModule,
     ProgressBarModule,
     FieldsetModule,
-    CalendarModule
-  ]
+    CalendarModule,
+    SidebarModule,
+  ],
 })
-export class EntityModule { }
+export class EntityModule {}
