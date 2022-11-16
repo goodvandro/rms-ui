@@ -4,19 +4,40 @@
   </div>
 
   <div class="p-col-12">
-    <p-progressBar mode="indeterminate" [style]="{'height': '2px'}" *ngIf="loading"></p-progressBar>
+    <p-progressBar
+      mode="indeterminate"
+      [style]="{ height: '2px' }"
+      *ngIf="loading"
+    ></p-progressBar>
     <p-card>
       <form autocomplete="off" #f="ngForm" (ngSubmit)="create()">
         <div class="p-grid">
           <div class="p-col-12">
-            <button pButton pRipple type="button" icon="pi pi-chevron-left"
-              class="p-button-text p-button-raised p-button-lg p-mx-1" routerLink="/user/index"></button>
+            <button
+              pButton
+              pRipple
+              type="button"
+              icon="pi pi-chevron-left"
+              class="p-button-text p-button-raised p-button-lg p-mx-1"
+              routerLink="/user/index"
+            ></button>
 
-            <button pButton pRipple type="submit" label="Salvar" class="p-button-raised p-button-lg p-mx-1"
-              [disabled]="!f.valid || loading"></button>
+            <button
+              pButton
+              pRipple
+              type="submit"
+              label="Salvar"
+              class="p-button-raised p-button-lg p-mx-1"
+              [disabled]="!f.valid || loading"
+            ></button>
 
-            <button pButton pRipple type="button" label="Novo"
-              class="p-button-raised p-button-info p-button-lg"></button>
+            <button
+              pButton
+              pRipple
+              type="button"
+              label="Novo"
+              class="p-button-raised p-button-info p-button-lg"
+            ></button>
 
             <p-divider> </p-divider>
           </div>
@@ -24,50 +45,99 @@
 
         <div class="p-fluid p-formgrid p-grid">
           <div class="p-field p-col-12 p-md-4">
-            <label for="name">
-              Nome <span class="span-required">*</span>
-            </label>
-            <input id="name" type="text" pInputText name="name" [(ngModel)]="user.person.name" required>
+            <label for="name"> Nome<span class="span-required">*</span> </label>
+            <input
+              id="name"
+              type="text"
+              pInputText
+              name="name"
+              [(ngModel)]="user.person.name"
+              required
+            />
           </div>
 
           <div class="p-field p-col-12 p-md-8">
             <label for="surname">
-              Apelido <span class="span-required">*</span>
+              Apelido<span class="span-required">*</span>
             </label>
-            <input id="surname" type="text" pInputText name="surname" [(ngModel)]="user.person.surname" required>
+            <input
+              id="surname"
+              type="text"
+              pInputText
+              name="surname"
+              [(ngModel)]="user.person.surname"
+              required
+            />
           </div>
 
           <div class="p-field p-col-12 p-md-2">
-            <label for="bi">
-              BI <span class="span-required">*</span>
-            </label>
-            <input id="bi" type="number" pInputText name="bi" [(ngModel)]="user.person.bi" required>
+            <label for="bi"> BI <span class="span-required">*</span> </label>
+            <input
+              id="bi"
+              type="number"
+              pInputText
+              name="bi"
+              [(ngModel)]="user.person.bi"
+              required
+            />
           </div>
 
           <div class="p-field p-col-12 p-md-2">
             <label for="contact">Contacto</label>
-            <input id="contact" type="text" pInputText name="contact" [(ngModel)]="user.person.contact" minlength="7"
-              maxlength="15">
+            <input
+              id="contact"
+              type="text"
+              pInputText
+              name="contact"
+              [(ngModel)]="user.person.contact"
+              minlength="7"
+              maxlength="15"
+            />
           </div>
 
           <div class="p-field p-col-12 p-md-8">
             <label for="email">
-              E-mail <span class="span-required">*</span>
+              E-mail<span class="span-required">*</span>
             </label>
-            <input id="email" type="email" pInputText name="email" [(ngModel)]="user.person.email" required email>
+            <input
+              id="email"
+              type="email"
+              pInputText
+              name="email"
+              [(ngModel)]="user.person.email"
+              required
+              email
+            />
           </div>
 
           <div class="p-field p-col-12 p-md-4">
-            <label for="group">Perfil</label>
-            <p-dropdown id="group" [options]="groups" name="group" [(ngModel)]="user.group.id" placeholder="Selecione"
-              [ngStyle]="{width: '100%'}" [required]="true">
+            <label for="group"
+              >Perfil<span class="span-required">*</span></label
+            >
+            <p-dropdown
+              id="group"
+              [options]="groups"
+              name="group"
+              [(ngModel)]="user.group.id"
+              placeholder="Selecione"
+              [ngStyle]="{ width: '100%' }"
+              [required]="true"
+            >
             </p-dropdown>
           </div>
 
           <div class="p-field p-col-12 p-md-8">
-            <label for="entityAudited">Entidade</label>
-            <p-dropdown id="entityAudited" [options]="entities" name="entity" [(ngModel)]="user.person.entity"
-              placeholder="Selecione">
+            <label for="entityAudited"
+              >Entidade<span class="span-required">*</span></label
+            >
+            <p-dropdown
+              id="entityAudited"
+              [options]="entities"
+              name="entity"
+              [(ngModel)]="user.person.entity"
+              placeholder="Selecione"
+              [required]="true"
+            >
             </p-dropdown>
           </div>
 
@@ -86,18 +156,41 @@
 
         <div class="p-fluid p-formgrid p-grid">
           <div class="p-field p-col-12 p-md-4">
-            <label for="district">Distrito</label>
-            <input id="district" type="text" pInputText name="district" [(ngModel)]="user.person.district">
+            <label for="district"
+              >Distrito<span class="span-required">*</span></label
+            >
+            <input
+              id="district"
+              type="text"
+              pInputText
+              name="district"
+              [(ngModel)]="user.person.district"
+              required
+            />
           </div>
 
           <div class="p-field p-col-12 p-md-4">
-            <label for="city">Cidade</label>
-            <input id="city" type="text" pInputText name="city" [(ngModel)]="user.person.city">
+            <label for="city">Cidade<span class="span-required">*</span></label>
+            <input
+              id="city"
+              type="text"
+              pInputText
+              name="city"
+              [(ngModel)]="user.person.city"
+              required
+            />
           </div>
 
           <div class="p-field p-col-12 p-md-4">
-            <label for="street">Rua</label>
-            <input id="street" type="text" pInputText name="street" [(ngModel)]="user.person.street">
+            <label for="street">Rua<span class="span-required">*</span></label>
+            <input
+              id="street"
+              type="text"
+              pInputText
+              name="street"
+              [(ngModel)]="user.person.street"
+              required
+            />
           </div>
         </div>
       </form>
