@@ -1,6 +1,6 @@
 export const app = {
   // developmentHost: '197.159.166.11:8081',
-  developmentHost: '192.168.0.117:8081',
+  developmentHost: '192.168.0.136:8081',
   testingHost: 'igf-api.herokuapp.com',
   stagingHost: 'webapp.b-software.st:8080',
 };
