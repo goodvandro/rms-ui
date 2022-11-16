@@ -48,15 +48,16 @@ export class UserFilterComponent implements OnInit {
   async dropdownGroups() {
     await this.groupService.readAll().then(async (result) => {
       this.groups = await result.map(
-        (element: Group): DropdownModel => ({
-          value: element.id,
-          label: element.name,
+        (group: Group): DropdownModel => ({
+          value: group,
+          label: group.name,
         })
       );
     });
   }
 
   setFilter(): void {
+    console.log(this.filter);
     this.filterChange.emit(this.filter);
   }
 
