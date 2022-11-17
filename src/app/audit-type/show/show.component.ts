@@ -7,7 +7,7 @@ import { AuditTypeService } from './../audit-type.service';
 @Component({
   selector: 'app-show',
   templateUrl: './show.component.html',
-  styleUrls: ['./show.component.scss']
+  styleUrls: ['./show.component.scss'],
 })
 export class ShowComponent implements OnInit {
   @Input() auditType: AuditType;
@@ -19,22 +19,32 @@ export class ShowComponent implements OnInit {
     private auditTypeService: AuditTypeService,
     private errorService: ErrorService,
     private toastr: ToastrService
-  ) { }
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   showDialog() {
     this.display = true;
   }
 
+  generateSlug(event: any) {
+    const name: string = event.target.value;
+
+    this.auditType.slug = name
+      .replace(/\s/g, '_')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+  }
+
   update(): void {
-    this.auditTypeService.update(this.auditType.id, this.auditType)
+    this.auditTypeService
+      .update(this.auditType.id, this.auditType)
       .then(() => {
         this.display = false;
         this.toastr.success('Informações salvas!');
       })
       .catch((error) => this.errorService.handle(error))
-      .finally(() => this.loading = false)
+      .finally(() => (this.loading = false));
   }
 }
