@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
-import { DividerModule } from "primeng/divider";
+import { DividerModule } from 'primeng/divider';
 import { InputTextModule } from 'primeng/inputtext';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { PasswordModule } from 'primeng/password';
@@ -17,6 +17,9 @@ import { GroupWorkRouter } from './group-work.router';
 import { IndexComponent } from './index/index.component';
 import { NewComponent } from './new/new.component';
 import { ShowComponent } from './show/show.component';
+import { GroupWorkFilterComponent } from './group-work-filter/group-work-filter.component';
+import { SidebarModule } from 'primeng/sidebar';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,8 @@ import { ShowComponent } from './show/show.component';
     ShowComponent,
     NewComponent,
     CastComponent,
-    GroupWorkByAuditComponent
+    GroupWorkByAuditComponent,
+    GroupWorkFilterComponent,
   ],
   imports: [
     CommonModule,
@@ -39,10 +43,10 @@ import { ShowComponent } from './show/show.component';
     TooltipModule,
     TabViewModule,
     MultiSelectModule,
-    ProgressBarModule
+    ProgressBarModule,
+    SidebarModule,
+    CalendarModule,
   ],
-  exports: [
-    GroupWorkByAuditComponent
-  ]
+  exports: [GroupWorkByAuditComponent],
 })
-export class GroupWorkModule { }
+export class GroupWorkModule {}

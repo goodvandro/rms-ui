@@ -14,11 +14,12 @@ import { AuditFilter } from '../audit.filter.resource';
 @Component({
   selector: 'app-audit-filter',
   templateUrl: './audit-filter.component.html',
-  styleUrls: ['./audit-filter.component.scss']
+  styleUrls: ['./audit-filter.component.scss'],
 })
 export class AuditFilterComponent implements OnInit {
   @Input('auditFilter') filter: AuditFilter;
-  @Output('setFilter') filterChange: EventEmitter<AuditFilter> = new EventEmitter<AuditFilter>();
+  @Output('setFilter') filterChange: EventEmitter<AuditFilter> =
+    new EventEmitter<AuditFilter>();
 
   openFilter: boolean = false;
 
@@ -36,8 +37,8 @@ export class AuditFilterComponent implements OnInit {
     private entityService: EntityService,
     private auditStatusService: AuditStatusService,
     private auditTypeService: AuditTypeService,
-    private groupWorkService: GroupWorkService,
-  ) { }
+    private groupWorkService: GroupWorkService
+  ) {}
 
   ngOnInit(): void {
     this.dropdownYearsFilter();
@@ -53,7 +54,7 @@ export class AuditFilterComponent implements OnInit {
     while (year <= this.maxYearFilter) {
       this.yearsFilter.push({
         label: year.toString(),
-        value: year.toString().substring(1)
+        value: year.toString().substring(1),
       });
 
       year++;
@@ -63,43 +64,54 @@ export class AuditFilterComponent implements OnInit {
   }
 
   async dropdownEntities(): Promise<any> {
-    await this.entityService.readAll()
-      .then((result) => {
-        this.entities = result.map(
-          (entity: Entity): DropdownModel => ({
-            value: entity,
-            label: entity.name
-          }));
-      });
+    await this.entityService.readAll().then((result) => {
+      this.entities = result.map(
+        (entity: Entity): DropdownModel => ({
+          value: entity,
+          label: entity.name,
+        })
+      );
+    });
   }
 
   async dropdownStatuses() {
-    await this.auditStatusService.readAll()
-      .then((result) => {
-        this.statuses = result.map(
-          (status: AuditStatus): DropdownModel => ({
-            value: status,
-            label: status.name
-          }));
-      });
+    await this.auditStatusService.readAll().then((result) => {
+      this.statuses = result.map(
+        (status: AuditStatus): DropdownModel => ({
+          value: status,
+          label: status.name,
+        })
+      );
+    });
   }
 
   async dropdownTypes() {
-    await this.auditTypeService.readAll()
-      .then((result) => this.types = result.map(
-        (type: AuditType): DropdownModel => ({
-          value: type,
-          label: type.name
-        })))
+    await this.auditTypeService.readAll().then(
+      (result) =>
+        (this.types = result.map(
+          (type: AuditType): DropdownModel => ({
+            value: type,
+            label: type.name,
+          })
+        ))
+    );
   }
 
   async dropdownGroupsWork() {
-    await this.groupWorkService.readAll()
-      .then((result) => this.groupsWork = result.map(
-        (groupWork: GroupWork): DropdownModel => ({
-          value: groupWork,
-          label: groupWork.name
-        })))
+    await this.groupWorkService.readAll().then(
+      (result) =>
+        (this.groupsWork = result.map((groupWork: GroupWork): DropdownModel => {
+          const shortGroupName =
+            groupWork.name.length > 50
+              ? groupWork.name.substring(0, 50) + '...'
+              : groupWork.name;
+
+          return {
+            value: groupWork,
+            label: shortGroupName,
+          };
+        }))
+    );
   }
 
   setFilter(): void {

@@ -1,12 +1,13 @@
 import { LazyLoadEvent } from 'primeng/api';
 import { ErrorService } from './../../error/error.service';
-import { GroupWorkFilter, GroupWorkService } from './../group-work.service';
+import { GroupWorkService } from './../group-work.service';
+import { GroupWorkFilter } from './../group-work-filter-resource';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss']
+  styleUrls: ['./index.component.scss'],
 })
 export class IndexComponent implements OnInit {
   loading: boolean = true;
@@ -16,8 +17,8 @@ export class IndexComponent implements OnInit {
 
   constructor(
     private groupService: GroupWorkService,
-    private errorService: ErrorService,
-  ) { }
+    private errorService: ErrorService
+  ) {}
 
   ngOnInit(): void {
     this.read();
@@ -26,14 +27,20 @@ export class IndexComponent implements OnInit {
   read(page = 0): void {
     this.filter.page = page;
 
-    this.groupService.read(this.filter)
-      .then((result) => this.groupWorks = result)
+    this.groupService
+      .read(this.filter)
+      .then((result) => (this.groupWorks = result))
       .catch((error) => this.errorService.handle(error))
-      .finally(() => this.loading = false);
+      .finally(() => (this.loading = false));
   }
 
   onLazyLoad(event: LazyLoadEvent) {
     const page = event.first / event.rows;
     this.read(page);
+  }
+
+  setFilter(newFilter: GroupWorkFilter): void {
+    this.filter = newFilter;
+    this.read();
   }
 }

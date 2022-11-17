@@ -5,27 +5,19 @@
 
   <div class="p-col-12">
     <p-card>
-      <div class="p-fluid p-grid p-d-flex p-jc-end p-ai-center">
-        <div class="p-field p-col-12 p-md-2 p-my-0">
-          <span class="p-float-label p-input-icon-left">
-            <i class="pi pi-search"></i>
-            <input type="text" id="name" pInputText [(ngModel)]="filter.name">
-            <label for="name">Nome</label>
-          </span>
-        </div>
-        <div class="p-field p-col-12 p-md-1 p-px-0 p-mr-0 p-my-0">
-          <button pButton pRipple type="button" icon="pi pi-search"
-            class="p-button-rounded p-button-secondary p-button-raised"></button>
-        </div>
+      <app-group-work-filter
+        [(filter)]="filter"
+        (setFilter)="setFilter($event)"
+      ></app-group-work-filter>
 
-        <div class="p-field p-col-12 p-my-0 p-py-0">
-          <p-divider></p-divider>
-        </div>
-      </div>
-
-      <p-table [value]="groupWorks" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+      <p-table
+        [value]="groupWorks"
+        [paginator]="true"
+        [rows]="10"
+        [showCurrentPageReport]="true"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} linhas"
-        [rowsPerPageOptions]="[10,25,50]">
+        [rowsPerPageOptions]="[10, 25, 50]"
+      >
         <ng-template pTemplate="header">
           <tr>
             <th>Nome</th>
@@ -35,25 +27,41 @@
         </ng-template>
         <ng-template pTemplate="body" let-rowData>
           <tr>
-            <td>{{rowData.name}}</td>
-            <td>{{rowData.createdAt | date}}</td>
+            <td>{{ rowData.name }}</td>
+            <td>{{ rowData.createdAt | date }}</td>
             <td class="p-p-0">
-              <button pButton pRipple type="button" icon="pi pi-pencil"
+              <button
+                pButton
+                pRipple
+                type="button"
+                icon="pi pi-pencil"
                 class="p-button-rounded p-button-warning p-button-outlined"
-                [routerLink]="['/group-work/index', rowData.id]"></button>
+                [routerLink]="['/group-work/index', rowData.id]"
+              ></button>
             </td>
           </tr>
         </ng-template>
 
         <ng-template pTemplate="paginatorleft">
-          <p-button type="button" icon="pi pi-plus" styleClass="p-button-text" pTooltip="Adicionar nova equipa"
-            tooltipPosition="right" routerLink="/group-work/new">
+          <p-button
+            type="button"
+            icon="pi pi-plus"
+            styleClass="p-button-text"
+            pTooltip="Adicionar nova equipa"
+            tooltipPosition="right"
+            routerLink="/group-work/new"
+          >
           </p-button>
         </ng-template>
 
         <ng-template pTemplate="paginatorright">
-          <p-button type="button" icon="pi pi-refresh" styleClass="p-button-text" pTooltip="Atualizar"
-            tooltipPosition="left"></p-button>
+          <p-button
+            type="button"
+            icon="pi pi-refresh"
+            styleClass="p-button-text"
+            pTooltip="Atualizar"
+            tooltipPosition="left"
+          ></p-button>
         </ng-template>
       </p-table>
     </p-card>
