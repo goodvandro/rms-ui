@@ -4,21 +4,49 @@
   </div>
 
   <div class="p-col-12">
-    <p-progressBar mode="indeterminate" [style]="{'height': '2px'}" *ngIf="loading"></p-progressBar>
+    <p-progressBar
+      mode="indeterminate"
+      [style]="{ height: '2px' }"
+      *ngIf="loading"
+    ></p-progressBar>
     <p-card>
       <form autocomplete="off" #f="ngForm" (ngSubmit)="update()">
         <div class="p-grid">
           <div class="p-col-12">
-            <button pButton pRipple type="button" icon="pi pi-chevron-left"
-              class="p-button-text p-button-raised p-button-lg p-mx-1" routerLink="/recommendation/index"></button>
+            <button
+              pButton
+              pRipple
+              type="button"
+              icon="pi pi-chevron-left"
+              class="p-button-text p-button-raised p-button-lg p-mx-1"
+              routerLink="/recommendation/index"
+            ></button>
 
-            <button pButton pRipple type="submit" label="Salvar" class="p-button-raised p-button-lg p-mx-1"></button>
+            <button
+              pButton
+              pRipple
+              type="submit"
+              label="Salvar"
+              class="p-button-raised p-button-lg p-mx-1"
+            ></button>
 
-            <button pButton pRipple type="button" label="Novo" routerLink="/recommendation/new"
-              class="p-button-raised p-button-info p-button-lg p-mx-1"></button>
+            <button
+              pButton
+              pRipple
+              type="button"
+              label="Novo"
+              routerLink="/recommendation/new"
+              class="p-button-raised p-button-info p-button-lg p-mx-1"
+            ></button>
 
-            <button pButton pRipple type="button" label="Avaliar" disabled
-              class="p-button-raised p-button-secondary p-button-lg p-mx-1"></button>
+            <button
+              pButton
+              pRipple
+              type="button"
+              label="Avaliar"
+              disabled
+              class="p-button-raised p-button-secondary p-button-lg p-mx-1"
+            ></button>
             <p-divider></p-divider>
           </div>
         </div>
@@ -29,35 +57,35 @@
           </div>
 
           <div class="p-col-6">
-            <table class="styled-table" style="width:100%">
+            <table class="styled-table" style="width: 100%">
               <tr>
                 <th>Código do Processo:</th>
-                <td> {{recommendation.audit.processCode}} </td>
+                <td>{{ recommendation.audit.processCode }}</td>
               </tr>
               <tr>
                 <th>Entidade:</th>
-                <td> {{recommendation.audit.entityAudited.name}} </td>
+                <td>{{ recommendation.audit.entityAudited.name }}</td>
               </tr>
               <tr>
                 <th>Endereço:</th>
-                <td> {{recommendation.audit.entityAudited.street}} </td>
+                <td>{{ recommendation.audit.entityAudited.street }}</td>
               </tr>
             </table>
           </div>
 
           <div class="p-col-6">
-            <table class="styled-table" style="width:100%">
+            <table class="styled-table" style="width: 100%">
               <tr>
                 <th>Descrição da Ação:</th>
-                <td> {{recommendation.audit.description}} </td>
+                <td>{{ recommendation.audit.description }}</td>
               </tr>
               <tr>
                 <th>Data de Despacho:</th>
-                <td> {{recommendation.audit.dispatchedAt | date}} </td>
+                <td>{{ recommendation.audit.dispatchedAt | date }}</td>
               </tr>
               <tr>
                 <th>Data de Comunicação:</th>
-                <td> {{recommendation.audit.reportedAt | date}} </td>
+                <td>{{ recommendation.audit.reportedAt | date }}</td>
               </tr>
             </table>
           </div>
@@ -73,83 +101,173 @@
               </div>
 
               <div class="p-field p-col-12 p-md-6">
-                <label for="constatation">Conclusão</label>
-                <p-editor name="constatation" [(ngModel)]="recommendation.constatation" [style]="{'height':'120px'}">
+                <label for="constatation"
+                  >Conclusão<span class="span-required">*</span></label
+                >
+                <p-editor
+                  name="constatation"
+                  [(ngModel)]="recommendation.constatation"
+                  [style]="{ height: '120px' }"
+                  [required]="true"
+                >
                   <ng-template pTemplate="header">
                     <span class="ql-formats">
-                      <button type="button" class="ql-bold" aria-label="Bold"></button>
-                      <button type="button" class="ql-italic" aria-label="Italic"></button>
-                      <button type="button" class="ql-underline" aria-label="Underline"></button>
+                      <button
+                        type="button"
+                        class="ql-bold"
+                        aria-label="Bold"
+                      ></button>
+                      <button
+                        type="button"
+                        class="ql-italic"
+                        aria-label="Italic"
+                      ></button>
+                      <button
+                        type="button"
+                        class="ql-underline"
+                        aria-label="Underline"
+                      ></button>
                     </span>
                   </ng-template>
                 </p-editor>
               </div>
 
               <div class="p-field p-col-12 p-md-6">
-                <label for="description">Recomendação</label>
-                <p-editor name="description" [(ngModel)]="recommendation.description" [style]="{'height':'120px'}">
+                <label for="description"
+                  >Recomendação<span class="span-required">*</span></label
+                >
+                <p-editor
+                  name="description"
+                  [(ngModel)]="recommendation.description"
+                  [style]="{ height: '120px' }"
+                  [required]="true"
+                >
                   <ng-template pTemplate="header">
                     <span class="ql-formats">
-                      <button type="button" class="ql-bold" aria-label="Bold"></button>
-                      <button type="button" class="ql-italic" aria-label="Italic"></button>
-                      <button type="button" class="ql-underline" aria-label="Underline"></button>
+                      <button
+                        type="button"
+                        class="ql-bold"
+                        aria-label="Bold"
+                      ></button>
+                      <button
+                        type="button"
+                        class="ql-italic"
+                        aria-label="Italic"
+                      ></button>
+                      <button
+                        type="button"
+                        class="ql-underline"
+                        aria-label="Underline"
+                      ></button>
                     </span>
                   </ng-template>
                 </p-editor>
               </div>
 
               <div class="p-field p-col-12 p-md-3">
-                <label for="status">Status</label>
-                <p-dropdown id="status" [options]="statuses" name="status" [(ngModel)]="recommendation.status.id">
+                <label for="status"
+                  >Status<span class="span-required">*</span></label
+                >
+                <p-dropdown
+                  id="status"
+                  [options]="statuses"
+                  name="status"
+                  [(ngModel)]="recommendation.status.id"
+                  required="true"
+                >
                 </p-dropdown>
               </div>
 
               <div class="p-field p-col-12 p-md-3">
                 <label for="amount">Valor em causa</label>
-                <p-inputNumber inputId="amount" name="amount" [(ngModel)]="recommendation.amount" mode="currency"
-                  currency="STN" locale="pt-PT">
+                <p-inputNumber
+                  inputId="amount"
+                  name="amount"
+                  [(ngModel)]="recommendation.amount"
+                  mode="currency"
+                  currency="STN"
+                  locale="pt-PT"
+                >
                 </p-inputNumber>
               </div>
 
               <div class="p-field p-col-12 p-md-3">
-                <label for="nature">Natureza</label>
-                <p-dropdown id="nature" [options]="natures" name="nature" [(ngModel)]="recommendation.nature.id"
-                  placeholder="Selecione">
+                <label for="nature"
+                  >Natureza<span class="span-required">*</span></label
+                >
+                <p-dropdown
+                  id="nature"
+                  [options]="natures"
+                  name="nature"
+                  [(ngModel)]="recommendation.nature.id"
+                  placeholder="Selecione"
+                  required="true"
+                >
                 </p-dropdown>
               </div>
 
               <div class="p-field p-col-12 p-md-3">
-                <label for="character">Carácter</label>
-                <p-dropdown id="character" [options]="characters" name="character"
-                  [(ngModel)]="recommendation.character.id" placeholder="Selecione">
+                <label for="character"
+                  >Carácter<span class="span-required">*</span></label
+                >
+                <p-dropdown
+                  id="character"
+                  [options]="characters"
+                  name="character"
+                  [(ngModel)]="recommendation.character.id"
+                  placeholder="Selecione"
+                  required="true"
+                >
                 </p-dropdown>
               </div>
 
               <div class="p-field p-col-12 p-md-3">
-                <label for="levelRisk">Nível de risco</label>
-                <p-dropdown id="levelRisk" [options]="levelsRisk" name="levelRisk"
-                  [(ngModel)]="recommendation.levelRisk.id" placeholder="Selecione">
+                <label for="levelRisk"
+                  >Nível de risco<span class="span-required">*</span></label
+                >
+                <p-dropdown
+                  id="levelRisk"
+                  [options]="levelsRisk"
+                  name="levelRisk"
+                  [(ngModel)]="recommendation.levelRisk.id"
+                  placeholder="Selecione"
+                  required="true"
+                >
                 </p-dropdown>
               </div>
 
               <div class="p-field p-col-12 p-md-3">
                 <label for="complianceDeadline">Prazo para Cumprimento</label>
-                <p-calendar id="complianceDeadline" name="complianceDeadline"
-                  [(ngModel)]="recommendation.complianceDeadline" [showTime]="true">
+                <p-calendar
+                  id="complianceDeadline"
+                  name="complianceDeadline"
+                  [(ngModel)]="recommendation.complianceDeadline"
+                  [showTime]="true"
+                >
                 </p-calendar>
               </div>
 
               <div class="p-field p-col-12 p-md-3">
                 <label for="createdAt">Data de Registado</label>
-                <p-calendar id="createdAt" name="createdAt" [(ngModel)]="recommendation.createdAt" [showTime]="true"
-                  [disabled]=true>
+                <p-calendar
+                  id="createdAt"
+                  name="createdAt"
+                  [(ngModel)]="recommendation.createdAt"
+                  [showTime]="true"
+                  [disabled]="true"
+                >
                 </p-calendar>
               </div>
 
               <div class="p-field p-col-12 p-md-3">
                 <label for="updatedAt">Data de Atualização</label>
-                <p-calendar id="updatedAt" name="updatedAt" [(ngModel)]="recommendation.updatedAt" [showTime]="true"
-                  [disabled]=true>
+                <p-calendar
+                  id="updatedAt"
+                  name="updatedAt"
+                  [(ngModel)]="recommendation.updatedAt"
+                  [showTime]="true"
+                  [disabled]="true"
+                >
                 </p-calendar>
               </div>
             </div>
@@ -163,7 +281,9 @@
                 <app-files [(files)]="recommendation.files"></app-files>
               </p-tabPanel>
               <p-tabPanel header="Cumprimentos">
-                <app-compliances [(compliances)]="recommendation.compliances"></app-compliances>
+                <app-compliances
+                  [(compliances)]="recommendation.compliances"
+                ></app-compliances>
               </p-tabPanel>
             </p-tabView>
           </div>
