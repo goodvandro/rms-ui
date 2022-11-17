@@ -5,7 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
-import { DividerModule } from "primeng/divider";
+import { DividerModule } from 'primeng/divider';
 import { DropdownModule } from 'primeng/dropdown';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { EditorModule } from 'primeng/editor';
@@ -25,9 +25,21 @@ import { ClientShowComponent } from './client-show/client-show.component';
 import { ClientIndexComponent } from './client-index/client-index.component';
 import { ClientNewComponent } from './client-new/client-new.component';
 import { HistoriesComponent } from './histories/histories.component';
+import { ComplianceFilterComponent } from './compliance-filter/compliance-filter.component';
+import { SidebarModule } from 'primeng/sidebar';
 
 @NgModule({
-  declarations: [IndexComponent, NewComponent, ShowComponent, FilesComponent, ClientShowComponent, ClientIndexComponent, ClientNewComponent, HistoriesComponent],
+  declarations: [
+    IndexComponent,
+    NewComponent,
+    ShowComponent,
+    FilesComponent,
+    ClientShowComponent,
+    ClientIndexComponent,
+    ClientNewComponent,
+    HistoriesComponent,
+    ComplianceFilterComponent,
+  ],
   imports: [
     CommonModule,
     ComplianceRouter,
@@ -46,7 +58,8 @@ import { HistoriesComponent } from './histories/histories.component';
     ProgressBarModule,
     FieldsetModule,
     DynamicDialogModule,
-    DialogModule
-  ]
+    DialogModule,
+    SidebarModule,
+  ],
 })
-export class ComplianceModule { }
+export class ComplianceModule {}

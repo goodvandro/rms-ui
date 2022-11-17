@@ -36,7 +36,6 @@ export class EntityFilterComponent implements OnInit {
   }
 
   setFilter(): void {
-    console.log(this.filter);
     this.filterChange.emit(this.filter);
   }
 
