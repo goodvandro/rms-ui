@@ -1,22 +1,23 @@
 <div class="p-grid">
   <div class="p-col-12">
-    <h3>NÍVEIS DE AUDITORIA</h3>
+    <h3>NÍVEIS DE ENTIDADE</h3>
   </div>
 
   <div class="p-col-12">
     <p-card>
-      <p-table [value]="entityLevels" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} linhas">
+      <p-table
+        [value]="entityLevels"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} linhas"
+      >
         <ng-template pTemplate="header">
           <tr>
             <th>Nome</th>
-            <th>Slug</th>
-            <th [ngStyle]="{width:'5%'}"></th>
+            <th [ngStyle]="{ width: '5%' }"></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData>
           <tr>
-            <td>{{rowData.name}}</td>
-            <td>{{rowData.slug}}</td>
+            <td>{{ rowData.name }}</td>
             <td class="p-p-0">
               <app-show [entityLevel]="rowData"></app-show>
             </td>

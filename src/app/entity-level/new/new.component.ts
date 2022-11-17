@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'app-new',
   templateUrl: './new.component.html',
-  styleUrls: ['./new.component.scss']
+  styleUrls: ['./new.component.scss'],
 })
 export class NewComponent implements OnInit {
   @Input() entityLevels = [];
@@ -21,17 +21,27 @@ export class NewComponent implements OnInit {
     private entityLevelService: EntityLevelService,
     private errorService: ErrorService,
     private toastr: ToastrService
-  ) { }
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   showDialog() {
     this.display = true;
   }
 
+  generateSlug(event: any) {
+    const name: string = event.target.value;
+
+    this.entityLevel.slug = name
+      .replace(/\s/g, '_')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+  }
+
   create(form: NgForm): void {
-    this.entityLevelService.create(this.entityLevel)
+    this.entityLevelService
+      .create(this.entityLevel)
       .then((result) => {
         this.entityLevels.push(result);
         this.display = false;
@@ -39,6 +49,6 @@ export class NewComponent implements OnInit {
         this.toastr.success('Informações salvas!');
       })
       .catch((error) => this.errorService.handle(error))
-      .finally(() => this.loading = false)
+      .finally(() => (this.loading = false));
   }
 }
