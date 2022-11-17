@@ -1,29 +1,54 @@
-<p-button type="button" icon="pi pi-plus" styleClass="p-button-text" pTooltip="Novo" tooltipPosition="right"
-  (click)="showDialog()">
+<p-button
+  type="button"
+  icon="pi pi-plus"
+  styleClass="p-button-text"
+  pTooltip="Novo"
+  tooltipPosition="right"
+  (click)="showDialog()"
+>
 </p-button>
 
-<p-dialog header="Novo Nível de Risco de Recomendação" [(visible)]="display" [modal]="true" [style]="{width: '40vw'}"
-  [baseZIndex]="10000">
+<p-dialog
+  header="Novo Nível de Risco de Recomendação"
+  [(visible)]="display"
+  [modal]="true"
+  [style]="{ width: '30vw' }"
+  [baseZIndex]="10000"
+>
   <form autocomplete="off" #f="ngForm" (ngSubmit)="create(f)">
     <div class="p-fluid p-formgrid p-grid">
       <div class="p-field p-col-12">
-        <label for="name">Nome</label>
-        <input id="name" type="text" pInputText [(ngModel)]="levelRisk.name" name="name" required
-          [ngStyle]="{width:'100%'}">
-      </div>
-
-      <div class="p-field p-col-12">
-        <label for="slug">Slug</label>
-        <input id="slug" type="text" pInputText [(ngModel)]="levelRisk.slug" name="slug" required
-          [ngStyle]="{width:'100%'}">
+        <label for="name">Nome<span class="span-required">*</span></label>
+        <input
+          id="name"
+          type="text"
+          pInputText
+          [(ngModel)]="levelRisk.name"
+          name="name"
+          required
+          [ngStyle]="{ width: '100%' }"
+          (input)="generateSlug($event)"
+        />
       </div>
     </div>
   </form>
 
   <ng-template pTemplate="footer">
-    <p-button icon="pi pi-times" (click)="display=false" label="Cancelar" styleClass="p-button-text"></p-button>
-    <p-button type="button" icon="pi pi-check" (click)="f.ngSubmit.emit()" [disabled]="!f.form.valid" label="Salvar"
-      styleClass="p-button-text">
-    </p-button>
+    <button
+      pButton
+      icon="pi pi-times"
+      (click)="display = false"
+      label="Cancelar"
+      class="p-button-text"
+    ></button>
+    <button
+      pButton
+      type="button"
+      icon="pi pi-check"
+      (click)="f.ngSubmit.emit()"
+      [disabled]="!f.form.valid"
+      label="Salvar"
+      class="p-button-text"
+    ></button>
   </ng-template>
 </p-dialog>

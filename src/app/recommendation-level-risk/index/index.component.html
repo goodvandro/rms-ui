@@ -5,18 +5,19 @@
 
   <div class="p-col-12">
     <p-card>
-      <p-table [value]="levelsRisk" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} linhas">
+      <p-table
+        [value]="levelsRisk"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} linhas"
+      >
         <ng-template pTemplate="header">
           <tr>
             <th>Nome</th>
-            <th>Slug</th>
-            <th [ngStyle]="{width:'5%'}"></th>
+            <th [ngStyle]="{ width: '5%' }"></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData>
           <tr>
-            <td>{{rowData.name}}</td>
-            <td>{{rowData.slug}}</td>
+            <td>{{ rowData.name }}</td>
             <td class="p-p-0">
               <app-show [levelRisk]="rowData"></app-show>
             </td>
