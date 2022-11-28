@@ -35,7 +35,7 @@
 
         <ng-template pTemplate="body" let-rowData>
           <tr>
-            <td>{{ rowData.recommendation.id }}</td>
+            <td>{{ rowData.recommendation.number }}</td>
             <td><span [innerHTML]="rowData.measuresTaken"></span></td>
             <td><span [innerHTML]="rowData.evaluationObs"></span></td>
             <td>{{ rowData.evaluatedAt | date }}</td>

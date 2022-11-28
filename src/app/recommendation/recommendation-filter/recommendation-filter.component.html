@@ -48,6 +48,17 @@
       </div>
 
       <div class="p-field p-col-12">
+        <label for="number">Nº Recomendação</label>
+        <input
+          id="number"
+          type="text"
+          pInputText
+          name="number"
+          [(ngModel)]="filter.number"
+        />
+      </div>
+
+      <div class="p-field p-col-12">
         <label for="entityAudited">Entidade Auditada</label>
         <p-dropdown
           id="entityAudited"
@@ -125,6 +136,10 @@
         <p-calendar
           id="createdAt"
           selectionMode="range"
+          [monthNavigator]="true"
+          [yearNavigator]="true"
+          yearRange="2000:2030"
+          dateFormat="dd/mm/yy"
           name="createdAt"
           [(ngModel)]="filter.createdAt"
         >
@@ -136,6 +151,10 @@
         <p-calendar
           id="updatedAt"
           selectionMode="range"
+          [monthNavigator]="true"
+          [yearNavigator]="true"
+          yearRange="2000:2030"
+          dateFormat="dd/mm/yy"
           name="updatedAt"
           [(ngModel)]="filter.updatedAt"
         >

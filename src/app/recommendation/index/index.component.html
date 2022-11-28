@@ -5,51 +5,78 @@
 
   <div class="p-col-12">
     <p-card>
-      <app-recommendation-filter [(recommendationFilter)]="filter" (setFilter)="setFilter($event)">
+      <app-recommendation-filter
+        [(recommendationFilter)]="filter"
+        (setFilter)="setFilter($event)"
+      >
       </app-recommendation-filter>
 
-      <p-table [value]="recommendations" [paginator]="true" [rows]="filter.rows" [showCurrentPageReport]="true"
+      <p-table
+        [value]="recommendations"
+        [paginator]="true"
+        [rows]="filter.rows"
+        [showCurrentPageReport]="true"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} linhas"
-        [rowsPerPageOptions]="[10,25,50]" [totalRecords]="totalRecords" [loading]="loading" [lazy]="true"
-        (onLazyLoad)="lazyLoad($event)">
+        [rowsPerPageOptions]="[10, 25, 50]"
+        [totalRecords]="totalRecords"
+        [loading]="loading"
+        [lazy]="true"
+        (onLazyLoad)="lazyLoad($event)"
+      >
         <ng-template pTemplate="header">
           <tr>
-            <th [ngStyle]="{width:'10%'}">Nº Processo</th>
-            <th [ngStyle]="{width:'35%'}">Entidade</th>
-            <th [ngStyle]="{width:'10%'}">Status</th>
-            <th [ngStyle]="{width:'10%'}">Caráter</th>
-            <th [ngStyle]="{width:'10%'}">Natureza</th>
-            <th [ngStyle]="{width:'10%'}">Nível de Risco</th>
-            <th [ngStyle]="{width:'10%'}">Data Registo</th>
-            <th [ngStyle]="{width:'5%'}"></th>
+            <th [ngStyle]="{ width: '15%' }">Nº Rec.</th>
+            <th [ngStyle]="{ width: '30%' }">Entidade</th>
+            <th [ngStyle]="{ width: '10%' }">Status</th>
+            <th [ngStyle]="{ width: '10%' }">Caráter</th>
+            <th [ngStyle]="{ width: '10%' }">Natureza</th>
+            <th [ngStyle]="{ width: '10%' }">Nível de Risco</th>
+            <th [ngStyle]="{ width: '10%' }">Data Registo</th>
+            <th [ngStyle]="{ width: '5%' }"></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData>
           <tr>
-            <td>{{rowData.audit.processCode}}</td>
-            <td>{{rowData.audit.entityAudited.name}}</td>
-            <td>{{rowData.status.name}}</td>
-            <td>{{rowData.character.name}}</td>
-            <td>{{rowData.nature.name}}</td>
-            <td>{{rowData.levelRisk.name}}</td>
-            <td>{{rowData.createdAt | date:'dd/MM/yyyy'}}</td>
+            <td>{{ rowData.number }}</td>
+            <td>{{ rowData.audit.entityAudited.name }}</td>
+            <td>{{ rowData.status.name }}</td>
+            <td>{{ rowData.character.name }}</td>
+            <td>{{ rowData.nature.name }}</td>
+            <td>{{ rowData.levelRisk.name }}</td>
+            <td>{{ rowData.createdAt | date: "dd/MM/yyyy" }}</td>
             <td class="p-p-0">
-              <button pButton pRipple type="button" icon="pi pi-pencil"
+              <button
+                pButton
+                pRipple
+                type="button"
+                icon="pi pi-pencil"
                 class="p-button-rounded p-button-warning p-button-outlined"
-                [routerLink]="['/recommendation/show', rowData.id]"></button>
+                [routerLink]="['/recommendation/show', rowData.id]"
+              ></button>
             </td>
           </tr>
         </ng-template>
 
         <ng-template pTemplate="paginatorleft">
-          <p-button type="button" icon="pi pi-plus" styleClass="p-button-text" pTooltip="Novo" tooltipPosition="right"
-            routerLink="/recommendation/new">
+          <p-button
+            type="button"
+            icon="pi pi-plus"
+            styleClass="p-button-text"
+            pTooltip="Novo"
+            tooltipPosition="right"
+            routerLink="/recommendation/new"
+          >
           </p-button>
         </ng-template>
 
         <ng-template pTemplate="paginatorright">
-          <p-button type="button" icon="pi pi-refresh" styleClass="p-button-text" pTooltip="Atualizar"
-            tooltipPosition="left"></p-button>
+          <p-button
+            type="button"
+            icon="pi pi-refresh"
+            styleClass="p-button-text"
+            pTooltip="Atualizar"
+            tooltipPosition="left"
+          ></p-button>
         </ng-template>
       </p-table>
     </p-card>

@@ -75,6 +75,10 @@
         <p-calendar
           id="createdAt"
           selectionMode="range"
+          [monthNavigator]="true"
+          [yearNavigator]="true"
+          yearRange="2000:2030"
+          dateFormat="dd/mm/yy"
           name="createdAt"
           [(ngModel)]="filter.createdAt"
         >

@@ -11,7 +11,7 @@ export class RecommendationFilter {
   page: number = 0;
   rows: number = 10;
 
-  number: number;
+  number: string;
 
   processCode: string;
   description: string;
@@ -37,7 +37,7 @@ export const getFilterParams = (filter: RecommendationFilter): HttpParams => {
   params = params.append('size', filter.rows.toString());
 
   if (filter.number) {
-    params = params.append('number', filter.number.toString());
+    params = params.append('number', filter.number);
   }
 
   if (filter.processCode) {

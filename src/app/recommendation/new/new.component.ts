@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { LazyLoadEvent } from 'primeng/api';
 import { AuditFilter } from 'src/app/audit/audit.filter.resource';
 import { RecommendationCharacter } from 'src/app/models/recommendation-character';
 import { RecommendationLevelRisk } from 'src/app/models/recommendation-level-risk';
@@ -15,7 +16,6 @@ import { RecommendationCharacterService } from './../../recommendation-character
 import { RecommendationLevelRiskService } from './../../recommendation-level-risk/recommendation-level-risk.service';
 import { RecommendationNatureService } from './../../recommendation-nature/recommendation-nature.service';
 import { RecommendationStatusService } from './../../recommendation-status/recommendation-status.service';
-import { LazyLoadEvent } from 'primeng/api';
 
 @Component({
   selector: 'app-new',

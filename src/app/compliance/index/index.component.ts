@@ -25,6 +25,7 @@ export class IndexComponent implements OnInit {
   }
 
   read(page = 0): void {
+    if (!this.loading) this.loading = true;
     this.filter.page = page;
 
     this.complianceService
