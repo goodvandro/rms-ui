@@ -21,21 +21,27 @@ export class IndexComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.read();
+    this.loading = true;
   }
 
   read(page = 0): void {
+    if (!this.loading) this.loading = true;
+
     this.filter.page = page;
 
     this.groupService
       .read(this.filter)
-      .then((result) => (this.groupWorks = result))
+      .then((result) => {
+        this.groupWorks = result.content
+        this.totalRecords = result.totalElements
+      })
       .catch((error) => this.errorService.handle(error))
       .finally(() => (this.loading = false));
   }
 
-  onLazyLoad(event: LazyLoadEvent) {
+  lazyLoad(event: LazyLoadEvent) {
     const page = event.first / event.rows;
+    this.filter.rows = event.rows;
     this.read(page);
   }
 

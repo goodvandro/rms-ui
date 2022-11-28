@@ -1,9 +1,10 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import * as moment from 'moment';
 import { environment } from 'src/environments/environment';
 import { AppHttClient } from './../auth/app-http-client';
 import { GroupWork } from './../models/group-work';
-import { GroupWorkFilter, getFilterParams } from './group-work-filter-resource';
+import { getFilterParams, GroupWorkFilter } from './group-work-filter-resource';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +23,15 @@ export class GroupWorkService {
   async read(filter: GroupWorkFilter): Promise<any> {
     let params: HttpParams = getFilterParams(filter);
 
-    return this.http.get<any>(this.API_URL, { params }).toPromise();
+    const result = await this.http.get<any>(this.API_URL, { params }).toPromise();
+
+    const groupWorks: GroupWork[] = result.content;
+    this.convertField(groupWorks);
+
+    return {
+      content: groupWorks,
+      totalElements: result.totalElements
+    }
   }
 
   async readAll(): Promise<any> {
@@ -35,5 +44,12 @@ export class GroupWorkService {
 
   async getById(id: number): Promise<GroupWork> {
     return this.http.get<GroupWork>(`${this.API_URL}/${id}`).toPromise();
+  }
+
+  private convertField(users: GroupWork[]) {
+    for (const user of users) {
+      user.createdAt = moment(user.createdAt, 'YYYY-MM-DD').toDate();
+      user.updatedAt = moment(user.updatedAt, 'YYYY-MM-DD').toDate();
+    }
   }
 }

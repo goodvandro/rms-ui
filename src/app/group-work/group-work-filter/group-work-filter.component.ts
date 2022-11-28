@@ -20,7 +20,6 @@ export class GroupWorkFilterComponent implements OnInit {
   ngOnInit(): void {}
 
   setFilter(): void {
-    console.log(this.filter);
     this.filterChange.emit(this.filter);
   }
 

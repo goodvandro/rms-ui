@@ -17,6 +17,10 @@
         [showCurrentPageReport]="true"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} linhas"
         [rowsPerPageOptions]="[10, 25, 50]"
+        [totalRecords]="totalRecords"
+        [loading]="loading"
+        [lazy]="true"
+        (onLazyLoad)="lazyLoad($event)"
       >
         <ng-template pTemplate="header">
           <tr>
@@ -28,7 +32,7 @@
         <ng-template pTemplate="body" let-rowData>
           <tr>
             <td>{{ rowData.name }}</td>
-            <td>{{ rowData.createdAt | date }}</td>
+            <td>{{ rowData.createdAt | date  }}</td>
             <td class="p-p-0">
               <button
                 pButton
