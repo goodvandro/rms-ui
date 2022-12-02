@@ -5,6 +5,9 @@ export class GroupWorkFilter {
   page: number = 0;
   rows: number = 15;
 
+  sortField: string;
+  sortOrder: number;
+
   name: string;
 
   createdAt: Date[];
@@ -15,6 +18,11 @@ export const getFilterParams = (filter: GroupWorkFilter): HttpParams => {
 
   params = params.append('page', filter.page.toString());
   params = params.append('size', filter.rows.toString());
+
+  if (filter.sortField) {
+    params = params.append('sortField', filter.sortField);
+    params = params.append('sortOrder', filter.sortOrder.toString());
+  }
 
   if (filter.name) {
     params = params.append('name', filter.name);

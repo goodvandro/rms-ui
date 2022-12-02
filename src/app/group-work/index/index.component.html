@@ -24,15 +24,19 @@
       >
         <ng-template pTemplate="header">
           <tr>
-            <th>Nome</th>
-            <th>Data de registo</th>
+            <th pSortableColumn="name">
+              Nome <p-sortIcon field="name"></p-sortIcon>
+            </th>
+            <th pSortableColumn="createdAt">
+              Data de registo <p-sortIcon field="createdAt"></p-sortIcon>
+            </th>
             <th [ngStyle]="{ width: '5%' }"></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData>
           <tr>
             <td>{{ rowData.name }}</td>
-            <td>{{ rowData.createdAt | date  }}</td>
+            <td>{{ rowData.createdAt | date }}</td>
             <td class="p-p-0">
               <button
                 pButton

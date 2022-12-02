@@ -1,8 +1,8 @@
+import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
 import { ErrorService } from './../../error/error.service';
-import { GroupWorkService } from './../group-work.service';
 import { GroupWorkFilter } from './../group-work-filter-resource';
-import { Component, OnInit } from '@angular/core';
+import { GroupWorkService } from './../group-work.service';
 
 @Component({
   selector: 'app-index',
@@ -40,8 +40,13 @@ export class IndexComponent implements OnInit {
   }
 
   lazyLoad(event: LazyLoadEvent) {
+    console.log(event);
+
     const page = event.first / event.rows;
     this.filter.rows = event.rows;
+    this.filter.sortField = event.sortField;
+    this.filter.sortOrder = event.sortOrder;
+
     this.read(page);
   }
 
