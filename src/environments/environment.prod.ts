@@ -2,11 +2,10 @@ export const app = {
   // developmentHost: '197.159.166.11:8081',
   developmentHost: '192.168.0.164:8081',
   testingHost: 'igf-api.herokuapp.com',
-  stagingHost: 'webapp.b-software.st:8080'
-}
+  stagingHost: '52.204.190.168:8083',
+};
 
 export const environment = {
-
   // production: true,
   // apiUrl: 'https://igf-api.herokuapp.com',
   // basicAuthorization: 'Basic YW5ndWxhcjpAbmd1bEByMA==',
@@ -17,5 +16,5 @@ export const environment = {
   apiUrl: `http://${app.testingHost}`,
   allowedDomains: [`${app.testingHost}`],
   disallowedRoutes: [`http://${app.testingHost}/oauth/token`],
-  basicAuthorization: 'Basic YW5ndWxhcjpAbmd1bEByMA=='
+  basicAuthorization: 'Basic YW5ndWxhcjpAbmd1bEByMA==',
 };
