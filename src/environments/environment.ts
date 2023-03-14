@@ -1,12 +1,12 @@
 export const app = {
-  developmentHost: '192.168.0.164:8081',
+  developmentHost: '192.168.0.142:8080',
   stagingHost: 'igf-api.onrender.com',
 };
 
 export const environment = {
-  production: true,
-  apiUrl: `https://${app.stagingHost}`,
-  allowedDomains: [`${app.stagingHost}`],
-  disallowedRoutes: [`https://${app.stagingHost}/oauth/token`],
+  production: false,
+  apiUrl: `http://${app.developmentHost}`,
+  allowedDomains: [`${app.developmentHost}`],
+  disallowedRoutes: [`http://${app.developmentHost}/oauth/token`],
   basicAuthorization: 'Basic YW5ndWxhcjpAbmd1bEByMA==',
 };

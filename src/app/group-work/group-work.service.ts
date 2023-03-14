@@ -23,15 +23,17 @@ export class GroupWorkService {
   async read(filter: GroupWorkFilter): Promise<any> {
     let params: HttpParams = getFilterParams(filter);
 
-    const result = await this.http.get<any>(this.API_URL, { params }).toPromise();
+    const result = await this.http
+      .get<any>(this.API_URL, { params })
+      .toPromise();
 
     const groupWorks: GroupWork[] = result.content;
     this.convertField(groupWorks);
 
     return {
       content: groupWorks,
-      totalElements: result.totalElements
-    }
+      totalElements: result.totalElements,
+    };
   }
 
   async readAll(): Promise<any> {
@@ -43,13 +45,26 @@ export class GroupWorkService {
   }
 
   async getById(id: number): Promise<GroupWork> {
-    return this.http.get<GroupWork>(`${this.API_URL}/${id}`).toPromise();
+    return this.http
+      .get<GroupWork>(`${this.API_URL}/${id}`)
+      .toPromise()
+      .then((result) => {
+        const groupWork = result as GroupWork;
+        this.convertField([groupWork]);
+        return groupWork;
+      });
   }
 
-  private convertField(users: GroupWork[]) {
-    for (const user of users) {
-      user.createdAt = moment(user.createdAt, 'YYYY-MM-DD').toDate();
-      user.updatedAt = moment(user.updatedAt, 'YYYY-MM-DD').toDate();
+  private convertField(groupsWork: GroupWork[]) {
+    for (const groupWork of groupsWork) {
+      groupWork.createdAt = moment(
+        groupWork.createdAt,
+        'YYYY-MM-DD hh:mm:ss'
+      ).toDate();
+      groupWork.updatedAt = moment(
+        groupWork.updatedAt,
+        'YYYY-MM-DD hh:mm:ss'
+      ).toDate();
     }
   }
 }

@@ -1,5 +1,5 @@
 // import { Address } from "./address";
-import { Entity } from "./entity";
+import { Entity } from './entity';
 
 export class Person {
   id: number;
@@ -9,8 +9,8 @@ export class Person {
   bi: string;
   email: string;
 
-  city: string;
-  district: string;
+  city: string = 'São Tomé';
+  district: string = 'Água Grande';
   street: string;
 
   createdAt: Date;
