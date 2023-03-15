@@ -44,7 +44,7 @@
     <button
       pButton
       type="button"
-      icon="pi pi-check"
+      [icon]="loading ? 'pi pi-spin pi-spinner' : 'pi pi-check'"
       (click)="f.ngSubmit.emit()"
       [disabled]="!f.form.valid"
       label="Salvar"

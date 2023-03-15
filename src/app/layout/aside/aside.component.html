@@ -1,109 +1,69 @@
-<nav class='animated bounceInDown'>
+<nav class="animated bounceInDown">
   <!-- *ngIf="isAdmin() || isSuperAdmin()" -->
   <ul>
-    <li> <a routerLink="/dashboard">Home</a> </li>
+    <li><a routerLink="/dashboard">Home</a></li>
   </ul>
 
-  <ul *ngIf="isAuditor()">
-    <li class='sub-menu'>
-      <a href='javascript:;'>
-        Auditorias
-        <div class='pi pi-angle-down right'></div>
-      </a>
-      <ul>
-        <li> <a routerLink="/audit/new">Registar</a> </li>
-        <li> <a routerLink="/audit/index">Visualizar</a> </li>
-        <li> <a routerLink="/audit-type/index">Tipos de Auditoria</a> </li>
-        <li> <a routerLink="/audit-status/index">Status de Auditoria</a> </li>
-        <li> <a routerLink="/group-work/index">Equipas de Trabalho</a> </li>
-      </ul>
-    </li>
+  <ul *ngIf="isAuditor">
+    <li><a routerLink="/audit/index">Auditorias</a></li>
+    <li><a routerLink="/recommendation/index">Recomendações</a></li>
+    <li><a routerLink="/compliance/index">Cumprimentos</a></li>
+    <li><a routerLink="/entity/index">Entidades</a></li>
+    <li><a routerLink="/user/index">Utilizadores</a></li>
+    <li><a routerLink="/report/recommendation">Relatórios</a></li>
 
-    <li class='sub-menu'>
-      <a href='javascript:;'>
-        Recomendações
-        <div class='pi pi-angle-down right'></div>
-      </a>
-      <ul>
-        <li> <a routerLink="/recommendation/new">Registar</a> </li>
-        <li> <a routerLink="/recommendation/index">Visualizar</a> </li>
-        <li> <a routerLink="/recommendation-status/index">Status</a> </li>
-        <li> <a routerLink="/recommendation-nature/index">Natureza</a> </li>
-        <li> <a routerLink="/recommendation-character/index">Carácteres</a> </li>
-        <li> <a routerLink="/recommendation-level-risk/index">Níveis de Risco</a> </li>
-      </ul>
-    </li>
-
-    <li class='sub-menu'>
-      <a href='javascript:;'>
-        Cumprimentos
-        <div class='pi pi-angle-down right'></div>
-      </a>
-      <ul>
-        <li> <a routerLink="/compliance/new">Registar</a> </li>
-        <li> <a routerLink="/compliance/index">Visualizar</a> </li>
-        <li> <a routerLink="/compliance-level/index">Níveis de Cumprimentos</a> </li>
-      </ul>
-    </li>
-
-    <li class='sub-menu'>
-      <a href='javascript:;'>
-        Entidades
-        <div class='pi pi-angle-down right'></div>
-      </a>
-      <ul>
-        <li> <a routerLink="/entity/new">Registar</a> </li>
-        <li> <a routerLink="/entity/index">Visualizar</a> </li>
-        <li> <a routerLink="/entity-level/index">Níveis de Entidade</a> </li>
-      </ul>
-    </li>
-
-    <li class='sub-menu'>
-      <a href='javascript:;'>
-        Utilizadores
-        <div class='pi pi-angle-down right'></div>
-      </a>
-      <ul>
-        <li> <a routerLink="/user/new">Registar</a> </li>
-        <li> <a routerLink="/user/index">Visualizar</a> </li>
-      </ul>
-    </li>
-
-    <li class='sub-menu'>
-      <a href='javascript:;'>
+    <li class="sub-menu" *ngIf="isAdmin">
+      <a href="javascript:;">
         Parâmetros
-        <div class='pi pi-angle-down right'></div>
+        <div class="pi pi-angle-down right"></div>
       </a>
       <ul>
-        <li> <a routerLink="/address/index">Endereços</a> </li>
+        <li><a routerLink="/address/index">Endereços</a></li>
+        <li><a routerLink="/entity-level/index">Níveis de Entidade</a></li>
+        <li>
+          <a routerLink="/compliance-level/index">Níveis de Cumprimentos</a>
+        </li>
+        <li>
+          <a routerLink="/recommendation-status/index">
+            Status de Recomendação
+          </a>
+        </li>
+        <li>
+          <a routerLink="/recommendation-nature/index">
+            Natureza de Recomendação
+          </a>
+        </li>
+        <li>
+          <a routerLink="/recommendation-character/index">
+            Caracteres de Recomendação
+          </a>
+        </li>
+        <li>
+          <a routerLink="/recommendation-level-risk/index">
+            Níveis de Risco de Recomendação
+          </a>
+        </li>
+        <li><a routerLink="/audit-type/index">Tipos de Auditoria</a></li>
+        <li><a routerLink="/audit-status/index">Status de Auditoria</a></li>
+        <li><a routerLink="/group-work/index">Equipas de Trabalho</a></li>
       </ul>
     </li>
 
-    <li class='sub-menu'>
-      <a href='javascript:;'>
+    <li class="sub-menu">
+      <a href="javascript:;">
         Segurança
-        <div class='pi pi-angle-down right'></div>
+        <div class="pi pi-angle-down right"></div>
       </a>
       <ul>
-        <li> <a routerLink="/group/index">Grupos</a> </li>
-        <li> <a routerLink="/activity/index">Atividades</a> </li>
-      </ul>
-    </li>
-
-    <li class='sub-menu'>
-      <a href='javascript:;'>
-        Relatórios
-        <div class='pi pi-angle-down right'></div>
-      </a>
-      <ul>
-        <li> <a routerLink="/report/recommendation">Recomendações</a> </li>
+        <li><a routerLink="/group/index">Grupos</a></li>
+        <li><a routerLink="/activity/index">Atividades</a></li>
       </ul>
     </li>
   </ul>
 
-  <ul *ngIf="!isAuditor()">
-    <li> <a routerLink="/audit/client/index">Auditorias</a> </li>
-    <li> <a routerLink="/recommendation/client/index">Recomendações</a> </li>
-    <li> <a routerLink="/compliance/client/index">Cumprimentos</a> </li>
+  <ul *ngIf="!isAuditor">
+    <li><a routerLink="/audit/client/index">Auditorias</a></li>
+    <li><a routerLink="/recommendation/client/index">Recomendações</a></li>
+    <li><a routerLink="/compliance/client/index">Cumprimentos</a></li>
   </ul>
 </nav>

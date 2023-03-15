@@ -1,18 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import $ from "jquery";
+import $ from 'jquery';
 import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-aside',
   templateUrl: './aside.component.html',
-  styleUrls: ['./aside.component.scss']
+  styleUrls: ['./aside.component.scss'],
 })
 export class AsideComponent implements OnInit {
   user: any;
 
-  constructor(
-    private authService: AuthService,
-  ) { }
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
     if (!this.authService.isAccessTokenInvalid()) {
@@ -23,25 +21,25 @@ export class AsideComponent implements OnInit {
 
   ngAfterViewInit() {
     $('.sub-menu ul').hide();
-    $(".sub-menu a").click(function () {
-      $(this).parent(".sub-menu").children("ul").slideToggle("100");
-      $(this).find(".right").toggleClass("pi-angle-up pi-angle-down");
+    $('.sub-menu a').click(function () {
+      $(this).parent('.sub-menu').children('ul').slideToggle('100');
+      $(this).find('.right').toggleClass('pi-angle-up pi-angle-down');
     });
   }
 
-  isDefault(): boolean {
+  get isDefault(): boolean {
     return this.user?.group === 'default';
   }
 
-  isAdmin(): boolean {
+  get isAdmin(): boolean {
     return this.user?.group === 'admin';
   }
 
-  isSuperAdmin(): boolean {
+  get isSuperAdmin(): boolean {
     return this.user?.group === 'super_admin';
   }
 
-  isAuditor(): boolean {
-    return this.user?.person.entity.initial.toUpperCase() === 'IGF'
+  get isAuditor(): boolean {
+    return this.user?.person.entity.initial.toUpperCase() === 'IGF';
   }
 }
