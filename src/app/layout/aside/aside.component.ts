@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import $ from 'jquery';
 import { AuthService } from 'src/app/auth/auth.service';
+import { UserSession } from 'src/app/models/user';
 
 @Component({
   selector: 'app-aside',
@@ -8,13 +9,13 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./aside.component.scss'],
 })
 export class AsideComponent implements OnInit {
-  user: any;
+  userSession: UserSession;
 
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
     if (!this.authService.isAccessTokenInvalid()) {
-      this.user = this.authService.jwtPayload.user;
+      this.userSession = this.authService.jwtPayload.user;
       const authorities = this.authService.getAuthorities();
     }
   }
@@ -28,18 +29,14 @@ export class AsideComponent implements OnInit {
   }
 
   get isDefault(): boolean {
-    return this.user?.group === 'default';
+    return this.userSession?.group.slug === 'default';
   }
 
   get isAdmin(): boolean {
-    return this.user?.group === 'admin';
-  }
-
-  get isSuperAdmin(): boolean {
-    return this.user?.group === 'super_admin';
+    return this.userSession?.group.slug === 'admin';
   }
 
   get isAuditor(): boolean {
-    return this.user?.person.entity.initial.toUpperCase() === 'IGF';
+    return this.userSession?.group.slug === 'auditor';
   }
 }

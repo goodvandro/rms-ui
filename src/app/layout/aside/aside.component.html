@@ -1,18 +1,17 @@
 <nav class="animated bounceInDown">
-  <!-- *ngIf="isAdmin() || isSuperAdmin()" -->
-  <ul>
+  <ul *ngIf="isAuditor || isAdmin">
     <li><a routerLink="/dashboard">Home</a></li>
-  </ul>
-
-  <ul *ngIf="isAuditor">
     <li><a routerLink="/audit/index">Auditorias</a></li>
     <li><a routerLink="/recommendation/index">Recomendações</a></li>
     <li><a routerLink="/compliance/index">Cumprimentos</a></li>
     <li><a routerLink="/entity/index">Entidades</a></li>
     <li><a routerLink="/user/index">Utilizadores</a></li>
     <li><a routerLink="/report/recommendation">Relatórios</a></li>
+  </ul>
 
-    <li class="sub-menu" *ngIf="isAdmin">
+  <ul *ngIf="isAdmin">
+    <p-divider></p-divider>
+    <li class="sub-menu">
       <a href="javascript:;">
         Parâmetros
         <div class="pi pi-angle-down right"></div>
@@ -61,7 +60,8 @@
     </li>
   </ul>
 
-  <ul *ngIf="!isAuditor">
+  <ul *ngIf="isDefault">
+    <p-divider></p-divider>
     <li><a routerLink="/audit/client/index">Auditorias</a></li>
     <li><a routerLink="/recommendation/client/index">Recomendações</a></li>
     <li><a routerLink="/compliance/client/index">Cumprimentos</a></li>

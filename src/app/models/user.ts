@@ -19,3 +19,22 @@ export class User {
   group = new Group();
   authorities: string[];
 }
+
+export interface UserSession {
+  id: number;
+  userName: string;
+  group: {
+    name: string;
+    slug: 'default' | 'auditor' | 'admin';
+  };
+  isFirst: boolean;
+  person: {
+    name: string;
+    surname: string;
+    email: string;
+    entity: {
+      name: string;
+      initial: string;
+    };
+  };
+}

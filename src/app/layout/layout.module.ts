@@ -8,25 +8,19 @@ import { AuthModule } from './../auth/auth.module';
 import { AsideComponent } from './aside/aside.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { DividerModule } from 'primeng/divider';
 
 @NgModule({
-  declarations: [
-    NavbarComponent,
-    AsideComponent,
-    FooterComponent,
-  ],
+  declarations: [NavbarComponent, AsideComponent, FooterComponent],
   imports: [
     CommonModule,
     RouterModule,
     OverlayPanelModule,
     AvatarGroupModule,
+    DividerModule,
     AuthModule,
     UserModule,
   ],
-  exports: [
-    NavbarComponent,
-    AsideComponent,
-    FooterComponent,
-  ]
+  exports: [NavbarComponent, AsideComponent, FooterComponent],
 })
-export class LayoutModule { }
+export class LayoutModule {}

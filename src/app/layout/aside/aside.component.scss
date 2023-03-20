@@ -10,14 +10,12 @@ nav ul {
   padding: 0;
 
   li {
-    /* Sub Menu */
-
     a {
       display: block;
-      padding: 12px;
+      padding: 12px 12px 12px 30px;
       color: #333;
       text-decoration: none;
-      border-top: thin solid #ebebeb;
+      // border-top: thin solid #ebebeb;
       -webkit-transition: 0.2s linear;
       -moz-transition: 0.2s linear;
       -ms-transition: 0.2s linear;
@@ -28,6 +26,10 @@ nav ul {
         float: right;
       }
     }
+  }
+
+  li:hover{
+    background-color: #ebebeb;
   }
 }
 nav ul li nav ul li a:hover {
