@@ -8,7 +8,7 @@
 ></button>
 
 <p-dialog
-  header="Detalhes do Status de Auditoria"
+  header="Editar Status de Auditoria"
   [(visible)]="display"
   [modal]="true"
   [style]="{ width: '30vw' }"
@@ -43,9 +43,9 @@
     <button
       pButton
       type="button"
-      icon="pi pi-check"
+      [icon]="loading ? 'pi pi-spin pi-spinner' : 'pi pi-check'"
       (click)="f.ngSubmit.emit()"
-      [disabled]="!f.form.valid"
+      [disabled]="!f.form.valid || loading"
       label="Salvar"
       class="p-button-text"
     ></button>

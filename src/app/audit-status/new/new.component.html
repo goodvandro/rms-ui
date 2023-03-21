@@ -46,7 +46,7 @@
       type="button"
       [icon]="loading ? 'pi pi-spin pi-spinner' : 'pi pi-check'"
       (click)="f.ngSubmit.emit()"
-      [disabled]="!f.form.valid"
+      [disabled]="!f.form.valid || loading"
       label="Salvar"
       class="p-button-text"
     ></button>

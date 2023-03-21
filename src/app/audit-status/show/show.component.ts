@@ -38,6 +38,8 @@ export class ShowComponent implements OnInit {
   }
 
   update(): void {
+    this.loading = true;
+
     this.auditStatusService
       .update(this.auditStatus.id, this.auditStatus)
       .then(() => {
