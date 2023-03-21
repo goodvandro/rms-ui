@@ -40,6 +40,8 @@ export class NewComponent implements OnInit {
   }
 
   create(form: NgForm): void {
+    this.loading = true;
+
     this.complianceLevelService
       .create(this.complianceLevel)
       .then((result) => {

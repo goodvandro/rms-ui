@@ -38,6 +38,8 @@ export class ShowComponent implements OnInit {
   }
 
   update(): void {
+    this.loading = true;
+
     this.complianceLevelService
       .update(this.complianceLevel.id, this.complianceLevel)
       .then(() => {
