@@ -6,13 +6,13 @@
     <li><a routerLink="/compliance/index">Cumprimentos</a></li>
     <li><a routerLink="/entity/index">Entidades</a></li>
     <li><a routerLink="/group-work/index">Equipas de Trabalho</a></li>
-    <li><a routerLink="/user/index">Utilizadores</a></li>
     <li><a routerLink="/report/recommendation">Relatórios</a></li>
     <!-- <li><a routerLink="/address/index">Endereços</a></li> -->
   </ul>
 
   <ul *ngIf="isAdmin">
     <p-divider></p-divider>
+    <li><a routerLink="/user/index">Utilizadores</a></li>
     <li class="sub-menu">
       <a href="javascript:;">
         Parâmetros
@@ -48,7 +48,6 @@
         </li>
       </ul>
     </li>
-
     <li class="sub-menu">
       <a href="javascript:;">
         Segurança
