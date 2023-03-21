@@ -8,6 +8,7 @@
     <li><a routerLink="/group-work/index">Equipas de Trabalho</a></li>
     <li><a routerLink="/user/index">Utilizadores</a></li>
     <li><a routerLink="/report/recommendation">Relatórios</a></li>
+    <!-- <li><a routerLink="/address/index">Endereços</a></li> -->
   </ul>
 
   <ul *ngIf="isAdmin">
@@ -18,11 +19,10 @@
         <div class="pi pi-angle-down right"></div>
       </a>
       <ul>
-        <li><a routerLink="/address/index">Endereços</a></li>
         <li><a routerLink="/entity-level/index">Níveis de Entidade</a></li>
-        <li>
-          <a routerLink="/compliance-level/index">Níveis de Cumprimentos</a>
-        </li>
+        <li><a routerLink="/audit-type/index">Tipos de Auditoria</a></li>
+        <li><a routerLink="/audit-status/index">Status de Auditoria</a></li>
+
         <li>
           <a routerLink="/recommendation-status/index">
             Status de Recomendação
@@ -40,11 +40,12 @@
         </li>
         <li>
           <a routerLink="/recommendation-level-risk/index">
-            Níveis de Risco de Recomendação
+            Níveis Risco de Recomendação
           </a>
         </li>
-        <li><a routerLink="/audit-type/index">Tipos de Auditoria</a></li>
-        <li><a routerLink="/audit-status/index">Status de Auditoria</a></li>
+        <li>
+          <a routerLink="/compliance-level/index">Níveis de Cumprimentos</a>
+        </li>
       </ul>
     </li>
 

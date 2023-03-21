@@ -10,6 +10,9 @@ nav ul {
   padding: 0;
 
   li {
+    white-space: nowrap;
+    overflow: hidden;
+
     a {
       display: block;
       padding: 12px 12px 12px 30px;
