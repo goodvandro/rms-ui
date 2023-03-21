@@ -38,6 +38,7 @@ export class ShowComponent implements OnInit {
   }
 
   update(): void {
+    this.loading = true;
     this.entityLevelService
       .update(this.entityLevel.id, this.entityLevel)
       .then(() => {

@@ -27,13 +27,9 @@ export class GroupWorkService {
       .get<any>(this.API_URL, { params })
       .toPromise();
 
-    const groupWorks: GroupWork[] = result.content;
+    const groupWorks: GroupWork[] = result;
     this.convertField(groupWorks);
-
-    return {
-      content: groupWorks,
-      totalElements: result.totalElements,
-    };
+    return groupWorks;
   }
 
   async readAll(): Promise<any> {

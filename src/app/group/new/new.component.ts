@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-new',
   templateUrl: './new.component.html',
-  styleUrls: ['./new.component.scss']
+  styleUrls: ['./new.component.scss'],
 })
 export class NewComponent implements OnInit {
   loading: boolean = false;
@@ -19,18 +19,19 @@ export class NewComponent implements OnInit {
     private errorService: ErrorService,
     private toastr: ToastrService,
     private router: Router
-  ) { }
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   create(): void {
-    this.userService.create(this.group)
+    this.loading = true;
+    this.userService
+      .create(this.group)
       .then((result) => {
         this.router.navigate(['/group/index', result.id]);
-        this.toastr.success('Grupo adicionado!')
+        this.toastr.success('Grupo adicionado!');
       })
       .catch((error) => this.errorService.handle(error))
-      .finally(() => this.loading = false)
+      .finally(() => (this.loading = false));
   }
 }

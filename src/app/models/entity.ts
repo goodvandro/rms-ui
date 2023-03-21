@@ -7,8 +7,8 @@ export class Entity {
   initial: string;
   auditor: boolean = false;
 
-  city: string;
-  district: string;
+  city: string = 'São Tomé';
+  district: string = 'Água Grande';
   street: string;
 
   createdAt: Date;

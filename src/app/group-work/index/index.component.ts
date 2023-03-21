@@ -22,32 +22,20 @@ export class IndexComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
+    this.read();
   }
 
-  read(page = 0): void {
+  read(): void {
     if (!this.loading) this.loading = true;
-
-    this.filter.page = page;
 
     this.groupService
       .read(this.filter)
       .then((result) => {
-        this.groupWorks = result.content
-        this.totalRecords = result.totalElements
+        this.groupWorks = result;
+        this.totalRecords = this.groupWorks.length;
       })
       .catch((error) => this.errorService.handle(error))
       .finally(() => (this.loading = false));
-  }
-
-  lazyLoad(event: LazyLoadEvent) {
-    console.log(event);
-
-    const page = event.first / event.rows;
-    this.filter.rows = event.rows;
-    this.filter.sortField = event.sortField;
-    this.filter.sortOrder = event.sortOrder;
-
-    this.read(page);
   }
 
   setFilter(newFilter: GroupWorkFilter): void {
