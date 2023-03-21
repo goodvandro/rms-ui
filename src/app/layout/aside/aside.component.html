@@ -1,50 +1,97 @@
 <nav class="animated bounceInDown">
   <ul *ngIf="isAuditor || isAdmin">
-    <li><a routerLink="/dashboard">Home</a></li>
-    <li><a routerLink="/audit/index">Auditorias</a></li>
-    <li><a routerLink="/recommendation/index">Recomendações</a></li>
-    <li><a routerLink="/compliance/index">Cumprimentos</a></li>
-    <li><a routerLink="/entity/index">Entidades</a></li>
-    <li><a routerLink="/group-work/index">Equipas de Trabalho</a></li>
-    <li><a routerLink="/report/recommendation">Relatórios</a></li>
+    <li><a routerLink="/dashboard" routerLinkActive="active">Home</a></li>
+    <li>
+      <a routerLink="/audit/index" routerLinkActive="active">Auditorias</a>
+    </li>
+    <li>
+      <a routerLink="/recommendation/index" routerLinkActive="active">
+        Recomendações
+      </a>
+    </li>
+    <li>
+      <a routerLink="/compliance/index" routerLinkActive="active">
+        Cumprimentos
+      </a>
+    </li>
+    <li>
+      <a routerLink="/entity/index" routerLinkActive="active">Entidades</a>
+    </li>
+    <li>
+      <a routerLink="/group-work/index" routerLinkActive="active">
+        Equipas de Trabalho
+      </a>
+    </li>
+    <li>
+      <a routerLink="/report/recommendation" routerLinkActive="active">
+        Relatórios
+      </a>
+    </li>
     <!-- <li><a routerLink="/address/index">Endereços</a></li> -->
   </ul>
 
   <ul *ngIf="isAdmin">
     <p-divider></p-divider>
-    <li><a routerLink="/user/index">Utilizadores</a></li>
+    <li>
+      <a routerLink="/user/index" routerLinkActive="active">Utilizadores</a>
+    </li>
     <li class="sub-menu">
       <a href="javascript:;">
         Parâmetros
         <div class="pi pi-angle-down right"></div>
       </a>
       <ul>
-        <li><a routerLink="/entity-level/index">Níveis de Entidade</a></li>
-        <li><a routerLink="/audit-type/index">Tipos de Auditoria</a></li>
-        <li><a routerLink="/audit-status/index">Status de Auditoria</a></li>
-
         <li>
-          <a routerLink="/recommendation-status/index">
+          <a routerLink="/entity-level/index" routerLinkActive="active">
+            Níveis de Entidade
+          </a>
+        </li>
+        <li>
+          <a routerLink="/audit-type/index" routerLinkActive="active">
+            Tipos de Auditoria
+          </a>
+        </li>
+        <li>
+          <a routerLink="/audit-status/index" routerLinkActive="active">
+            Status de Auditoria
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/recommendation-status/index"
+            routerLinkActive="active"
+          >
             Status de Recomendação
           </a>
         </li>
         <li>
-          <a routerLink="/recommendation-nature/index">
+          <a
+            routerLink="/recommendation-nature/index"
+            routerLinkActive="active"
+          >
             Natureza de Recomendação
           </a>
         </li>
         <li>
-          <a routerLink="/recommendation-character/index">
+          <a
+            routerLink="/recommendation-character/index"
+            routerLinkActive="active"
+          >
             Caracteres de Recomendação
           </a>
         </li>
         <li>
-          <a routerLink="/recommendation-level-risk/index">
+          <a
+            routerLink="/recommendation-level-risk/index"
+            routerLinkActive="active"
+          >
             Níveis Risco de Recomendação
           </a>
         </li>
         <li>
-          <a routerLink="/compliance-level/index">Níveis de Cumprimentos</a>
+          <a routerLink="/compliance-level/index" routerLinkActive="active">
+            Níveis de Cumprimentos
+          </a>
         </li>
       </ul>
     </li>
@@ -54,16 +101,34 @@
         <div class="pi pi-angle-down right"></div>
       </a>
       <ul>
-        <li><a routerLink="/group/index">Grupos</a></li>
-        <li><a routerLink="/activity/index">Atividades</a></li>
+        <li>
+          <a routerLink="/group/index" routerLinkActive="active">Grupos</a>
+        </li>
+        <li>
+          <a routerLink="/activity/index" routerLinkActive="active">
+            Atividades
+          </a>
+        </li>
       </ul>
     </li>
   </ul>
 
   <ul *ngIf="isDefault">
     <p-divider></p-divider>
-    <li><a routerLink="/audit/client/index">Auditorias</a></li>
-    <li><a routerLink="/recommendation/client/index">Recomendações</a></li>
-    <li><a routerLink="/compliance/client/index">Cumprimentos</a></li>
+    <li>
+      <a routerLink="/audit/client/index" routerLinkActive="active">
+        Auditorias
+      </a>
+    </li>
+    <li>
+      <a routerLink="/recommendation/client/index" routerLinkActive="active">
+        Recomendações
+      </a>
+    </li>
+    <li>
+      <a routerLink="/compliance/client/index" routerLinkActive="active">
+        Cumprimentos
+      </a>
+    </li>
   </ul>
 </nav>
