@@ -40,6 +40,8 @@ export class NewComponent implements OnInit {
   }
 
   create(form: NgForm): void {
+    this.loading = true;
+
     this.recommendationLevelRiskService
       .create(this.levelRisk)
       .then((result) => {
