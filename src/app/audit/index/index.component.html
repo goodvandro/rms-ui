@@ -5,45 +5,66 @@
 
   <div class="p-col-12">
     <p-card>
-      <app-audit-filter [(auditFilter)]="filter" (setFilter)="setFilter($event)">
-      </app-audit-filter>
+      <div class="p-grid">
+        <div class="p-col-12">
+          <button
+            pButton
+            pRipple
+            type="button"
+            label="Adicionar"
+            class="p-button-raised p-mx-1"
+            icon="pi pi-plus"
+            routerLink="/audit/new"
+          ></button>
 
-      <p-table [value]="audits" [paginator]="true" [rows]="filter.rows" [showCurrentPageReport]="true"
+          <app-audit-filter
+            [(auditFilter)]="filter"
+            (setFilter)="setFilter($event)"
+          >
+          </app-audit-filter>
+
+          <p-divider></p-divider>
+        </div>
+      </div>
+
+      <p-table
+        [value]="audits"
+        [paginator]="true"
+        [rows]="filter.rows"
+        [showCurrentPageReport]="true"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} linhas"
-        [rowsPerPageOptions]="[10,25,50]" [totalRecords]="totalRecords" [loading]="loading" [lazy]="true"
-        (onLazyLoad)="lazyLoad($event)">
+        [rowsPerPageOptions]="[10, 25, 50]"
+        [totalRecords]="totalRecords"
+        [loading]="loading"
+        [lazy]="true"
+        (onLazyLoad)="lazyLoad($event)"
+      >
         <ng-template pTemplate="header">
           <tr>
-            <th [ngStyle]="{width:'10%'}">Código</th>
-            <th [ngStyle]="{width:'30%'}">Entidade auditada</th>
-            <th [ngStyle]="{width:'45%'}">Descrição</th>
-            <th [ngStyle]="{width:'10%'}">Registado em</th>
-            <th [ngStyle]="{width:'5%'}"></th>
+            <th [ngStyle]="{ width: '10%' }">Código</th>
+            <th [ngStyle]="{ width: '30%' }">Entidade auditada</th>
+            <th [ngStyle]="{ width: '45%' }">Descrição</th>
+            <th [ngStyle]="{ width: '10%' }">Registado em</th>
+            <th [ngStyle]="{ width: '5%' }"></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData>
           <tr>
-            <td>{{rowData.processCode}}</td>
-            <td>{{rowData.entityAudited.name}}</td>
-            <td class="ellipsis">{{rowData.description}}</td>
-            <td>{{rowData.createdAt | date:'dd/MM/yyyy'}}</td>
+            <td>{{ rowData.processCode }}</td>
+            <td>{{ rowData.entityAudited.name }}</td>
+            <td class="ellipsis">{{ rowData.description }}</td>
+            <td>{{ rowData.createdAt | date : "dd/MM/yyyy" }}</td>
             <td class="p-p-0">
-              <button pButton pRipple type="button" icon="pi pi-pencil"
+              <button
+                pButton
+                pRipple
+                type="button"
+                icon="pi pi-pencil"
                 class="p-button-rounded p-button-warning p-button-outlined"
-                [routerLink]="['/audit/show', rowData.id]"></button>
+                [routerLink]="['/audit/show', rowData.id]"
+              ></button>
             </td>
           </tr>
-        </ng-template>
-
-        <ng-template pTemplate="paginatorleft">
-          <p-button type="button" icon="pi pi-plus" styleClass="p-button-text" pTooltip="Novo" tooltipPosition="right"
-            routerLink="/audit/new">
-          </p-button>
-        </ng-template>
-
-        <ng-template pTemplate="paginatorright">
-          <p-button type="button" icon="pi pi-refresh" styleClass="p-button-text" pTooltip="Atualizar"
-            tooltipPosition="left"></p-button>
         </ng-template>
       </p-table>
     </p-card>

@@ -8,7 +8,7 @@ import { AuditFilter } from '../audit.filter.resource';
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss']
+  styleUrls: ['./index.component.scss'],
 })
 export class IndexComponent implements OnInit {
   loading: boolean;
@@ -19,23 +19,25 @@ export class IndexComponent implements OnInit {
 
   constructor(
     private groupService: AuditService,
-    private errorService: ErrorService,
-  ) { }
+    private errorService: ErrorService
+  ) {}
 
   ngOnInit(): void {
     this.loading = true;
   }
 
   read(page = 0): void {
+    this.loading = true;
     this.filter.page = page;
 
-    this.groupService.read(this.filter)
+    this.groupService
+      .read(this.filter)
       .then((result) => {
         this.audits = result.content;
         this.totalRecords = result.totalElements;
       })
       .catch((error) => this.errorService.handle(error))
-      .finally(() => this.loading = false);
+      .finally(() => (this.loading = false));
   }
 
   lazyLoad(event: LazyLoadEvent) {
