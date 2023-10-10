@@ -1,5 +1,5 @@
 #Create the node stage
-FROM node:14.19.1 as node-14-build
+FROM node:14.21.3 as node-14-build
 
 WORKDIR /app
 
