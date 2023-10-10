@@ -5,8 +5,6 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm install && npm run build:prod
-
 FROM amd64/nginx as angular-nginx-prod-stage
 
 WORKDIR /usr/share/nginx/html

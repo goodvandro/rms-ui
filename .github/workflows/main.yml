@@ -42,11 +42,11 @@ jobs:
     - name: Enviar a imagem criada para o DockerHub
       run: docker push goodvandro/rms-ui:latest
 
-    - name: Entrar no servidor da aplicação Angular
-      uses: cross-the-world/ssh-pipeline@v1.2.0
-      with:
-        host: ${{ secrets.SERVER_CLOUD_HOST }}
-        user: ${{ secrets.SERVER_CLOUD_USER }}
-        pass: '${{ secrets.SERVER_CLOUD_PASS }}'
-        script: |
-            echo '${{ secrets.SERVER_CLOUD_PASS }}'|sudo -S docker run --name rms-ui -p 4200:80 -d -t goodvandro/rms-ui:latest
+    # - name: Entrar no servidor da aplicação Angular
+    #   uses: cross-the-world/ssh-pipeline@v1.2.0
+    #   with:
+    #     host: ${{ secrets.SERVER_CLOUD_HOST }}
+    #     user: ${{ secrets.SERVER_CLOUD_USER }}
+    #     pass: '${{ secrets.SERVER_CLOUD_PASS }}'
+    #     script: |
+    #         echo '${{ secrets.SERVER_CLOUD_PASS }}'|sudo -S docker run --name rms-ui -p 4200:80 -d -t goodvandro/rms-ui:latest
