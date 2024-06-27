@@ -49,4 +49,6 @@ jobs:
         user: ${{ secrets.SERVER_CLOUD_USER }}
         pass: '${{ secrets.SERVER_CLOUD_PASS }}'
         script: |
+            echo '${{ secrets.SERVER_CLOUD_PASS }}'|sudo -S docker rm rms-ui -f
+            echo '${{ secrets.SERVER_CLOUD_PASS }}'|sudo -S docker rmi $(echo '${{ secrets.SERVER_CLOUD_PASS }}'|sudo -S docker images goodvandro/rms-ui -a -q) -f
             echo '${{ secrets.SERVER_CLOUD_PASS }}'|sudo -S docker run --name rms-ui -p 4200:80 -d -t goodvandro/rms-ui:latest

@@ -1,5 +1,5 @@
 export const app = {
-  apiURL: '10.234.1.44:8080',
+  apiURL: '185.194.219.130:8080',
   version: '2.1',
 };
 
