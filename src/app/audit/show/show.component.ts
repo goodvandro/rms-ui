@@ -28,7 +28,7 @@ type StatusHistory = {
 export class ShowComponent implements OnInit {
   loading: boolean = false;
   audit = new Audit();
-  id!: string
+  id!: number
 
   types = [];
   entities = [];
@@ -53,6 +53,7 @@ export class ShowComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params.id;
+    
     this.auditStatusHistories = [
       { status: 'Fechado', date: null },
       { status: 'Concluído', date: null },

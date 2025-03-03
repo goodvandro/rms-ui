@@ -37,14 +37,28 @@
         [totalRecords]="totalRecords"
         [loading]="loading"
         [lazy]="true"
+        [sortMode]="'single'"
         (onLazyLoad)="lazyLoad($event)"
       >
         <ng-template pTemplate="header">
           <tr>
-            <th [ngStyle]="{ width: '10%' }">Código</th>
-            <th [ngStyle]="{ width: '30%' }">Entidade auditada</th>
-            <th [ngStyle]="{ width: '45%' }">Descrição</th>
-            <th [ngStyle]="{ width: '10%' }">Registado em</th>
+            <th [ngStyle]="{ width: '10%' }" pSortableColumn="processCode">
+              Código<p-sortIcon field="processCode"></p-sortIcon>
+            </th>
+            <th
+              [ngStyle]="{ width: '30%' }"
+              pSortableColumn="entityAuditedName"
+            >
+              Entidade auditada<p-sortIcon
+                field="entityAuditedName"
+              ></p-sortIcon>
+            </th>
+            <th [ngStyle]="{ width: '45%' }" pSortableColumn="description">
+              Descrição<p-sortIcon field="description"></p-sortIcon>
+            </th>
+            <th [ngStyle]="{ width: '10%' }" pSortableColumn="createdAt">
+              Registado em<p-sortIcon field="createdAt"></p-sortIcon>
+            </th>
             <th [ngStyle]="{ width: '5%' }"></th>
           </tr>
         </ng-template>

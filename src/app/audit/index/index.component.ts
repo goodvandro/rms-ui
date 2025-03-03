@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { LazyLoadEvent } from 'primeng/api';
-import { ErrorService } from 'src/app/error/error.service';
 import { AuditService } from '../audit.service';
 import { AuditFilter } from '../audit.filter.resource';
+import { ErrorService } from '../../error/error.service';
 
 @Component({
   selector: 'app-index',
@@ -41,7 +41,9 @@ export class IndexComponent implements OnInit {
   }
 
   lazyLoad(event: LazyLoadEvent) {
-    const page = event.first / event.rows;
+    const page = (event.first ?? 0) / (event.rows ?? 1);
+    this.filter.sortField = event.sortField || 'id'; // Campo de ordenação (padrão: id)
+    this.filter.sortOrder = event.sortOrder === -1 ? 'asc' : 'desc'; // 1 = ASC, -1 = DESC
     this.filter.rows = event.rows;
     this.read(page);
   }

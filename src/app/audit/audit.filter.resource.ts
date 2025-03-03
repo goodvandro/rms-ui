@@ -7,7 +7,9 @@ import { GroupWork } from '../models/group-work';
 
 export class AuditFilter {
   page: number = 0;
-  rows: number = 10;
+  rows?: number = 10;
+  sortField: string;
+  sortOrder: string;
 
   number: string;
   processCode: string;
@@ -30,7 +32,9 @@ export const getFilterParams = (filter: AuditFilter): HttpParams => {
   let params: HttpParams = new HttpParams();
 
   params = params.append('page', filter.page.toString());
-  params = params.append('size', filter.rows.toString());
+  params = params.append('size', (filter.rows ?? 10).toString());
+  params = params.append('sortField', filter.sortField);
+  params = params.append('sortOrder', filter.sortOrder);
 
   if (filter.processCode)
     params = params.append('processCode', filter.processCode);
