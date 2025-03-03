@@ -13,11 +13,12 @@ import { ErrorService } from './../../error/error.service';
 import { GroupWorkService } from './../../group-work/group-work.service';
 import { Audit } from './../../models/audit';
 import { Message, MessageService } from 'primeng/api';
+import { getYears } from '../get-years';
 
 @Component({
   selector: 'app-new',
   templateUrl: './new.component.html',
-  styleUrls: ['./new.component.scss']
+  styleUrls: ['./new.component.scss'],
 })
 export class NewComponent implements OnInit {
   loading: boolean = false;
@@ -27,11 +28,8 @@ export class NewComponent implements OnInit {
   entities = [];
   statuses = [];
   groupsWork = [];
-  years = [
-    { value: 2021, label: '2021' },
-    { value: 2020, label: '2020' },
-    { value: 2019, label: '2019' },
-  ];
+
+  years: { value: string; label: string }[] = [];
 
   msgs: Message[];
 
@@ -44,58 +42,54 @@ export class NewComponent implements OnInit {
     private errorService: ErrorService,
     private toastr: ToastrService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    // this.show();
+    this.dropdownYears();
     this.dropdownEntities();
     this.dropdownTypes();
     this.dropdownStatuses();
     this.dropdownGroupsWork();
   }
 
-/*  show() {
-    this.msgs.push({ severity: 'info', summary: 'Info Message', detail: 'PrimeNG rocks' });
-  }
-
-  hide() {
-    this.msgs = [];
-  }*/
-
-
   async dropdownEntities() {
-    await this.entityService.readAll()
-      .then((result) => this.entities = result.map((entity: Entity) => ({
-        value: entity.id,
-        label: entity.name
-      })))
+    await this.entityService.readAll().then(
+      (result) =>
+        (this.entities = result.map((entity: Entity) => ({
+          value: entity.id,
+          label: entity.name,
+        })))
+    );
   }
 
   async dropdownTypes() {
-    await this.auditTypeService.readAll()
-      .then((result) => this.types = result.map((type: AuditType) => ({
-        value: type.id,
-        label: type.name
-      })))
+    await this.auditTypeService.readAll().then(
+      (result) =>
+        (this.types = result.map((type: AuditType) => ({
+          value: type.id,
+          label: type.name,
+        })))
+    );
   }
 
   async dropdownStatuses() {
-    await this.auditStatusService.readAll()
-      .then((result) => {
-        this.statuses = result.map((status: AuditStatus) => ({
-          value: status.id,
-          label: status.name
-        }));
-        // this.loadDefaultStatus(result);
-      });
+    await this.auditStatusService.readAll().then((result) => {
+      this.statuses = result.map((status: AuditStatus) => ({
+        value: status.id,
+        label: status.name,
+      }));
+      // this.loadDefaultStatus(result);
+    });
   }
 
   async dropdownGroupsWork() {
-    await this.groupWorkService.readAll()
-      .then((result) => this.groupsWork = result.map((group: GroupWork) => ({
-        value: group.id,
-        label: group.name
-      })))
+    await this.groupWorkService.readAll().then(
+      (result) =>
+        (this.groupsWork = result.map((group: GroupWork) => ({
+          value: group.id,
+          label: group.name,
+        })))
+    );
   }
 
   // loadDefaultStatus(statuses: AuditStatus[]) {
@@ -111,19 +105,25 @@ export class NewComponent implements OnInit {
 
     if (this.audit.deadlineScope) {
       if (!!this.audit.deadlineScope[0]) {
-        this.audit.deadlineScopeStart = this.audit.deadlineScope[0]
+        this.audit.deadlineScopeStart = this.audit.deadlineScope[0];
       }
       if (!!this.audit.deadlineScope[1]) {
-        this.audit.deadlineScopeEnd = this.audit.deadlineScope[1]
+        this.audit.deadlineScopeEnd = this.audit.deadlineScope[1];
       }
     }
 
-    this.auditService.create(this.audit)
+    this.auditService
+      .create(this.audit)
       .then((result) => {
         this.router.navigate(['/audit/show', result.id]);
-        this.toastr.success('Grupo adicionado!')
+        this.toastr.success('Grupo adicionado!');
       })
       .catch((error) => this.errorService.handle(error))
-      .finally(() => this.loading = false)
+      .finally(() => (this.loading = false));
+  }
+
+  dropdownYears() {
+     this.years = getYears();
+     console.log(this.years);
   }
 }

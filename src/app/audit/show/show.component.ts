@@ -1,9 +1,7 @@
-import { AuditStatusHistory } from './../../models/audit-status-history';
 import { AuditHistoryService } from './../../audit-history/audit-history.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { PrimeIcons } from 'primeng/api';
 import { AuditStatus } from 'src/app/models/audit-status';
 import { AuditType } from 'src/app/models/audit-type';
 import { Entity } from 'src/app/models/entity';
@@ -15,6 +13,7 @@ import { EntityService } from './../../entity/entity.service';
 import { ErrorService } from './../../error/error.service';
 import { GroupWorkService } from './../../group-work/group-work.service';
 import { Audit } from './../../models/audit';
+import { getYears } from '../get-years';
 
 type StatusHistory = {
   status: string;
@@ -29,19 +28,14 @@ type StatusHistory = {
 export class ShowComponent implements OnInit {
   loading: boolean = false;
   audit = new Audit();
-  id = this.route.snapshot.params.id;
+  id!: string
 
   types = [];
   entities = [];
   statuses = [];
   groupsWork = [];
 
-  years = [
-    { value: '018', label: '2018' },
-    { value: '019', label: '2019' },
-    { value: '020', label: '2020' },
-    { value: '021', label: '2021' }
-  ];
+  years: { value: string; label: string }[] = [];
 
   auditStatusHistories: StatusHistory[];
 
@@ -58,6 +52,7 @@ export class ShowComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.params.id;
     this.auditStatusHistories = [
       { status: 'Fechado', date: null },
       { status: 'Concluído', date: null },
@@ -67,6 +62,7 @@ export class ShowComponent implements OnInit {
       { status: 'Registo', date: null }
     ];
 
+    this.dropdownYears();
     this.dropdownEntities();
     this.dropdownTypes();
     this.dropdownStatuses();
@@ -145,5 +141,9 @@ export class ShowComponent implements OnInit {
           })
         })
       })
+  }
+
+  dropdownYears() {
+    this.years = getYears();
   }
 }
