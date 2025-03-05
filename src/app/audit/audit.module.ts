@@ -5,7 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
-import { DividerModule } from "primeng/divider";
+import { DividerModule } from 'primeng/divider';
 import { DropdownModule } from 'primeng/dropdown';
 import { EditorModule } from 'primeng/editor';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -42,7 +42,7 @@ import { ShowComponent } from './show/show.component';
     ClientIndexComponent,
     ClientShowComponent,
     RecommendationsComponent,
-    AuditFilterComponent
+    AuditFilterComponent,
   ],
   imports: [
     CommonModule,
@@ -68,6 +68,6 @@ import { ShowComponent } from './show/show.component';
     MessagesModule,
     MessageModule,
     ScrollPanelModule,
-  ]
+  ],
 })
-export class AuditModule { }
+export class AuditModule {}

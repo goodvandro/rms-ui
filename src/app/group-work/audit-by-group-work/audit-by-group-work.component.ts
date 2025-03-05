@@ -1,20 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import {
+  Component,
+  Input,
+  OnInit
+} from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
-import { AuditService } from '../audit.service';
-import { AuditFilter } from '../audit.filter.resource';
 import { ErrorService } from '../../error/error.service';
+import { GroupWork } from '../../models/group-work';
+import { AuditFilter } from '../../audit/audit.filter.resource';
+import { AuditService } from '../../audit/audit.service';
 
 @Component({
-  selector: 'app-index',
-  templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss'],
+  selector: 'app-audit-by-group-work',
+  templateUrl: './audit-by-group-work.component.html',
+  styleUrls: ['./audit-by-group-work.component.css'],
 })
-export class IndexComponent implements OnInit {
+export class AuditByGroupWorkComponent implements OnInit {
+  @Input() groupWork: GroupWork;
   loading: boolean;
-  visibleSidebarFilter: boolean = false;
-  filter: AuditFilter = new AuditFilter();
   totalRecords: number = 0;
+  filter: AuditFilter = new AuditFilter();
   audits = [];
 
   constructor(
@@ -30,6 +34,9 @@ export class IndexComponent implements OnInit {
     this.loading = true;
     this.filter.page = page;
 
+    console.log('groupWork', this.groupWork);
+    this.filter.groupWork = this.groupWork;
+
     this.auditService
       .read(this.filter)
       .then((result) => {
@@ -43,26 +50,8 @@ export class IndexComponent implements OnInit {
   lazyLoad(event: LazyLoadEvent) {
     const page = (event.first ?? 0) / (event.rows ?? 1);
     this.filter.sortField = event.sortField || 'id';
-    this.filter.sortOrder = event.sortOrder === -1 ? 'asc' : 'desc'; // 1 = ASC, -1 = DESC
+    this.filter.sortOrder = event.sortOrder === -1 ? 'asc' : 'desc';
     this.filter.rows = event.rows;
     this.read(page);
-  }
-
-  clearFilter(form: NgForm) {
-    form.reset();
-  }
-
-  setFilter(newFilter: AuditFilter): void {
-    this.filter = newFilter;
-    this.read();
-  }
-
-  deleteAudit(id: number): void {
-    this.auditService
-      .deleteAudit(id)
-      .then(() => {
-        this.read();
-      })
-      .catch((error) => this.errorService.handle(error));
   }
 }

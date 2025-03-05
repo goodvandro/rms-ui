@@ -20,6 +20,8 @@ import { ShowComponent } from './show/show.component';
 import { GroupWorkFilterComponent } from './group-work-filter/group-work-filter.component';
 import { SidebarModule } from 'primeng/sidebar';
 import { CalendarModule } from 'primeng/calendar';
+import { AuditModule } from '../audit/audit.module';
+import { AuditByGroupWorkComponent } from './audit-by-group-work/audit-by-group-work.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { CalendarModule } from 'primeng/calendar';
     CastComponent,
     GroupWorkByAuditComponent,
     GroupWorkFilterComponent,
+    AuditByGroupWorkComponent,
   ],
   imports: [
     CommonModule,

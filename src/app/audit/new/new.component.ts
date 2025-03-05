@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Message } from 'primeng/api';
 import { AuditStatus } from 'src/app/models/audit-status';
 import { AuditType } from 'src/app/models/audit-type';
 import { Entity } from 'src/app/models/entity';
 import { GroupWork } from 'src/app/models/group-work';
 import { AuditService } from '../audit.service';
+import { getYears } from '../get-years';
 import { AuditStatusService } from './../../audit-status/audit-status.service';
 import { AuditTypeService } from './../../audit-type/audit-type.service';
 import { EntityService } from './../../entity/entity.service';
 import { ErrorService } from './../../error/error.service';
 import { GroupWorkService } from './../../group-work/group-work.service';
 import { Audit } from './../../models/audit';
-import { Message, MessageService } from 'primeng/api';
-import { getYears } from '../get-years';
 
 @Component({
   selector: 'app-new',
@@ -124,6 +124,5 @@ export class NewComponent implements OnInit {
 
   dropdownYears() {
      this.years = getYears();
-     console.log(this.years);
   }
 }

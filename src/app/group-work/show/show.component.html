@@ -98,7 +98,10 @@
               </p-tabPanel>
 
               <p-tabPanel header="AUDITORIAS REALIZADAS">
-                <p>EM DESENVOLVIMENTO</p>
+                <app-audit-by-group-work
+                  *ngIf="groupWork.hasOwnProperty('id')"
+                  [groupWork]="groupWork"
+                ></app-audit-by-group-work>
               </p-tabPanel>
             </p-tabView>
           </div>

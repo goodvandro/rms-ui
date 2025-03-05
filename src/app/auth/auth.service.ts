@@ -1,11 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { User } from 'src/app/models/user';
 import { environment } from './../../environments/environment';
+import { User } from '../models/user';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   oauthTokenUrl: string;
@@ -13,10 +13,7 @@ export class AuthService {
   jwtPayload: any;
   userSession: User;
 
-  constructor(
-    private http: HttpClient,
-    private jwtHelper: JwtHelperService,
-  ) {
+  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {
     this.oauthTokenUrl = `${environment.apiUrl}/oauth/token`;
     this.getToken();
   }
@@ -29,16 +26,14 @@ export class AuthService {
     const body = `username=${email}&password=${password}&grant_type=password`;
 
     try {
-      const response = await this.http.post<any>(
-        this.oauthTokenUrl, body, { headers, withCredentials: true }
-      ).toPromise();
+      const response = await this.http
+        .post<any>(this.oauthTokenUrl, body, { headers, withCredentials: true })
+        .toPromise();
 
       localStorage.setItem('isFirst', JSON.stringify(response.user.isFirst));
       this.setToken(response.access_token);
       return;
     } catch (error) {
-      console.error('login-error', error);
-
       if (error.status === 400) {
         if (error.error.error === 'invalid_grant') {
           return Promise.reject('Utilizador ou senha inválida! Tente de novo!');
@@ -63,7 +58,7 @@ export class AuthService {
 
   hasPermission(permission: string) {
     const user: User = this.getAuthorities();
-    return user && user.authorities.includes(permission)
+    return user && user.authorities.includes(permission);
   }
 
   // hasPermission_(permission: string) {
@@ -100,24 +95,24 @@ export class AuthService {
     const body = 'grant_type=refresh_token';
 
     try {
-      const response = await this.http.post<any>(this.oauthTokenUrl, body,
-        { headers, withCredentials: true })
+      const response = await this.http
+        .post<any>(this.oauthTokenUrl, body, { headers, withCredentials: true })
         .toPromise();
       this.setToken(response.access_token);
 
-      return await Promise.resolve(null);
+      await Promise.resolve(null);
     } catch (response_1) {
-      console.error('Error renewing token.', response_1);
-      return await Promise.resolve(null);
+      await Promise.resolve(null);
     }
   }
 
   getAuthorities(): User {
-    const user: User = JSON.parse(localStorage.getItem('authorities'));
+    const authorities = localStorage.getItem('authorities');
+    const user: User = authorities ? JSON.parse(authorities) : null;
     return user;
   }
 
   setAuthorities(authorities: string[]): void {
-    localStorage.setItem('authorities', JSON.stringify(authorities))
+    localStorage.setItem('authorities', JSON.stringify(authorities));
   }
 }

@@ -1,0 +1,49 @@
+<p-table
+  [value]="audits"
+  [paginator]="true"
+  [rows]="filter.rows"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} linhas"
+  [rowsPerPageOptions]="[10, 25, 50]"
+  [totalRecords]="totalRecords"
+  [loading]="loading"
+  [lazy]="true"
+  [sortMode]="'single'"
+  (onLazyLoad)="lazyLoad($event)"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th [ngStyle]="{ width: '10%' }" pSortableColumn="processCode">
+        Código<p-sortIcon field="processCode"></p-sortIcon>
+      </th>
+      <th [ngStyle]="{ width: '30%' }" pSortableColumn="entityAuditedName">
+        Entidade auditada<p-sortIcon field="entityAuditedName"></p-sortIcon>
+      </th>
+      <th [ngStyle]="{ width: '45%' }" pSortableColumn="description">
+        Descrição<p-sortIcon field="description"></p-sortIcon>
+      </th>
+      <th [ngStyle]="{ width: '10%' }" pSortableColumn="createdAt">
+        Registado em<p-sortIcon field="createdAt"></p-sortIcon>
+      </th>
+      <th [ngStyle]="{ width: '5%' }"></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData>
+    <tr>
+      <td>{{ rowData.processCode }}</td>
+      <td>{{ rowData.entityAudited.name }}</td>
+      <td class="ellipsis">{{ rowData.description }}</td>
+      <td>{{ rowData.createdAt | date : "dd/MM/yyyy" }}</td>
+      <td class="p-p-0">
+        <button
+          pButton
+          pRipple
+          type="button"
+          icon="pi pi-pencil"
+          class="p-button-rounded p-button-warning p-button-outlined"
+          [routerLink]="['/audit/show', rowData.id]"
+        ></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
