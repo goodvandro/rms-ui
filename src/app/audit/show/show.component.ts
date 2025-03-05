@@ -60,6 +60,7 @@ export class ShowComponent implements OnInit {
       { status: 'Relatório enviado', date: null },
       { status: 'Homologação', date: null },
       { status: 'Realizado', date: null },
+      { status: 'Aberto', date: null },
       { status: 'Registo', date: null }
     ];
 
@@ -141,6 +142,10 @@ export class ShowComponent implements OnInit {
             }
           })
         })
+
+        console.log('histories', histories);
+
+        console.log(this.auditStatusHistories);
       })
   }
 
