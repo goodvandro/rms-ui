@@ -7,7 +7,7 @@ import { Audit } from './../models/audit';
 import { AuditFilter, getFilterParams } from './audit.filter.resource';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuditService {
   API_URL: string;
@@ -21,57 +21,64 @@ export class AuditService {
     delete audit.processCode;
     delete audit.deadlineScope;
 
-    return this.http.post<Audit>(this.API_URL, audit)
-      .toPromise();
+    return this.http.post<Audit>(this.API_URL, audit).toPromise();
   }
 
   async read(filter: AuditFilter): Promise<any> {
     const params: HttpParams = getFilterParams(filter);
 
-    return this.http.get<any>(this.API_URL, {
-      params
-    })
+    return this.http
+      .get<any>(this.API_URL, {
+        params,
+      })
       .toPromise()
       .then((result) => {
         const audits: Audit[] = result.content;
         this.convertField(audits);
         return {
           content: audits,
-          totalElements: result.totalElements
-        }
+          totalElements: result.totalElements,
+        };
       });
   }
 
   async update(id: number, audit: Audit): Promise<Audit> {
-    return this.http.put<Audit>(`${this.API_URL}`, audit)
+    return this.http
+      .put<Audit>(`${this.API_URL}`, audit)
       .toPromise()
-      .then((result => {
+      .then((result) => {
         const audit = result as Audit;
         this.convertField([audit]);
         return audit;
-      }))
+      });
   }
 
   async getById(id: number): Promise<Audit> {
-    return this.http.get<Audit>(`${this.API_URL}/${id}`)
+    return this.http
+      .get<Audit>(`${this.API_URL}/${id}`)
       .toPromise()
-      .then((result => {
+      .then((result) => {
         const audit = result as Audit;
         this.convertField([audit]);
         return audit;
-      }))
+      });
   }
 
   async getByProcessCode(processCode: string): Promise<Audit> {
     let params = new HttpParams();
     params = params.append('processCode', processCode);
 
-    const result = await this.http.get<Audit>(`${this.API_URL}/byCode`, { params })
+    const result = await this.http
+      .get<Audit>(`${this.API_URL}/byCode`, { params })
       .toPromise();
 
     const audit = result as Audit;
     this.convertField([audit]);
     return audit;
+  }
+
+  deleteAudit(id: number): Promise<void> {
+    return this.http.delete<void>(`${this.API_URL}/${id}`).toPromise();
   }
 
   private convertField(audits: Audit[]) {
@@ -85,11 +92,16 @@ export class AuditService {
         audit.reportedAt = moment(audit.reportedAt, 'YYYY-MM-DD').toDate();
 
       if (audit.createdAt)
-        audit.createdAt = moment(audit.createdAt, 'YYYY-MM-DD hh:mm:ss').toDate();
+        audit.createdAt = moment(
+          audit.createdAt,
+          'YYYY-MM-DD hh:mm:ss'
+        ).toDate();
 
       if (audit.updatedAt)
-        audit.updatedAt = moment(audit.updatedAt, 'YYYY-MM-DD hh:mm:ss').toDate();
+        audit.updatedAt = moment(
+          audit.updatedAt,
+          'YYYY-MM-DD hh:mm:ss'
+        ).toDate();
     }
   }
-
 }
