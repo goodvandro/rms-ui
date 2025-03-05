@@ -20,15 +20,26 @@
         [totalRecords]="totalRecords"
         [loading]="loading"
         [lazy]="true"
+        [sortMode]="'single'"
         (onLazyLoad)="lazyLoad($event)"
       >
         <ng-template pTemplate="header">
           <tr>
-            <th>Nome</th>
-            <th>Iniciais</th>
-            <th>Tipo</th>
-            <th>Nível</th>
-            <th>Registada em</th>
+            <th pSortableColumn="name">
+              Nome <p-sortIcon field="name"></p-sortIcon>
+            </th>
+            <th pSortableColumn="initial">
+              Iniciais <p-sortIcon field="initial"></p-sortIcon>
+            </th>
+            <th pSortableColumn="auditor">
+              Tipo <p-sortIcon field="auditor"></p-sortIcon>
+            </th>
+            <th pSortableColumn="levelName">
+              Nível <p-sortIcon field="levelName"></p-sortIcon>
+            </th>
+            <th pSortableColumn="createdAt">
+              Registada em <p-sortIcon field="createdAt"></p-sortIcon>
+            </th>
             <th [ngStyle]="{ width: '5%' }"></th>
           </tr>
         </ng-template>

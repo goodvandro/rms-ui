@@ -4,7 +4,9 @@ import * as moment from 'moment';
 
 export class EntityFilter {
   page: number = 0;
-  rows: number = 10;
+  rows?: number = 10;
+  sortField: string;
+  sortOrder: string;
 
   name: string;
   initial: string;
@@ -19,6 +21,8 @@ export const getFilterParams = (filter: EntityFilter): HttpParams => {
 
   params = params.append('page', filter.page.toString());
   params = params.append('size', filter.rows.toString());
+  params = params.append('sortField', filter.sortField);
+  params = params.append('sortOrder', filter.sortOrder);
 
   if (filter.name) {
     params = params.append('name', filter.name);
