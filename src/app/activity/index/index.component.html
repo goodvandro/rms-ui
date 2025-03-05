@@ -5,25 +5,42 @@
 
   <div class="p-col-12">
     <p-card>
-      <p-table [value]="activities" [paginator]="true" [rows]="filter.rows" [showCurrentPageReport]="true"
+      <p-table
+        [value]="activities"
+        [paginator]="true"
+        [rows]="filter.rows"
+        [showCurrentPageReport]="true"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} linhas"
-        [rowsPerPageOptions]="[10,25,50]" [totalRecords]="totalRecords" [loading]="loading" [lazy]="true"
-        (onLazyLoad)="lazyLoad($event)">
+        [rowsPerPageOptions]="[10, 25, 50]"
+        [totalRecords]="totalRecords"
+        [loading]="loading"
+        [lazy]="true"
+        [sortMode]="'single'"
+        (onLazyLoad)="lazyLoad($event)"
+      >
         <ng-template pTemplate="header">
           <tr>
-            <th>Tipo</th>
-            <th>Utilizador</th>
-            <th>Descrição</th>
-            <th>Data</th>
+            <th pSortableColumn="typeActivityName">
+              Tipo <p-sortIcon field="typeActivityName"></p-sortIcon>
+            </th>
+            <th pSortableColumn="username">
+              Utilizador <p-sortIcon field="username"></p-sortIcon>
+            </th>
+            <th pSortableColumn="description">
+              Descrição <p-sortIcon field="description"></p-sortIcon>
+            </th>
+            <th pSortableColumn="createdAt">
+              Data <p-sortIcon field="createdAt"></p-sortIcon>
+            </th>
           </tr>
         </ng-template>
 
         <ng-template pTemplate="body" let-rowData>
           <tr>
-            <td>{{rowData.typeActivity.name}}</td>
-            <td>{{rowData.user.username}}</td>
-            <td>{{rowData.description}}</td>
-            <td>{{rowData.createdAt | date:'short'}}</td>
+            <td>{{ rowData.typeActivity.name }}</td>
+            <td>{{ rowData.user.username }}</td>
+            <td>{{ rowData.description }}</td>
+            <td>{{ rowData.createdAt | date : "short" }}</td>
           </tr>
         </ng-template>
 
@@ -33,8 +50,13 @@
         </ng-template>
 
         <ng-template pTemplate="paginatorright">
-          <p-button type="button" icon="pi pi-refresh" styleClass="p-button-text" pTooltip="Atualizar"
-            tooltipPosition="left"></p-button>
+          <p-button
+            type="button"
+            icon="pi pi-refresh"
+            styleClass="p-button-text"
+            pTooltip="Atualizar"
+            tooltipPosition="left"
+          ></p-button>
         </ng-template>
       </p-table>
     </p-card>

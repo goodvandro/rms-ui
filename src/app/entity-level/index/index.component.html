@@ -11,7 +11,9 @@
       >
         <ng-template pTemplate="header">
           <tr>
-            <th>Nome</th>
+            <th pSortableColumn="name">
+              Nome <p-sortIcon field="name"></p-sortIcon>
+            </th>
             <th [ngStyle]="{ width: '5%' }"></th>
           </tr>
         </ng-template>

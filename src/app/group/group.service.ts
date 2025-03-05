@@ -7,7 +7,9 @@ import { Group } from './../models/group';
 
 export class GroupFilter {
   page: number = 0;
-  rows: number = 10;
+  rows?: number = 10;
+  sortField: string;
+  sortOrder: string;
 
   name: string;
 
@@ -32,6 +34,8 @@ export class GroupService {
     let params = new HttpParams();
     params = params.append('page', filter.page.toString());
     params = params.append('size', filter.rows.toString());
+    params = params.append('sortField', filter.sortField);
+    params = params.append('sortOrder', filter.sortOrder);
 
     if (filter.name) {
       params = params.append('name', filter.name);
