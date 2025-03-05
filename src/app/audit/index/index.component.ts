@@ -56,4 +56,13 @@ export class IndexComponent implements OnInit {
     this.filter = newFilter;
     this.read();
   }
+
+  deleteAudit(id: number): void {
+    this.groupService
+      .deleteAudit(id)
+      .then(() => {
+        this.read();
+      })
+      .catch((error) => this.errorService.handle(error));
+  }
 }

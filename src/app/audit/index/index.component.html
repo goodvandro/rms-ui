@@ -53,13 +53,13 @@
                 field="entityAuditedName"
               ></p-sortIcon>
             </th>
-            <th [ngStyle]="{ width: '45%' }" pSortableColumn="description">
+            <th [ngStyle]="{ width: '40%' }" pSortableColumn="description">
               Descrição<p-sortIcon field="description"></p-sortIcon>
             </th>
             <th [ngStyle]="{ width: '10%' }" pSortableColumn="createdAt">
               Registado em<p-sortIcon field="createdAt"></p-sortIcon>
             </th>
-            <th [ngStyle]="{ width: '5%' }"></th>
+            <th [ngStyle]="{ width: '10%' }"></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData>
@@ -76,6 +76,14 @@
                 icon="pi pi-pencil"
                 class="p-button-rounded p-button-warning p-button-outlined"
                 [routerLink]="['/audit/show', rowData.id]"
+              ></button>
+              <button
+                pButton
+                pRipple
+                type="button"
+                icon="pi pi-trash"
+                class="p-button-rounded p-button-danger p-button-outlined"
+                (click)="deleteAudit(rowData.id)"
               ></button>
             </td>
           </tr>
