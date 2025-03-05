@@ -9,7 +9,9 @@ import { User } from '../models/user';
 
 export class RecommendationFilter {
   page: number = 0;
-  rows: number = 10;
+  rows?: number = 10;
+  sortField: string;
+  sortOrder: string;
 
   number: string;
 
@@ -35,6 +37,8 @@ export const getFilterParams = (filter: RecommendationFilter): HttpParams => {
   let params = new HttpParams();
   params = params.append('page', filter.page.toString());
   params = params.append('size', filter.rows.toString());
+  params = params.append('sortField', filter.sortField);
+  params = params.append('sortOrder', filter.sortOrder);
 
   if (filter.number) {
     params = params.append('number', filter.number);

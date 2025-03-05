@@ -42,7 +42,7 @@ export class IndexComponent implements OnInit {
 
   lazyLoad(event: LazyLoadEvent) {
     const page = (event.first ?? 0) / (event.rows ?? 1);
-    this.filter.sortField = event.sortField || 'id'; // Campo de ordenação (padrão: id)
+    this.filter.sortField = event.sortField || 'id';
     this.filter.sortOrder = event.sortOrder === -1 ? 'asc' : 'desc'; // 1 = ASC, -1 = DESC
     this.filter.rows = event.rows;
     this.read(page);

@@ -21,17 +21,36 @@
         [totalRecords]="totalRecords"
         [loading]="loading"
         [lazy]="true"
+        [sortMode]="'single'"
         (onLazyLoad)="lazyLoad($event)"
       >
         <ng-template pTemplate="header">
           <tr>
-            <th [ngStyle]="{ width: '15%' }">Nº Rec.</th>
-            <th [ngStyle]="{ width: '30%' }">Entidade</th>
-            <th [ngStyle]="{ width: '10%' }">Status</th>
-            <th [ngStyle]="{ width: '10%' }">Caráter</th>
-            <th [ngStyle]="{ width: '10%' }">Natureza</th>
-            <th [ngStyle]="{ width: '10%' }">Nível de Risco</th>
-            <th [ngStyle]="{ width: '10%' }">Data Registo</th>
+            <th [ngStyle]="{ width: '15%' }" pSortableColumn="number">
+              Nº Rec. <p-sortIcon field="number"></p-sortIcon>
+            </th>
+            <th
+              [ngStyle]="{ width: '30%' }"
+              pSortableColumn="entityAuditedName"
+            >
+              Entidade auditada
+              <p-sortIcon field="entityAuditedName"></p-sortIcon>
+            </th>
+            <th [ngStyle]="{ width: '10%' }" pSortableColumn="status">
+              Status <p-sortIcon field="status"></p-sortIcon>
+            </th>
+            <th [ngStyle]="{ width: '10%' }" pSortableColumn="character">
+              Caráter <p-sortIcon field="character"></p-sortIcon>
+            </th>
+            <th [ngStyle]="{ width: '10%' }" pSortableColumn="nature">
+              Natureza <p-sortIcon field="nature"></p-sortIcon>
+            </th>
+            <th [ngStyle]="{ width: '10%' }" pSortableColumn="levelRisk">
+              Nível de Risco <p-sortIcon field="levelRisk"></p-sortIcon>
+            </th>
+            <th [ngStyle]="{ width: '10%' }" pSortableColumn="createdAt">
+              Data Registo <p-sortIcon field="createdAt"></p-sortIcon>
+            </th>
             <th [ngStyle]="{ width: '5%' }"></th>
           </tr>
         </ng-template>
@@ -43,7 +62,7 @@
             <td>{{ rowData.character.name }}</td>
             <td>{{ rowData.nature.name }}</td>
             <td>{{ rowData.levelRisk.name }}</td>
-            <td>{{ rowData.createdAt | date: "dd/MM/yyyy" }}</td>
+            <td>{{ rowData.createdAt | date : "dd/MM/yyyy" }}</td>
             <td class="p-p-0">
               <button
                 pButton

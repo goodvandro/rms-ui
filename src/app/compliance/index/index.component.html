@@ -20,15 +20,26 @@
         [totalRecords]="totalRecords"
         [loading]="loading"
         [lazy]="true"
+        [sortMode]="'single'"
         (onLazyLoad)="lazyLoad($event)"
       >
         <ng-template pTemplate="header">
           <tr>
-            <th>Nº Reco.</th>
-            <th>Medidas tomadas</th>
-            <th>Desc. da Avaliação</th>
-            <th>Data de avaliação</th>
-            <th>Nível de cumprimento</th>
+            <th pSortableColumn="recommendationNumber">
+              Nº Reco. <p-sortIcon field="recommendationNumber"></p-sortIcon>
+            </th>
+            <th pSortableColumn="measuresTaken">
+              Medidas tomadas <p-sortIcon field="measuresTaken"></p-sortIcon>
+            </th>
+            <th pSortableColumn="evaluationObs">
+              Desc. da Avaliação <p-sortIcon field="evaluationObs"></p-sortIcon>
+            </th>
+            <th pSortableColumn="evaluatedAt">
+              Data de avaliação <p-sortIcon field="evaluatedAt"></p-sortIcon>
+            </th>
+            <th pSortableColumn="levelName">
+              Nível de cumprimento <p-sortIcon field="levelName"></p-sortIcon>
+            </th>
             <th [ngStyle]="{ width: '5%' }"></th>
           </tr>
         </ng-template>

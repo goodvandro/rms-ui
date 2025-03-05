@@ -4,7 +4,9 @@ import { ComplianceLevel } from '../models/compliance-level';
 
 export class ComplianceFilter {
   page: number = 0;
-  rows: number = 10;
+  rows?: number = 10;
+  sortField: string;
+  sortOrder: string;
 
   recommendationNumber: string;
   auditProcessNumber: string;
@@ -18,6 +20,8 @@ export const getFilterParams = (filter: ComplianceFilter): HttpParams => {
 
   params = params.append('page', filter.page.toString());
   params = params.append('size', filter.rows.toString());
+  params = params.append('sortField', filter.sortField);
+  params = params.append('sortOrder', filter.sortOrder);
 
   if (filter.recommendationNumber) {
     params = params.append(
