@@ -43,7 +43,7 @@
         </div>
 
         <div class="p-grid p-fluid p-formgrid">
-          <div class="p-col-6">
+          <div class="p-col-12 p-md-6">
             <h4>DADOS DA AÇÃO DE AUDITORIA</h4>
             <table class="styled-table" style="width: 100%">
               <tr>
@@ -52,7 +52,7 @@
               </tr>
               <tr>
                 <th>Entidade:</th>
-                <td>
+                <td class="text-truncate">
                   {{ compliance.recommendation.audit.entityAudited.name }}
                 </td>
               </tr>
@@ -64,7 +64,7 @@
               </tr>
               <tr>
                 <th>Descrição da Ação:</th>
-                <td>{{ compliance.recommendation.audit.description }}</td>
+                <td class="text-truncate">{{ compliance.recommendation.audit.description }}</td>
               </tr>
               <tr>
                 <th>Data de Despacho:</th>
@@ -79,12 +79,12 @@
             </table>
           </div>
 
-          <div class="p-col-6">
+          <div class="p-col-12 p-md-6">
             <h4>DETALHES DA RECOMENDAÇÃO</h4>
             <table class="styled-table" style="width: 100%">
               <tr>
                 <th style="width: '28%'">Nº de Recomendação:</th>
-                <td>{{ compliance.recommendation.id }}</td>
+                <td style="width: '72%'">{{ compliance.recommendation.id }}</td>
               </tr>
               <tr>
                 <th>Descrição:</th>

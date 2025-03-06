@@ -28,7 +28,7 @@
               type="submit"
               label="Salvar"
               class="p-button-raised p-button-lg p-mx-1"
-              [disabled]="!f.valid || loading"
+              [disabled]="!f.valid || loading || !compliance.recommendation.id"
             ></button>
 
             <button
@@ -46,7 +46,7 @@
           <div class="p-col-12">
             <p-fieldset legend="DADOS DA RECOMENDAÇÃO" [toggleable]="true">
               <div class="p-grid">
-                <div class="p-field p-col-12 p-md-3">
+                <div class="p-field p-col-12 p-md-6">
                   <label for="recommendationNumber">
                     Número da recomendação<span class="span-required">*</span>
                   </label>
@@ -56,9 +56,9 @@
                       type="text"
                       pInputText
                       name="recommendationNumber"
-                      [(ngModel)]="compliance.recommendation.id"
+                      [(ngModel)]="compliance.recommendation.number"
                       disabled
-                      required
+                      required="true"
                     />
                     <button
                       type="button"
@@ -70,18 +70,36 @@
                   </div>
                 </div>
 
-                <div class="p-field p-col-12 p-md-9">
+                <div class="p-field p-col-12">
                   <label for="recommendationDescription">
                     Descrição da recomendação
                   </label>
-                  <input
-                    id="recommendationDescription"
-                    type="text"
-                    pInputText
+                  <p-editor
                     name="recommendationDescription"
                     [(ngModel)]="compliance.recommendation.description"
-                    disabled
-                  />
+                    [style]="{ height: '80px' }"
+                    [readonly]="true"
+                  >
+                    <ng-template pTemplate="header">
+                      <span class="ql-formats">
+                        <button
+                          type="button"
+                          class="ql-bold"
+                          aria-label="Bold"
+                        ></button>
+                        <button
+                          type="button"
+                          class="ql-italic"
+                          aria-label="Italic"
+                        ></button>
+                        <button
+                          type="button"
+                          class="ql-underline"
+                          aria-label="Underline"
+                        ></button>
+                      </span>
+                    </ng-template>
+                  </p-editor>
                 </div>
               </div>
             </p-fieldset>
@@ -160,7 +178,11 @@
                 </div>
 
                 <div class="p-field p-col-12 p-md-6">
-                  <label for="evaluatedAt">Data da avaliação</label>
+                  <label for="evaluatedAt"
+                    >Data da avaliação<span class="span-required"
+                      >*</span
+                    ></label
+                  >
                   <p-calendar
                     id="evaluatedAt"
                     name="evaluatedAt"
@@ -171,13 +193,18 @@
                 </div>
 
                 <div class="p-field p-col-12 p-md-6">
-                  <label for="level">Nível</label>
+                  <label for="level"
+                    >Nível de cumprimento<span class="span-required"
+                      >*</span
+                    ></label
+                  >
                   <p-dropdown
                     id="level"
                     [options]="levels"
                     name="level"
                     [(ngModel)]="compliance.level.id"
                     placeholder="Selecione"
+                    required="true"
                   >
                   </p-dropdown>
                 </div>
@@ -194,7 +221,7 @@
   header="Lista de Recomendações"
   [(visible)]="displayRecommendations"
   [modal]="true"
-  [style]="{ width: '70vw' }"
+  [style]="{ width: '90vw' }"
   [baseZIndex]="10000"
   [draggable]="false"
   [resizable]="false"
@@ -256,22 +283,27 @@
       <tr>
         <th [style]="{ width: '10%' }">Nº Rec.</th>
         <th [style]="{ width: '15%' }">Nº Processo</th>
-        <th>Descrição</th>
+        <th [style]="{ width: '55%' }">Descrição</th>
         <th [style]="{ width: '15%' }">Status</th>
-        <th [style]="{ width: '4em' }"></th>
+        <th [style]="{ width: '5%' }"></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-rowData>
       <tr>
         <td>{{ rowData.id }}</td>
         <td>{{ rowData.audit.processCode }}</td>
-        <td><span [innerHTML]="rowData.description"></span></td>
+        <td
+          class="description"
+          [innerHTML]="rowData.description"
+        ></td>
         <td>{{ rowData.status.name }}</td>
-        <td class="p-p-0">
+        <td class="p-p-0 table-actions">
           <button
-            type="button"
             pButton
+            pRipple
+            type="button"
             icon="pi pi-search"
+            class="p-button-rounded p-button-outlined"
             (click)="getRecommendation(rowData)"
           ></button>
         </td>
