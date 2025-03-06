@@ -1,9 +1,9 @@
+import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import * as moment from 'moment';
+import { environment } from '../../environments/environment';
 import { AppHttClient } from './../auth/app-http-client';
 import { Recommendation } from './../models/recommendation';
-import * as moment from 'moment';
-import { HttpParams } from '@angular/common/http';
 import {
   RecommendationFilter,
   getFilterParams,
@@ -64,6 +64,9 @@ export class RecommendationService {
         this.convertField([recommendation]);
         return recommendation;
       });
+  }
+  delete(id: number): Promise<void> {
+    return this.http.delete<void>(`${this.API_URL}/${id}`).toPromise();
   }
 
   private convertField(recommendations: Recommendation[]) {

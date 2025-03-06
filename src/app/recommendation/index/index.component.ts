@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { LazyLoadEvent } from 'primeng/api';
+import { ConfirmationService, LazyLoadEvent } from 'primeng/api';
+import { AuthService } from '../../auth/auth.service';
+import { UserSession } from '../../models/user';
 import { RecommendationService } from '../recommendation.service';
 import { ErrorService } from './../../error/error.service';
 import { RecommendationFilter } from './../recommendation-filter-resource';
+import { Recommendation } from '../../models/recommendation';
 
 @Component({
   selector: 'app-index',
@@ -16,14 +19,20 @@ export class IndexComponent implements OnInit {
   filter: RecommendationFilter = new RecommendationFilter();
   totalRecords: number = 0;
   recommendations = [];
+  userSession: UserSession;
 
   constructor(
     private recommendationService: RecommendationService,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private authService: AuthService,
+    private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit(): void {
     this.loading = true;
+    if (!this.authService.isAccessTokenInvalid()) {
+      this.userSession = this.authService.jwtPayload.user;
+    }
   }
 
   openFilterDialog(): void {
@@ -56,5 +65,28 @@ export class IndexComponent implements OnInit {
   setFilter(newFilter: RecommendationFilter): void {
     this.filter = newFilter;
     this.read();
+  }
+
+  deleteAudit(id: number): void {
+    this.recommendationService
+      .delete(id)
+      .then(() => {
+        this.read();
+      })
+      .catch((error) => this.errorService.handle(error));
+  }
+
+  get isAdmin(): boolean {
+    return this.userSession?.group.slug === 'admin';
+  }
+
+  confirmDelete(recommendation: Recommendation) {
+    this.confirmationService.confirm({
+      message: `Tem certeza que deseja excluir a recomendação <strong>${recommendation?.number}</strong>?`,
+      key: 'customConfirmDialog',
+      accept: () => {
+        this.deleteAudit(recommendation.id);
+      },
+    });
   }
 }

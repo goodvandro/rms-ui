@@ -30,7 +30,7 @@
               Nº Rec. <p-sortIcon field="number"></p-sortIcon>
             </th>
             <th
-              [ngStyle]="{ width: '30%' }"
+              [ngStyle]="{ width: '25%' }"
               pSortableColumn="entityAuditedName"
             >
               Entidade auditada
@@ -51,7 +51,7 @@
             <th [ngStyle]="{ width: '10%' }" pSortableColumn="createdAt">
               Data Registo <p-sortIcon field="createdAt"></p-sortIcon>
             </th>
-            <th [ngStyle]="{ width: '5%' }"></th>
+            <th [ngStyle]="{ width: '10%' }"></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData>
@@ -63,7 +63,7 @@
             <td>{{ rowData.nature.name }}</td>
             <td>{{ rowData.levelRisk.name }}</td>
             <td>{{ rowData.createdAt | date : "dd/MM/yyyy" }}</td>
-            <td class="p-p-0">
+            <td class="p-p-0 table-actions">
               <button
                 pButton
                 pRipple
@@ -71,6 +71,15 @@
                 icon="pi pi-pencil"
                 class="p-button-rounded p-button-warning p-button-outlined"
                 [routerLink]="['/recommendation/show', rowData.id]"
+              ></button>
+              <button
+                *ngIf="isAdmin"
+                pButton
+                pRipple
+                type="button"
+                icon="pi pi-trash"
+                class="p-button-rounded p-button-danger p-button-outlined"
+                (click)="confirmDelete(rowData)"
               ></button>
             </td>
           </tr>

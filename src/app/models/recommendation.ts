@@ -8,6 +8,7 @@ import { RecommendationStatus } from './recommendation-status';
 
 export class Recommendation {
   id: number;
+  number?: string;
   description: string;
   constatation: string;
   amount: number;
