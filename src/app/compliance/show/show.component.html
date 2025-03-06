@@ -4,18 +4,40 @@
   </div>
 
   <div class="p-col-12">
-    <p-progressBar mode="indeterminate" [style]="{'height': '2px'}" *ngIf="loading"></p-progressBar>
+    <p-progressBar
+      mode="indeterminate"
+      [style]="{ height: '2px' }"
+      *ngIf="loading"
+    ></p-progressBar>
     <p-card>
       <form autocomplete="off" #f="ngForm" (ngSubmit)="update()">
         <div class="p-grid">
           <div class="p-col-12">
-            <button pButton pRipple type="button" icon="pi pi-chevron-left"
-              class="p-button-text p-button-raised p-button-lg p-mx-1" routerLink="/compliance/index"></button>
+            <button
+              pButton
+              pRipple
+              type="button"
+              icon="pi pi-chevron-left"
+              class="p-button-text p-button-raised p-button-lg p-mx-1"
+              routerLink="/compliance/index"
+            ></button>
 
-            <button pButton pRipple type="submit" label="Salvar" class="p-button-raised p-button-lg p-mx-1"></button>
+            <button
+              pButton
+              pRipple
+              type="submit"
+              label="Salvar"
+              class="p-button-raised p-button-lg p-mx-1"
+            ></button>
 
-            <button pButton pRipple type="button" label="Novo" routerLink="/compliance/new"
-              class="p-button-raised p-button-info p-button-lg p-mx-1"></button>
+            <button
+              pButton
+              pRipple
+              type="button"
+              label="Novo"
+              routerLink="/compliance/new"
+              class="p-button-raised p-button-info p-button-lg p-mx-1"
+            ></button>
             <p-divider></p-divider>
           </div>
         </div>
@@ -23,60 +45,69 @@
         <div class="p-grid p-fluid p-formgrid">
           <div class="p-col-6">
             <h4>DADOS DA AÇÃO DE AUDITORIA</h4>
-            <table class="styled-table" style="width:100%">
+            <table class="styled-table" style="width: 100%">
               <tr>
-                <th>Código do Processo:</th>
-                <td> {{compliance.recommendation.audit.processCode}} </td>
+                <th style="width: '30%'">Código do Processo:</th>
+                <td>{{ compliance.recommendation.audit.processCode }}</td>
               </tr>
               <tr>
                 <th>Entidade:</th>
-                <td> {{compliance.recommendation.audit.entityAudited.name}} </td>
+                <td>
+                  {{ compliance.recommendation.audit.entityAudited.name }}
+                </td>
               </tr>
               <tr>
                 <th>Endereço:</th>
-                <td> {{compliance.recommendation.audit.entityAudited.street}} </td>
+                <td>
+                  {{ compliance.recommendation.audit.entityAudited.street }}
+                </td>
               </tr>
               <tr>
                 <th>Descrição da Ação:</th>
-                <td> {{compliance.recommendation.audit.description}} </td>
+                <td>{{ compliance.recommendation.audit.description }}</td>
               </tr>
               <tr>
                 <th>Data de Despacho:</th>
-                <td> {{compliance.recommendation.audit.dispatchedAt | date}} </td>
+                <td>
+                  {{ compliance.recommendation.audit.dispatchedAt | date }}
+                </td>
               </tr>
               <tr>
                 <th>Data de Comunicação:</th>
-                <td> {{compliance.recommendation.audit.reportedAt | date}} </td>
+                <td>{{ compliance.recommendation.audit.reportedAt | date }}</td>
               </tr>
             </table>
           </div>
 
           <div class="p-col-6">
             <h4>DETALHES DA RECOMENDAÇÃO</h4>
-            <table class="styled-table" style="width:100%">
+            <table class="styled-table" style="width: 100%">
               <tr>
-                <th>Nº de Recomendação:</th>
-                <td> {{compliance.recommendation.id}} </td>
+                <th style="width: '28%'">Nº de Recomendação:</th>
+                <td>{{ compliance.recommendation.id }}</td>
               </tr>
               <tr>
-                <th>Descrição da Recomendação:</th>
-                <td> <span [innerHTML]="compliance.recommendation.description"></span></td>
+                <th>Descrição:</th>
+                <td
+                  class="description"
+                  [innerHTML]="compliance.recommendation.description"
+                ></td>
               </tr>
               <tr>
                 <th>Valor em causa:</th>
-                <td> {{compliance.recommendation.amount | number}} </td>
+                <td>{{ compliance.recommendation.amount | number }}</td>
               </tr>
               <tr>
                 <th>Carácter:</th>
-                <td> {{compliance.recommendation.character.name}} </td>
+                <td>{{ compliance.recommendation.character.name }}</td>
               </tr>
               <tr>
                 <th>Nível de Risco:</th>
-                <td> {{compliance.recommendation.levelRisk.name}} </td>
+                <td>{{ compliance.recommendation.levelRisk.name }}</td>
               </tr>
               <tr>
                 <th>Natureza:</th>
-                <td> {{compliance.recommendation.nature.name}} </td>
+                <td>{{ compliance.recommendation.nature.name }}</td>
               </tr>
             </table>
           </div>
@@ -88,14 +119,43 @@
           <div class="p-col-12">
             <div class="p-grid">
               <div class="p-field p-col-12 p-md-6">
+                <label for="evaluationObs">Nº do Cumprimento</label>
+                <input
+                  type="text"
+                  id="number"
+                  name="number"
+                  pInputText
+                  [(ngModel)]="compliance.number"
+                  disabled
+                />
+              </div>
+            </div>
+            <div class="p-grid">
+              <div class="p-field p-col-12 p-md-6">
                 <label for="measuresTaken">Medidas tomadas</label>
-                <p-editor name="measuresTaken" [(ngModel)]="compliance.measuresTaken" [style]="{'height':'120px'}"
-                  [readonly]="true">
+                <p-editor
+                  name="measuresTaken"
+                  [(ngModel)]="compliance.measuresTaken"
+                  [style]="{ height: '120px' }"
+                  [readonly]="true"
+                >
                   <ng-template pTemplate="header">
                     <span class="ql-formats">
-                      <button type="button" class="ql-bold" aria-label="Bold"></button>
-                      <button type="button" class="ql-italic" aria-label="Italic"></button>
-                      <button type="button" class="ql-underline" aria-label="Underline"></button>
+                      <button
+                        type="button"
+                        class="ql-bold"
+                        aria-label="Bold"
+                      ></button>
+                      <button
+                        type="button"
+                        class="ql-italic"
+                        aria-label="Italic"
+                      ></button>
+                      <button
+                        type="button"
+                        class="ql-underline"
+                        aria-label="Underline"
+                      ></button>
                     </span>
                   </ng-template>
                 </p-editor>
@@ -103,12 +163,28 @@
 
               <div class="p-field p-col-12 p-md-6">
                 <label for="evaluationObs">Descrição da avaliação</label>
-                <p-editor name="evaluationObs" [(ngModel)]="compliance.evaluationObs" [style]="{'height':'120px'}">
+                <p-editor
+                  name="evaluationObs"
+                  [(ngModel)]="compliance.evaluationObs"
+                  [style]="{ height: '120px' }"
+                >
                   <ng-template pTemplate="header">
                     <span class="ql-formats">
-                      <button type="button" class="ql-bold" aria-label="Bold"></button>
-                      <button type="button" class="ql-italic" aria-label="Italic"></button>
-                      <button type="button" class="ql-underline" aria-label="Underline"></button>
+                      <button
+                        type="button"
+                        class="ql-bold"
+                        aria-label="Bold"
+                      ></button>
+                      <button
+                        type="button"
+                        class="ql-italic"
+                        aria-label="Italic"
+                      ></button>
+                      <button
+                        type="button"
+                        class="ql-underline"
+                        aria-label="Underline"
+                      ></button>
                     </span>
                   </ng-template>
                 </p-editor>
@@ -116,28 +192,47 @@
 
               <div class="p-field p-col-12 p-md-6">
                 <label for="evaluatedAt">Data da avaliação</label>
-                <p-calendar id="evaluatedAt" name="evaluatedAt" [(ngModel)]="compliance.evaluatedAt">
+                <p-calendar
+                  id="evaluatedAt"
+                  name="evaluatedAt"
+                  [(ngModel)]="compliance.evaluatedAt"
+                >
                 </p-calendar>
               </div>
 
               <div class="p-field p-col-12 p-md-6">
                 <label for="level">Nível</label>
-                <p-dropdown id="level" [options]="levels" name="level" [(ngModel)]="compliance.level.id"
-                  placeholder="Selecione">
+                <p-dropdown
+                  id="level"
+                  [options]="levels"
+                  name="level"
+                  [(ngModel)]="compliance.level.id"
+                  placeholder="Selecione"
+                >
                 </p-dropdown>
               </div>
 
               <div class="p-field p-col-12 p-md-3">
                 <label for="createdAt">Data de Registado</label>
-                <p-calendar id="createdAt" name="createdAt" [(ngModel)]="compliance.createdAt" [showTime]="true"
-                  [disabled]=true>
+                <p-calendar
+                  id="createdAt"
+                  name="createdAt"
+                  [(ngModel)]="compliance.createdAt"
+                  [showTime]="true"
+                  [disabled]="true"
+                >
                 </p-calendar>
               </div>
 
               <div class="p-field p-col-12 p-md-3">
                 <label for="updatedAt">Data de Atualização</label>
-                <p-calendar id="updatedAt" name="updatedAt" [(ngModel)]="compliance.updatedAt" [showTime]="true"
-                  [disabled]=true>
+                <p-calendar
+                  id="updatedAt"
+                  name="updatedAt"
+                  [(ngModel)]="compliance.updatedAt"
+                  [showTime]="true"
+                  [disabled]="true"
+                >
                 </p-calendar>
               </div>
             </div>
@@ -152,7 +247,9 @@
               </p-tabPanel>
 
               <p-tabPanel header="HISTÓRICO DE AVALIAÇÃO">
-                <app-histories [histories]="compliance.histories"></app-histories>
+                <app-histories
+                  [histories]="compliance.histories"
+                ></app-histories>
               </p-tabPanel>
             </p-tabView>
           </div>

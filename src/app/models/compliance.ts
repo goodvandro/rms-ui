@@ -5,6 +5,7 @@ import { Recommendation } from './recommendation';
 
 export class Compliance {
   id: number;
+  number: string;
   measuresTaken: string;
   evaluationObs: string;
 
