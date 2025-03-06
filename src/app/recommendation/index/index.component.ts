@@ -67,7 +67,7 @@ export class IndexComponent implements OnInit {
     this.read();
   }
 
-  deleteAudit(id: number): void {
+  delete(id: number): void {
     this.recommendationService
       .delete(id)
       .then(() => {
@@ -85,7 +85,7 @@ export class IndexComponent implements OnInit {
       message: `Tem certeza que deseja excluir a recomendação <strong>${recommendation?.number}</strong>?`,
       key: 'customConfirmDialog',
       accept: () => {
-        this.deleteAudit(recommendation.id);
+        this.delete(recommendation.id);
       },
     });
   }

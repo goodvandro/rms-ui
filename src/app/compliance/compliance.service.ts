@@ -1,7 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 import { AppHttClient } from './../auth/app-http-client';
 import { Compliance } from './../models/compliance';
 import {
@@ -61,6 +61,10 @@ export class ComplianceService {
         this.convertField([compliance]);
         return compliance;
       });
+  }
+
+  async delete(id: number): Promise<void> {
+    return this.http.delete<void>(`${this.API_URL}/${id}`).toPromise();
   }
 
   private convertField(compliances: Compliance[]) {

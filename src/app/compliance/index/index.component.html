@@ -25,14 +25,9 @@
       >
         <ng-template pTemplate="header">
           <tr>
+            <th>Nº Cumprimento</th>
             <th pSortableColumn="recommendationNumber">
               Nº Reco. <p-sortIcon field="recommendationNumber"></p-sortIcon>
-            </th>
-            <th pSortableColumn="measuresTaken">
-              Medidas tomadas <p-sortIcon field="measuresTaken"></p-sortIcon>
-            </th>
-            <th pSortableColumn="evaluationObs">
-              Desc. da Avaliação <p-sortIcon field="evaluationObs"></p-sortIcon>
             </th>
             <th pSortableColumn="evaluatedAt">
               Data de avaliação <p-sortIcon field="evaluatedAt"></p-sortIcon>
@@ -40,18 +35,17 @@
             <th pSortableColumn="levelName">
               Nível de cumprimento <p-sortIcon field="levelName"></p-sortIcon>
             </th>
-            <th [ngStyle]="{ width: '5%' }"></th>
+            <th [ngStyle]="{ width: '10%' }"></th>
           </tr>
         </ng-template>
 
         <ng-template pTemplate="body" let-rowData>
           <tr>
+            <td>---</td>
             <td>{{ rowData.recommendation.number }}</td>
-            <td><span [innerHTML]="rowData.measuresTaken"></span></td>
-            <td><span [innerHTML]="rowData.evaluationObs"></span></td>
             <td>{{ rowData.evaluatedAt | date }}</td>
             <td>{{ rowData.level.name }}</td>
-            <td class="p-p-0">
+            <td class="p-p-0 table-actions">
               <button
                 pButton
                 pRipple
@@ -59,6 +53,15 @@
                 icon="pi pi-pencil"
                 class="p-button-rounded p-button-warning p-button-outlined"
                 [routerLink]="['/compliance/show', rowData.id]"
+              ></button>
+              <button
+                *ngIf="isAdmin"
+                pButton
+                pRipple
+                type="button"
+                icon="pi pi-trash"
+                class="p-button-rounded p-button-danger p-button-outlined"
+                (click)="confirmDelete(rowData)"
               ></button>
             </td>
           </tr>
