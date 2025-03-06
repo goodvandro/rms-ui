@@ -42,9 +42,7 @@
       >
         <ng-template pTemplate="header">
           <tr>
-            <th [ngStyle]="{ width: '10%' }" pSortableColumn="processCode">
-              Código<p-sortIcon field="processCode"></p-sortIcon>
-            </th>
+            <th [ngStyle]="{ width: '10%' }">Código</th>
             <th
               [ngStyle]="{ width: '30%' }"
               pSortableColumn="entityAuditedName"
@@ -68,7 +66,7 @@
             <td>{{ rowData.entityAudited.name }}</td>
             <td class="ellipsis">{{ rowData.description }}</td>
             <td>{{ rowData.createdAt | date : "dd/MM/yyyy" }}</td>
-            <td class="p-p-0">
+            <td class="p-p-0 table-actions">
               <button
                 pButton
                 pRipple
@@ -78,12 +76,13 @@
                 [routerLink]="['/audit/show', rowData.id]"
               ></button>
               <button
+                *ngIf="isAdmin"
                 pButton
                 pRipple
                 type="button"
                 icon="pi pi-trash"
                 class="p-button-rounded p-button-danger p-button-outlined"
-                (click)="deleteAudit(rowData.id)"
+                (click)="confirmDeleteAudit(rowData)"
               ></button>
             </td>
           </tr>

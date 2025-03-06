@@ -1,11 +1,21 @@
 <div class="p-grid p-m-0 p-p-0 ng-main">
-  <div class="p-col-12 p-p-0 p-m-0 p-shadow-1"
-    [ngStyle]="{background:'var(--system-primary-color)', color:'var(--white)'}" *ngIf="!showAuth()">
+  <div
+    class="p-col-12 p-p-0 p-m-0 p-shadow-1"
+    [ngStyle]="{
+      background: 'var(--system-primary-color)',
+      color: 'var(--white)'
+    }"
+    *ngIf="!showAuth()"
+  >
     <app-navbar></app-navbar>
   </div>
 
-  <div class="p-col-fixed p-px-0 p-mr-1 p-shadow-1 np-menubar" [ngStyle]="{background:'var(--white)'}"
-    *ngIf="!showAuth()" [ngStyle]="{width:'15rem'}">
+  <div
+    class="p-col-fixed p-px-0 p-mr-1 p-shadow-1 np-menubar"
+    [ngStyle]="{ background: 'var(--white)' }"
+    *ngIf="!showAuth()"
+    [ngStyle]="{ width: '15rem' }"
+  >
     <app-aside></app-aside>
   </div>
 
@@ -13,7 +23,36 @@
     <router-outlet></router-outlet>
   </div>
 
-  <div class="p-col-12 p-shadow-1 p-m-0 p-p-0 p-d-flex p-jc-center" [ngStyle]="{background:'#FBFBFB'}">
+  <div
+    class="p-col-12 p-shadow-1 p-m-0 p-p-0 p-d-flex p-jc-center"
+    [ngStyle]="{ background: '#FBFBFB' }"
+  >
     <app-footer></app-footer>
   </div>
 </div>
+
+<p-confirmDialog
+  #cd
+  key="customConfirmDialog"
+  header="Confirmation"
+  icon="pi pi-exclamation-triangle"
+>
+  <p-footer>
+    <button
+      type="button"
+      pButton
+      class="p-button-raised p-button-text p-button-plain"
+      icon="pi pi-times"
+      label="Não"
+      (click)="cd.reject()"
+    ></button>
+    <button
+      type="button"
+      pButton
+      class="p-button-raised p-button-danger p-button-plain"
+      icon="pi pi-check"
+      label="Sim"
+      (click)="cd.accept()"
+    ></button>
+  </p-footer>
+</p-confirmDialog>

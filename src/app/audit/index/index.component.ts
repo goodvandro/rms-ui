@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { LazyLoadEvent } from 'primeng/api';
+import { ConfirmationService, LazyLoadEvent } from 'primeng/api';
 import { AuditService } from '../audit.service';
 import { AuditFilter } from '../audit.filter.resource';
 import { ErrorService } from '../../error/error.service';
+import { UserSession } from '../../models/user';
+import { AuthService } from '../../auth/auth.service';
+import { Audit } from '../../models/audit';
 
 @Component({
   selector: 'app-index',
@@ -16,14 +19,20 @@ export class IndexComponent implements OnInit {
   filter: AuditFilter = new AuditFilter();
   totalRecords: number = 0;
   audits = [];
+  userSession: UserSession;
 
   constructor(
     private auditService: AuditService,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private authService: AuthService,
+    private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit(): void {
     this.loading = true;
+    if (!this.authService.isAccessTokenInvalid()) {
+      this.userSession = this.authService.jwtPayload.user;
+    }
   }
 
   read(page = 0): void {
@@ -64,5 +73,19 @@ export class IndexComponent implements OnInit {
         this.read();
       })
       .catch((error) => this.errorService.handle(error));
+  }
+
+  confirmDeleteAudit(audit: Audit) {
+    this.confirmationService.confirm({
+      message: `Tem certeza que deseja excluir a auditoria <strong>${audit.processCode}</strong>?`,
+      key: 'customConfirmDialog',
+      accept: () => {
+        this.deleteAudit(audit.id);
+      },
+    });
+  }
+
+  get isAdmin(): boolean {
+    return this.userSession?.group.slug === 'admin';
   }
 }
