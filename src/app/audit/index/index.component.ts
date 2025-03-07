@@ -68,7 +68,7 @@ export class IndexComponent implements OnInit {
 
   deleteAudit(id: number): void {
     this.auditService
-      .deleteAudit(id)
+      .delete(id)
       .then(() => {
         this.read();
       })

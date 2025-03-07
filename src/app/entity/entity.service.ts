@@ -1,10 +1,10 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
-import { environment } from 'src/environments/environment';
 import { AppHttClient } from './../auth/app-http-client';
 import { Entity } from './../models/entity';
 import { EntityFilter, getFilterParams } from './entity-filter-resource';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -50,6 +50,10 @@ export class EntityService {
         this.convertField([entity]);
         return entity;
       });
+  }
+
+  delete(id: number): Promise<void> {
+    return this.http.delete<void>(`${this.API_URL}/${id}`).toPromise();
   }
 
   private convertField(entities: Entity[]) {

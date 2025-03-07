@@ -1,10 +1,10 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
-import { environment } from 'src/environments/environment';
 import { AppHttClient } from './../auth/app-http-client';
 import { Audit } from './../models/audit';
 import { AuditFilter, getFilterParams } from './audit.filter.resource';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -77,7 +77,7 @@ export class AuditService {
     return audit;
   }
 
-  deleteAudit(id: number): Promise<void> {
+  delete(id: number): Promise<void> {
     return this.http.delete<void>(`${this.API_URL}/${id}`).toPromise();
   }
 

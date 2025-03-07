@@ -41,22 +41,22 @@
       >
         <ng-template pTemplate="header">
           <tr>
-            <th pSortableColumn="name">
+            <th [ngStyle]="{ width: '45%' }" pSortableColumn="name">
               Nome <p-sortIcon field="name"></p-sortIcon>
             </th>
-            <th pSortableColumn="initial">
+            <th [ngStyle]="{ width: '10%' }" pSortableColumn="initial">
               Iniciais <p-sortIcon field="initial"></p-sortIcon>
             </th>
-            <th pSortableColumn="auditor">
+            <th [ngStyle]="{ width: '10%' }" pSortableColumn="auditor">
               Tipo <p-sortIcon field="auditor"></p-sortIcon>
             </th>
-            <th pSortableColumn="levelName">
+            <th [ngStyle]="{ width: '10%' }" pSortableColumn="levelName">
               Nível <p-sortIcon field="levelName"></p-sortIcon>
             </th>
-            <th pSortableColumn="createdAt">
+            <th [ngStyle]="{ width: '15%' }" pSortableColumn="createdAt">
               Registada em <p-sortIcon field="createdAt"></p-sortIcon>
             </th>
-            <th [ngStyle]="{ width: '5%' }"></th>
+            <th [ngStyle]="{ width: '10%' }"></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData>
@@ -65,8 +65,8 @@
             <td>{{ rowData.initial }}</td>
             <td>{{ rowData.auditor ? "Auditora" : "Auditada" }}</td>
             <td>{{ rowData.level.name }}</td>
-            <td>{{ rowData.createdAt | date }}</td>
-            <td class="p-p-0">
+            <td>{{ rowData.createdAt | date : "dd/MM/yyyy" }}</td>
+            <td class="p-p-0 table-actions">
               <button
                 pButton
                 pRipple
@@ -74,6 +74,16 @@
                 icon="pi pi-pencil"
                 class="p-button-rounded p-button-warning p-button-outlined"
                 [routerLink]="['/entity/show', rowData.id]"
+              ></button>
+              <button
+                *ngIf="isAdmin"
+                pButton
+                pRipple
+                type="button"
+                icon="pi pi-trash"
+                class="p-button-rounded p-button-danger p-button-outlined"
+                [disabled]="rowData.initial === 'IGF'"
+                (click)="confirmDelete(rowData)"
               ></button>
             </td>
           </tr>

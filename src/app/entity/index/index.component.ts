@@ -1,8 +1,11 @@
-import { LazyLoadEvent } from 'primeng/api';
+import { ConfirmationService, LazyLoadEvent } from 'primeng/api';
 import { ErrorService } from './../../error/error.service';
 import { EntityService } from './../entity.service';
 import { EntityFilter } from './../entity-filter-resource';
 import { Component, OnInit } from '@angular/core';
+import { UserSession } from '../../models/user';
+import { AuthService } from '../../auth/auth.service';
+import { Entity } from '../../models/entity';
 
 @Component({
   selector: 'app-index',
@@ -14,14 +17,20 @@ export class IndexComponent implements OnInit {
   filter = new EntityFilter();
   totalRecords: number = 0;
   entities = [];
+  userSession: UserSession;
 
   constructor(
     private entityService: EntityService,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private authService: AuthService,
+    private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit(): void {
     this.loading = true;
+    if (!this.authService.isAccessTokenInvalid()) {
+      this.userSession = this.authService.jwtPayload.user;
+    }
   }
 
   read(page = 0): void {
@@ -50,5 +59,28 @@ export class IndexComponent implements OnInit {
   setFilter(newFilter: EntityFilter): void {
     this.filter = newFilter;
     this.read();
+  }
+
+  delete(id: number): void {
+    this.entityService
+      .delete(id)
+      .then(() => {
+        this.read();
+      })
+      .catch((error) => this.errorService.handle(error));
+  }
+
+  confirmDelete(entity: Entity) {
+    this.confirmationService.confirm({
+      message: `Tem certeza que deseja excluir a entidade <strong>${entity.initial}</strong>?`,
+      key: 'customConfirmDialog',
+      accept: () => {
+        this.delete(entity.id);
+      },
+    });
+  }
+
+  get isAdmin(): boolean {
+    return this.userSession?.group.slug === 'admin';
   }
 }
