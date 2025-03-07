@@ -75,7 +75,7 @@ export class IndexComponent implements OnInit {
 
   confirmDelete(compliance: Compliance) {
     this.confirmationService.confirm({
-      message: `Tem certeza que deseja excluir a recomendação?`,
+      message: `Tem certeza que deseja excluir o cumprimento?`,
       key: 'customConfirmDialog',
       accept: () => {
         this.delete(compliance.id);
