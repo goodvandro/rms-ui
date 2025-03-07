@@ -5,10 +5,24 @@
 
   <div class="p-col-12">
     <p-card>
-      <app-group-work-filter
-        [(filter)]="filter"
-        (setFilter)="setFilter($event)"
-      ></app-group-work-filter>
+      <div class="p-grid">
+        <div class="p-col-12">
+          <button
+            pButton
+            pRipple
+            type="button"
+            label="Adicionar"
+            class="p-button-raised p-mx-1"
+            icon="pi pi-plus"
+            routerLink="/group-work/new"
+          ></button>
+
+          <app-group-work-filter
+            [(filter)]="filter"
+            (setFilter)="setFilter($event)"
+          ></app-group-work-filter>
+        </div>
+      </div>
 
       <p-table
         [value]="groupWorks"
@@ -22,20 +36,20 @@
       >
         <ng-template pTemplate="header">
           <tr>
-            <th pSortableColumn="name">
+            <th [ngStyle]="{ width: '70%' }" pSortableColumn="name">
               Nome <p-sortIcon field="name"></p-sortIcon>
             </th>
             <th pSortableColumn="createdAt">
               Data de registo <p-sortIcon field="createdAt"></p-sortIcon>
             </th>
-            <th [ngStyle]="{ width: '5%' }"></th>
+            <th [ngStyle]="{ width: '10%' }"></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData>
           <tr>
             <td>{{ rowData.name }}</td>
             <td>{{ rowData.createdAt | date }}</td>
-            <td class="p-p-0">
+            <td class="p-p-0 table-actions">
               <button
                 pButton
                 pRipple
@@ -44,30 +58,17 @@
                 class="p-button-rounded p-button-warning p-button-outlined"
                 [routerLink]="['/group-work/index', rowData.id]"
               ></button>
+              <button
+                *ngIf="isAdmin"
+                pButton
+                pRipple
+                type="button"
+                icon="pi pi-trash"
+                class="p-button-rounded p-button-danger p-button-outlined"
+                (click)="confirmDelete(rowData)"
+              ></button>
             </td>
           </tr>
-        </ng-template>
-
-        <ng-template pTemplate="paginatorleft">
-          <p-button
-            type="button"
-            icon="pi pi-plus"
-            styleClass="p-button-text"
-            pTooltip="Adicionar nova equipa"
-            tooltipPosition="right"
-            routerLink="/group-work/new"
-          >
-          </p-button>
-        </ng-template>
-
-        <ng-template pTemplate="paginatorright">
-          <p-button
-            type="button"
-            icon="pi pi-refresh"
-            styleClass="p-button-text"
-            pTooltip="Atualizar"
-            tooltipPosition="left"
-          ></p-button>
         </ng-template>
       </p-table>
     </p-card>

@@ -1,7 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 import { AppHttClient } from './../auth/app-http-client';
 import { GroupWork } from './../models/group-work';
 import { getFilterParams, GroupWorkFilter } from './group-work-filter-resource';
@@ -49,6 +49,10 @@ export class GroupWorkService {
         this.convertField([groupWork]);
         return groupWork;
       });
+  }
+
+  async delete(id: number): Promise<void> {
+    return this.http.delete<void>(`${this.API_URL}/${id}`).toPromise();
   }
 
   private convertField(groupsWork: GroupWork[]) {

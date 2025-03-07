@@ -75,7 +75,7 @@ export class IndexComponent implements OnInit {
       .catch((error) => this.errorService.handle(error));
   }
 
-  confirmDeleteAudit(audit: Audit) {
+  confirmDelete(audit: Audit) {
     this.confirmationService.confirm({
       message: `Tem certeza que deseja excluir a auditoria <strong>${audit.processCode}</strong>?`,
       key: 'customConfirmDialog',
