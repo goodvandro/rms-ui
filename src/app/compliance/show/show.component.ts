@@ -48,7 +48,11 @@ export class ShowComponent implements OnInit {
   getById(): void {
     this.complianceService
       .getById(this.id)
-      .then((result) => (this.compliance = result))
+      .then((result) => {
+        this.compliance = result;
+        const audit = this.compliance.recommendation.audit;
+        this.compliance.recommendation.audit.processCode = `${audit.year}.${audit.entityAudited.initial}.${audit.number}`;
+      })
       .catch((error) => this.errorService.handle(error));
   }
 

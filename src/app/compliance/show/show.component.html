@@ -64,7 +64,9 @@
               </tr>
               <tr>
                 <th>Descrição da Ação:</th>
-                <td class="text-truncate">{{ compliance.recommendation.audit.description }}</td>
+                <td class="text-truncate">
+                  {{ compliance.recommendation.audit.description }}
+                </td>
               </tr>
               <tr>
                 <th>Data de Despacho:</th>
@@ -84,12 +86,13 @@
             <table class="styled-table" style="width: 100%">
               <tr>
                 <th style="width: '28%'">Nº de Recomendação:</th>
-                <td style="width: '72%'">{{ compliance.recommendation.id }}</td>
+                <td style="width: '72%'">{{ compliance.recommendation.number }}</td>
               </tr>
               <tr>
                 <th>Descrição:</th>
                 <td
                   class="description"
+                  [style]="{ minHeight: '1.7rem', border: 'none' }"
                   [innerHTML]="compliance.recommendation.description"
                 ></td>
               </tr>
