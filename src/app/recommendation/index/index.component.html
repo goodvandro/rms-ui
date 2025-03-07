@@ -5,11 +5,25 @@
 
   <div class="p-col-12">
     <p-card>
-      <app-recommendation-filter
-        [(recommendationFilter)]="filter"
-        (setFilter)="setFilter($event)"
-      >
-      </app-recommendation-filter>
+      <div class="p-grid">
+        <div class="p-col-12">
+          <button
+            pButton
+            pRipple
+            type="button"
+            label="Adicionar"
+            class="p-button-raised p-mx-1"
+            icon="pi pi-plus"
+            routerLink="/recommendation/new"
+          ></button>
+
+          <app-recommendation-filter
+            [(recommendationFilter)]="filter"
+            (setFilter)="setFilter($event)"
+          >
+          </app-recommendation-filter>
+        </div>
+      </div>
 
       <p-table
         [value]="recommendations"
@@ -83,28 +97,6 @@
               ></button>
             </td>
           </tr>
-        </ng-template>
-
-        <ng-template pTemplate="paginatorleft">
-          <p-button
-            type="button"
-            icon="pi pi-plus"
-            styleClass="p-button-text"
-            pTooltip="Novo"
-            tooltipPosition="right"
-            routerLink="/recommendation/new"
-          >
-          </p-button>
-        </ng-template>
-
-        <ng-template pTemplate="paginatorright">
-          <p-button
-            type="button"
-            icon="pi pi-refresh"
-            styleClass="p-button-text"
-            pTooltip="Atualizar"
-            tooltipPosition="left"
-          ></p-button>
         </ng-template>
       </p-table>
     </p-card>

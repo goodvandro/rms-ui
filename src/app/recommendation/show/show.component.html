@@ -99,7 +99,23 @@
               <div class="p-col-12">
                 <h4>INFORMAÇÕES DA CONCLUSÃO E DETALHES DA RECOMENDAÇÃO</h4>
               </div>
+            </div>
 
+            <div class="p-grid">
+              <div class="p-field p-col-12 p-md-6">
+                <label for="evaluationObs">Nº Recomendação</label>
+                <input
+                  type="text"
+                  id="number"
+                  name="number"
+                  pInputText
+                  [(ngModel)]="recommendation.number"
+                  disabled
+                />
+              </div>
+            </div>
+
+            <div class="p-grid">
               <div class="p-field p-col-12 p-md-6">
                 <label for="constatation"
                   >Conclusão<span class="span-required">*</span></label
