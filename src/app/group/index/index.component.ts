@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { LazyLoadEvent } from 'primeng/api';
-import { ErrorService } from 'src/app/error/error.service';
+import { ConfirmationService, LazyLoadEvent } from 'primeng/api';
+import { ErrorService } from '../../error/error.service';
 import { GroupFilter, GroupService } from '../group.service';
+import { UserSession } from '../../models/user';
+import { AuthService } from '../../auth/auth.service';
+import { Group } from '../../models/group';
 
 @Component({
   selector: 'app-index',
@@ -13,17 +16,25 @@ export class IndexComponent implements OnInit {
   filter = new GroupFilter();
   totalRecords: number = 0;
   groups = [];
+  userSession: UserSession;
 
   constructor(
     private groupService: GroupService,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private authService: AuthService,
+    private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit(): void {
     this.loading = true;
+    if (!this.authService.isAccessTokenInvalid()) {
+      this.userSession = this.authService.jwtPayload.user;
+    }
   }
 
   read(page = 0): void {
+    this.loading = true;
+    
     this.filter.page = page;
 
     this.groupService
@@ -47,5 +58,28 @@ export class IndexComponent implements OnInit {
   setFilter(newFilter: GroupFilter): void {
     this.filter = newFilter;
     this.read();
+  }
+
+  delete(id: number): void {
+    this.groupService
+      .delete(id)
+      .then(() => {
+        this.read();
+      })
+      .catch((error) => this.errorService.handle(error));
+  }
+
+  confirmDelete(group: Group) {
+    this.confirmationService.confirm({
+      message: `Tem certeza que deseja excluir a auditoria <strong>${group.name}</strong>?`,
+      key: 'customConfirmDialog',
+      accept: () => {
+        this.delete(group.id);
+      },
+    });
+  }
+
+  get isAdmin(): boolean {
+    return this.userSession?.group.slug === 'admin';
   }
 }

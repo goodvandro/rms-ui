@@ -66,7 +66,7 @@ export class IndexComponent implements OnInit {
     this.read();
   }
 
-  deleteAudit(id: number): void {
+  delete(id: number): void {
     this.auditService
       .delete(id)
       .then(() => {
@@ -80,7 +80,7 @@ export class IndexComponent implements OnInit {
       message: `Tem certeza que deseja excluir a auditoria <strong>${audit.processCode}</strong>?`,
       key: 'customConfirmDialog',
       accept: () => {
-        this.deleteAudit(audit.id);
+        this.delete(audit.id);
       },
     });
   }

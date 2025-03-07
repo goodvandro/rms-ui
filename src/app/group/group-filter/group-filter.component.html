@@ -1,12 +1,12 @@
-<div class="p-fluid p-grid p-d-flex p-jc-end p-ai-center">
-  <p-button
-    type="button"
-    class="p-m-2"
-    (click)="openFilter = true"
-    icon="pi pi-filter"
-    label="Filtrar"
-  ></p-button>
-</div>
+<button
+  pButton
+  pRipple
+  type="button"
+  label="Filtrar"
+  class="p-button-raised p-button-text p-button-plain p-mx-1"
+  icon="pi pi-filter"
+  (click)="openFilter = true"
+></button>
 
 <p-sidebar
   [(visible)]="openFilter"

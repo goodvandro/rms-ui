@@ -1,7 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 import { AppHttClient } from './../auth/app-http-client';
 import { Group } from './../models/group';
 
@@ -67,5 +67,9 @@ export class GroupService {
 
   async getById(id: number): Promise<Group> {
     return this.http.get<Group>(`${this.API_URL}/${id}`).toPromise();
+  }
+
+  async delete(id: number): Promise<void> {
+    return this.http.delete<void>(`${this.API_URL}/${id}`).toPromise();
   }
 }
