@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { LazyLoadEvent } from 'primeng/api';
+import { ConfirmationService, LazyLoadEvent } from 'primeng/api';
 import { UserFilter } from '../user-filter-resource';
 import { UserService } from '../user.service';
 import { ErrorService } from './../../error/error.service';
+import { User, UserSession } from '../../models/user';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-read',
@@ -14,14 +16,20 @@ export class ReadComponent implements OnInit {
   filter = new UserFilter();
   totalRecords: number = 0;
   users = [];
+  userSession: UserSession;
 
   constructor(
     private userService: UserService,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private authService: AuthService,
+    private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit(): void {
     this.loading = true;
+    if (!this.authService.isAccessTokenInvalid()) {
+      this.userSession = this.authService.jwtPayload.user;
+    }
   }
 
   read(page = 0): void {
@@ -50,5 +58,28 @@ export class ReadComponent implements OnInit {
   setFilter(newFilter: UserFilter): void {
     this.filter = newFilter;
     this.read();
+  }
+
+  deleteAudit(id: number): void {
+    this.userService
+      .delete(id)
+      .then(() => {
+        this.read();
+      })
+      .catch((error) => this.errorService.handle(error));
+  }
+
+  confirmDelete(user: User) {
+    this.confirmationService.confirm({
+      message: `Tem certeza que deseja excluir o utilizador <strong>${user.username}</strong>?`,
+      key: 'customConfirmDialog',
+      accept: () => {
+        this.deleteAudit(user.id);
+      },
+    });
+  }
+
+  get isAdmin(): boolean {
+    return this.userSession?.group.slug === 'admin';
   }
 }

@@ -74,6 +74,10 @@ export class UserService {
       });
   }
 
+  async delete(id: number): Promise<void> {
+    return this.http.delete<void>(`${this.API_URL}/${id}`).toPromise();
+  }
+
   async setAuthorities(): Promise<void> {
     const result: User = await this.http
       .get<User>(`${this.API_URL}/me`)
