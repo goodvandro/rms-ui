@@ -20,7 +20,7 @@ import { RecommendationStatusService } from './../../recommendation-status/recom
 @Component({
   selector: 'app-new',
   templateUrl: './new.component.html',
-  styleUrls: ['./new.component.scss']
+  styleUrls: ['./new.component.scss'],
 })
 export class NewComponent implements OnInit {
   loading: boolean = false;
@@ -48,8 +48,8 @@ export class NewComponent implements OnInit {
     private auditService: AuditService,
     private errorService: ErrorService,
     private toastr: ToastrService,
-    private router: Router,
-  ) { }
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.dropdownStatuses();
@@ -59,42 +59,43 @@ export class NewComponent implements OnInit {
   }
 
   async dropdownStatuses() {
-    await this.statusService.readAll()
-      .then((result) => {
-        this.statuses = result.map(
-          (status: RecommendationStatus) => ({
-            value: status.id,
-            label: status.name
-          }));
-        this.loadDefaultStatus(result)
-      });
+    await this.statusService.readAll().then((result) => {
+      this.statuses = result.map((status: RecommendationStatus) => ({
+        value: status.id,
+        label: status.name,
+      }));
+      this.loadDefaultStatus(result);
+    });
   }
 
   async dropdownNatures() {
-    await this.natureService.readAll()
-      .then((result) => this.natures = result.map(
-        (nature: RecommendationNature) => ({
+    await this.natureService.readAll().then(
+      (result) =>
+        (this.natures = result.map((nature: RecommendationNature) => ({
           value: nature.id,
-          label: nature.name
+          label: nature.name,
         })))
+    );
   }
 
   async dropdownCharacters() {
-    await this.characterService.readAll()
-      .then((result) => this.characters = result.map(
-        (character: RecommendationCharacter) => ({
+    await this.characterService.readAll().then(
+      (result) =>
+        (this.characters = result.map((character: RecommendationCharacter) => ({
           value: character.id,
-          label: character.name
+          label: character.name,
         })))
+    );
   }
 
   async dropdownLevelsRisk() {
-    await this.levelRiskService.readAll()
-      .then((result) => this.levelsRisk = result.map(
-        (levelRisk: RecommendationLevelRisk) => ({
+    await this.levelRiskService.readAll().then(
+      (result) =>
+        (this.levelsRisk = result.map((levelRisk: RecommendationLevelRisk) => ({
           value: levelRisk.id,
-          label: levelRisk.name
+          label: levelRisk.name,
         })))
+    );
   }
 
   loadDefaultStatus(statuses: RecommendationStatus[]) {
@@ -102,11 +103,13 @@ export class NewComponent implements OnInit {
       if (status.slug === 'pendent') {
         this.recommendation.status = status;
       }
-    })
+    });
   }
 
   lazyLoad(event: LazyLoadEvent) {
-    const page = event.first / event.rows;
+    const page = (event.first ?? 0) / (event.rows ?? 1);
+    this.filter.sortField = event.sortField || 'id';
+    this.filter.sortOrder = event.sortOrder === -1 ? 'asc' : 'desc';
     this.filter.rows = event.rows;
     this.readAudits(page);
   }
@@ -115,13 +118,14 @@ export class NewComponent implements OnInit {
     this.loadingAudits = true;
     this.filter.page = page;
 
-    this.auditService.read(this.filter)
+    this.auditService
+      .read(this.filter)
       .then((result) => {
         this.audits = result.content;
         this.totalRecords = result.totalElements;
       })
       .catch((error) => this.errorService.handle(error))
-      .finally(() => this.loadingAudits = false);
+      .finally(() => (this.loadingAudits = false));
   }
 
   getAudit(audit: Audit) {
@@ -153,12 +157,13 @@ export class NewComponent implements OnInit {
   create(): void {
     this.loading = true;
     this.recommendation.audit.id = this.audit.id;
-    this.recommendationService.create(this.recommendation)
+    this.recommendationService
+      .create(this.recommendation)
       .then((result) => {
         this.router.navigate(['/recommendation/show', result.id]);
-        this.toastr.success('Recomendação adicionado!')
+        this.toastr.success('Recomendação adicionado!');
       })
       .catch((error) => this.errorService.handle(error))
-      .finally(() => this.loading = false)
+      .finally(() => (this.loading = false));
   }
 }
